@@ -461,14 +461,114 @@
 <p>有興趣可以到<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/5177980124815283469#">pinpong官網</a>看一下，</p>
 <p>我是使用pycharm，所以首先安裝opencv-python，mediapipe和pinpong這兩個主要的程式庫</p>
 <h2 id="步驟1"><a href="#步驟1" class="headerlink" title="步驟1:"></a>步驟1:</h2><p><strong>先把這個程式庫命名為handutil.py和主程式放一起</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">import cv2  </span><br><span class="line">import mediapipe as mp  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">class HandDetector():  </span><br><span class="line">    &#x27;&#x27;&#x27;  </span><br><span class="line">   手势识别类  </span><br><span class="line"> &#x27;&#x27;&#x27;   def \_\_init\_\_(self, mode=False, max_hands=2, detection_con=0.5, track_con=0.5):  </span><br><span class="line">        &#x27;&#x27;&#x27;  </span><br><span class="line">   初始化  </span><br><span class="line">   :param mode: 是否静态图片，默认为False  </span><br><span class="line">   :param max_hands: 最多几只手，默认为2只  </span><br><span class="line">   :param detection_con: 最小检测信度值，默认为0.5  </span><br><span class="line">   :param track_con: 最小跟踪信度值，默认为0.5  </span><br><span class="line"> &#x27;&#x27;&#x27;   self.mode = mode  </span><br><span class="line">        self.max\_hands = max\_hands  </span><br><span class="line">        self.detection\_con = detection\_con  </span><br><span class="line">        self.track\_con = track\_con  </span><br><span class="line">  </span><br><span class="line">        self.hands = mp.solutions.hands.Hands(self.mode, self.max_hands, self.detection_con, self.track_con)  </span><br><span class="line">  </span><br><span class="line">    def find_hands(self, img, draw=True):  </span><br><span class="line">        &#x27;&#x27;&#x27;  </span><br><span class="line">   检测手势  </span><br><span class="line">   :param img: 视频帧图片  </span><br><span class="line">   :param draw: 是否画出手势中的节点和连接图  </span><br><span class="line">   :return: 处理过的视频帧图片  </span><br><span class="line"> &#x27;&#x27;&#x27;   imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  </span><br><span class="line">        \# 处理图片，检测是否有手势，将数据存进self.results中  </span><br><span class="line">   self.results = self.hands.process(imgRGB)  </span><br><span class="line">        if draw:  </span><br><span class="line">            if self.results.multi\_hand\_landmarks:  </span><br><span class="line">                for handlms in self.results.multi\_hand\_landmarks:  </span><br><span class="line">                    mp.solutions.drawing\_utils.draw\_landmarks(img, handlms, mp.solutions.hands.HAND_CONNECTIONS)  </span><br><span class="line">        return img  </span><br><span class="line">  </span><br><span class="line">    def find_positions(self, img, hand_no=0):  </span><br><span class="line">        &#x27;&#x27;&#x27;  </span><br><span class="line">   获取手势数据  </span><br><span class="line">   :param img: 视频帧图片  </span><br><span class="line">   :param hand_no: 手编号（默认第1只手）  </span><br><span class="line">   :return: 手势数据列表，每个数据成员由id, x, y组成，代码这个手势位置编号以及在屏幕中的位置  </span><br><span class="line"> &#x27;&#x27;&#x27;   self.lmslist = \[\]  </span><br><span class="line">        if self.results.multi\_hand\_landmarks:  </span><br><span class="line">            hand = self.results.multi\_hand\_landmarks\[hand_no\]  </span><br><span class="line">            for id, lm in enumerate(hand.landmark):  </span><br><span class="line">                h, w, c = img.shape  </span><br><span class="line">                cx, cy = int(lm.x * w), int(lm.y * h)  </span><br><span class="line">                self.lmslist.append(\[id, cx, cy\])  </span><br><span class="line">  </span><br><span class="line">        return self.lmslist</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">import cv2  
+import mediapipe as mp  
+  
+  
+class HandDetector():  
+&#39;&#39;&#39;  
+   手势识别类  
+ &#39;&#39;&#39;   def \_\_init\_\_(self, mode&#x3D;False, max_hands&#x3D;2, detection_con&#x3D;0.5, track_con&#x3D;0.5):  
+        &#39;&#39;&#39;  
+   初始化  
+   :param mode: 是否静态图片，默认为False  
+   :param max_hands: 最多几只手，默认为2只  
+   :param detection_con: 最小检测信度值，默认为0.5  
+   :param track_con: 最小跟踪信度值，默认为0.5  
+ &#39;&#39;&#39;   self.mode &#x3D; mode  
+        self.max\_hands &#x3D; max\_hands  
+        self.detection\_con &#x3D; detection\_con  
+        self.track\_con &#x3D; track\_con  
+  
+        self.hands &#x3D; mp.solutions.hands.Hands(self.mode, self.max_hands, self.detection_con, self.track_con)  
+  
+    def find_hands(self, img, draw&#x3D;True):  
+        &#39;&#39;&#39;  
+   检测手势  
+   :param img: 视频帧图片  
+   :param draw: 是否画出手势中的节点和连接图  
+   :return: 处理过的视频帧图片  
+ &#39;&#39;&#39;   imgRGB &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  
+        \# 处理图片，检测是否有手势，将数据存进self.results中  
+   self.results &#x3D; self.hands.process(imgRGB)  
+        if draw:  
+            if self.results.multi\_hand\_landmarks:  
+                for handlms in self.results.multi\_hand\_landmarks:  
+                    mp.solutions.drawing\_utils.draw\_landmarks(img, handlms, mp.solutions.hands.HAND_CONNECTIONS)  
+        return img  
+  
+    def find_positions(self, img, hand_no&#x3D;0):  
+        &#39;&#39;&#39;  
+   获取手势数据  
+   :param img: 视频帧图片  
+   :param hand_no: 手编号（默认第1只手）  
+   :return: 手势数据列表，每个数据成员由id, x, y组成，代码这个手势位置编号以及在屏幕中的位置  
+ &#39;&#39;&#39;   self.lmslist &#x3D; \[\]  
+        if self.results.multi\_hand\_landmarks:  
+            hand &#x3D; self.results.multi\_hand\_landmarks\[hand_no\]  
+            for id, lm in enumerate(hand.landmark):  
+                h, w, c &#x3D; img.shape  
+                cx, cy &#x3D; int(lm.x * w), int(lm.y * h)  
+                self.lmslist.append(\[id, cx, cy\])  
+  
+        return self.lmslist<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
-<h2 id="步驟2"><a href="#步驟2" class="headerlink" title="步驟2:"></a>步驟2:</h2><h2 id="複制貼上主程式"><a href="#複制貼上主程式" class="headerlink" title="複制貼上主程式"></a><strong>複制貼上主程式</strong></h2><h2 id="這裡留意一下計算斜角轉成角度的公式"><a href="#這裡留意一下計算斜角轉成角度的公式" class="headerlink" title="*這裡留意一下計算斜角轉成角度的公式"></a>*<strong>這裡留意一下計算斜角轉成角度的公式</strong></h2><h3 id="算出角度"><a href="#算出角度" class="headerlink" title="算出角度:"></a>算出角度:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">假如两点坐标分别是（x1，y1）（x2，y2）</span><br><span class="line"></span><br><span class="line">那么斜率是：（y2-y1）/（x2-x1）</span><br><span class="line"></span><br><span class="line">k=(y2-y1)/(x2-x1) 其中(x1,y1),(x2,y2) 是已知两点的坐标</span><br><span class="line"></span><br><span class="line">已知A(x1，y1)，B(x2，y2)  </span><br><span class="line">1、若x1=x2，则斜率不存在；  </span><br><span class="line">2、若x1≠x2，则斜率k=(y2－y1)/(x2－x1)</span><br></pre></td></tr></table></figure>
+<h2 id="步驟2"><a href="#步驟2" class="headerlink" title="步驟2:"></a>步驟2:</h2><h2 id="複制貼上主程式"><a href="#複制貼上主程式" class="headerlink" title="複制貼上主程式"></a><strong>複制貼上主程式</strong></h2><h2 id="這裡留意一下計算斜角轉成角度的公式"><a href="#這裡留意一下計算斜角轉成角度的公式" class="headerlink" title="*這裡留意一下計算斜角轉成角度的公式"></a>*<strong>這裡留意一下計算斜角轉成角度的公式</strong></h2><h3 id="算出角度"><a href="#算出角度" class="headerlink" title="算出角度:"></a>算出角度:</h3><pre class="line-numbers language-none"><code class="language-none">假如两点坐标分别是（x1，y1）（x2，y2）
 
-<h3 id="算出弧度"><a href="#算出弧度" class="headerlink" title="算出弧度:"></a><strong>算出弧度:</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import math</span><br><span class="line"></span><br><span class="line">math.degrees(x)</span><br><span class="line"></span><br><span class="line">**x為一個值**</span><br></pre></td></tr></table></figure>
+那么斜率是：（y2-y1）&#x2F;（x2-x1）
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import cv2  </span><br><span class="line">from HandTrackingMoudle import handDetector  </span><br><span class="line">import math  </span><br><span class="line">import numpy as np  </span><br><span class="line">from pinpong.board import Board, Pin, Servo  </span><br><span class="line">import time  </span><br><span class="line">  </span><br><span class="line">Board(&quot;uno&quot;).begin()  </span><br><span class="line">myServo = Servo(Pin(Pin.A0))  </span><br><span class="line">  </span><br><span class="line">cap = cv2.VideoCapture(0)  </span><br><span class="line">  </span><br><span class="line">detector = handDetector()  </span><br><span class="line">angle = 0  </span><br><span class="line">while True:  </span><br><span class="line">    success, img = cap.read()  </span><br><span class="line">    img = detector.findHands(img, draw=True)  </span><br><span class="line">    lmList = detector.findPosition(img, personDraw=False)  </span><br><span class="line">    if len(lmList) &gt; 0:  </span><br><span class="line">        print(lmList\[4\], lmList\[8\])  </span><br><span class="line">        x1, y1 = lmList\[4\]\[1\], lmList\[4\]\[2\]  </span><br><span class="line">        x2, y2 = lmList\[8\]\[1\], lmList\[8\]\[2\]  </span><br><span class="line">        cv2.circle(img, (x1, y1), 15, (200, 10, 100), cv2.FILLED)  </span><br><span class="line">        cv2.circle(img, (x2, y2), 15, (200, 10, 100), cv2.FILLED)  </span><br><span class="line">        cv2.line(img, (x1, y1), (x2, y2), (200, 10, 100), 4)  </span><br><span class="line">  </span><br><span class="line">        if (x1 - x2) != 0:  </span><br><span class="line">            angle = math.degrees(np.arctan((y2 - y1)/(x2 - x1)))  </span><br><span class="line">            a = 180 \- angle  </span><br><span class="line">            myServo.write_angle(int(a))  </span><br><span class="line">            print(int(a))  </span><br><span class="line">        if angle &lt; 0:  </span><br><span class="line">            angle = abs(angle)  </span><br><span class="line">            myServo.write_angle(int(angle))  </span><br><span class="line">            print(int(angle))  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    cv2.imshow(&quot;Image&quot;, img)  </span><br><span class="line">    cv2.waitKey(1)</span><br></pre></td></tr></table></figure>
+k&#x3D;(y2-y1)&#x2F;(x2-x1) 其中(x1,y1),(x2,y2) 是已知两点的坐标
+
+已知A(x1，y1)，B(x2，y2)  
+1、若x1&#x3D;x2，则斜率不存在；  
+2、若x1≠x2，则斜率k&#x3D;(y2－y1)&#x2F;(x2－x1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="算出弧度"><a href="#算出弧度" class="headerlink" title="算出弧度:"></a><strong>算出弧度:</strong></h3><pre class="line-numbers language-none"><code class="language-none">import math
+
+math.degrees(x)
+
+**x為一個值**<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">import cv2  
+from HandTrackingMoudle import handDetector  
+import math  
+import numpy as np  
+from pinpong.board import Board, Pin, Servo  
+import time  
+  
+Board(&quot;uno&quot;).begin()  
+myServo &#x3D; Servo(Pin(Pin.A0))  
+  
+cap &#x3D; cv2.VideoCapture(0)  
+  
+detector &#x3D; handDetector()  
+angle &#x3D; 0  
+while True:  
+    success, img &#x3D; cap.read()  
+    img &#x3D; detector.findHands(img, draw&#x3D;True)  
+    lmList &#x3D; detector.findPosition(img, personDraw&#x3D;False)  
+    if len(lmList) &gt; 0:  
+        print(lmList\[4\], lmList\[8\])  
+        x1, y1 &#x3D; lmList\[4\]\[1\], lmList\[4\]\[2\]  
+        x2, y2 &#x3D; lmList\[8\]\[1\], lmList\[8\]\[2\]  
+        cv2.circle(img, (x1, y1), 15, (200, 10, 100), cv2.FILLED)  
+        cv2.circle(img, (x2, y2), 15, (200, 10, 100), cv2.FILLED)  
+        cv2.line(img, (x1, y1), (x2, y2), (200, 10, 100), 4)  
+  
+        if (x1 - x2) !&#x3D; 0:  
+            angle &#x3D; math.degrees(np.arctan((y2 - y1)&#x2F;(x2 - x1)))  
+            a &#x3D; 180 \- angle  
+            myServo.write_angle(int(a))  
+            print(int(a))  
+        if angle &lt; 0:  
+            angle &#x3D; abs(angle)  
+            myServo.write_angle(int(angle))  
+            print(int(angle))  
+  
+  
+    cv2.imshow(&quot;Image&quot;, img)  
+    cv2.waitKey(1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="步驟3"><a href="#步驟3" class="headerlink" title="步驟3:"></a>步驟3:</h2><h2 id="執行程式碼"><a href="#執行程式碼" class="headerlink" title="執行程式碼"></a>執行程式碼</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/tTvcI0AKj-U" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
 <hr>
@@ -808,8 +908,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Tag-%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
-                        <span class="chip bg-color">Tag(函式筆記本)</span>
+                    <a href="/tags/%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
+                        <span class="chip bg-color">函式筆記本)</span>
                     </a>
                     
                 </div>

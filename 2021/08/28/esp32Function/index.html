@@ -387,8 +387,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Tag-%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
-                                <span class="chip bg-color">Tag(函式筆記本)</span>
+                            <a href="/tags/%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
+                                <span class="chip bg-color">函式筆記本)</span>
                             </a>
                         
                     </div>
@@ -444,16 +444,71 @@
 <p><em>例如:</em></p>
 <p><code>LED[4]=&#123;1,2,3,4&#125;</code></p>
 <hr>
-<h3 id="memo-迴圈"><a href="#memo-迴圈" class="headerlink" title=":memo:迴圈"></a>:memo:迴圈</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">for (計數起點; 範圍; 變數累計)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">_例如:_</span><br><span class="line"></span><br><span class="line">for (int  i=0; i&lt;5; i++)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    digitalWrite(led, HIGH);  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="memo-迴圈"><a href="#memo-迴圈" class="headerlink" title=":memo:迴圈"></a>:memo:迴圈</h3><pre class="line-numbers language-none"><code class="language-none">for (計數起點; 範圍; 變數累計)
+
+&#123;
+
+&#125;
+
+_例如:_
+
+for (int  i&#x3D;0; i&lt;5; i++)
+
+&#123;
+
+    digitalWrite(led, HIGH);  
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 <h3 id="memo-字串"><a href="#memo-字串" class="headerlink" title=":memo:字串"></a>:memo:字串</h3><ul>
 <li><strong>範例:</strong></li>
 </ul>
 <p>會報錯的情況</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;  //---使用命名空間</span><br><span class="line"></span><br><span class="line">string w1 = &quot;若天有情&quot;;</span><br><span class="line"></span><br><span class="line">string w2 = &quot;若地有義&quot;;</span><br><span class="line"></span><br><span class="line">void setup()&#123;</span><br><span class="line"></span><br><span class="line">    Serial.begin(115200);</span><br><span class="line"></span><br><span class="line">    Serial.println(s1+s2);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">void loop()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">using namespace std;  &#x2F;&#x2F;---使用命名空間
+
+string w1 &#x3D; &quot;若天有情&quot;;
+
+string w2 &#x3D; &quot;若地有義&quot;;
+
+void setup()&#123;
+
+    Serial.begin(115200);
+
+    Serial.println(s1+s2);
+
+&#125;
+
+  
+
+void loop()
+
+&#123;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>正確的寫法要將s1和s2轉換成c風格的字串</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">using namespace std;  ---使用命名空間</span><br><span class="line"></span><br><span class="line">string w1 = &quot;若天有情&quot;;</span><br><span class="line"></span><br><span class="line">string w2 = &quot;若地有義&quot;;</span><br><span class="line"></span><br><span class="line">void setup()&#123;</span><br><span class="line"></span><br><span class="line">    Serial.begin(115200);</span><br><span class="line"></span><br><span class="line">    Serial.println((s1+s2).c_str());</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void loop()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">using namespace std;  ---使用命名空間
+
+string w1 &#x3D; &quot;若天有情&quot;;
+
+string w2 &#x3D; &quot;若地有義&quot;;
+
+void setup()&#123;
+
+    Serial.begin(115200);
+
+    Serial.println((s1+s2).c_str());
+
+&#125;
+
+void loop()
+
+&#123;
+
+  
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 <h2 id="memo-類比"><a href="#memo-類比" class="headerlink" title=":memo: 類比"></a>:memo: 類比</h2><ul>
 <li><h3 id="類比輸入"><a href="#類比輸入" class="headerlink" title="類比輸入"></a>類比輸入</h3></li>
@@ -467,7 +522,9 @@
 <p><code>數位值=4095/3.3V * 輸入電壓</code></p>
 <p><code>電壓值=3.3V*數位值/4095</code></p>
 <ul>
-<li><h3 id="類比輸出"><a href="#類比輸出" class="headerlink" title="類比輸出"></a>類比輸出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dacWrite(通道, 輸出指定值 );</span><br><span class="line"></span><br><span class="line">輸出指定值=255/3.3V * 想輸出的電壓</span><br></pre></td></tr></table></figure>
+<li><h3 id="類比輸出"><a href="#類比輸出" class="headerlink" title="類比輸出"></a>類比輸出</h3><pre class="line-numbers language-esp32有兩個指定DAC通道,gpio25,gpio26" data-language="esp32有兩個指定DAC通道,gpio25,gpio26"><code class="language-esp32有兩個指定DAC通道,gpio25,gpio26">dacWrite(通道, 輸出指定值 );
+
+輸出指定值&#x3D;255&#x2F;3.3V * 想輸出的電壓<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 :memo: PWM</li>
 <li>-</li>
 <li><ul>
@@ -496,7 +553,19 @@
 <hr>
 <h2 id="memo-Wi-Fi"><a href="#memo-Wi-Fi" class="headerlink" title=":memo: Wi-Fi"></a>:memo: Wi-Fi</h2><p><strong>WiFi.begin(“基地台稱” , “密碼” )</strong></p>
 <p><strong>例如:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const char *ssid = &quot;基地台名稱&quot;;</span><br><span class="line"></span><br><span class="line">const char *password = &quot;密碼&quot;;</span><br><span class="line"></span><br><span class="line">void setup()&#123;</span><br><span class="line"></span><br><span class="line">    WiFi.begin(ssid, password);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void loop()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">const char *ssid &#x3D; &quot;基地台名稱&quot;;
+
+const char *password &#x3D; &quot;密碼&quot;;
+
+void setup()&#123;
+
+    WiFi.begin(ssid, password);
+
+&#125;
+
+void loop()&#123;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><strong>其它設定</strong></li>
 </ul>
@@ -625,8 +694,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Tag-%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
-                                    <span class="chip bg-color">Tag(函式筆記本)</span>
+                                <a href="/tags/%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
+                                    <span class="chip bg-color">函式筆記本)</span>
                                 </a>
                             
                         </div>
@@ -898,8 +967,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Tag-%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
-                        <span class="chip bg-color">Tag(函式筆記本)</span>
+                    <a href="/tags/%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
+                        <span class="chip bg-color">函式筆記本)</span>
                     </a>
                     
                 </div>

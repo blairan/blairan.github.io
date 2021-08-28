@@ -308,13 +308,6 @@
 
 <div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
     
-        <div id="prev-cover" class="left waves-effect carousel-control">
-            <i class="icon fa fa-angle-left"></i>
-        </div>
-        <div id="next-cover" class="right waves-effect carousel-control">
-            <i class="icon fa fa-angle-right"></i>
-        </div>
-    
 
     <div class="carousel-item red white-text bg-cover about-cover">
         <div class="container">
@@ -406,38 +399,6 @@
         </div>
     </div>
 
-    
-        
-
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/featureimages/8.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">esp32函式庫</div>
-                            <div class="description center-align">
-                                
-                                    ESP32函式筆記本-持續更新tags: Tag(函式筆記本):memo:ADC類比輸入電壓範圍和取樣位元analogSetAttenuation(衰減值)
-衰減值
-
-ADC_0db---1.00V
-ADC_2db---1.34V
-ADC_
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/2021/08/28/esp32Function/" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>Read more
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
     
 </div>
 
@@ -569,7 +530,15 @@ ADC_
                         <div class="summary block-with-text">
                             
                                 按鈕控制LED–micropythontags: micropython接線
-1234567891011121314151617181920from machine import Pinfrom time import sleep  led
+from machine import Pin
+
+from time import sleep
+
+  
+
+led &#x3D; Pin(2, Pin.OUT)
+
+
                             
                         </div>
                         <div class="publish-info">
@@ -717,8 +686,8 @@ ADC_
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/Tag-%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
-                            <span class="chip bg-color">Tag(函式筆記本)</span>
+                        <a href="/tags/%E5%87%BD%E5%BC%8F%E7%AD%86%E8%A8%98%E6%9C%AC/">
+                            <span class="chip bg-color">函式筆記本)</span>
                         </a>
                         
                     </div>

@@ -445,17 +445,32 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="按鈕控制LED–micropython"><a href="#按鈕控制LED–micropython" class="headerlink" title="按鈕控制LED–micropython"></a>按鈕控制LED–micropython</h1><h6 id="tags-micropython"><a href="#tags-micropython" class="headerlink" title="tags: micropython"></a>tags: <code>micropython</code></h6><h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/led_button_esp32_bb.png?w=1065&quality=100&strip=all&ssl=1"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/led_button_esp32_bb.png?w=1065&quality=100&strip=all&ssl=1"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from machine import Pin</span><br><span class="line"></span><br><span class="line">from time import sleep</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">led = Pin(2, Pin.OUT)</span><br><span class="line"></span><br><span class="line">button = Pin(4, Pin.IN)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line"></span><br><span class="line">    led.value(button.value())</span><br><span class="line"></span><br><span class="line">    sleep(0.5)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">from machine import Pin
 
+from time import sleep
+
+  
+
+led &#x3D; Pin(2, Pin.OUT)
+
+button &#x3D; Pin(4, Pin.IN)
+
+  
+
+while True:
+
+    led.value(button.value())
+
+    sleep(0.5)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 <p><strong>首先從machine載入Pin，從time載入sleep</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from machine import Pin from time import sleep</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">from machine import Pin from time import sleep<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>下面跨號有兩個參數，５是esp32上的GPIO接腳，Pin.OUT表示第5腳位預設為輸出</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">led = Pin(5, Pin.OUT)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">led &#x3D; Pin(5, Pin.OUT)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>和上面一樣道理，只不過第二個參數是用Pin.IN表示按鈕是以輸入的方式設定</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">button = Pin(4, Pin.IN)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">button &#x3D; Pin(4, Pin.IN)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>當我們按下按鈕時，button.value() 返回 1。因此，這與 led.value(1) 相同。這會將 LED 狀態設置為 1，點亮 LED。當按鈕未被按下時，button.value() 返回 0。因此，我們有 led.value(0)，並且 LED 保持關閉狀態。</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">led.value(button.value())</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">led.value(button.value())<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <hr>
 <h2 id="實作結果"><a href="#實作結果" class="headerlink" title="實作結果"></a>實作結果</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/4boMaNGBm8I" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
