@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="搖桿控制云台-ESP32, 我的微控板實驗室">
+    <meta name="keywords" content="MQTT&amp;node-RED控制二軸云台-mpython, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>搖桿控制云台-ESP32 | 我的微控板實驗室</title>
+    <title>MQTT&amp;node-RED控制二軸云台-mpython | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">搖桿控制云台-ESP32</h1>
+                    <h1 class="description center-align post-title">MQTT&amp;node-RED控制二軸云台-mpython</h1>
                 </div>
             </div>
         </div>
@@ -387,16 +387,24 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/esp32/">
-                                <span class="chip bg-color">esp32</span>
+                            <a href="/tags/servo/">
+                                <span class="chip bg-color">servo</span>
                             </a>
                         
-                            <a href="/tags/%E6%90%96%E6%A1%BF/">
-                                <span class="chip bg-color">搖桿</span>
+                            <a href="/tags/mqtt/">
+                                <span class="chip bg-color">mqtt</span>
                             </a>
                         
-                            <a href="/tags/%E4%BA%91%E5%8F%B0/">
-                                <span class="chip bg-color">云台</span>
+                            <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
+                                <span class="chip bg-color">二軸云台</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
+                                <span class="chip bg-color">伺服馬達</span>
+                            </a>
+                        
+                            <a href="/tags/node-red/">
+                                <span class="chip bg-color">node-red</span>
                             </a>
                         
                     </div>
@@ -407,7 +415,11 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/esp32/" class="post-category">
+                            <a href="/categories/micropython/" class="post-category">
+                                micropython
+                            </a>
+                        
+                            <a href="/categories/micropython/esp32/" class="post-category">
                                 esp32
                             </a>
                         
@@ -444,77 +456,129 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="搖桿控制云台-ESP32"><a href="#搖桿控制云台-ESP32" class="headerlink" title="搖桿控制云台-ESP32"></a>搖桿控制云台-ESP32</h1><h6 id="tags-esp32-搖桿-云台"><a href="#tags-esp32-搖桿-云台" class="headerlink" title="tags: esp32 搖桿 云台"></a>tags: <code>esp32</code> <code>搖桿</code> <code>云台</code></h6><h3 id="實驗目的"><a href="#實驗目的" class="headerlink" title="實驗目的"></a>實驗目的</h3><p><strong>以搖桿的讀值同步控制伺服馬達。</strong></p>
-<p><strong>須注意值要轉換成角度。</strong></p>
-<h3 id="伺服馬達"><a href="#伺服馬達" class="headerlink" title="伺服馬達"></a>伺服馬達</h3><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/3060329269915131288#"><img src="https://1.bp.blogspot.com/-qUFym3H-21Q/YIywjKU9TPI/AAAAAAAAeGk/_GiSq6LVWYA4sOlvfkGRHzt-lUoZgKjjwCNcBGAsYHQ/w315-h210/servo.jpg"></a></p>
-<p><strong>伺服馬達被廣範運在微控板的控制上,幾乎這是學習微控板的基礎</strong></p>
-<p><strong>具代表的實驗就是二軸云台,它是以兩個伺服馬達構成平移和上下</strong></p>
-<p><strong>運動的裝置,至於SG90這種小型伺服馬達的運作網路上很多資源,</strong></p>
-<p><strong>就不一一贅述。</strong></p>
-<h2 id="搖桿模組"><a href="#搖桿模組" class="headerlink" title="搖桿模組"></a>搖桿模組</h2><h4 id="請參照這篇的實驗—https-esp32-blairan-blogspot-com-2021-04-esp32-28-html"><a href="#請參照這篇的實驗—https-esp32-blairan-blogspot-com-2021-04-esp32-28-html" class="headerlink" title="請參照這篇的實驗—https://esp32-blairan.blogspot.com/2021/04/esp32_28.html"></a>請參照這篇的實驗—<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/3060329269915131288#">https://esp32-blairan.blogspot.com/2021/04/esp32_28.html</a></h4><h2 id="接線圖"><a href="#接線圖" class="headerlink" title="接線圖"></a>接線圖</h2><p><strong>POSＸ-D33</strong></p>
-<p><strong>POSＹ—D32</strong></p>
-<p><strong>SERVO_PAN—-&gt;D12</strong></p>
-<p><strong>SERVO_TIT—-&gt;D13</strong></p>
-<p><strong>GND</strong></p>
-<p><strong>3V3</strong></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/3060329269915131288#"><img src="https://1.bp.blogspot.com/-OySoM8bHU9s/YIyyJmCXZLI/AAAAAAAAeGs/G450OX409awrx2D8wMHg3dZGLJPPd5QLwCNcBGAsYHQ/w450-h467/1.jpg"></a></p>
-<p><strong>須匯入</strong><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/3060329269915131288#">ESP32Servo.h</a></p>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre><code class="line-numbers language-c#">#include &lt;ESP32Servo.h&gt;
-
-Servo Pan;
-
-Servo Tit;
-
-#define servoPAN 12
-
-#define servoTIT 13
-
-#define posX 33
-
-#define posY 32 
-
-void setup()
-
-&#123;
-
-  Serial.begin(115200);
-
-  analogSetAttenuation(ADC_11db);
-
-  analogSetWidth(10);
-
-  Pan.setPeriodHertz(50);
-
-  Tit.setPeriodHertz(50);
-
-  Pan.attach(servoPAN, 500, 2400);
-
-  Tit.attach(servoTIT, 500, 2400);
-
-&#125;
-
-void loop()&#123;
-
-  int valx=analogRead(posX);
-
-  valx=map(valx, 0, 1023, 0, 180);
-
-  Pan.write(valx);
-
-  int valy=analogRead(posY);
-
-  valy=map(valy, 0, 1023, 0, 180);
-
-  Tit.write(valy);
-
-  delay(500);
-
-  Serial.printf(&quot;posX的搖桿值為: %d  // posY的搖桿值為: %d\\n&quot;,valx, valy);
-
-&#125;
-</code></pre>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/-CYCyibcFn0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
+                <h1 id="MQTT-amp-node-RED控制二軸云台-mpython"><a href="#MQTT-amp-node-RED控制二軸云台-mpython" class="headerlink" title="MQTT&amp;node-RED控制二軸云台-mpython"></a>MQTT&amp;node-RED控制二軸云台-mpython</h1><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586#"><img src="https://lh3.googleusercontent.com/-sqJOZzdBnks/YSjK1HOEkWI/AAAAAAAAe3o/ShJX8l8V20cmENfwoL0iij0uZm_wHfwaQCNcBGAsYHQ/w208-h349/1630063309993121-0.png"></a></p>
+<p><em><strong>承接<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586#">使用PWM控制伺服馬達-micropython</a>這篇，透過node-red加入mqtt訂閱主題控制二軸云台</strong></em></p>
+<p><em><strong>有一些感想紀錄下來，我發現其實像mqtt或者wifi連網，大都是固定一個寫法，其它不同的模組分為讀取數值或用數值受控制的元件，只要套用上去就可以。</strong></em></p>
+<p><em><strong>首先主要是被控制的伺服馬達，所以先把它測試一下，參考這篇（<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586#">點我</a>）</strong></em></p>
+<p><em><strong>測試好之後，就可以開始加入wifi和mqtt了，但因為我用的是樹莓派建立的ＭQTT，所以這陪分前提是要有樹苺派，如何在樹苺派上建立Ｎode-RED和MQTT，可以參考這篇（<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586#">點我</a>）。</strong></em></p>
+<hr>
+<h2 id="Node-RED設定"><a href="#Node-RED設定" class="headerlink" title="Node-RED設定"></a>Node-RED設定</h2><p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-GksKBPZ26_o/YSpWJWFmwhI/AAAAAAAAe4E/6peztH_jPDgTVkrbfKGBriWMdPbxcnCyACNcBGAsYHQ/s1920/3.jpg"><img src="https://1.bp.blogspot.com/-GksKBPZ26_o/YSpWJWFmwhI/AAAAAAAAe4E/6peztH_jPDgTVkrbfKGBriWMdPbxcnCyACNcBGAsYHQ/w654-h368/3.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/s1920/1.jpg"><img src="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/w661-h370/1.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/s1920/2.jpg"><img src="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/w654-h368/2.jpg"></a></p>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><p>```python</p>
+<ol>
+<li><p>from machine import SLEEP, Pin, PWM, freq</p>
+</li>
+<li><p>from time import sleep</p>
+</li>
+<li><p>from umqtttsimple import MQTTClient</p>
+</li>
+<li><p>import binascii, micropython, network, time, socket, machine</p>
+</li>
+<li><p>ssid = “————“</p>
+</li>
+<li><p>password = “——-“</p>
+</li>
+<li><p>mqtt_server = “192.168.210.22”</p>
+</li>
+<li><p>#將客戶端ID轉換為16進位,以便MQTT伺服端讀取</p>
+</li>
+<li><p>mqtt_id = binascii.hexlify(machine.unique_id())</p>
+</li>
+<li><p>#和Nord-RED上的主題一致</p>
+</li>
+<li><p>client_servoPan = b’esp32/servoPan’</p>
+</li>
+<li><p>client_servoTilt = b’esp32/servoTilt’</p>
+</li>
+<li><p>servo_pan = PWM(Pin(13), freq=50)</p>
+</li>
+<li><p>servo_tilt = PWM(Pin(14), freq=50)</p>
+</li>
+<li><p>#wifi連線</p>
+</li>
+<li><p>def wifiConn():</p>
+</li>
+<li><p>    wifi = network.WLAN(network.STA_IF)</p>
+</li>
+<li><p>    wifi.active(True)</p>
+</li>
+<li><p>    wifi.connect(ssid, password)</p>
+</li>
+<li><p>    while wifi.isconnected() == False:</p>
+</li>
+<li><p>        pass</p>
+</li>
+<li><p>    print(“Connected successful!”)</p>
+</li>
+<li><p>    print(“IP: {}”.format(wifi.ifconfig()))</p>
+</li>
+<li><p>#樹莓派上的mqtt回應訂閱</p>
+</li>
+<li><h1 id="Duty-就為-2-5％、7-25％、12％，並-x1024-後可以轉換成-PWM-Duty填入的數值"><a href="#Duty-就為-2-5％、7-25％、12％，並-x1024-後可以轉換成-PWM-Duty填入的數值" class="headerlink" title="Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值"></a>Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值</h1></li>
+<li><p>def callBack(topic, msg):</p>
+</li>
+<li><p>    ang0 = int(1023*0.025)</p>
+</li>
+<li><p>    ang90 = int(1023*0.0725)</p>
+</li>
+<li><p>    ang180 = int(1023*0.12)</p>
+</li>
+<li><p>    print((topic, msg))</p>
+</li>
+<li><p>    if topic == client_servoPan:</p>
+</li>
+<li><p>        servo_pan.duty(int(msg))</p>
+</li>
+<li><p>        sleep(0.5)</p>
+</li>
+<li><p>    elif topic == client_servoTilt:</p>
+</li>
+<li><p>        servo_tilt.duty(int(msg))</p>
+</li>
+<li><p>        sleep(0.5)</p>
+</li>
+<li><p>#連線MQTT,連線成功後訂閱主題</p>
+</li>
+<li><p>def connToMqtt():</p>
+</li>
+<li><p>    try:</p>
+</li>
+<li><p>        client = MQTTClient(mqtt_id, mqtt_server)</p>
+</li>
+<li><p>        client.set_callback(callBack)</p>
+</li>
+<li><p>        client.connect()</p>
+</li>
+<li><p>        client.subscribe(client_servoPan)</p>
+</li>
+<li><p>        client.subscribe(client_servoTilt)</p>
+</li>
+<li><p>        print(“connect to %s”%mqtt_server)</p>
+</li>
+<li><p>        return client</p>
+</li>
+<li><p>    #如果無法連線重新連線</p>
+</li>
+<li><p>    except OSError as e:</p>
+</li>
+<li><p>        print(“not to connected for MQTT server!”)</p>
+</li>
+<li><p>        machine.reset()</p>
+</li>
+<li><p>wifiConn()</p>
+</li>
+<li><p>client = connToMqtt()</p>
+</li>
+<li><p>while True:</p>
+</li>
+<li><p>    #檢查有無進來的訊息</p>
+</li>
+<li><p>    client.check_msg()</p>
+</li>
+</ol>
+<p>調過等待時間還是會偶爾抖動，雖然不知道抖動原在哪，先這樣好了，下次再來抓原因。</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/HxkOYhqcgaY" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -540,7 +604,7 @@ void loop()&#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/08/28/%E6%90%96%E6%A1%BF%E6%8E%A7%E5%88%B6%E4%BA%91%E5%8F%B0-ESP32/">https://blairan.github.io/2021/08/28/%E6%90%96%E6%A1%BF%E6%8E%A7%E5%88%B6%E4%BA%91%E5%8F%B0-ESP32/</a>
+                    <a href="https://blairan.github.io/2021/08/28/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython/">https://blairan.github.io/2021/08/28/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -578,16 +642,24 @@ void loop()&#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/esp32/">
-                                    <span class="chip bg-color">esp32</span>
+                                <a href="/tags/servo/">
+                                    <span class="chip bg-color">servo</span>
                                 </a>
                             
-                                <a href="/tags/%E6%90%96%E6%A1%BF/">
-                                    <span class="chip bg-color">搖桿</span>
+                                <a href="/tags/mqtt/">
+                                    <span class="chip bg-color">mqtt</span>
                                 </a>
                             
-                                <a href="/tags/%E4%BA%91%E5%8F%B0/">
-                                    <span class="chip bg-color">云台</span>
+                                <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
+                                    <span class="chip bg-color">二軸云台</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
+                                    <span class="chip bg-color">伺服馬達</span>
+                                </a>
+                            
+                                <a href="/tags/node-red/">
+                                    <span class="chip bg-color">node-red</span>
                                 </a>
                             
                         </div>
@@ -759,9 +831,10 @@ void loop()&#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/08/28/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython/">
                     <div class="card-image">
@@ -779,9 +852,9 @@ void loop()&#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -798,6 +871,7 @@ void loop()&#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -832,13 +906,13 @@ void loop()&#123;
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/28/%E8%97%8D%E8%8A%BD%E5%9F%BA%E6%9C%AC%E9%80%9A%E8%A8%8A-%E6%8E%A7%E5%88%B6LED-ESP32/">
+                <a href="/2021/08/28/%E6%90%96%E6%A1%BF%E6%8E%A7%E5%88%B6%E4%BA%91%E5%8F%B0-ESP32/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="藍芽基本通訊&amp;控制LED-ESP32">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="搖桿控制云台-ESP32">
                         
-                        <span class="card-title">藍芽基本通訊&amp;控制LED-ESP32</span>
+                        <span class="card-title">搖桿控制云台-ESP32</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -870,8 +944,12 @@ void loop()&#123;
                         <span class="chip bg-color">esp32</span>
                     </a>
                     
-                    <a href="/tags/%E8%97%8D%E8%8A%BD/">
-                        <span class="chip bg-color">藍芽</span>
+                    <a href="/tags/%E6%90%96%E6%A1%BF/">
+                        <span class="chip bg-color">搖桿</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%91%E5%8F%B0/">
+                        <span class="chip bg-color">云台</span>
                     </a>
                     
                 </div>
