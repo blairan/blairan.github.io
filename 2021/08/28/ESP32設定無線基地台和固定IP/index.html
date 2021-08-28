@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism.css">
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -444,8 +444,7 @@
 <p><strong>雖然很方便，但不適合用於負荷高的應用。</strong></p>
 <p><strong>只要一行短的指令就能辦到</strong></p>
 <p><strong>WiFi.softAP(“SSID名稱”)</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">#include &lt;WiFi.h&gt;
-
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;WiFi.h&gt;
   
 void setup()&#123;
 
@@ -457,7 +456,7 @@ void loop()&#123;
 
 &#125;
 
-  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>上傳之後在手機端搜尋WiFi可以看到ESP32顯示為基地台名稱</strong></p>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/801948207668992406#"><img src="https://lh3.googleusercontent.com/-I6zVUPbh2t8/YKdSssq03vI/AAAAAAAAeLI/W5jfwPBtPwc887winp2CTalxbKSl_xSzwCNcBGAsYHQ/s1600/1621578415343300-0.png"></a></p>
 <p><strong>嚐試跟ESP32連線之後，手機本身的網路功能將無法使用。</strong></p>
@@ -471,8 +470,7 @@ void loop()&#123;
 <p>*<strong>一般IP位置和閘道IP位址設定相同</strong></p>
 <p><strong>因為IP設定的格式可能較為複雜，習慣上會使用IPAddress類別來</strong></p>
 <p><strong>建立ip，閘道ip，子網路遮罩。</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">#include &lt;WiFi.h&gt;
-
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;WiFi.h&gt;
 
 IPAddress local_IP(192, 168, 4, 11);
 
@@ -480,13 +478,9 @@ IPAddress gateway(192, 168, 4, 11);
 
 IPAddress subnet(255, 255 ,255, 0);
 
-  
-
 const char *SSID &#x3D; &quot;ESP32基地台&quot;;
 
 const char *password &#x3D; &quot;ctk674011&quot;;
-
-  
 
 void setup()&#123;
 
@@ -509,7 +503,7 @@ void setup()&#123;
 void loop()&#123;
 
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>程式上傳後如果基地台啓動成功，瀏覽器會顯示如下資訊</strong></p>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/801948207668992406#"><img src="https://1.bp.blogspot.com/-crYRZRbaPA8/YKdRi7oX4PI/AAAAAAAAeK0/ivBD_2fyreYrHTiRHS59iVeQsWcfMqe7gCNcBGAsYHQ/w293-h303/%25E6%2593%25B7%25E5%258F%2596_2021_05_21_14_17_56_195.jpg"></a></p>
 <p><strong>然後手機WiFi會搜尋到ESP32基地台的名稱，輸入剛設定的密碼即可連線</strong></p>
@@ -1043,45 +1037,56 @@ void loop()&#123;
 <script src="/libs/aplayer/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-    
+            
 
-    <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
-        <div class="col s12 m8 l8 copy-right">
-            Copyright&nbsp;&copy;
-            
-                <span id="year">2019-2021</span>
-            
-            <span id="year">2019</span>
-            <a href="/about" target="_blank">blairan</a>
-            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
-            <br>
-            
-            
-            
-                
-            
-            
-                <span id="busuanzi_container_site_pv">
-                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
-                    <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-                <span id="busuanzi_container_site_uv">
-                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
-                    <span id="busuanzi_value_site_uv" class="white-color"></span>
-            </span>
-            
-            <br>
+                <div class="container row center-align"
+                    style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                            <span id="year">
+                                2019-2021
+                            </span>
+                            
+                                    <span id="year">
+                                        2019
+                                    </span>
+                                    <a href="/about" target="_blank">
+                                        blairan
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+                                    |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery"
+                                        target="_blank">Matery</a>
+                                    <br>
+                                    
+                                                
+                                                    
+                                                        
+                                                            
+                                                                
+                                                                    <span id="busuanzi_container_site_pv">
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                                                                            <span id="busuanzi_value_site_pv"
+                                                                                class="white-color"></span>
+                                                                    </span>
+                                                                    
+                                                                        
+                                                                            <span id="busuanzi_container_site_uv">
+                                                                                &nbsp;|&nbsp;<i
+                                                                                    class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                                                                                    <span id="busuanzi_value_site_uv"
+                                                                                        class="white-color"></span>
+                                                                            </span>
+                                                                            
+                                                                                <br>
 
-            <!-- 运行天数提醒. -->
-            
-            <br>
-            
-        </div>
-        <div class="col s12 m4 l4 social-link social-statis">
+                                                                                <!-- 运行天数提醒. -->
+                                                                                
+                                                                                        <br>
+                                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
     <a href="https://github.com/blairan/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1112,12 +1117,12 @@ void loop()&#123;
         <i class="fas fa-rss"></i>
     </a>
 
-</div>
-    </div>
+
+                    </div>
+                </div>
 </footer>
-
+<script src="/js/prism.js" async></script>
 <div class="progress-bar"></div>
-
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">

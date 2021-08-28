@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism.css">
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -445,7 +445,7 @@
 <p>現在利用兩個ESP32的藍芽互相溝通，所以一個要當”主(Master)”,另一個</p>
 <p>要當”從(slave)”。</p>
 <h3 id="主端程式碼"><a href="#主端程式碼" class="headerlink" title="主端程式碼"></a>主端程式碼</h3><p>先將主端程式碼上傳至esp32-1</p>
-<pre class="line-numbers language-none"><code class="language-none">#include &lt;BluetoothSerial.h&gt;
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;BluetoothSerial.h&gt;
 
 &#x2F;&#x2F;master
 
@@ -490,7 +490,7 @@ void loop()&#123;
 
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="從端程式碼"><a href="#從端程式碼" class="headerlink" title="從端程式碼"></a>從端程式碼</h3><p>再將從端程式碼上傳至esp32-2</p>
-<pre class="line-numbers language-none"><code class="language-none">#include &lt;BluetoothSerial.h&gt;
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;BluetoothSerial.h&gt;
 
 &#x2F;&#x2F;slave
 
@@ -1061,45 +1061,56 @@ void loop()&#123;
 <script src="/libs/aplayer/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-    
+            
 
-    <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
-        <div class="col s12 m8 l8 copy-right">
-            Copyright&nbsp;&copy;
-            
-                <span id="year">2019-2021</span>
-            
-            <span id="year">2019</span>
-            <a href="/about" target="_blank">blairan</a>
-            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
-            <br>
-            
-            
-            
-                
-            
-            
-                <span id="busuanzi_container_site_pv">
-                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
-                    <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-                <span id="busuanzi_container_site_uv">
-                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
-                    <span id="busuanzi_value_site_uv" class="white-color"></span>
-            </span>
-            
-            <br>
+                <div class="container row center-align"
+                    style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                            <span id="year">
+                                2019-2021
+                            </span>
+                            
+                                    <span id="year">
+                                        2019
+                                    </span>
+                                    <a href="/about" target="_blank">
+                                        blairan
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+                                    |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery"
+                                        target="_blank">Matery</a>
+                                    <br>
+                                    
+                                                
+                                                    
+                                                        
+                                                            
+                                                                
+                                                                    <span id="busuanzi_container_site_pv">
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                                                                            <span id="busuanzi_value_site_pv"
+                                                                                class="white-color"></span>
+                                                                    </span>
+                                                                    
+                                                                        
+                                                                            <span id="busuanzi_container_site_uv">
+                                                                                &nbsp;|&nbsp;<i
+                                                                                    class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                                                                                    <span id="busuanzi_value_site_uv"
+                                                                                        class="white-color"></span>
+                                                                            </span>
+                                                                            
+                                                                                <br>
 
-            <!-- 运行天数提醒. -->
-            
-            <br>
-            
-        </div>
-        <div class="col s12 m4 l4 social-link social-statis">
+                                                                                <!-- 运行天数提醒. -->
+                                                                                
+                                                                                        <br>
+                                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
     <a href="https://github.com/blairan/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1130,12 +1141,12 @@ void loop()&#123;
         <i class="fas fa-rss"></i>
     </a>
 
-</div>
-    </div>
+
+                    </div>
+                </div>
 </footer>
-
+<script src="/js/prism.js" async></script>
 <div class="progress-bar"></div>
-
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">

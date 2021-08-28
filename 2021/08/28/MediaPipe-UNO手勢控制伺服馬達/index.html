@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism.css">
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -453,57 +453,59 @@
 <p>有興趣可以到<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/5177980124815283469#">pinpong官網</a>看一下，</p>
 <p>我是使用pycharm，所以首先安裝opencv-python，mediapipe和pinpong這兩個主要的程式庫</p>
 <h2 id="步驟1"><a href="#步驟1" class="headerlink" title="步驟1:"></a>步驟1:</h2><p><strong>先把這個程式庫命名為handutil.py和主程式放一起</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">import cv2  
-import mediapipe as mp  
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2  
+<span class="token keyword">import</span> mediapipe <span class="token keyword">as</span> mp  
   
-  
-class HandDetector():  
-&#39;&#39;&#39;  
+<span class="token keyword">class</span> <span class="token class-name">HandDetector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token triple-quoted-string string">'''  
    手势识别类  
- &#39;&#39;&#39;   def \_\_init\_\_(self, mode&#x3D;False, max_hands&#x3D;2, detection_con&#x3D;0.5, track_con&#x3D;0.5):  
-        &#39;&#39;&#39;  
+'''</span>   
+<span class="token keyword">def</span> <span class="token function">_init_</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> max_hands<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> detection_con<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span> track_con<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+<span class="token triple-quoted-string string">'''  
    初始化  
    :param mode: 是否静态图片，默认为False  
    :param max_hands: 最多几只手，默认为2只  
    :param detection_con: 最小检测信度值，默认为0.5  
    :param track_con: 最小跟踪信度值，默认为0.5  
- &#39;&#39;&#39;   self.mode &#x3D; mode  
-        self.max\_hands &#x3D; max\_hands  
-        self.detection\_con &#x3D; detection\_con  
-        self.track\_con &#x3D; track\_con  
+ '''</span>   
+    self<span class="token punctuation">.</span>mode <span class="token operator">=</span> mode  
+    self<span class="token punctuation">.</span>max_hands <span class="token operator">=</span> max_hands  
+    self<span class="token punctuation">.</span>detection_con <span class="token operator">=</span> detection_con  
+    self<span class="token punctuation">.</span>track_con <span class="token operator">=</span> track_con  
+
+    self<span class="token punctuation">.</span>hands <span class="token operator">=</span> mp<span class="token punctuation">.</span>solutions<span class="token punctuation">.</span>hands<span class="token punctuation">.</span>Hands<span class="token punctuation">(</span>self<span class="token punctuation">.</span>mode<span class="token punctuation">,</span> self<span class="token punctuation">.</span>max_hands<span class="token punctuation">,</span> self<span class="token punctuation">.</span>detection_con<span class="token punctuation">,</span> self<span class="token punctuation">.</span>track_con<span class="token punctuation">)</span>  
   
-        self.hands &#x3D; mp.solutions.hands.Hands(self.mode, self.max_hands, self.detection_con, self.track_con)  
-  
-    def find_hands(self, img, draw&#x3D;True):  
-        &#39;&#39;&#39;  
+    <span class="token keyword">def</span> <span class="token function">find_hands</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">,</span> draw<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+        <span class="token triple-quoted-string string">'''  
    检测手势  
    :param img: 视频帧图片  
    :param draw: 是否画出手势中的节点和连接图  
    :return: 处理过的视频帧图片  
- &#39;&#39;&#39;   imgRGB &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  
-        \# 处理图片，检测是否有手势，将数据存进self.results中  
-   self.results &#x3D; self.hands.process(imgRGB)  
-        if draw:  
-            if self.results.multi\_hand\_landmarks:  
-                for handlms in self.results.multi\_hand\_landmarks:  
-                    mp.solutions.drawing\_utils.draw\_landmarks(img, handlms, mp.solutions.hands.HAND_CONNECTIONS)  
-        return img  
+ '''</span>   imgRGB <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>img<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2RGB<span class="token punctuation">)</span>  
+        <span class="token comment"># 处理图片，检测是否有手势，将数据存进self.results中  </span>
+        self<span class="token punctuation">.</span>results <span class="token operator">=</span> self<span class="token punctuation">.</span>hands<span class="token punctuation">.</span>process<span class="token punctuation">(</span>imgRGB<span class="token punctuation">)</span>  
+                <span class="token keyword">if</span> draw<span class="token punctuation">:</span>  
+                    <span class="token keyword">if</span> self<span class="token punctuation">.</span>results<span class="token punctuation">.</span>multi_hand_landmarks<span class="token punctuation">:</span>  
+                        <span class="token keyword">for</span> handlms <span class="token keyword">in</span> self<span class="token punctuation">.</span>results<span class="token punctuation">.</span>multi_hand_landmarks<span class="token punctuation">:</span>  
+                            mp<span class="token punctuation">.</span>solutions<span class="token punctuation">.</span>drawing_utils<span class="token punctuation">.</span>draw_landmarks<span class="token punctuation">(</span>img<span class="token punctuation">,</span> handlms<span class="token punctuation">,</span> mp<span class="token punctuation">.</span>solutions<span class="token punctuation">.</span>hands<span class="token punctuation">.</span>HAND_CONNECTIONS<span class="token punctuation">)</span>  
+        <span class="token keyword">return</span> img  
   
-    def find_positions(self, img, hand_no&#x3D;0):  
-        &#39;&#39;&#39;  
+    <span class="token keyword">def</span> <span class="token function">find_positions</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">,</span> hand_no<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+        <span class="token triple-quoted-string string">'''  
    获取手势数据  
    :param img: 视频帧图片  
    :param hand_no: 手编号（默认第1只手）  
    :return: 手势数据列表，每个数据成员由id, x, y组成，代码这个手势位置编号以及在屏幕中的位置  
- &#39;&#39;&#39;   self.lmslist &#x3D; \[\]  
-        if self.results.multi\_hand\_landmarks:  
-            hand &#x3D; self.results.multi\_hand\_landmarks\[hand_no\]  
-            for id, lm in enumerate(hand.landmark):  
-                h, w, c &#x3D; img.shape  
-                cx, cy &#x3D; int(lm.x * w), int(lm.y * h)  
-                self.lmslist.append(\[id, cx, cy\])  
+    '''</span>   
+        self<span class="token punctuation">.</span>lmslist <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>  
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>results<span class="token punctuation">.</span>multi_hand_landmarks<span class="token punctuation">:</span>  
+            hand <span class="token operator">=</span> self<span class="token punctuation">.</span>results<span class="token punctuation">.</span>multi_hand_landmarks<span class="token punctuation">[</span>hand_no<span class="token punctuation">]</span>  
+            <span class="token keyword">for</span> <span class="token builtin">id</span><span class="token punctuation">,</span> lm <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>hand<span class="token punctuation">.</span>landmark<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+                h<span class="token punctuation">,</span> w<span class="token punctuation">,</span> c <span class="token operator">=</span> img<span class="token punctuation">.</span>shape  
+                cx<span class="token punctuation">,</span> cy <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>lm<span class="token punctuation">.</span>x <span class="token operator">*</span> w<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">(</span>lm<span class="token punctuation">.</span>y <span class="token operator">*</span> h<span class="token punctuation">)</span>  
+                self<span class="token punctuation">.</span>lmslist<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">,</span> cx<span class="token punctuation">,</span> cy<span class="token punctuation">]</span><span class="token punctuation">)</span>  
   
-        return self.lmslist<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>lmslist<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <h2 id="步驟2"><a href="#步驟2" class="headerlink" title="步驟2:"></a>步驟2:</h2><h2 id="複制貼上主程式"><a href="#複制貼上主程式" class="headerlink" title="複制貼上主程式"></a><strong>複制貼上主程式</strong></h2><h2 id="這裡留意一下計算斜角轉成角度的公式"><a href="#這裡留意一下計算斜角轉成角度的公式" class="headerlink" title="*這裡留意一下計算斜角轉成角度的公式"></a>*<strong>這裡留意一下計算斜角轉成角度的公式</strong></h2><h3 id="算出角度"><a href="#算出角度" class="headerlink" title="算出角度:"></a>算出角度:</h3><pre class="line-numbers language-none"><code class="language-none">假如两点坐标分别是（x1，y1）（x2，y2）
@@ -516,51 +518,51 @@ k&#x3D;(y2-y1)&#x2F;(x2-x1) 其中(x1,y1),(x2,y2) 是已知两点的坐标
 1、若x1&#x3D;x2，则斜率不存在；  
 2、若x1≠x2，则斜率k&#x3D;(y2－y1)&#x2F;(x2－x1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="算出弧度"><a href="#算出弧度" class="headerlink" title="算出弧度:"></a><strong>算出弧度:</strong></h3><pre class="line-numbers language-none"><code class="language-none">import math
+<h3 id="算出弧度"><a href="#算出弧度" class="headerlink" title="算出弧度:"></a><strong>算出弧度:</strong></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> math
 
-math.degrees(x)
+math<span class="token punctuation">.</span>degrees<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
 
-**x為一個值**<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token operator">**</span>x為一個值<span class="token operator">**</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">import cv2  
-from HandTrackingMoudle import handDetector  
-import math  
-import numpy as np  
-from pinpong.board import Board, Pin, Servo  
-import time  
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2  
+<span class="token keyword">from</span> HandTrackingMoudle <span class="token keyword">import</span> handDetector  
+<span class="token keyword">import</span> math  
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np  
+<span class="token keyword">from</span> pinpong<span class="token punctuation">.</span>board <span class="token keyword">import</span> Board<span class="token punctuation">,</span> Pin<span class="token punctuation">,</span> Servo  
+<span class="token keyword">import</span> time  
   
-Board(&quot;uno&quot;).begin()  
-myServo &#x3D; Servo(Pin(Pin.A0))  
+Board<span class="token punctuation">(</span><span class="token string">"uno"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>begin<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+myServo <span class="token operator">=</span> Servo<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span>Pin<span class="token punctuation">.</span>A0<span class="token punctuation">)</span><span class="token punctuation">)</span>  
   
-cap &#x3D; cv2.VideoCapture(0)  
+cap <span class="token operator">=</span> cv2<span class="token punctuation">.</span>VideoCapture<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>  
   
-detector &#x3D; handDetector()  
-angle &#x3D; 0  
-while True:  
-    success, img &#x3D; cap.read()  
-    img &#x3D; detector.findHands(img, draw&#x3D;True)  
-    lmList &#x3D; detector.findPosition(img, personDraw&#x3D;False)  
-    if len(lmList) &gt; 0:  
-        print(lmList\[4\], lmList\[8\])  
-        x1, y1 &#x3D; lmList\[4\]\[1\], lmList\[4\]\[2\]  
-        x2, y2 &#x3D; lmList\[8\]\[1\], lmList\[8\]\[2\]  
-        cv2.circle(img, (x1, y1), 15, (200, 10, 100), cv2.FILLED)  
-        cv2.circle(img, (x2, y2), 15, (200, 10, 100), cv2.FILLED)  
-        cv2.line(img, (x1, y1), (x2, y2), (200, 10, 100), 4)  
+detector <span class="token operator">=</span> handDetector<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+angle <span class="token operator">=</span> <span class="token number">0</span>  
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>  
+    success<span class="token punctuation">,</span> img <span class="token operator">=</span> cap<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+    img <span class="token operator">=</span> detector<span class="token punctuation">.</span>findHands<span class="token punctuation">(</span>img<span class="token punctuation">,</span> draw<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  
+    lmList <span class="token operator">=</span> detector<span class="token punctuation">.</span>findPosition<span class="token punctuation">(</span>img<span class="token punctuation">,</span> personDraw<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>  
+    <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>lmList<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>  
+        <span class="token keyword">print</span><span class="token punctuation">(</span>lmList<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lmList<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  
+        x1<span class="token punctuation">,</span> y1 <span class="token operator">=</span> lmList<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lmList<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>  
+        x2<span class="token punctuation">,</span> y2 <span class="token operator">=</span> lmList<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> lmList<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>  
+        cv2<span class="token punctuation">.</span>circle<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>FILLED<span class="token punctuation">)</span>  
+        cv2<span class="token punctuation">.</span>circle<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">(</span>x2<span class="token punctuation">,</span> y2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>FILLED<span class="token punctuation">)</span>  
+        cv2<span class="token punctuation">.</span>line<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x2<span class="token punctuation">,</span> y2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>  
   
-        if (x1 - x2) !&#x3D; 0:  
-            angle &#x3D; math.degrees(np.arctan((y2 - y1)&#x2F;(x2 - x1)))  
-            a &#x3D; 180 \- angle  
-            myServo.write_angle(int(a))  
-            print(int(a))  
-        if angle &lt; 0:  
-            angle &#x3D; abs(angle)  
-            myServo.write_angle(int(angle))  
-            print(int(angle))  
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x1 <span class="token operator">-</span> x2<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>  
+            angle <span class="token operator">=</span> math<span class="token punctuation">.</span>degrees<span class="token punctuation">(</span>np<span class="token punctuation">.</span>arctan<span class="token punctuation">(</span><span class="token punctuation">(</span>y2 <span class="token operator">-</span> y1<span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span>x2 <span class="token operator">-</span> x1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+            a <span class="token operator">=</span> <span class="token number">180</span> <span class="token operator">-</span> angle  
+            myServo<span class="token punctuation">.</span>write_angle<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span>  
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span>  
+        <span class="token keyword">if</span> angle <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">:</span>  
+            angle <span class="token operator">=</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span>  
+            myServo<span class="token punctuation">.</span>write_angle<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">)</span>  
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>angle<span class="token punctuation">)</span><span class="token punctuation">)</span>  
   
   
-    cv2.imshow(&quot;Image&quot;, img)  
-    cv2.waitKey(1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span><span class="token string">"Image"</span><span class="token punctuation">,</span> img<span class="token punctuation">)</span>  
+    cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="步驟3"><a href="#步驟3" class="headerlink" title="步驟3:"></a>步驟3:</h2><h2 id="執行程式碼"><a href="#執行程式碼" class="headerlink" title="執行程式碼"></a>執行程式碼</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/tTvcI0AKj-U" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
 <hr>
@@ -1103,45 +1105,56 @@ while True:
 <script src="/libs/aplayer/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-    
+            
 
-    <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
-        <div class="col s12 m8 l8 copy-right">
-            Copyright&nbsp;&copy;
-            
-                <span id="year">2019-2021</span>
-            
-            <span id="year">2019</span>
-            <a href="/about" target="_blank">blairan</a>
-            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
-            <br>
-            
-            
-            
-                
-            
-            
-                <span id="busuanzi_container_site_pv">
-                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
-                    <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-                <span id="busuanzi_container_site_uv">
-                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
-                    <span id="busuanzi_value_site_uv" class="white-color"></span>
-            </span>
-            
-            <br>
+                <div class="container row center-align"
+                    style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                            <span id="year">
+                                2019-2021
+                            </span>
+                            
+                                    <span id="year">
+                                        2019
+                                    </span>
+                                    <a href="/about" target="_blank">
+                                        blairan
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+                                    |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery"
+                                        target="_blank">Matery</a>
+                                    <br>
+                                    
+                                                
+                                                    
+                                                        
+                                                            
+                                                                
+                                                                    <span id="busuanzi_container_site_pv">
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                                                                            <span id="busuanzi_value_site_pv"
+                                                                                class="white-color"></span>
+                                                                    </span>
+                                                                    
+                                                                        
+                                                                            <span id="busuanzi_container_site_uv">
+                                                                                &nbsp;|&nbsp;<i
+                                                                                    class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                                                                                    <span id="busuanzi_value_site_uv"
+                                                                                        class="white-color"></span>
+                                                                            </span>
+                                                                            
+                                                                                <br>
 
-            <!-- 运行天数提醒. -->
-            
-            <br>
-            
-        </div>
-        <div class="col s12 m4 l4 social-link social-statis">
+                                                                                <!-- 运行天数提醒. -->
+                                                                                
+                                                                                        <br>
+                                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
     <a href="https://github.com/blairan/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1172,12 +1185,12 @@ while True:
         <i class="fas fa-rss"></i>
     </a>
 
-</div>
-    </div>
+
+                    </div>
+                </div>
 </footer>
-
+<script src="/js/prism.js" async></script>
 <div class="progress-bar"></div>
-
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">

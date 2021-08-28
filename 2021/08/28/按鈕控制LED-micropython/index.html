@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism.css">
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -445,32 +445,32 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="按鈕控制LED–micropython"><a href="#按鈕控制LED–micropython" class="headerlink" title="按鈕控制LED–micropython"></a>按鈕控制LED–micropython</h1><h6 id="tags-micropython"><a href="#tags-micropython" class="headerlink" title="tags: micropython"></a>tags: <code>micropython</code></h6><h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/led_button_esp32_bb.png?w=1065&quality=100&strip=all&ssl=1"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/led_button_esp32_bb.png?w=1065&quality=100&strip=all&ssl=1"></a></p>
-<pre class="line-numbers language-none"><code class="language-none">from machine import Pin
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-from time import sleep
-
-  
-
-led &#x3D; Pin(2, Pin.OUT)
-
-button &#x3D; Pin(4, Pin.IN)
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
 
   
 
-while True:
+led <span class="token operator">=</span> Pin<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>
 
-    led.value(button.value())
+button <span class="token operator">=</span> Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> Pin<span class="token punctuation">.</span>IN<span class="token punctuation">)</span>
 
-    sleep(0.5)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  
+
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+
+    led<span class="token punctuation">.</span>value<span class="token punctuation">(</span>button<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 <p><strong>首先從machine載入Pin，從time載入sleep</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">from machine import Pin from time import sleep<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin <span class="token keyword">from</span> time <span class="token keyword">import</span> sleep<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>下面跨號有兩個參數，５是esp32上的GPIO接腳，Pin.OUT表示第5腳位預設為輸出</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">led &#x3D; Pin(5, Pin.OUT)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">led <span class="token operator">=</span> Pin<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>和上面一樣道理，只不過第二個參數是用Pin.IN表示按鈕是以輸入的方式設定</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">button &#x3D; Pin(4, Pin.IN)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">button <span class="token operator">=</span> Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> Pin<span class="token punctuation">.</span>IN<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>當我們按下按鈕時，button.value() 返回 1。因此，這與 led.value(1) 相同。這會將 LED 狀態設置為 1，點亮 LED。當按鈕未被按下時，button.value() 返回 0。因此，我們有 led.value(0)，並且 LED 保持關閉狀態。</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">led.value(button.value())<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">led<span class="token punctuation">.</span>value<span class="token punctuation">(</span>button<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <hr>
 <h2 id="實作結果"><a href="#實作結果" class="headerlink" title="實作結果"></a>實作結果</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/4boMaNGBm8I" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
@@ -1010,45 +1010,56 @@ while True:
 <script src="/libs/aplayer/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-    
+            
 
-    <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
-        <div class="col s12 m8 l8 copy-right">
-            Copyright&nbsp;&copy;
-            
-                <span id="year">2019-2021</span>
-            
-            <span id="year">2019</span>
-            <a href="/about" target="_blank">blairan</a>
-            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
-            <br>
-            
-            
-            
-                
-            
-            
-                <span id="busuanzi_container_site_pv">
-                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
-                    <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-                <span id="busuanzi_container_site_uv">
-                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
-                    <span id="busuanzi_value_site_uv" class="white-color"></span>
-            </span>
-            
-            <br>
+                <div class="container row center-align"
+                    style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                            <span id="year">
+                                2019-2021
+                            </span>
+                            
+                                    <span id="year">
+                                        2019
+                                    </span>
+                                    <a href="/about" target="_blank">
+                                        blairan
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+                                    |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery"
+                                        target="_blank">Matery</a>
+                                    <br>
+                                    
+                                                
+                                                    
+                                                        
+                                                            
+                                                                
+                                                                    <span id="busuanzi_container_site_pv">
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                                                                            <span id="busuanzi_value_site_pv"
+                                                                                class="white-color"></span>
+                                                                    </span>
+                                                                    
+                                                                        
+                                                                            <span id="busuanzi_container_site_uv">
+                                                                                &nbsp;|&nbsp;<i
+                                                                                    class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                                                                                    <span id="busuanzi_value_site_uv"
+                                                                                        class="white-color"></span>
+                                                                            </span>
+                                                                            
+                                                                                <br>
 
-            <!-- 运行天数提醒. -->
-            
-            <br>
-            
-        </div>
-        <div class="col s12 m4 l4 social-link social-statis">
+                                                                                <!-- 运行天数提醒. -->
+                                                                                
+                                                                                        <br>
+                                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
     <a href="https://github.com/blairan/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1079,12 +1090,12 @@ while True:
         <i class="fas fa-rss"></i>
     </a>
 
-</div>
-    </div>
+
+                    </div>
+                </div>
 </footer>
-
+<script src="/js/prism.js" async></script>
 <div class="progress-bar"></div>
-
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">

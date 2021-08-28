@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-
+    <link rel="stylesheet" href="/js/prism.css">
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -443,13 +443,11 @@
                 <h1 id="藍芽基本通訊-amp-控制LED-ESP32"><a href="#藍芽基本通訊-amp-控制LED-ESP32" class="headerlink" title="藍芽基本通訊&amp;控制LED-ESP32"></a>藍芽基本通訊&amp;控制LED-ESP32</h1><h6 id="tags-esp32-藍芽"><a href="#tags-esp32-藍芽" class="headerlink" title="tags: esp32 藍芽"></a>tags: <code>esp32</code> <code>藍芽</code></h6><hr>
 <h4 id="Arduino本身也可以外接藍芽和WIFI，但是須要外掛，這點"><a href="#Arduino本身也可以外接藍芽和WIFI，但是須要外掛，這點" class="headerlink" title="Arduino本身也可以外接藍芽和WIFI，但是須要外掛，這點"></a>Arduino本身也可以外接藍芽和WIFI，但是須要外掛，這點</h4><h4 id="就顯得麻煩一些；ESP32系列都有內建藍芽和WIFI這樣就稍"><a href="#就顯得麻煩一些；ESP32系列都有內建藍芽和WIFI這樣就稍" class="headerlink" title="就顯得麻煩一些；ESP32系列都有內建藍芽和WIFI這樣就稍"></a>就顯得麻煩一些；ESP32系列都有內建藍芽和WIFI這樣就稍</h4><h4 id="能省事，而且語法和Arduino的藍芽用法幾乎一樣。"><a href="#能省事，而且語法和Arduino的藍芽用法幾乎一樣。" class="headerlink" title="能省事，而且語法和Arduino的藍芽用法幾乎一樣。"></a>能省事，而且語法和Arduino的藍芽用法幾乎一樣。</h4><hr>
 <h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法:"></a>操作方法:</h2><p>:memo: <strong><em>首先寫好程式並上傳至ESP32</em></strong></p>
-<pre class="line-numbers language-none"><code class="language-none">#include &lt;BluetoothSerial.h&gt;
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;BluetoothSerial.h&gt;
 
 BluetoothSerial myBT;
 
 char incomeData;
-
-  
 
 void setup()&#123;
 
@@ -460,8 +458,6 @@ void setup()&#123;
     pinMode(LED_BUILTIN, OUTPUT);
 
 &#125;
-
-  
 
 void loop()&#123;
 
@@ -490,7 +486,7 @@ void loop()&#123;
     &#125;
 
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <p>:memo:<strong>手機端</strong></p>
@@ -1029,45 +1025,56 @@ void loop()&#123;
 <script src="/libs/aplayer/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-    
+            
 
-    <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
-        <div class="col s12 m8 l8 copy-right">
-            Copyright&nbsp;&copy;
-            
-                <span id="year">2019-2021</span>
-            
-            <span id="year">2019</span>
-            <a href="/about" target="_blank">blairan</a>
-            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
-            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
-            <br>
-            
-            
-            
-                
-            
-            
-                <span id="busuanzi_container_site_pv">
-                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
-                    <span id="busuanzi_value_site_pv" class="white-color"></span>
-            </span>
-            
-            
-                <span id="busuanzi_container_site_uv">
-                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
-                    <span id="busuanzi_value_site_uv" class="white-color"></span>
-            </span>
-            
-            <br>
+                <div class="container row center-align"
+                    style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                            <span id="year">
+                                2019-2021
+                            </span>
+                            
+                                    <span id="year">
+                                        2019
+                                    </span>
+                                    <a href="/about" target="_blank">
+                                        blairan
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+                                    |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery"
+                                        target="_blank">Matery</a>
+                                    <br>
+                                    
+                                                
+                                                    
+                                                        
+                                                            
+                                                                
+                                                                    <span id="busuanzi_container_site_pv">
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                                                                            <span id="busuanzi_value_site_pv"
+                                                                                class="white-color"></span>
+                                                                    </span>
+                                                                    
+                                                                        
+                                                                            <span id="busuanzi_container_site_uv">
+                                                                                &nbsp;|&nbsp;<i
+                                                                                    class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                                                                                    <span id="busuanzi_value_site_uv"
+                                                                                        class="white-color"></span>
+                                                                            </span>
+                                                                            
+                                                                                <br>
 
-            <!-- 运行天数提醒. -->
-            
-            <br>
-            
-        </div>
-        <div class="col s12 m4 l4 social-link social-statis">
+                                                                                <!-- 运行天数提醒. -->
+                                                                                
+                                                                                        <br>
+                                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
     <a href="https://github.com/blairan/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1098,12 +1105,12 @@ void loop()&#123;
         <i class="fas fa-rss"></i>
     </a>
 
-</div>
-    </div>
+
+                    </div>
+                </div>
 </footer>
-
+<script src="/js/prism.js" async></script>
 <div class="progress-bar"></div>
-
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
