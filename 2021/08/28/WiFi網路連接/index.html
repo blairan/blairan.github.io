@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="按鈕控制LED-micropython, 我的微控板實驗室">
+    <meta name="keywords" content="WiFi網路連接, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>按鈕控制LED-micropython | 我的微控板實驗室</title>
+    <title>WiFi網路連接 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">按鈕控制LED-micropython</h1>
+                    <h1 class="description center-align post-title">WiFi網路連接</h1>
                 </div>
             </div>
         </div>
@@ -391,8 +391,12 @@
                                 <span class="chip bg-color">micropython</span>
                             </a>
                         
-                            <a href="/tags/led/">
-                                <span class="chip bg-color">led</span>
+                            <a href="/tags/esp32/">
+                                <span class="chip bg-color">esp32</span>
+                            </a>
+                        
+                            <a href="/tags/wifi/">
+                                <span class="chip bg-color">wifi</span>
                             </a>
                         
                     </div>
@@ -409,6 +413,10 @@
                         
                             <a href="/categories/micropython/esp32/" class="post-category">
                                 esp32
+                            </a>
+                        
+                            <a href="/categories/micropython/esp32/wifi/" class="post-category">
+                                wifi
                             </a>
                         
                     </div>
@@ -444,35 +452,47 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="按鈕控制LED–micropython"><a href="#按鈕控制LED–micropython" class="headerlink" title="按鈕控制LED–micropython"></a>按鈕控制LED–micropython</h1><h6 id="tags-micropython"><a href="#tags-micropython" class="headerlink" title="tags: micropython"></a>tags: <code>micropython</code></h6><h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/led_button_esp32_bb.png?w=1065&quality=100&strip=all&ssl=1"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/04/led_button_esp32_bb.png?w=1065&quality=100&strip=all&ssl=1"></a></p>
-<pre class="line-numbers language-none"><code class="language-none">from machine import Pin
+                <h1 id="WiFi網路連接"><a href="#WiFi網路連接" class="headerlink" title="WiFi網路連接"></a>WiFi網路連接</h1><h6 id="tags-micropython-WiFi"><a href="#tags-micropython-WiFi" class="headerlink" title="tags: micropython WiFi"></a>tags: <code>micropython</code> <code>WiFi</code></h6><hr>
+<h2 id="micropython-ESP32下網路連接的模式可分為"><a href="#micropython-ESP32下網路連接的模式可分為" class="headerlink" title="micropython ESP32下網路連接的模式可分為"></a>micropython ESP32下網路連接的模式可分為</h2><ul>
+<li>  STA:做為站點接入WiFi</li>
+<li>  AP:做為熱點,充許其它設備接入</li>
+</ul>
+<h2 id="函式參考-micropython函式筆記本"><a href="#函式參考-micropython函式筆記本" class="headerlink" title="函式參考-micropython函式筆記本"></a>函式參考-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8403042239316796526#">micropython函式筆記本</a></h2><h2 id="熱點模式-AP"><a href="#熱點模式-AP" class="headerlink" title="熱點模式(AP)"></a>熱點模式(AP)</h2><p>熱點模式允許用戶將自己的ESP32配置為熱點，這讓多個ESP32芯片之間的無線連接在不借助外部路由器網絡的情況下成為可能。 </p>
+<pre class="line-numbers language-none"><code class="language-none">import network
 
-from time import sleep
+ap &#x3D; network.wifi(network.AP_IF) # 創建熱點
+
+ap.active(True)         # 建立熱點
+
+ap.config(ssid&#x3D;&#39;ESP-AP&#39;) # 建立熱點名稱<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="站點模式-STA"><a href="#站點模式-STA" class="headerlink" title="站點模式(STA)"></a>站點模式(STA)</h2><pre class="line-numbers language-none"><code class="language-none">import network
+
+ssid&#x3D;&quot;基地台名稱&quot;
+
+password&#x3D;&quot;密碼&quot;
 
   
 
-led &#x3D; Pin(2, Pin.OUT)
+wifi&#x3D;network.WLAN(network.STA_IF)
 
-button &#x3D; Pin(4, Pin.IN)
+wifi.active(True)
 
-  
+wifi.connect(ssid, password)
 
-while True:
+while wifi.isconnected()&#x3D;&#x3D;False:
 
-    led.value(button.value())
+  pass
 
-    sleep(0.5)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<hr>
-<p><strong>首先從machine載入Pin，從time載入sleep</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">from machine import Pin from time import sleep<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>下面跨號有兩個參數，５是esp32上的GPIO接腳，Pin.OUT表示第5腳位預設為輸出</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">led &#x3D; Pin(5, Pin.OUT)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>和上面一樣道理，只不過第二個參數是用Pin.IN表示按鈕是以輸入的方式設定</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">button &#x3D; Pin(4, Pin.IN)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>當我們按下按鈕時，button.value() 返回 1。因此，這與 led.value(1) 相同。這會將 LED 狀態設置為 1，點亮 LED。當按鈕未被按下時，button.value() 返回 0。因此，我們有 led.value(0)，並且 LED 保持關閉狀態。</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">led.value(button.value())<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<hr>
-<h2 id="實作結果"><a href="#實作結果" class="headerlink" title="實作結果"></a>實作結果</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/4boMaNGBm8I" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+print(&quot;connrcted success&quot;)
+
+print(wifi.ifconfig())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="結果顯示"><a href="#結果顯示" class="headerlink" title="結果顯示"></a>結果顯示</h3><p><em><strong>其中’192.168.243.124’就是localIP</strong></em></p>
+<pre class="line-numbers language-none"><code class="language-none">&gt;&gt;&gt; True
+
+connrcted success
+
+(&#39;192.168.243.124&#39;, &#39;255.255.255.0&#39;, &#39;192.168.243.101&#39;, &#39;192.168.243.101&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -498,7 +518,7 @@ while True:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/08/28/%E6%8C%89%E9%88%95%E6%8E%A7%E5%88%B6LED-micropython/">https://blairan.github.io/2021/08/28/%E6%8C%89%E9%88%95%E6%8E%A7%E5%88%B6LED-micropython/</a>
+                    <a href="https://blairan.github.io/2021/08/28/WiFi%E7%B6%B2%E8%B7%AF%E9%80%A3%E6%8E%A5/">https://blairan.github.io/2021/08/28/WiFi%E7%B6%B2%E8%B7%AF%E9%80%A3%E6%8E%A5/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -540,8 +560,12 @@ while True:
                                     <span class="chip bg-color">micropython</span>
                                 </a>
                             
-                                <a href="/tags/led/">
-                                    <span class="chip bg-color">led</span>
+                                <a href="/tags/esp32/">
+                                    <span class="chip bg-color">esp32</span>
+                                </a>
+                            
+                                <a href="/tags/wifi/">
+                                    <span class="chip bg-color">wifi</span>
                                 </a>
                             
                         </div>
@@ -713,9 +737,10 @@ while True:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/08/28/WiFi%E7%B6%B2%E8%B7%AF%E9%80%A3%E6%8E%A5/">
                     <div class="card-image">
@@ -733,9 +758,9 @@ while True:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -756,6 +781,7 @@ while True:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -782,13 +808,13 @@ while True:
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/28/MediaPipe-UNO%E6%89%8B%E5%8B%A2%E6%8E%A7%E5%88%B6%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
+                <a href="/2021/08/28/%E6%8C%89%E9%88%95%E6%8E%A7%E5%88%B6LED-micropython/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="MediaPipe+UNO手勢控制伺服馬達">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="按鈕控制LED-micropython">
                         
-                        <span class="card-title">MediaPipe+UNO手勢控制伺服馬達</span>
+                        <span class="card-title">按鈕控制LED-micropython</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -805,16 +831,12 @@ while True:
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/mediapipe/" class="post-category">
-                                    mediapipe
+                            <a href="/categories/micropython/" class="post-category">
+                                    micropython
                                 </a>
                             
-                            <a href="/categories/mediapipe/arduino/" class="post-category">
-                                    arduino
-                                </a>
-                            
-                            <a href="/categories/mediapipe/arduino/servo/" class="post-category">
-                                    servo
+                            <a href="/categories/micropython/esp32/" class="post-category">
+                                    esp32
                                 </a>
                             
                             
@@ -824,16 +846,12 @@ while True:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mediapipe/">
-                        <span class="chip bg-color">mediapipe</span>
+                    <a href="/tags/micropython/">
+                        <span class="chip bg-color">micropython</span>
                     </a>
                     
-                    <a href="/tags/arduino/">
-                        <span class="chip bg-color">arduino</span>
-                    </a>
-                    
-                    <a href="/tags/servo/">
-                        <span class="chip bg-color">servo</span>
+                    <a href="/tags/led/">
+                        <span class="chip bg-color">led</span>
                     </a>
                     
                 </div>
