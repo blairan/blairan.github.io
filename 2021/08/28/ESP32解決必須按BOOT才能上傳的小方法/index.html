@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="WiFi網路連接, 我的微控板實驗室">
+    <meta name="keywords" content="ESP32解決必須按BOOT才能上傳的小方法, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>WiFi網路連接 | 我的微控板實驗室</title>
+    <title>ESP32解決必須按BOOT才能上傳的小方法 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">WiFi網路連接</h1>
+                    <h1 class="description center-align post-title">ESP32解決必須按BOOT才能上傳的小方法</h1>
                 </div>
             </div>
         </div>
@@ -387,16 +387,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/micropython/">
-                                <span class="chip bg-color">micropython</span>
-                            </a>
-                        
                             <a href="/tags/esp32/">
                                 <span class="chip bg-color">esp32</span>
                             </a>
                         
-                            <a href="/tags/wifi/">
-                                <span class="chip bg-color">wifi</span>
+                            <a href="/tags/%E8%87%AA%E5%8B%95%E4%B8%8A%E5%82%B3/">
+                                <span class="chip bg-color">自動上傳</span>
                             </a>
                         
                     </div>
@@ -407,16 +403,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/micropython/" class="post-category">
-                                micropython
-                            </a>
-                        
-                            <a href="/categories/micropython/esp32/" class="post-category">
+                            <a href="/categories/esp32/" class="post-category">
                                 esp32
-                            </a>
-                        
-                            <a href="/categories/micropython/esp32/wifi/" class="post-category">
-                                wifi
                             </a>
                         
                     </div>
@@ -452,47 +440,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="WiFi網路連接"><a href="#WiFi網路連接" class="headerlink" title="WiFi網路連接"></a>WiFi網路連接</h1><h6 id="tags-micropython-WiFi"><a href="#tags-micropython-WiFi" class="headerlink" title="tags: micropython WiFi"></a>tags: <code>micropython</code> <code>WiFi</code></h6><hr>
-<h2 id="micropython-ESP32下網路連接的模式可分為"><a href="#micropython-ESP32下網路連接的模式可分為" class="headerlink" title="micropython ESP32下網路連接的模式可分為"></a>micropython ESP32下網路連接的模式可分為</h2><ul>
-<li>  STA:做為站點接入WiFi</li>
-<li>  AP:做為熱點,充許其它設備接入</li>
-</ul>
-<h2 id="函式參考-micropython函式筆記本"><a href="#函式參考-micropython函式筆記本" class="headerlink" title="函式參考-micropython函式筆記本"></a>函式參考-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8403042239316796526#">micropython函式筆記本</a></h2><h2 id="熱點模式-AP"><a href="#熱點模式-AP" class="headerlink" title="熱點模式(AP)"></a>熱點模式(AP)</h2><p>熱點模式允許用戶將自己的ESP32配置為熱點，這讓多個ESP32芯片之間的無線連接在不借助外部路由器網絡的情況下成為可能。 </p>
-<pre class="line-numbers language-none"><code class="language-none">import network
+                <h1 id="ESP32解決必須按BOOT才能上傳的小方法"><a href="#ESP32解決必須按BOOT才能上傳的小方法" class="headerlink" title="ESP32解決必須按BOOT才能上傳的小方法"></a>ESP32解決必須按BOOT才能上傳的小方法</h1><h6 id="tags-esp32-自動上傳"><a href="#tags-esp32-自動上傳" class="headerlink" title="tags: esp32 自動上傳"></a>tags: <code>esp32</code> <code>自動上傳</code></h6><p><strong>最近開始玩ESP32發現有點麻煩的是每次一上傳到板子都要和跟….___….</strong></p>
+<p><strong>賽跑,後來看到社團上有些大大教學使用10u~100uF的電容即可解決手動上傳</strong></p>
+<p><strong>的困擾，正好公司有100uF 的電容,拿來試試果真可以呢!!!</strong></p>
+<p><strong>參考:<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/7627629995084093339#">https://blog.darkthread.net/blog/esp32-upload-timeout-fix/?fbclid=IwAR2LK8WYw0P28fvPJDFXoARzUGvGylDiDCZUkpFhwD9u2TXvTX-yvM8yBGw</a></strong></p>
+<p><strong>方法很簡單，只要拿到電容，將電容正端焊在EN，負端焊在GND，這樣就行了。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/7627629995084093339#"><img src="https://lh3.googleusercontent.com/-s_bry0zMywg/YK2yct35J8I/AAAAAAAAeM4/stIzQCfRT2cHLZNzMPnxxpC1YsXVbeS8ACNcBGAsYHQ/s1600/1621996128028104-0.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/7627629995084093339#"><img src="https://lh3.googleusercontent.com/-jJ-hOL_8GZg/YK2yXokvQFI/AAAAAAAAeM0/PLUQjbiaHfsRFYvit0UBIWz6vVgwRqp5wCNcBGAsYHQ/s1600/1621996094011888-1.png"></a></p>
 
-ap &#x3D; network.wifi(network.AP_IF) # 創建熱點
-
-ap.active(True)         # 建立熱點
-
-ap.config(ssid&#x3D;&#39;ESP-AP&#39;) # 建立熱點名稱<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<hr>
-<h2 id="站點模式-STA"><a href="#站點模式-STA" class="headerlink" title="站點模式(STA)"></a>站點模式(STA)</h2><pre class="line-numbers language-none"><code class="language-none">import network
-
-ssid&#x3D;&quot;基地台名稱&quot;
-
-password&#x3D;&quot;密碼&quot;
-
-  
-
-wifi&#x3D;network.WLAN(network.STA_IF)
-
-wifi.active(True)
-
-wifi.connect(ssid, password)
-
-while wifi.isconnected()&#x3D;&#x3D;False:
-
-  pass
-
-print(&quot;connrcted success&quot;)
-
-print(wifi.ifconfig())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="結果顯示"><a href="#結果顯示" class="headerlink" title="結果顯示"></a>結果顯示</h3><p><em><strong>其中’192.168.243.124’就是localIP</strong></em></p>
-<pre class="line-numbers language-none"><code class="language-none">&gt;&gt;&gt; True
-
-connrcted success
-
-(&#39;192.168.243.124&#39;, &#39;255.255.255.0&#39;, &#39;192.168.243.101&#39;, &#39;192.168.243.101&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -518,7 +473,7 @@ connrcted success
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/08/28/WiFi%E7%B6%B2%E8%B7%AF%E9%80%A3%E6%8E%A5/">https://blairan.github.io/2021/08/28/WiFi%E7%B6%B2%E8%B7%AF%E9%80%A3%E6%8E%A5/</a>
+                    <a href="https://blairan.github.io/2021/08/28/ESP32%E8%A7%A3%E6%B1%BA%E5%BF%85%E9%A0%88%E6%8C%89BOOT%E6%89%8D%E8%83%BD%E4%B8%8A%E5%82%B3%E7%9A%84%E5%B0%8F%E6%96%B9%E6%B3%95/">https://blairan.github.io/2021/08/28/ESP32%E8%A7%A3%E6%B1%BA%E5%BF%85%E9%A0%88%E6%8C%89BOOT%E6%89%8D%E8%83%BD%E4%B8%8A%E5%82%B3%E7%9A%84%E5%B0%8F%E6%96%B9%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,16 +511,12 @@ connrcted success
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/micropython/">
-                                    <span class="chip bg-color">micropython</span>
-                                </a>
-                            
                                 <a href="/tags/esp32/">
                                     <span class="chip bg-color">esp32</span>
                                 </a>
                             
-                                <a href="/tags/wifi/">
-                                    <span class="chip bg-color">wifi</span>
+                                <a href="/tags/%E8%87%AA%E5%8B%95%E4%B8%8A%E5%82%B3/">
+                                    <span class="chip bg-color">自動上傳</span>
                                 </a>
                             
                         </div>
@@ -741,6 +692,59 @@ connrcted success
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
+                <a href="/2021/08/28/0-91%E5%90%8B-OLED%E5%AF%A6%E9%A9%97/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="0.91吋_OLED實驗">
+                        
+                        <span class="card-title">0.91吋_OLED實驗</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/esp32/" class="post-category">
+                                    esp32
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/esp32/">
+                        <span class="chip bg-color">esp32</span>
+                    </a>
+                    
+                    <a href="/tags/OLED/">
+                        <span class="chip bg-color">OLED</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/08/28/%E5%85%A9%E5%80%8BESP32%E8%97%8D%E8%8A%BD%E4%B8%BB%E5%BE%9E%E7%AB%AF%E4%BA%92%E8%81%AF/">
                     <div class="card-image">
                         
@@ -757,9 +761,9 @@ connrcted success
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -785,63 +789,6 @@ connrcted success
                     
                     <a href="/tags/%E8%97%8D%E8%8A%BD/">
                         <span class="chip bg-color">藍芽</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/08/28/%E6%8C%89%E9%88%95%E6%8E%A7%E5%88%B6LED-micropython/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="按鈕控制LED-micropython">
-                        
-                        <span class="card-title">按鈕控制LED-micropython</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                            
-                            <a href="/categories/micropython/esp32/" class="post-category">
-                                    esp32
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/micropython/">
-                        <span class="chip bg-color">micropython</span>
-                    </a>
-                    
-                    <a href="/tags/led/">
-                        <span class="chip bg-color">led</span>
                     </a>
                     
                 </div>
