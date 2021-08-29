@@ -436,103 +436,768 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>==========<br>4.外部喚醒 (ext1)</p>
+                <h2 id="為什麼要讓ESP32進入深度睡眠模式"><a href="#為什麼要讓ESP32進入深度睡眠模式" class="headerlink" title="為什麼要讓ESP32進入深度睡眠模式?"></a>為什麼要讓ESP32進入深度睡眠模式?</h2><p><strong><em>其實我也是最近剛學到這一塊，所以就順手紀錄下來。</em></strong></p>
+<p><strong><em>記得以前做過一些要電池的成品，發現放一天半左右就</em></strong></p>
+<p><strong><em>沒電了，後來網路上搜尋相關知識才知道Arduino和esp32</em></strong></p>
+<p><strong><em>它們都有使其進入深度睡眠的方法。</em></strong></p>
+<p><strong><em>在深度睡眠中，可以使機板降低功耗，CPU和WIFI都會</em></strong></p>
+<p><strong>_停止運作，只有ULP還會以最低功耗運作，雖然 ESP32 _</strong></p>
+<p><strong><em>處於深度睡眠模式，但 RTC 記憶體也仍然處於打開狀態，</em></strong></p>
+<p><strong><em>因此我們可以為 ULP 共同處理器編寫一個程式，並將其</em></strong></p>
+<p><strong><em>存儲在 RTC 記憶體中以訪問週邊設備、內部定時器和內</em></strong></p>
+<p><strong><em>部感測器。</em></strong></p>
+<h2 id="RTC引腳"><a href="#RTC引腳" class="headerlink" title="RTC引腳"></a>RTC引腳</h2><p><strong><em>下圖黃色區塊的都可以使用RTC</em></strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://1.bp.blogspot.com/-Ap7xbLO-MAE/YM_mR7e9KwI/AAAAAAAAeUw/rcA6j1T1gKgaLSdPPXI5A2zfn467tEIJwCNcBGAsYHQ/w694-h412/ESP32-DOIT-DEVKIT-V1-Board-Pinout-30-GPIOs-Copy.png"></a></p>
 <hr>
-<p>在這裡不使用esp_sleep_enable_ext0_wakeup()，而是使用</p>
-<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp\_sleep\_enable\_ext1\_wakeup()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>/*</p>
-<p>Deep Sleep with External Wake Up</p>
-<p>=====================================</p>
-<p>This code displays how to use deep sleep with</p>
-<p>an external trigger as a wake up source and how</p>
-<p>to store data in RTC memory to use it over reboots</p>
-<p>This code is under Public Domain License.</p>
-<p>Hardware Connections</p>
-<p>======================</p>
-<p>Push Button to GPIO 33 pulled down with a 10K Ohm</p>
-<p>resistor</p>
-<p>NOTE:</p>
-<p>======</p>
-<p>Only RTC IO can be used as a source for external wake</p>
-<p>source. They are pins: 0,2,4,12-15,25-27,32-39.</p>
-<p>Author:</p>
-<p>Pranav Cherukupalli <a href="mailto:&#x63;&#x68;&#101;&#114;&#117;&#107;&#x75;&#112;&#97;&#x6c;&#x6c;&#105;&#x70;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x63;&#x68;&#101;&#114;&#117;&#107;&#x75;&#112;&#97;&#x6c;&#x6c;&#105;&#x70;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
-<p>*/</p>
-<p>#define BUTTON_PIN_BITMASK 0x8004 // GPIOs 2 and 15</p>
-<p>RTC_DATA_ATTR int bootCount = 0;</p>
-<p>/*</p>
-<p>Method to print the reason by which ESP32</p>
-<p>has been awaken from sleep</p>
-<p>*/</p>
-<p>void print_wakeup_reason(){</p>
-<p>  esp_sleep_wakeup_cause_t wakeup_reason;</p>
-<p>  wakeup_reason = esp_sleep_get_wakeup_cause();</p>
-<p>  switch(wakeup_reason)</p>
-<p>  {</p>
-<p>    case ESP_SLEEP_WAKEUP_EXT0 : Serial.println(“Wakeup caused by external signal using RTC_IO”); break;</p>
-<p>    case ESP_SLEEP_WAKEUP_EXT1 : Serial.println(“Wakeup caused by external signal using RTC_CNTL”); break;</p>
-<p>    case ESP_SLEEP_WAKEUP_TIMER : Serial.println(“Wakeup caused by timer”); break;</p>
-<p>    case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println(“Wakeup caused by touchpad”); break;</p>
-<p>    case ESP_SLEEP_WAKEUP_ULP : Serial.println(“Wakeup caused by ULP program”); break;</p>
-<p>    default : Serial.printf(“Wakeup was not caused by deep sleep: %d\n”,wakeup_reason); break;</p>
-<p>  }</p>
-<p>}</p>
-<p>/*</p>
-<p>Method to print the GPIO that triggered the wakeup</p>
-<p>*/</p>
-<p>void print_GPIO_wake_up(){</p>
-<p>  uint64_t GPIO_reason = esp_sleep_get_ext1_wakeup_status();</p>
-<p>  Serial.print(“GPIO that triggered the wake up: GPIO “);</p>
-<p>  Serial.println((log(GPIO_reason))/log(2), 0);</p>
-<p>}</p>
-<p>void setup(){</p>
-<p>  Serial.begin(115200);</p>
-<p>  delay(1000); //Take some time to open up the Serial Monitor</p>
-<p>  //Increment boot number and print it every reboot</p>
-<p>  ++bootCount;</p>
-<p>  Serial.println(“Boot number: “ + String(bootCount));</p>
-<p>  //Print the wakeup reason for ESP32</p>
-<p>  print_wakeup_reason();</p>
-<p>  //Print the GPIO used to wake up</p>
-<p>  print_GPIO_wake_up();</p>
-<p>  /*</p>
-<p>  First we configure the wake up source</p>
-<p>  We set our ESP32 to wake up for an external trigger.</p>
-<p>  There are two types for ESP32, ext0 and ext1 .</p>
-<p>  ext0 uses RTC_IO to wakeup thus requires RTC peripherals</p>
-<p>  to be on while ext1 uses RTC Controller so doesnt need</p>
-<p>  peripherals to be powered on.</p>
-<p>  Note that using internal pullups/pulldowns also requires</p>
-<p>  RTC peripherals to be turned on.</p>
-<p>  */</p>
-<p>  //esp_deep_sleep_enable_ext0_wakeup(GPIO_NUM_15,1); //1 = High, 0 = Low</p>
-<p>  //If you were to use ext1, you would use it like</p>
-<p>  esp_sleep_enable_ext1_wakeup(BUTTON_PIN_BITMASK,ESP_EXT1_WAKEUP_ANY_HIGH);</p>
-<p>  //Go to sleep now</p>
-<p>  Serial.println(“Going to sleep now”);</p>
-<p>  delay(1000);</p>
-<p>  esp_deep_sleep_start();</p>
-<p>  Serial.println(“This will never be printed”);</p>
-<p>}</p>
-<p>void loop(){</p>
-<p>  //This is not going to be called</p>
-<p>}</p>
-<pre class="line-numbers language-none"><code class="language-none">
-**0x8004怎麼來的?**
+<h2 id="喚醒模式"><a href="#喚醒模式" class="headerlink" title="喚醒模式"></a>喚醒模式</h2><h3 id="主要有種喚醒模式"><a href="#主要有種喚醒模式" class="headerlink" title="主要有種喚醒模式"></a>主要有種喚醒模式</h3><ol>
+<li> <em><strong>定時器喚醒</strong></em></li>
+<li> <em><strong>觸摸喚醒</strong></em></li>
+<li> <em><strong>外部喚醒/多種不同的外部喚醒</strong></em></li>
+<li> <em><strong>ULP喚醒</strong></em></li>
+</ol>
+<hr>
+<h2 id="1-定時器喚醒模式實驗"><a href="#1-定時器喚醒模式實驗" class="headerlink" title="1.定時器喚醒模式實驗"></a>1.定時器喚醒模式實驗</h2><p><strong><em>ESP32可進入深睡模式，並預設時間喚醒</em></strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+#define us_to_s 1000000
 
-計算 2^2 + 2^15。你應該得到 32772
-
-將該數字轉換為十六進制。你應該得到：8004
-
-在這個例子中，我們使用了在代碼開頭定義的變量 BUTTON\_PIN\_BITMASK
+#define time__to_sleep 5
 
   
-&#96;&#96;&#96;c
-#define   BUTTON_PIN_BITMASK   0x8004<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+RTC_DATA_ATTR int count &#x3D; 0;
+
+  
+
+void print_wakeup_reason()
+
+&#123;
+
+  esp_sleep_wakeup_cause_t wakeup_reason;
+
+  wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+
+  switch (wakeup_reason)
+
+  &#123;
+
+  case ESP_SLEEP_WAKEUP_EXT0:
+
+    Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_EXT1:
+
+    Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_TIMER:
+
+    Serial.println(&quot;Wakeup caused by timer&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_TOUCHPAD:
+
+    Serial.println(&quot;Wakeup caused by touchpad&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_ULP:
+
+    Serial.println(&quot;Wakeup caused by ULP program&quot;);
+
+    break;
+
+  default:
+
+    Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\n&quot;, wakeup_reason);
+
+    break;
+
+  &#125;
+
+&#125;
+
+  
+
+void setup()
+
+&#123;
+
+  Serial.begin(115200);
+
+  delay(1000);
+
+  ++count;
+
+  Serial.println(&quot;boot num: &quot; + String(count));
+
+  print_wakeup_reason();
+
+  esp_sleep_enable_timer_wakeup(us_to_s * time_to_sleep);
+
+  delay(1000);
+
+  esp_deep_sleep_start();
+
+&#125;
+
+
+void loop()&#123;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>一開始設定微秒轉成秒，也可以以直接寫成</strong>TIME_TO_SLEEP  5000000</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#define us_TO_s 1000000
+#define TIME_TO_SLEEP  5   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>這一段是說要在RTC上保存喚醒的次數，可以在最前面加上RTC_DATA_ATTR</strong></p>
+<p>**_<em>但是在按下EN鍵重啓這個數據會流失掉_</em>*</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">RTC_DATA_ATTR int count &#x3D; 0;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>這個函式主要是設定”被換醒的原因”</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">rst:0x5 (DEEPSLEEP_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 2
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 3
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 4
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<p><strong>進入到void setup(){}</strong></p>
+<p><strong>設定序列埠的波特率</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">Serial.begin(115200);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>每次被喚醒，count就會加1，並被印出來</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">++count; Serial.println(&quot;Boot number: &quot;   +   String(bootCount));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>調用剛最前方那個被喚醒的原因函式</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">print_wakeup_reason()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>啓用幾秒後，調用睡眠模式的函式</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
+
+esp_deep_sleep_start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="實驗結果"><a href="#實驗結果" class="headerlink" title="實驗結果"></a>實驗結果</h2><p>紅色字體是指進入深睡模式</p>
+<p>土黃色字體是指被喚醒的次數</p>
+<p>深藍色字體是被喚醒的原因</p>
+<pre class="line-numbers language-none"><code class="language-none">rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 2
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 3
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 4
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="２-觸摸喚醒實驗"><a href="#２-觸摸喚醒實驗" class="headerlink" title="２.觸摸喚醒實驗"></a>２.觸摸喚醒實驗</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/Zero_Touch_Wake_Up_bb.png?w=858&quality=100&strip=all&ssl=1"></a></p>
+<p>後來我發現來在Arduino IDE裡切換到ESP32的模式下，範例裡就有DEEP SLEEP的範例可用</p>
+<p>將範例載入後，上傳。</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://1.bp.blogspot.com/-3tHh0qOHWtA/YNFMzOX5NfI/AAAAAAAAeVY/oDALi3RFu_43L-nOaPyxfx28RiB_6ypmwCNcBGAsYHQ/w603-h647/1.jpg"></a></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+#define Threshold 40 
+
+RTC_DATA_ATTR int bootCount &#x3D; 0;
+
+touch_pad_t touchPin;
+
+
+void print_wakeup_reason()&#123;
+
+  esp_sleep_wakeup_cause_t wakeup_reason;
+
+  wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+  switch(wakeup_reason)
+  &#123;
+
+    case ESP_SLEEP_WAKEUP_EXT0 : Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_EXT1 : Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TIMER : Serial.println(&quot;Wakeup caused by timer&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println(&quot;Wakeup caused by touchpad&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_ULP : Serial.println(&quot;Wakeup caused by ULP program&quot;); break;
+
+    default : Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\\n&quot;,wakeup_reason); break;
+  &#125;
+
+&#125;
+
+  
+void print_wakeup_touchpad()&#123;
+
+  touchPin &#x3D; esp_sleep_get_touchpad_wakeup_status();
+
+  switch(touchPin)
+
+  &#123;
+
+    case 0  : Serial.println(&quot;Touch detected on GPIO 4&quot;); break;
+
+    case 1  : Serial.println(&quot;Touch detected on GPIO 0&quot;); break;
+
+    case 2  : Serial.println(&quot;Touch detected on GPIO 2&quot;); break;
+
+    case 3  : Serial.println(&quot;Touch detected on GPIO 15&quot;); break;
+
+    case 4  : Serial.println(&quot;Touch detected on GPIO 13&quot;); break;
+
+    case 5  : Serial.println(&quot;Touch detected on GPIO 12&quot;); break;
+
+    case 6  : Serial.println(&quot;Touch detected on GPIO 14&quot;); break;
+
+    case 7  : Serial.println(&quot;Touch detected on GPIO 27&quot;); break;
+
+    case 8  : Serial.println(&quot;Touch detected on GPIO 33&quot;); break;
+
+    case 9  : Serial.println(&quot;Touch detected on GPIO 32&quot;); break;
+
+    default : Serial.println(&quot;Wakeup not by touchpad&quot;); break;
+
+  &#125;
+
+&#125;
+
+void callback()&#123;
+
+&#125;
+
+void setup()&#123;
+  Serial.begin(115200)
+  delay(1000); 
+
+  ++bootCount;
+  Serial.println(&quot;Boot number: &quot; + String(bootCount));
+
+  print_wakeup_reason();
+  print_wakeup_touchpad();
+
+  touchAttachInterrupt(T4, callback, Threshold);
+
+  esp_sleep_enable_touchpad_wakeup();
+
+  Serial.println(&quot;Going to sleep now&quot;);
+
+  esp_deep_sleep_start();
+
+  Serial.println(&quot;This will never be printed&quot;);
+
+&#125;
+
+void loop()&#123;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>程式碼裡面這個是給予觸摸觸發的值</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#define Threshold   40<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>當在觸摸引腳上讀取的值低於 Threshold 變量上設置的值時，ESP32 喚醒並執行回調函數。<br>Callback() 函數只有在 ESP32 處於喚醒狀態時才會執行。</p>
+<p>所以如果是在喚醒的狀態下壓著觸摸腳不放開，並不會執行callback()回調。</p>
+<p>如果是在睡眠狀態下碰了一下引腳馬上放開，這樣也不會執行callback()回調。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">touchAttachInterrupt(T3, callback, Threshold); <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>callback() 函數是空的</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">void  callback()&#123;   &#x2F;&#x2F;placeholder callback function   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>接下來，使用 esp_sleep_enable_touchpad_wakeup() 函數將觸摸引腳設置為喚醒源。</p>
+<p>esp_sleep_enable_touchpad_wakeup()</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://lh3.googleusercontent.com/-gTuSGE2uzFA/YNFSKM2L1WI/AAAAAAAAeVg/mSIR56s4R8QZhOw7ylC3CoBbSPiYcyoygCNcBGAsYHQ/s1600/1624330763119130-0.png"></a> </p>
+<hr>
+<h2 id="3-外部喚醒-ext0"><a href="#3-外部喚醒-ext0" class="headerlink" title="3.外部喚醒 (ext0)"></a>3.外部喚醒 (ext0)</h2><p>要使用此喚醒，請使用以下函數：  </p>
+<p>Esp_sleep_enable_ext0_wakeup（GPIO_NUM_X，level）<br>此函數接受您要使用的引腳作為第一個參數，格式為 GPIO_NUM_X，其中 X 表示該引腳的 GPIO 編號。  </p>
+<p>第二個參數 level 可以是 1 或 0。這表示將觸發喚醒的 GPIO 狀態。</p>
+<p>注意：使用此喚醒，只能使用 RTC GPIO 引腳。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/external_wake_up_button_bb.png?w=1134&quality=100&strip=all&ssl=1"></a></p>
+</blockquote>
+<p><strong>可以在範例裡載入如下程式碼</strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://1.bp.blogspot.com/-E9SwEIStzFc/YNKgrFbR7fI/AAAAAAAAeVo/OtrrY-gkN-QraG7XaiuSA6VUX-pik6F2wCNcBGAsYHQ/w655-h549/2.jpg"></a></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">&gt; &#x2F;*
+&gt; 
+&gt; Deep Sleep with External Wake Up
+&gt; 
+&gt; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; 
+&gt; This code displays how to use deep sleep with
+&gt; 
+&gt; an external trigger as a wake up source and how
+&gt; 
+&gt; to store data in RTC memory to use it over reboots
+&gt; 
+&gt;   
+&gt; 
+&gt; This code is under Public Domain License.
+&gt; 
+&gt; 
+&gt; Hardware Connections
+&gt; 
+&gt; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; 
+&gt; Push Button to GPIO 33 pulled down with a 10K Ohm
+&gt; 
+&gt; resistor
+&gt;
+&gt; 
+&gt; NOTE:
+&gt; 
+&gt; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; 
+&gt; Only RTC IO can be used as a source for external wake
+&gt; 
+&gt; source. They are pins: 0,2,4,12-15,25-27,32-39.
+&gt; 
+&gt; 
+&gt; Author:
+&gt; 
+&gt; Pranav Cherukupalli &lt;cherukupallip@gmail.com&gt;
+&gt; 
+&gt; *&#x2F;
+&gt; 
+&gt; 
+&gt; #define BUTTON_PIN_BITMASK 0x200000000 &#x2F;&#x2F; 2^33 in hex
+&gt; 
+&gt;   
+&gt; 
+&gt; RTC_DATA_ATTR int bootCount &#x3D; 0;
+&gt;
+&gt; 
+&gt; &#x2F;*
+&gt; 
+&gt; Method to print the reason by which ESP32
+&gt; 
+&gt; has been awaken from sleep
+&gt; 
+&gt; *&#x2F;
+&gt; 
+&gt; void print_wakeup_reason()&#123;
+&gt; 
+&gt;   esp_sleep_wakeup_cause_t wakeup_reason;
+&gt;
+&gt; 
+&gt;   wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+&gt; 
+&gt; 
+&gt;   switch(wakeup_reason)
+&gt; 
+&gt;   &#123;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_EXT0 : Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_EXT1 : Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_TIMER : Serial.println(&quot;Wakeup caused by timer&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println(&quot;Wakeup caused by touchpad&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_ULP : Serial.println(&quot;Wakeup caused by ULP program&quot;); break;
+&gt; 
+&gt;     default : Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\\n&quot;,wakeup_reason); break;
+&gt; 
+&gt;   &#125;
+&gt; 
+&gt; &#125;
+&gt; 
+&gt;   
+&gt; 
+&gt; void setup()&#123;
+&gt; 
+&gt;   Serial.begin(115200);
+&gt; 
+&gt;   delay(1000); &#x2F;&#x2F;Take some time to open up the Serial Monitor
+&gt; 
+&gt; 
+&gt;   &#x2F;&#x2F;Increment boot number and print it every reboot
+&gt; 
+&gt;   ++bootCount;
+&gt; 
+&gt;   Serial.println(&quot;Boot number: &quot; + String(bootCount));
+&gt; 
+&gt;   
+&gt;   &#x2F;&#x2F;Print the wakeup reason for ESP32
+&gt; 
+&gt;   print_wakeup_reason();
+&gt; 
+&gt;  
+&gt;   &#x2F;*
+&gt; 
+&gt;   First we configure the wake up source
+&gt; 
+&gt;   We set our ESP32 to wake up for an external trigger.
+&gt; 
+&gt;   There are two types for ESP32, ext0 and ext1 .
+&gt; 
+&gt;   ext0 uses RTC_IO to wakeup thus requires RTC peripherals
+&gt; 
+&gt;   to be on while ext1 uses RTC Controller so doesnt need
+&gt; 
+&gt;   peripherals to be powered on.
+&gt; 
+&gt;   Note that using internal pullups&#x2F;pulldowns also requires
+&gt; 
+&gt;   RTC peripherals to be turned on.
+&gt; 
+&gt;   *&#x2F;
+&gt; 
+&gt;   esp_sleep_enable_ext0_wakeup(GPIO_NUM_33,1); &#x2F;&#x2F;1 &#x3D; High, 0 &#x3D; Low
+&gt; 
+&gt;   
+&gt; 
+&gt;   &#x2F;&#x2F;If you were to use ext1, you would use it like
+&gt; 
+&gt;   &#x2F;&#x2F;esp_sleep_enable_ext1_wakeup(BUTTON_PIN_BITMASK,ESP_EXT1_WAKEUP_ANY_HIGH);
+&gt; 
+&gt;   
+&gt; 
+&gt;   &#x2F;&#x2F;Go to sleep now
+&gt; 
+&gt;   Serial.println(&quot;Going to sleep now&quot;);
+&gt; 
+&gt;   esp_deep_sleep_start();
+&gt; 
+&gt;   Serial.println(&quot;This will never be printed&quot;);
+&gt; 
+&gt; &#125;
+&gt; 
+&gt;   
+&gt; 
+&gt; void loop()&#123;
+&gt; 
+&gt;   &#x2F;&#x2F;This is not going to be called
+&gt; 
+&gt; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>在這個例子中，我們使用了在代碼開頭定義的變量 BUTTON_PIN_BITMASK：</p>
+</blockquote>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#define   BUTTON\_PIN\_BITMASK   0x200000000 &#x2F;&#x2F; 2^33 in hex<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>按鈕連接到 GPIO 33。要獲取 GPIO 33 的十六進位碼：  </p>
+<p>計算 2的33次方,應該得到 8589934592,將該數字 (8589934592) 轉換為十六進制。您可以轉到此轉換器來執行此操作。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_enable_ext0_wakeup(GPIO_NUM_33,1);   &#x2F;&#x2F;1 &#x3D; High, 0 &#x3D; Low<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>＃可以使用任何其他 RTC GPIO 引腳來代替 GPIO 33</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/twRIlLu60Y0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<hr>
+<h2 id="4-外部喚醒-ext1"><a href="#4-外部喚醒-ext1" class="headerlink" title="4.外部喚醒 (ext1)"></a>4.外部喚醒 (ext1)</h2><p>在這裡不使用esp_sleep_enable_ext0_wakeup()，而是使用</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_enable_ext1_wakeup()
+&#96;&#96;&#96;c#
+&#x2F;*
+
+Deep Sleep with External Wake Up
+
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+This code displays how to use deep sleep with
+
+an external trigger as a wake up source and how
+
+to store data in RTC memory to use it over reboots
+
+  
+
+This code is under Public Domain License.
+
+  
+
+Hardware Connections
+
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+Push Button to GPIO 33 pulled down with a 10K Ohm
+
+resistor
+
+  
+
+NOTE:
+
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+Only RTC IO can be used as a source for external wake
+
+source. They are pins: 0,2,4,12-15,25-27,32-39.
+
+  
+
+Author:
+
+Pranav Cherukupalli &lt;cherukupallip@gmail.com&gt;
+
+*&#x2F;
+
+#define BUTTON_PIN_BITMASK 0x8004 &#x2F;&#x2F; GPIOs 2 and 15
+
+RTC_DATA_ATTR int bootCount &#x3D; 0;
+
+&#x2F;*
+
+Method to print the reason by which ESP32
+
+has been awaken from sleep
+
+*&#x2F;
+
+void print_wakeup_reason()&#123;
+
+  esp_sleep_wakeup_cause_t wakeup_reason;
+
+  wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+
+  switch(wakeup_reason)
+
+  &#123;
+
+    case ESP_SLEEP_WAKEUP_EXT0 : Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_EXT1 : Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TIMER : Serial.println(&quot;Wakeup caused by timer&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println(&quot;Wakeup caused by touchpad&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_ULP : Serial.println(&quot;Wakeup caused by ULP program&quot;); break;
+
+    default : Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\\n&quot;,wakeup_reason); break;
+
+  &#125;
+
+&#125;
+
+&#x2F;*
+
+Method to print the GPIO that triggered the wakeup
+
+*&#x2F;
+
+void print_GPIO_wake_up()&#123;
+
+  uint64_t GPIO_reason &#x3D; esp_sleep_get_ext1_wakeup_status();
+
+  Serial.print(&quot;GPIO that triggered the wake up: GPIO &quot;);
+
+  Serial.println((log(GPIO_reason))&#x2F;log(2), 0);
+
+&#125;
+
+void setup()&#123;
+
+  Serial.begin(115200);
+
+  delay(1000); &#x2F;&#x2F;Take some time to open up the Serial Monitor
+
+  
+
+  &#x2F;&#x2F;Increment boot number and print it every reboot
+
+  ++bootCount;
+
+  Serial.println(&quot;Boot number: &quot; + String(bootCount));
+
+  
+
+  &#x2F;&#x2F;Print the wakeup reason for ESP32
+
+  print_wakeup_reason();
+  
+
+  &#x2F;&#x2F;Print the GPIO used to wake up
+
+  print\_GPIO\_wake_up();
+
+
+  &#x2F;*
+
+  First we configure the wake up source
+
+  We set our ESP32 to wake up for an external trigger.
+
+  There are two types for ESP32, ext0 and ext1 .
+
+  ext0 uses RTC_IO to wakeup thus requires RTC peripherals
+
+  to be on while ext1 uses RTC Controller so doesnt need
+
+  peripherals to be powered on.
+
+  Note that using internal pullups&#x2F;pulldowns also requires
+
+  RTC peripherals to be turned on.
+
+  *&#x2F;
+
+  &#x2F;&#x2F;esp_deep_sleep_enable_ext0_wakeup(GPIO\_NUM_15,1); &#x2F;&#x2F;1 &#x3D; High, 0 &#x3D; Low
+
+  
+
+  &#x2F;&#x2F;If you were to use ext1, you would use it like
+
+  esp_sleep_enable_ext1_wakeup(BUTTON_PIN_BITMASK,ESP_EXT1_WAKEUP_ANY_HIGH);
+
+  &#x2F;&#x2F;Go to sleep now
+
+  Serial.println(&quot;Going to sleep now&quot;);
+
+  delay(1000);
+
+  esp_deep_sleep_start();
+
+  Serial.println(&quot;This will never be printed&quot;);
+
+&#125;
+
+  
+
+void loop()&#123;
+
+  &#x2F;&#x2F;This is not going to be called
+
+&#125;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>0x8004怎麼來的?</strong></p>
+<p>計算 2^2 + 2^15。你應該得到 32772</p>
+<p>將該數字轉換為十六進制。你應該得到：8004</p>
+<p>在這個例子中，我們使用了在代碼開頭定義的變量 BUTTON_PIN_BITMASK</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">BUTTON_PIN_BITMASK</span>   <span class="token expression"><span class="token number">0x8004</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>當您使用多個引腳來喚醒 ESP32 時，知道是哪個引腳引起了喚醒是很有用的。為此，您可以使用以下功能：</p>
 <pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_get_ext1_wakeup_status()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>該函數返回一個基數2，與GPIO號碼作為指數：2 ^（GPIO_NUMBER）。因此，在小數得到GPIO，你需要做以下計算：</p>
-<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">GPIO &#x3D;   log(GPIO_NUMBER)&#x2F;log(2)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">GPIO &#x3D; log(GPIO_NUMBER)&#x2F;log(2)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>其它程式碼如同前面試驗</strong></p>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/external_wake_up_2buttons_bb.png?w=984&quality=100&strip=all&ssl=1"></a></p>
 <p><strong>將程式碼上傳後可以看到按壓哪個GPIO會顯示在監測窗口</strong></p>
@@ -774,18 +1439,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/08/29/DeepSleep%E6%B7%B1%E5%BA%A6%E7%9D%A1%E7%9C%A0%E7%9A%84%E5%AF%A6%E9%A9%97/">
+                <a href="/2021/08/29/%E7%B6%B2%E9%A0%81%E6%8E%A7%E5%88%B6LED%E7%87%88-ESP32/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="DeepSleep深度睡眠的實驗">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="網頁控制LED燈-ESP32">
                         
-                        <span class="card-title">DeepSleep深度睡眠的實驗</span>
+                        <span class="card-title">網頁控制LED燈-ESP32</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -795,9 +1459,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -810,12 +1474,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/deep-sleep/">
-                        <span class="chip bg-color">deep sleep</span>
+                    <a href="/tags/webserver/">
+                        <span class="chip bg-color">webserver</span>
                     </a>
                     
                 </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PWM控制板上內建LED-ESP32, 我的微控板實驗室">
+    <meta name="keywords" content="PIR人體感應器, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PWM控制板上內建LED-ESP32 | 我的微控板實驗室</title>
+    <title>PIR人體感應器 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PWM控制板上內建LED-ESP32</h1>
+                    <h1 class="description center-align post-title">PIR人體感應器</h1>
                 </div>
             </div>
         </div>
@@ -387,12 +387,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/esp32/">
-                                <span class="chip bg-color">esp32</span>
+                            <a href="/tags/PIR/">
+                                <span class="chip bg-color">PIR</span>
                             </a>
                         
-                            <a href="/tags/led/">
-                                <span class="chip bg-color">led</span>
+                            <a href="/tags/PIR%E4%BA%BA%E9%AB%94%E6%84%9F%E6%87%89%E5%99%A8/">
+                                <span class="chip bg-color">PIR人體感應器</span>
                             </a>
                         
                     </div>
@@ -440,35 +440,96 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="PWM控制板上內建LED-ESP32"><a href="#PWM控制板上內建LED-ESP32" class="headerlink" title="PWM控制板上內建LED-ESP32"></a>PWM控制板上內建LED-ESP32</h1><h6 id="tags-esp32-led-pwm"><a href="#tags-esp32-led-pwm" class="headerlink" title="tags: esp32 led pwm"></a>tags: <code>esp32</code> <code>led</code> <code>pwm</code></h6><h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ol>
-<li><h4 id="ESP32控制板-x1"><a href="#ESP32控制板-x1" class="headerlink" title="ESP32控制板 x1"></a>ESP32控制板 x1</h4></li>
-<li><h4 id="可變電阻-x1"><a href="#可變電阻-x1" class="headerlink" title="可變電阻 x1"></a>可變電阻 x1</h4></li>
-<li><h4 id="10K歐姆電阻-x1"><a href="#10K歐姆電阻-x1" class="headerlink" title="10K歐姆電阻 x1"></a>10K歐姆電阻 x1</h4></li>
-</ol>
-<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5354569437760337966#"><img src="https://1.bp.blogspot.com/-lGkj-SvW41c/YId8HIPFBQI/AAAAAAAAeGI/P0q3-HrMSrI2FS2aWVSbTbB_09B4vGtpACNcBGAsYHQ/w718-h337/2.jpg"></a></p>
+                <h1 id="PIR人體感應器"><a href="#PIR人體感應器" class="headerlink" title="PIR人體感應器"></a>PIR人體感應器</h1><h6 id="tags-esp32-PIR-motion"><a href="#tags-esp32-PIR-motion" class="headerlink" title="tags: esp32 PIR_motion"></a>tags: <code>esp32</code> <code>PIR_motion</code></h6><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5742917802289246193?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-IyjhCgpFA20/YMtNtZbtNII/AAAAAAAAeUI/Yxs-05vGkwQmMKGDMdRG4OWA72p9fYW-ACNcBGAsYHQ/w403-h333/pir-01.jpg"></a><br>實驗說明</p>
 <hr>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre><code class="line-numbers language-c#">#define pwm1 A4
+<p><em>此次實驗，以PIR感應器檢測人體運動，在高電位時使LED亮，</em></p>
+<p><em>到達設製的時間，自動滅掉。</em></p>
+<p><em>同時我在這個實驗裡學到中斷函式attachInterrupt()和mills()的運用</em></p>
+<p><em>中斷函式可以運用在PIR，當檢測到變化，中斷函式會被觸發去執行所</em></p>
+<p><em>設定的動作。同時藉由mills()替化delay()而不至於所有的過程都被delay()</em></p>
+<p><em>暫停。</em></p>
+<hr>
+<h2 id="接線方式"><a href="#接線方式" class="headerlink" title="接線方式"></a>接線方式</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5742917802289246193?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-kZQEvtpmUs8/YMtRIIu7vbI/AAAAAAAAeUQ/cap6CtGU6xAU2z7SGzMpPxYlg-pUY5kZQCNcBGAsYHQ/w826-h457/0d48261252092c03a3a44e37cd427709.jpg"></a></p>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">const int led&#x3D;18;
+
+const int motionSensor&#x3D;27;
+
+unsigned long oldTime;
+
+bool startTimer&#x3D;false;
+
+
+void IRAM_ATTR detectedMotion()&#123;
+
+    Serial.println(&quot;detected motion....&quot;);
+
+    digitalWrite(led, HIGH);
+
+    oldTime&#x3D;millis();
+
+    startTimer&#x3D;true;
+
+&#125;
 
 void setup()&#123;
-  Serial.begin(115200);
-  ledcSetup(0, 5000, 10);
-  ledcAttachPin(LED_BUILTIN, 0);
-  pinMode(LED_BUILTIN, OUTPUT);
+
+    Serial.begin(115200);
+
+    pinMode(led, OUTPUT);
+
+    pinMode(motionSensor, INPUT_PULLUP);
+
+    attachInterrupt(digitalPinToInterrupt(motionSensor), detectedMotion, RISING);
+
 &#125;
 
 void loop()&#123;
-  int val=analogRead(pwm1);
-  val=map(val, 0, 4095, 0, 1023);
-  Serial.printf(&quot;輸出值為: %u\\n&quot;, val);
-  ledcWrite(0, val);
-  delay(100);
-&#125;
-</code></pre>
-<hr>
-<h2 id="程式碼部份說明"><a href="#程式碼部份說明" class="headerlink" title="程式碼部份說明"></a>程式碼部份說明</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5354569437760337966#">ESP32函式筆記本</a>-PWM  </p>
-<h3 id="和Arduino不一太一樣的地方是在多了設定PWM的通道和頻率-當中其實更完善的方法還有位元數的轉換，因為ESP32的類比數值是4095-而Arduino的數值是1023-所以在ledcSetup-裡的10是代表esp32的10位元-但我試著用原生的方式map-轉換測試後還可以-analogRead-一樣有-但少了analogWrite-這部份以ledcWrite-取代。"><a href="#和Arduino不一太一樣的地方是在多了設定PWM的通道和頻率-當中其實更完善的方法還有位元數的轉換，因為ESP32的類比數值是4095-而Arduino的數值是1023-所以在ledcSetup-裡的10是代表esp32的10位元-但我試著用原生的方式map-轉換測試後還可以-analogRead-一樣有-但少了analogWrite-這部份以ledcWrite-取代。" class="headerlink" title="和Arduino不一太一樣的地方是在多了設定PWM的通道和頻率,當中其實更完善的方法還有位元數的轉換，因為ESP32的類比數值是4095,而Arduino的數值是1023,所以在ledcSetup()裡的10是代表esp32的10位元,但我試著用原生的方式map()轉換測試後還可以,analogRead()一樣有,但少了analogWrite(),這部份以ledcWrite()取代。"></a>和Arduino不一太一樣的地方是在多了設定PWM的通道和頻率,當中其實更完善的方法還有位元數的轉換，因為ESP32的類比數值是4095,而Arduino的數值是1023,所以在ledcSetup()裡的10是代表esp32的10位元,但我試著用原生的方式map()轉換測試後還可以,analogRead()一樣有,但少了analogWrite(),這部份以ledcWrite()取代。</h3><hr>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/bO9G6uzPRcw" frameborder="0" loading="lazy" allowfullscreen></iframe></div>https://youtu.be/bO9G6uzPRcw
 
+    unsigned long now&#x3D;millis();
+
+    if (startTimer&amp;&amp;(now-oldTime&gt;5000))&#123;
+
+        Serial.println(&quot;motion stop!!!&quot;);
+
+        digitalWrite(led, LOW);
+
+        startTimer&#x3D;false;
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><em>特別提到這裡有一個自定義函式，它的作用是當PIR偵測到動作後，就會去執行這部份</em></p>
+<p><em>並且使startTimer開始紀錄執行後的时間。</em></p>
+<p><strong>注意：IRAM_ATTR 用於運行 RAM 中的中斷代碼，否則代碼存儲在 flash 中，速度較慢。</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">void IRAM_ATTR detectedMotion()&#123;
+
+    Serial.println(&quot;detected motion....&quot;);
+
+    digitalWrite(led, HIGH);
+
+    oldTime&#x3D;millis();
+
+    startTimer&#x3D;true;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><em>中斷函式可以參考</em>-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5742917802289246193?hl=zh-TW#">我的函式筆記本</a></p>
+<pre class="line-numbers language-none"><code class="language-none">attachInterrupt(digitalPinToInterrupt(motionSensor), detectedMotion, RISING);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><em>時間函式可以參考</em>-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5742917802289246193?hl=zh-TW#">我的函式筆記本</a></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">unsigned long now&#x3D;millis();
+
+    if (startTimer&amp;&amp;(now-oldTime&gt;5000))&#123;
+
+        Serial.println(&quot;motion stop!!!&quot;);
+
+        digitalWrite(led, LOW);
+
+        startTimer&#x3D;false;
+
+    &#125;
+  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/xQr5rVHvR-k" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -494,7 +555,7 @@ void loop()&#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/08/29/PWM%E6%8E%A7%E5%88%B6%E6%9D%BF%E4%B8%8A%E5%85%A7%E5%BB%BALED-ESP32/">https://blairan.github.io/2021/08/29/PWM%E6%8E%A7%E5%88%B6%E6%9D%BF%E4%B8%8A%E5%85%A7%E5%BB%BALED-ESP32/</a>
+                    <a href="https://blairan.github.io/2021/08/29/PIR%E4%BA%BA%E9%AB%94%E6%84%9F%E6%87%89%E5%99%A8/">https://blairan.github.io/2021/08/29/PIR%E4%BA%BA%E9%AB%94%E6%84%9F%E6%87%89%E5%99%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -532,12 +593,12 @@ void loop()&#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/esp32/">
-                                    <span class="chip bg-color">esp32</span>
+                                <a href="/tags/PIR/">
+                                    <span class="chip bg-color">PIR</span>
                                 </a>
                             
-                                <a href="/tags/led/">
-                                    <span class="chip bg-color">led</span>
+                                <a href="/tags/PIR%E4%BA%BA%E9%AB%94%E6%84%9F%E6%87%89%E5%99%A8/">
+                                    <span class="chip bg-color">PIR人體感應器</span>
                                 </a>
                             
                         </div>
@@ -713,13 +774,13 @@ void loop()&#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/08/29/DHT11-12%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%B8%AC%E6%BA%AB%E6%BF%95%E5%BA%A6%E8%A8%88-micropython/">
+                <a href="/2021/08/29/%E5%91%BC%E5%90%B8%E7%87%88-ESP32/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="DHT11/12網路監測溫濕度計-micropython">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="呼吸燈-ESP32">
                         
-                        <span class="card-title">DHT11/12網路監測溫濕度計-micropython</span>
+                        <span class="card-title">呼吸燈-ESP32</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -736,11 +797,7 @@ void loop()&#123;
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                            
-                            <a href="/categories/micropython/esp32/" class="post-category">
+                            <a href="/categories/esp32/" class="post-category">
                                     esp32
                                 </a>
                             
@@ -751,12 +808,8 @@ void loop()&#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DHT11-DHT12/">
-                        <span class="chip bg-color">DHT11/DHT12</span>
-                    </a>
-                    
-                    <a href="/tags/webserver/">
-                        <span class="chip bg-color">webserver</span>
+                    <a href="/tags/%E5%91%BC%E5%90%B8%E7%87%88/">
+                        <span class="chip bg-color">呼吸燈</span>
                     </a>
                     
                 </div>
@@ -770,13 +823,13 @@ void loop()&#123;
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/28/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython/">
+                <a href="/2021/08/29/%E7%B6%B2%E9%A0%81%E6%8E%A7%E5%88%B6LED%E7%87%88-ESP32/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MQTT&amp;node-RED控制二軸云台-mpython">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="網頁控制LED燈-ESP32">
                         
-                        <span class="card-title">MQTT&amp;node-RED控制二軸云台-mpython</span>
+                        <span class="card-title">網頁控制LED燈-ESP32</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -787,17 +840,13 @@ void loop()&#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                            
-                            <a href="/categories/micropython/esp32/" class="post-category">
+                            <a href="/categories/esp32/" class="post-category">
                                     esp32
                                 </a>
                             
@@ -808,24 +857,8 @@ void loop()&#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/servo/">
-                        <span class="chip bg-color">servo</span>
-                    </a>
-                    
-                    <a href="/tags/mqtt/">
-                        <span class="chip bg-color">mqtt</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
-                        <span class="chip bg-color">二軸云台</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
-                        <span class="chip bg-color">伺服馬達</span>
-                    </a>
-                    
-                    <a href="/tags/node-red/">
-                        <span class="chip bg-color">node-red</span>
+                    <a href="/tags/webserver/">
+                        <span class="chip bg-color">webserver</span>
                     </a>
                     
                 </div>
