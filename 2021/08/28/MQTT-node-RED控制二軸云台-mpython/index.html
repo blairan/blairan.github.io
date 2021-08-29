@@ -465,118 +465,69 @@
 <h2 id="Node-RED設定"><a href="#Node-RED設定" class="headerlink" title="Node-RED設定"></a>Node-RED設定</h2><p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-GksKBPZ26_o/YSpWJWFmwhI/AAAAAAAAe4E/6peztH_jPDgTVkrbfKGBriWMdPbxcnCyACNcBGAsYHQ/s1920/3.jpg"><img src="https://1.bp.blogspot.com/-GksKBPZ26_o/YSpWJWFmwhI/AAAAAAAAe4E/6peztH_jPDgTVkrbfKGBriWMdPbxcnCyACNcBGAsYHQ/w654-h368/3.jpg"></a></p>
 <p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/s1920/1.jpg"><img src="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/w661-h370/1.jpg"></a></p>
 <p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/s1920/2.jpg"><img src="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/w654-h368/2.jpg"></a></p>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><p>```python</p>
-<ol>
-<li><p>from machine import SLEEP, Pin, PWM, freq</p>
-</li>
-<li><p>from time import sleep</p>
-</li>
-<li><p>from umqtttsimple import MQTTClient</p>
-</li>
-<li><p>import binascii, micropython, network, time, socket, machine</p>
-</li>
-<li><p>ssid = “————“</p>
-</li>
-<li><p>password = “——-“</p>
-</li>
-<li><p>mqtt_server = “192.168.210.22”</p>
-</li>
-<li><p>#將客戶端ID轉換為16進位,以便MQTT伺服端讀取</p>
-</li>
-<li><p>mqtt_id = binascii.hexlify(machine.unique_id())</p>
-</li>
-<li><p>#和Nord-RED上的主題一致</p>
-</li>
-<li><p>client_servoPan = b’esp32/servoPan’</p>
-</li>
-<li><p>client_servoTilt = b’esp32/servoTilt’</p>
-</li>
-<li><p>servo_pan = PWM(Pin(13), freq=50)</p>
-</li>
-<li><p>servo_tilt = PWM(Pin(14), freq=50)</p>
-</li>
-<li><p>#wifi連線</p>
-</li>
-<li><p>def wifiConn():</p>
-</li>
-<li><p>    wifi = network.WLAN(network.STA_IF)</p>
-</li>
-<li><p>    wifi.active(True)</p>
-</li>
-<li><p>    wifi.connect(ssid, password)</p>
-</li>
-<li><p>    while wifi.isconnected() == False:</p>
-</li>
-<li><p>        pass</p>
-</li>
-<li><p>    print(“Connected successful!”)</p>
-</li>
-<li><p>    print(“IP: {}”.format(wifi.ifconfig()))</p>
-</li>
-<li><p>#樹莓派上的mqtt回應訂閱</p>
-</li>
-<li><h1 id="Duty-就為-2-5％、7-25％、12％，並-x1024-後可以轉換成-PWM-Duty填入的數值"><a href="#Duty-就為-2-5％、7-25％、12％，並-x1024-後可以轉換成-PWM-Duty填入的數值" class="headerlink" title="Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值"></a>Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值</h1></li>
-<li><p>def callBack(topic, msg):</p>
-</li>
-<li><p>    ang0 = int(1023*0.025)</p>
-</li>
-<li><p>    ang90 = int(1023*0.0725)</p>
-</li>
-<li><p>    ang180 = int(1023*0.12)</p>
-</li>
-<li><p>    print((topic, msg))</p>
-</li>
-<li><p>    if topic == client_servoPan:</p>
-</li>
-<li><p>        servo_pan.duty(int(msg))</p>
-</li>
-<li><p>        sleep(0.5)</p>
-</li>
-<li><p>    elif topic == client_servoTilt:</p>
-</li>
-<li><p>        servo_tilt.duty(int(msg))</p>
-</li>
-<li><p>        sleep(0.5)</p>
-</li>
-<li><p>#連線MQTT,連線成功後訂閱主題</p>
-</li>
-<li><p>def connToMqtt():</p>
-</li>
-<li><p>    try:</p>
-</li>
-<li><p>        client = MQTTClient(mqtt_id, mqtt_server)</p>
-</li>
-<li><p>        client.set_callback(callBack)</p>
-</li>
-<li><p>        client.connect()</p>
-</li>
-<li><p>        client.subscribe(client_servoPan)</p>
-</li>
-<li><p>        client.subscribe(client_servoTilt)</p>
-</li>
-<li><p>        print(“connect to %s”%mqtt_server)</p>
-</li>
-<li><p>        return client</p>
-</li>
-<li><p>    #如果無法連線重新連線</p>
-</li>
-<li><p>    except OSError as e:</p>
-</li>
-<li><p>        print(“not to connected for MQTT server!”)</p>
-</li>
-<li><p>        machine.reset()</p>
-</li>
-<li><p>wifiConn()</p>
-</li>
-<li><p>client = connToMqtt()</p>
-</li>
-<li><p>while True:</p>
-</li>
-<li><p>    #檢查有無進來的訊息</p>
-</li>
-<li><p>    client.check_msg()</p>
-</li>
-</ol>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre><code class="line-numbers language-python">from machine import SLEEP, Pin, PWM, freq
+from time import sleep 
+from umqtttsimple import MQTTClient  
+import binascii, micropython, network, time, socket, machine
+    
+ssid = &quot;------------&quot;
+password = &quot;-------&quot;
+mqtt_server = &quot;192.168.210.22&quot;
+    
+#將客戶端ID轉換為16進位,以便MQTT伺服端讀取
+    
+mqtt_id = binascii.hexlify(machine.unique_id())
+    
+
+#和Nord-RED上的主題一致
+    
+client_servoPan = b&#39;esp32/servoPan&#39;
+client_servoTilt = b&#39;esp32/servoTilt&#39;
+    
+servo_pan = PWM(Pin(13), freq=50)
+servo_tilt = PWM(Pin(14), freq=50)
+    
+#wifi連線
+    
+def wifiConn():
+    wifi = network.WLAN(network.STA_IF)
+    wifi.active(True)
+    wifi.connect(ssid, password)
+    while wifi.isconnected() == False:
+        pass
+    print(&quot;Connected successful!&quot;)
+    print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))
+    
+#樹莓派上的mqtt回應訂閱
+def callBack(topic, msg):
+    print((topic, msg))
+    if topic == client_servoPan:
+        servo_pan.duty(int(msg))
+        sleep(0.5)
+    elif topic == client_servoTilt:
+        servo_tilt.duty(int(msg))
+        sleep(0.5)
+    #連線MQTT,連線成功後訂閱主題
+def connToMqtt():
+    try:
+        client = MQTTClient(mqtt_id, mqtt_server)
+        client.set_callback(callBack)
+        client.connect()
+        client.subscribe(client_servoPan)
+        client.subscribe(client_servoTilt)
+        print(&quot;connect to %s&quot;%mqtt_server)
+        return client
+        #如果無法連線重新連線
+    except OSError as e:
+        print(&quot;not to connected for MQTT server!&quot;)
+        machine.reset()
+    
+wifiConn()
+client = connToMqtt()
+while True:
+    #檢查有無進來的訊息
+    client.check_msg()
+</code></pre>
 <p>調過等待時間還是會偶爾抖動，雖然不知道抖動原在哪，先這樣好了，下次再來抓原因。</p>
 <div class="video-container"><iframe src="https://www.youtube.com/embed/HxkOYhqcgaY" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
@@ -831,18 +782,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/08/28/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython/">
+                <a href="/2021/08/29/PWM%E6%8E%A7%E5%88%B6%E6%9D%BF%E4%B8%8A%E5%85%A7%E5%BB%BALED-ESP32/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MQTT&amp;node-RED控制二軸云台-mpython">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="PWM控制板上內建LED-ESP32">
                         
-                        <span class="card-title">MQTT&amp;node-RED控制二軸云台-mpython</span>
+                        <span class="card-title">PWM控制板上內建LED-ESP32</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -852,18 +802,14 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                            
-                            <a href="/categories/micropython/esp32/" class="post-category">
+                            <a href="/categories/esp32/" class="post-category">
                                     esp32
                                 </a>
                             
@@ -871,28 +817,15 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/servo/">
-                        <span class="chip bg-color">servo</span>
+                    <a href="/tags/esp32/">
+                        <span class="chip bg-color">esp32</span>
                     </a>
                     
-                    <a href="/tags/mqtt/">
-                        <span class="chip bg-color">mqtt</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
-                        <span class="chip bg-color">二軸云台</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
-                        <span class="chip bg-color">伺服馬達</span>
-                    </a>
-                    
-                    <a href="/tags/node-red/">
-                        <span class="chip bg-color">node-red</span>
+                    <a href="/tags/led/">
+                        <span class="chip bg-color">led</span>
                     </a>
                     
                 </div>

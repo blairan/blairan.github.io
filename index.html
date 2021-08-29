@@ -516,100 +516,30 @@
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython/">
+                    <a href="/2021/08/29/DeepSleep%E6%B7%B1%E5%BA%A6%E7%9D%A1%E7%9C%A0%E7%9A%84%E5%AF%A6%E9%A9%97/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MQTT&amp;node-RED控制二軸云台-mpython">
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="DeepSleep深度睡眠的實驗">
                             
-                            <span class="card-title">MQTT&amp;node-RED控制二軸云台-mpython</span>
+                            <span class="card-title">DeepSleep深度睡眠的實驗</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                MQTT&amp;node-RED控制二軸云台-mpython
-承接使用PWM控制伺服馬達-micropython這篇，透過node-red加入mqtt訂閱主題控制二軸云台
-有一些感想紀錄下來，我發現其實像mqtt或者wifi連網，大都是固
+                                ==========4.外部喚醒 (ext1)
+
+在這裡不使用esp_sleep_enable_ext0_wakeup()，而是使用
+esp\_sleep\_enable\_ext1\_wakeup()
+/*
+Deep Sleep with
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                                
-                                <a href="/categories/micropython/esp32/" class="post-category">
-                                    esp32
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/servo/">
-                            <span class="chip bg-color">servo</span>
-                        </a>
-                        
-                        <a href="/tags/mqtt/">
-                            <span class="chip bg-color">mqtt</span>
-                        </a>
-                        
-                        <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
-                            <span class="chip bg-color">二軸云台</span>
-                        </a>
-                        
-                        <a href="/tags/%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
-                            <span class="chip bg-color">伺服馬達</span>
-                        </a>
-                        
-                        <a href="/tags/node-red/">
-                            <span class="chip bg-color">node-red</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-              <!-- 隐藏某个文章 -->
-            
-             <!-- 隐藏某个文章 -->
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/08/28/%E6%90%96%E6%A1%BF%E6%8E%A7%E5%88%B6%E4%BA%91%E5%8F%B0-ESP32/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="搖桿控制云台-ESP32">
-                            
-                            <span class="card-title">搖桿控制云台-ESP32</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                搖桿控制云台-ESP32tags: esp32 搖桿 云台實驗目的以搖桿的讀值同步控制伺服馬達。
-須注意值要轉換成角度。
-伺服馬達
-伺服馬達被廣範運在微控板的控制上,幾乎這是學習微控板的基礎
-具代表的實驗就是二軸云台,它是以兩個伺服馬達構成
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
@@ -627,16 +557,8 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/esp32/">
-                            <span class="chip bg-color">esp32</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%90%96%E6%A1%BF/">
-                            <span class="chip bg-color">搖桿</span>
-                        </a>
-                        
-                        <a href="/tags/%E4%BA%91%E5%8F%B0/">
-                            <span class="chip bg-color">云台</span>
+                        <a href="/tags/deep-sleep/">
+                            <span class="chip bg-color">deep sleep</span>
                         </a>
                         
                     </div>
@@ -648,26 +570,25 @@
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/%E8%97%8D%E8%8A%BD%E5%9F%BA%E6%9C%AC%E9%80%9A%E8%A8%8A-%E6%8E%A7%E5%88%B6LED-ESP32/">
+                    <a href="/2021/08/29/DHT11-DHT12%E6%BA%AB%E6%BA%BC%E5%BA%A6%E5%82%B3%E6%84%9F%E5%99%A8%E5%AF%A6%E9%A9%97/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="藍芽基本通訊&amp;控制LED-ESP32">
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="DHT11/DHT12溫溼度傳感器實驗">
                             
-                            <span class="card-title">藍芽基本通訊&amp;控制LED-ESP32</span>
+                            <span class="card-title">DHT11/DHT12溫溼度傳感器實驗</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                藍芽基本通訊&amp;控制LED-ESP32tags: esp32 藍芽
-Arduino本身也可以外接藍芽和WIFI，但是須要外掛，這點就顯得麻煩一些；ESP32系列都有內建藍芽和WIFI這樣就稍能省事，而且語法和Arduino的藍芽用法幾
+                                DHT11/DHT12溫溼度傳感器實驗tags: esp32 dht11/dht12 參考網址-[https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
@@ -685,12 +606,8 @@ Arduino本身也可以外接藍芽和WIFI，但是須要外掛，這點就顯得
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/esp32/">
-                            <span class="chip bg-color">esp32</span>
-                        </a>
-                        
-                        <a href="/tags/%E8%97%8D%E8%8A%BD/">
-                            <span class="chip bg-color">藍芽</span>
+                        <a href="/tags/dht11-dht12/">
+                            <span class="chip bg-color">dht11/dht12</span>
                         </a>
                         
                     </div>
@@ -702,28 +619,25 @@ Arduino本身也可以外接藍芽和WIFI，但是須要外掛，這點就顯得
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/ESP32%E8%A8%AD%E5%AE%9A%E7%84%A1%E7%B7%9A%E5%9F%BA%E5%9C%B0%E5%8F%B0%E5%92%8C%E5%9B%BA%E5%AE%9AIP/">
+                    <a href="/2021/08/29/%E8%B6%85%E9%9F%B3%E6%B3%A2-0-96OLED-ESP32/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="ESP32設定無線基地台和固定IP">
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="超音波&amp;0.96OLED-ESP32">
                             
-                            <span class="card-title">ESP32設定無線基地台和固定IP</span>
+                            <span class="card-title">超音波&amp;0.96OLED-ESP32</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                ESP32設定無線基地台和固定IPtags: esp32 無線基地台ESP32也能使自己變成無線基地台(AP)，使其它設備連上自己的網路，
-雖然很方便，但不適合用於負荷高的應用。
-只要一行短的指令就能辦到
-WiFi.softAP(“SSID
+                                超音波&amp;0.96OLED-ESP32tags: esp32 HC-SR04 超音波模組0.96OLED實作參考-https://esp32-blairan.blogspot.com/2021/05/091oled-esp32.htm
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
@@ -741,12 +655,12 @@ WiFi.softAP(“SSID
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/esp32/">
-                            <span class="chip bg-color">esp32</span>
+                        <a href="/tags/HC-SC04/">
+                            <span class="chip bg-color">HC-SC04</span>
                         </a>
                         
-                        <a href="/tags/wifi/">
-                            <span class="chip bg-color">wifi</span>
+                        <a href="/tags/%E8%B6%85%E9%9F%B3%E6%B3%A2%E6%A8%A1%E7%B5%84/">
+                            <span class="chip bg-color">超音波模組</span>
                         </a>
                         
                     </div>
@@ -758,28 +672,30 @@ WiFi.softAP(“SSID
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/0-91%E5%90%8B-OLED%E5%AF%A6%E9%A9%97/">
+                    <a href="/2021/08/29/DHT11-12%E7%B6%B2%E8%B7%AF%E7%9B%A3%E6%B8%AC-ESP32/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="0.91吋_OLED實驗">
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="DHT11/12網路監測-ESP32">
                             
-                            <span class="card-title">0.91吋_OLED實驗</span>
+                            <span class="card-title">DHT11/12網路監測-ESP32</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                0.91吋_OLED實驗tags: esp32 0.91oled
-曲折離奇的0.91OLED為什麼我這麼說它曲折離奇,因為我試了兩天了
-從淘B買回來兩個,因為帶在身邊的一個,就拿來
-開始研究,先是用Adafriut_SSD1306庫,結果都
+                                
+  
+  
+  
+    h1  {text-align: center; background-color: orange; margin-right:5px;}
+    dl { width: 320px; margin: 12px 
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
@@ -797,12 +713,12 @@ WiFi.softAP(“SSID
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/esp32/">
-                            <span class="chip bg-color">esp32</span>
+                        <a href="/tags/dht11-dht12/">
+                            <span class="chip bg-color">dht11/dht12</span>
                         </a>
                         
-                        <a href="/tags/OLED/">
-                            <span class="chip bg-color">OLED</span>
+                        <a href="/tags/webserver/">
+                            <span class="chip bg-color">webserver</span>
                         </a>
                         
                     </div>
@@ -814,27 +730,27 @@ WiFi.softAP(“SSID
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/ESP32%E8%A7%A3%E6%B1%BA%E5%BF%85%E9%A0%88%E6%8C%89BOOT%E6%89%8D%E8%83%BD%E4%B8%8A%E5%82%B3%E7%9A%84%E5%B0%8F%E6%96%B9%E6%B3%95/">
+                    <a href="/2021/08/29/BMP280%E6%B0%A3%E5%A3%93-%E6%BA%AB%E5%BA%A6%E6%A8%A1%E7%B5%84-ESP32/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="ESP32解決必須按BOOT才能上傳的小方法">
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="BMP280氣壓,溫度模組-ESP32">
                             
-                            <span class="card-title">ESP32解決必須按BOOT才能上傳的小方法</span>
+                            <span class="card-title">BMP280氣壓,溫度模組-ESP32</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                ESP32解決必須按BOOT才能上傳的小方法tags: esp32 自動上傳最近開始玩ESP32發現有點麻煩的是每次一上傳到板子都要和跟….___….
-賽跑,後來看到社團上有些大大教學使用10u~100uF的電容即可解決手動上傳
-的困擾，正
+                                BMP280氣壓,溫度模組-ESP32tags: esp32 bmp280
+**_BMP280,該傳感器可以非常準確地測量氣壓和溫度。  
+您可以使用 I2C 或 SPI 連接協議將其與您的 Arduino 板連接。它有一個 3.3V 穩壓
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
@@ -852,12 +768,8 @@ WiFi.softAP(“SSID
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/esp32/">
-                            <span class="chip bg-color">esp32</span>
-                        </a>
-                        
-                        <a href="/tags/%E8%87%AA%E5%8B%95%E4%B8%8A%E5%82%B3/">
-                            <span class="chip bg-color">自動上傳</span>
+                        <a href="/tags/bmp280/">
+                            <span class="chip bg-color">bmp280</span>
                         </a>
                         
                     </div>
@@ -869,29 +781,27 @@ WiFi.softAP(“SSID
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/%E5%85%A9%E5%80%8BESP32%E8%97%8D%E8%8A%BD%E4%B8%BB%E5%BE%9E%E7%AB%AF%E4%BA%92%E8%81%AF/">
+                    <a href="/2021/08/29/BMP280-ThingSpeak-IoT/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="兩個ESP32藍芽主從端互聯">
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="BMP280+ThingSpeak IoT">
                             
-                            <span class="card-title">兩個ESP32藍芽主從端互聯</span>
+                            <span class="card-title">BMP280+ThingSpeak IoT</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                兩個ESP32藍芽主從端互聯tags: esp32 藍芽
-從端程式碼可參考-藍芽基本通訊&amp;控制LED-ESP32
-現在利用兩個ESP32的藍芽互相溝通，所以一個要當”主(Master)”,另一個
-要當”從(slave)”。
-主端程式
+                                BMP280+ThingSpeak IoTtags: esp32 thingspeak bmp280ESP32真的是個方便又神奇的版子，3個月前我還在猶豫要不要跨足
+研究ESP32，帶著一份不安的心，買了一些書開始學，至今約三個月
+，覺得之
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
@@ -909,12 +819,16 @@ WiFi.softAP(“SSID
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/esp32/">
-                            <span class="chip bg-color">esp32</span>
+                        <a href="/tags/bmp280/">
+                            <span class="chip bg-color">bmp280</span>
                         </a>
                         
-                        <a href="/tags/%E8%97%8D%E8%8A%BD/">
-                            <span class="chip bg-color">藍芽</span>
+                        <a href="/tags/ThingSpeak/">
+                            <span class="chip bg-color">ThingSpeak</span>
+                        </a>
+                        
+                        <a href="/tags/IOT/">
+                            <span class="chip bg-color">IOT</span>
                         </a>
                         
                     </div>
@@ -926,40 +840,31 @@ WiFi.softAP(“SSID
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/WiFi%E7%B6%B2%E8%B7%AF%E9%80%A3%E6%8E%A5/">
+                    <a href="/2021/08/29/DS1306%E5%AF%A6%E6%99%82%E6%99%82%E9%90%98%E6%A8%A1%E7%B5%84-ESP32/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="WiFi網路連接">
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="DS1306實時時鐘模組-ESP32">
                             
-                            <span class="card-title">WiFi網路連接</span>
+                            <span class="card-title">DS1306實時時鐘模組-ESP32</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                WiFi網路連接tags: micropython WiFi
-micropython ESP32下網路連接的模式可分為
-  STA:做為站點接入WiFi
-  AP:做為熱點,充許其它設備接入
-
-函式參考-micropython函式筆記本熱點
+                                DS1306實時時鐘模組-ESP32tags: esp32 ds1302這是廣華電子上的介紹◎ 時鐘具有能計算2100 年之前的秒、分、時、日、星期、月、年的能力，還有閏年調整的能力◎ 31 8 位暫存數據存儲RAM◎ 串行 I/O 口方式
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                                
-                                <a href="/categories/micropython/esp32/" class="post-category">
+                                <a href="/categories/esp32/" class="post-category">
                                     esp32
                                 </a>
                                 
@@ -971,16 +876,8 @@ micropython ESP32下網路連接的模式可分為
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/esp32/">
-                            <span class="chip bg-color">esp32</span>
-                        </a>
-                        
-                        <a href="/tags/wifi/">
-                            <span class="chip bg-color">wifi</span>
-                        </a>
-                        
-                        <a href="/tags/micropython/">
-                            <span class="chip bg-color">micropython</span>
+                        <a href="/tags/DS1306/">
+                            <span class="chip bg-color">DS1306</span>
                         </a>
                         
                     </div>
@@ -992,44 +889,33 @@ micropython ESP32下網路連接的模式可分為
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/%E6%8C%89%E9%88%95%E6%8E%A7%E5%88%B6LED-micropython/">
+                    <a href="/2021/08/29/%E6%90%96%E6%A1%BF%E6%A8%A1%E7%B5%84-ESP32/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="按鈕控制LED-micropython">
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="搖桿模組-ESP32">
                             
-                            <span class="card-title">按鈕控制LED-micropython</span>
+                            <span class="card-title">搖桿模組-ESP32</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                按鈕控制LED–micropythontags: micropython接線
-from machine import Pin
-
-from time import sleep
-
-  
-
-led = Pin(2, Pin.OUT)
-
-butto
+                                搖桿模組-ESP32tags: esp32 搖桿
+搖桿模組
+搖桿模組大都用於機械手臂或控制有伺服馬達的地方，它有２組軸（Ｘ和Ｙ）和一個按鍵 ，ESP32和Arduino上是使用類比訊號測量，不過在ESP32上只有3.3V所以類比訊號會到40
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                                
-                                <a href="/categories/micropython/esp32/" class="post-category">
+                                <a href="/categories/esp32/" class="post-category">
                                     esp32
                                 </a>
                                 
@@ -1041,12 +927,8 @@ butto
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/micropython/">
-                            <span class="chip bg-color">micropython</span>
-                        </a>
-                        
-                        <a href="/tags/led/">
-                            <span class="chip bg-color">led</span>
+                        <a href="/tags/%E9%81%99%E6%A1%BF%E6%A8%A1%E7%B5%84/">
+                            <span class="chip bg-color">遙桿模組</span>
                         </a>
                         
                     </div>
@@ -1058,34 +940,41 @@ butto
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/08/28/MediaPipe-UNO%E6%89%8B%E5%8B%A2%E6%8E%A7%E5%88%B6%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
+                    <a href="/2021/08/29/%E6%8C%89%E9%88%95%E9%96%8B%E9%97%9C%E6%8E%A7%E5%88%B6LED%E6%98%8E%E6%BB%85/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="MediaPipe+UNO手勢控制伺服馬達">
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="按鈕開關控制LED明滅">
                             
-                            <span class="card-title">MediaPipe+UNO手勢控制伺服馬達</span>
+                            <span class="card-title">按鈕開關控制LED明滅</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                MediaPipe+UNO手勢控制伺服馬達tags: mediapipe arduino servo參考視頻網址:
-https://youtu.be/9iEPzbG-xLE
-MediaPipe簡單來說是google跨平台而且開源的機器學習運
+                                按鈕開關控制LED明滅 tags: esp32 按鈕開關 led材料LED x1
+按鈕開關 x1
+220歐姆電阻 x1
+ESP32
+
+按鈕開關原理
+
+實驗目的利用按鈕開關切換ESP32內鍵LED明滅
+主要是練習消除按下按鈕時的彈跳雜訊
+動作
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/mediapipe/" class="post-category">
-                                    mediapipe
+                                <a href="/categories/esp32/" class="post-category">
+                                    esp32
                                 </a>
                                 
                                 
@@ -1096,16 +985,59 @@ MediaPipe簡單來說是google跨平台而且開源的機器學習運
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/mediapipe/">
-                            <span class="chip bg-color">mediapipe</span>
+                        <a href="/tags/%E6%8E%A7%E9%88%95%E9%96%8B%E9%97%9C/">
+                            <span class="chip bg-color">控鈕開關</span>
                         </a>
                         
-                        <a href="/tags/arduino/">
-                            <span class="chip bg-color">arduino</span>
-                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/08/29/LED%E8%B7%91%E9%A6%AC%E7%87%88-ESP32/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="LED跑馬燈-ESP32">
+                            
+                            <span class="card-title">LED跑馬燈-ESP32</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                LED跑馬燈-ESP32tags: esp32 led實驗目的了解迴圈運用和陣列的宣告 -https://esp32-blairan.blogspot.com/2021/04/esp32_26.html材料LED×4
+220歐姆電阻×4
+杜
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/esp32/" class="post-category">
+                                    esp32
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
                         
-                        <a href="/tags/servo/">
-                            <span class="chip bg-color">servo</span>
+                        <a href="/tags/led%E8%B7%91%E9%A6%AC%E7%87%88/">
+                            <span class="chip bg-color">led跑馬燈</span>
                         </a>
                         
                     </div>
@@ -1118,6 +1050,30 @@ MediaPipe簡單來說是google跨平台而且開源的機器學習運
     </article>
 
 </main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 3</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
 
 
