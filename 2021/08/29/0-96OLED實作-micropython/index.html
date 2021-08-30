@@ -444,39 +444,39 @@
 <h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><strong>21  SCL</strong></p>
 <p><strong>22  SDA</strong></p>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/2255135354625309493?hl=zh-TW#"><img src="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/05/ESP32_OLED.png?w=873&quality=100&strip=all&ssl=1"></a></p>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> ssd1306 <span class="token comment">#匯入oled模組</span>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">import ssd1306 #匯入oled模組
 
-<span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> SoftI2C <span class="token comment">#匯入i2c相關模組和腳位模組</span>
-
-  
-
-i2c<span class="token operator">=</span>SoftI2C<span class="token punctuation">(</span>scl<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sda<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#設定i2c腳位</span>
-
-width<span class="token operator">=</span><span class="token number">128</span> <span class="token comment">#oled高</span>
-
-height<span class="token operator">=</span><span class="token number">64</span> <span class="token comment">#oled寛</span>
-
-oled<span class="token operator">=</span>ssd1306<span class="token punctuation">.</span>SSD1306_I2C<span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> i2c<span class="token punctuation">)</span> <span class="token comment">#賦予變數給設制好的ssd1306模組,並給予所須參數</span>
+from machine import Pin, SoftI2C #匯入i2c相關模組和腳位模組
 
   
 
-<span class="token comment">#oled.text("文字", x, y, col=0/1)</span>
+i2c&#x3D;SoftI2C(scl&#x3D;Pin(22), sda&#x3D;Pin(21)) #設定i2c腳位
 
-<span class="token comment">#x是縱軸位置</span>
+width&#x3D;128 #oled高
 
-<span class="token comment">#y是橫軸位置</span>
+height&#x3D;64 #oled寛
 
-<span class="token comment">#col=是顏色,0-BLACK,1-WHITE</span>
+oled&#x3D;ssd1306.SSD1306_I2C(width, height, i2c) #賦予變數給設制好的ssd1306模組,並給予所須參數
 
-oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"Hello world!"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+  
 
-oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"ESP32 NICE!"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+#oled.text(&quot;文字&quot;, x, y, col&#x3D;0&#x2F;1)
 
-oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"i am CTK"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+#x是縱軸位置
 
-<span class="token comment">#oled.invert(True) #背景全顯</span>
+#y是橫軸位置
 
-oled<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#顯示於oled上</span>
+#col&#x3D;是顏色,0-BLACK,1-WHITE
+
+oled.text(&quot;Hello world!&quot;, 0, 0, col&#x3D;1)
+
+oled.text(&quot;ESP32 NICE!&quot;, 0, 10, col&#x3D;1)
+
+oled.text(&quot;i am CTK&quot;, 0, 30, col&#x3D;1)
+
+#oled.invert(True) #背景全顯
+
+oled.show() #顯示於oled上
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/2255135354625309493?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-k9n260VQuDA/YOexfePzh5I/AAAAAAAAeag/Fu7ZGxbHb9s63zR5_q-D06nDEPyzIWOHgCNcBGAsYHQ/s1600/1625796956591112-0.png"></a></p>

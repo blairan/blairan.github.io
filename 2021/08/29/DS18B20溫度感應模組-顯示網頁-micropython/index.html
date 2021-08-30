@@ -449,48 +449,48 @@
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5051662257603737866?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-vLA_oPaKP3s/YPjoBdCR_iI/AAAAAAAAegM/JtHMyZzu1Fs78AdoOhlIBrBnbn_PR0geACNcBGAsYHQ/w457-h257/image.png"></a></p>
 <hr>
 <h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5051662257603737866?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-PalBcnYvW7s/YPjoVWAna1I/AAAAAAAAegY/K9YqBp7hLB8BoFo-disKoJwNDmm65hd6gCNcBGAsYHQ/w457-h496/image.png"></a></p>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pin
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-from time import sleep
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
 
-import time
+<span class="token keyword">import</span> time
 
-import onewire, ds18x20
+<span class="token keyword">import</span> onewire<span class="token punctuation">,</span> ds18x20
 
   
-dsSensor&#x3D;ds18x20.DS18X20(onewire.OneWire(Pin(4)))
+dsSensor<span class="token operator">=</span>ds18x20<span class="token punctuation">.</span>DS18X20<span class="token punctuation">(</span>onewire<span class="token punctuation">.</span>OneWire<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-scan&#x3D;dsSensor.scan()
+scan<span class="token operator">=</span>dsSensor<span class="token punctuation">.</span>scan<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-print(&quot;Devices: &quot;,scan)
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Devices: "</span><span class="token punctuation">,</span>scan<span class="token punctuation">)</span>
 
-while True:
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-    rows&#x3D;ds_sensor.scan()
+    rows<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>scan<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    print(&quot;The devices: &quot;, rows)
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The devices: "</span><span class="token punctuation">,</span> rows<span class="token punctuation">)</span>
 
-    sleep(1)
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-    for row in rows:
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> rows<span class="token punctuation">:</span>
 
-      ds_sensor.convert_temp()
+      ds_sensor<span class="token punctuation">.</span>convert_temp<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-      print(row)
+      <span class="token keyword">print</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
-      temp&#x3D;ds_sensor.read_temp(row)
+      temp<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>read_temp<span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
- print(temp)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <span class="token keyword">print</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>解析</strong></p>
 <p><strong>匯入Pin,sleep,單總線,溫度模組</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pin
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-from time import sleep
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
 
-import time
+<span class="token keyword">import</span> time
 
-import onewire, ds18x20<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">import</span> onewire<span class="token punctuation">,</span> ds18x20<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong><em>構造函數</em></strong></p>
 <p><strong><em>ow=onewire.OneWire(machine.Pin(id))</em></strong></p>
@@ -507,29 +507,29 @@ import onewire, ds18x20<span aria-hidden="true" class="line-numbers-rows"><spa
 <p><strong><em>溫度轉換。</em></strong></p>
 <p><strong><em>ds.read_temp(rom)</em></strong></p>
 <p><strong><em>獲取溫度值。 rom：表示對應的設備號。</em></strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">dsSensor&#x3D;ds18x20.DS18X20(onewire.OneWire(Pin(4)))
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">dsSensor<span class="token operator">=</span>ds18x20<span class="token punctuation">.</span>DS18X20<span class="token punctuation">(</span>onewire<span class="token punctuation">.</span>OneWire<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-scan&#x3D;dsSensor.scan()
+scan<span class="token operator">=</span>dsSensor<span class="token punctuation">.</span>scan<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-print(&quot;Devices: &quot;,scan)
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Devices: "</span><span class="token punctuation">,</span>scan<span class="token punctuation">)</span>
 
-while True:
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-    rows&#x3D;ds_sensor.scan()
+    rows<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>scan<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    print(&quot;The devices: &quot;, rows)
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The devices: "</span><span class="token punctuation">,</span> rows<span class="token punctuation">)</span>
 
-    sleep(1)
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-    for row in rows:
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> rows<span class="token punctuation">:</span>
 
-      ds_sensor.convert_temp()
+      ds_sensor<span class="token punctuation">.</span>convert_temp<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-      print(row)
+      <span class="token keyword">print</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
-      temp&#x3D;ds_sensor.read_temp(row)
+      temp<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>read_temp<span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
- print(temp)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <span class="token keyword">print</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>顯示結果</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">Devices:  \[bytearray(b&#39;(t~\\x19\\r\\x00\\x00.&#39;)\]
@@ -552,336 +552,336 @@ bytearray(b&#39;(t~\\x19\\r\\x00\\x00.&#39;)
 
 <hr>
 <h2 id="加上網頁顯示數據"><a href="#加上網頁顯示數據" class="headerlink" title="加上網頁顯示數據"></a>加上網頁顯示數據</h2><p><strong>首先動手寫一個html,並把它封包起來方便呼叫</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">def web_html():
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">def</span> web_html<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-  html&#x3D;&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+  html<span class="token operator">=</span><span class="token triple-quoted-string string">"""&lt;!DOCTYPE html>
 
-      &lt;html&gt;
+      &lt;html>
 
-      &lt;head&gt;
+      &lt;head>
 
-        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
+        &lt;meta charset="utf-8" />
 
-        &lt;meta http-equiv&#x3D;&quot;refresh&quot; content&#x3D;&quot;1&quot; &#x2F;&gt;
+        &lt;meta http-equiv="refresh" content="1" />
 
-        &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        &lt;title&gt;ESP32 TO DS18B20&lt;&#x2F;title&gt;
+        &lt;title>ESP32 TO DS18B20&lt;/title>
 
-        &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;
+        &lt;style type="text/css">
 
-          body &#123;
+          body &#123;
 
-            color: rgb(9, 39, 95);
+            color: rgb(9, 39, 95);
 
-            background-color: rgb(214, 205, 231);
+            background-color: rgb(214, 205, 231);
 
-            font-family: &#39;Lucida Sans&#39;, &#39;Lucida Sans Regular&#39;, &#39;Lucida Grande&#39;, &#39;Lucida Sans Unicode&#39;, Geneva, Verdana, sans-serif;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-          &#125;
+          &#125;
 
-          h1 &#123;text-align: center;&#125;
+          h1 &#123;text-align: center;&#125;
 
-          h2 &#123;text-align: center; color: rgb(60, 12, 114);&#125;
+          h2 &#123;text-align: center; color: rgb(60, 12, 114);&#125;
 
-          h3 &#123;text-align: center; color: deeppink;&#125;
+          h3 &#123;text-align: center; color: deeppink;&#125;
 
-          dd &#123;text-align: center;&#125;
+          dd &#123;text-align: center;&#125;
 
-        &lt;&#x2F;style&gt;
+        &lt;/style>
 
-      &lt;&#x2F;head&gt;
+      &lt;/head>
 
-      &lt;body&gt;
+      &lt;body>
 
-        &lt;h1&gt;ESP32 TO DS18D20&lt;&#x2F;h1&gt;
+        &lt;h1>ESP32 TO DS18D20&lt;/h1>
 
-        &lt;p Align&#x3D;center&gt;&lt;img src&#x3D;&quot;https:&#x2F;&#x2F;media.istockphoto.com&#x2F;photos&#x2F;fahrenheit-and-celsius-scale-meteorology-thermometer-for-measuring-picture-id1138308244&quot; height&#x3D;&quot;150&quot; width&#x3D;&quot;100&quot; &gt;&lt;&#x2F;p&gt;
+        &lt;p Align=center>&lt;img src="https://media.istockphoto.com/photos/fahrenheit-and-celsius-scale-meteorology-thermometer-for-measuring-picture-id1138308244" height="150" width="100" >&lt;/p>
 
-        &lt;dl&gt;
+        &lt;dl>
 
-          &lt;dt&gt;&lt;h2&gt;Temperature&lt;&#x2F;h2&gt;&lt;&#x2F;dt&gt;
+          &lt;dt>&lt;h2>Temperature&lt;/h2>&lt;/dt>
 
-          &lt;h3&gt;&lt;dd class&#x3D;&quot;val&quot;&gt;&quot;&quot;&quot;+str(round(temp, 2))+&quot;&quot;&quot; *C&lt;&#x2F;dd&gt;&lt;h3&gt;
+          &lt;h3>&lt;dd class="val">"""</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">round</span><span class="token punctuation">(</span>temp<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token triple-quoted-string string">""" *C&lt;/dd>&lt;h3>
 
-        &lt;&#x2F;dl&gt;
+        &lt;/dl>
 
-        &lt;br&gt;&lt;&#x2F;br&gt;
+        &lt;br>&lt;/br>
 
-        &lt;dl&gt;
+        &lt;dl>
 
-          &lt;p&gt;&lt;i class&#x3D;&quot;fas fa-temperature-high&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;p&gt;
+          &lt;p>&lt;i class="fas fa-temperature-high">&lt;/i>&lt;/p>
 
-          &lt;dt&gt;&lt;h2&gt;Temperature&lt;&#x2F;h2&gt;&lt;&#x2F;dt&gt;
+          &lt;dt>&lt;h2>Temperature&lt;/h2>&lt;/dt>
 
-          &lt;h3&gt;&lt;dd class&#x3D;&quot;val&quot;&gt;&quot;&quot;&quot;+str(round(temp * (9&#x2F;5) + 32.0, 2))+&quot;&quot;&quot; *F&lt;&#x2F;dd&gt;&lt;&#x2F;h3&gt;
+          &lt;h3>&lt;dd class="val">"""</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">round</span><span class="token punctuation">(</span>temp <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">9</span><span class="token operator">/</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">32.0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token triple-quoted-string string">""" *F&lt;/dd>&lt;/h3>
 
-        &lt;&#x2F;dl&gt;
+        &lt;/dl>
 
-      &lt;&#x2F;body&gt;
+      &lt;/body>
 
-      &lt;&#x2F;html&gt;&quot;&quot;&quot;
+      &lt;/html>"""</span>
 
-  return html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token keyword">return</span> html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <p><strong>之後加入wifi和socket套接客戶端的相關的接收和請求</strong></p>
 <p><strong>整個程式碼如下:</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">import socket
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> socket
 
-from time import sleep
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
 
-import time
+<span class="token keyword">import</span> time
 
-from machine import Pin
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-import onewire, ds18x20
+<span class="token keyword">import</span> onewire<span class="token punctuation">,</span> ds18x20
 
-import network
+<span class="token keyword">import</span> network
 
   
 
-ssid&#x3D;&quot;基地台名稱&quot;
+ssid<span class="token operator">=</span><span class="token string">"基地台名稱"</span>
 
-password&#x3D;&quot;基地台密碼&quot;
-
-
-def connected_wifi():
-
-  global ssid, password
-
-  wifi&#x3D;network.WLAN(network.STA_IF)
-
-  wifi.active(True)
-
-  wifi.connect(ssid, password)
-
-  while wifi.isconnected()&#x3D;&#x3D;False:
-
-    pass
-
-  print(&quot;connected successful!&quot;)
-
-  print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))
+password<span class="token operator">=</span><span class="token string">"基地台密碼"</span>
 
 
-def read_sensor():
+<span class="token keyword">def</span> connected_wifi<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-  global temp
+  <span class="token keyword">global</span> ssid<span class="token punctuation">,</span> password
 
-  ds_sensor&#x3D;ds18x20.DS18X20(onewire.OneWire(Pin(4)))
+  wifi<span class="token operator">=</span>network<span class="token punctuation">.</span>WLAN<span class="token punctuation">(</span>network<span class="token punctuation">.</span>STA_IF<span class="token punctuation">)</span>
 
-  while True:
+  wifi<span class="token punctuation">.</span>active<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
-    rows&#x3D;ds_sensor.scan()
+  wifi<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ssid<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
 
-    print(&quot;The devices: &quot;, rows)
+  <span class="token keyword">while</span> wifi<span class="token punctuation">.</span>isconnected<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token boolean">False</span><span class="token punctuation">:</span>
 
-    sleep(1)
+    <span class="token keyword">pass</span>
 
-    for row in rows:
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connected successful!"</span><span class="token punctuation">)</span>
 
-      ds_sensor.convert_temp()
-
-      print(row)
-
-      temp&#x3D;ds_sensor.read_temp(row)
-
-      return temp
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"IP: &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>wifi<span class="token punctuation">.</span>ifconfig<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 
-def web_html():
+<span class="token keyword">def</span> read_sensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-  html&#x3D;&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+  <span class="token keyword">global</span> temp
 
-      &lt;html&gt;
+  ds_sensor<span class="token operator">=</span>ds18x20<span class="token punctuation">.</span>DS18X20<span class="token punctuation">(</span>onewire<span class="token punctuation">.</span>OneWire<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-      &lt;head&gt;
+  <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
+    rows<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>scan<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        &lt;meta http-equiv&#x3D;&quot;refresh&quot; content&#x3D;&quot;1&quot; &#x2F;&gt;
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The devices: "</span><span class="token punctuation">,</span> rows<span class="token punctuation">)</span>
 
-        &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-        &lt;title&gt;ESP32 TO DS18B20&lt;&#x2F;title&gt;
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> rows<span class="token punctuation">:</span>
 
-        &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;
+      ds_sensor<span class="token punctuation">.</span>convert_temp<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-          body &#123;
+      <span class="token keyword">print</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
-            color: rgb(9, 39, 95);
+      temp<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>read_temp<span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
-            background-color: rgb(214, 205, 231);
+      <span class="token keyword">return</span> temp
 
-            font-family: &#39;Lucida Sans&#39;, &#39;Lucida Sans Regular&#39;, &#39;Lucida Grande&#39;, &#39;Lucida Sans Unicode&#39;, Geneva, Verdana, sans-serif;
 
-          &#125;
+<span class="token keyword">def</span> web_html<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-          h1 &#123;text-align: center;&#125;
+  html<span class="token operator">=</span><span class="token triple-quoted-string string">"""&lt;!DOCTYPE html>
 
-          h2 &#123;text-align: center; color: rgb(60, 12, 114);&#125;
+      &lt;html>
 
-          h3 &#123;text-align: center; color: deeppink;&#125;
+      &lt;head>
 
-          dd &#123;text-align: center;&#125;
+        &lt;meta charset="utf-8" />
 
-        &lt;&#x2F;style&gt;
+        &lt;meta http-equiv="refresh" content="1" />
 
-      &lt;&#x2F;head&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      &lt;body&gt;
+        &lt;title>ESP32 TO DS18B20&lt;/title>
 
-        &lt;h1&gt;ESP32 TO DS18D20&lt;&#x2F;h1&gt;
+        &lt;style type="text/css">
 
-        &lt;p Align&#x3D;center&gt;&lt;img src&#x3D;&quot;https:&#x2F;&#x2F;media.istockphoto.com&#x2F;photos&#x2F;fahrenheit-and-celsius-scale-meteorology-thermometer-for-measuring-picture-id1138308244&quot; height&#x3D;&quot;150&quot; width&#x3D;&quot;100&quot; &gt;&lt;&#x2F;p&gt;
+          body &#123;
 
-        &lt;dl&gt;
+            color: rgb(9, 39, 95);
 
-          &lt;dt&gt;&lt;h2&gt;Temperature&lt;&#x2F;h2&gt;&lt;&#x2F;dt&gt;
+            background-color: rgb(214, 205, 231);
 
-          &lt;h3&gt;&lt;dd class&#x3D;&quot;val&quot;&gt;&quot;&quot;&quot;+str(round(temp, 2))+&quot;&quot;&quot; *C&lt;&#x2F;dd&gt;&lt;h3&gt;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-        &lt;&#x2F;dl&gt;
+          &#125;
 
-        &lt;br&gt;&lt;&#x2F;br&gt;
+          h1 &#123;text-align: center;&#125;
 
-        &lt;dl&gt;
+          h2 &#123;text-align: center; color: rgb(60, 12, 114);&#125;
 
-          &lt;p&gt;&lt;i class&#x3D;&quot;fas fa-temperature-high&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;p&gt;
+          h3 &#123;text-align: center; color: deeppink;&#125;
 
-          &lt;dt&gt;&lt;h2&gt;Temperature&lt;&#x2F;h2&gt;&lt;&#x2F;dt&gt;
+          dd &#123;text-align: center;&#125;
 
-          &lt;h3&gt;&lt;dd class&#x3D;&quot;val&quot;&gt;&quot;&quot;&quot;+str(round(temp * (9&#x2F;5) + 32.0, 2))+&quot;&quot;&quot; *F&lt;&#x2F;dd&gt;&lt;&#x2F;h3&gt;
+        &lt;/style>
 
-        &lt;&#x2F;dl&gt;
+      &lt;/head>
 
-      &lt;&#x2F;body&gt;
+      &lt;body>
 
-      &lt;&#x2F;html&gt;&quot;&quot;&quot;
+        &lt;h1>ESP32 TO DS18D20&lt;/h1>
 
-  return html
+        &lt;p Align=center>&lt;img src="https://media.istockphoto.com/photos/fahrenheit-and-celsius-scale-meteorology-thermometer-for-measuring-picture-id1138308244" height="150" width="100" >&lt;/p>
+
+        &lt;dl>
+
+          &lt;dt>&lt;h2>Temperature&lt;/h2>&lt;/dt>
+
+          &lt;h3>&lt;dd class="val">"""</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">round</span><span class="token punctuation">(</span>temp<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token triple-quoted-string string">""" *C&lt;/dd>&lt;h3>
+
+        &lt;/dl>
+
+        &lt;br>&lt;/br>
+
+        &lt;dl>
+
+          &lt;p>&lt;i class="fas fa-temperature-high">&lt;/i>&lt;/p>
+
+          &lt;dt>&lt;h2>Temperature&lt;/h2>&lt;/dt>
+
+          &lt;h3>&lt;dd class="val">"""</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">round</span><span class="token punctuation">(</span>temp <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">9</span><span class="token operator">/</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">32.0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token triple-quoted-string string">""" *F&lt;/dd>&lt;/h3>
+
+        &lt;/dl>
+
+      &lt;/body>
+
+      &lt;/html>"""</span>
+
+  <span class="token keyword">return</span> html
 
   
-connected_wifi()
+connected_wifi<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-s&#x3D;socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s<span class="token operator">=</span>socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
 
-s.bind((&#39;&#39;, 80))
+s<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-s.listen(5)
+s<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
 
   
 
-while True:
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-  conn, addr &#x3D; s.accept()
+  conn<span class="token punctuation">,</span> addr <span class="token operator">=</span> s<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  print(&#39;Got a connection from %s&#39;%str(addr))
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Got a connection from %s'</span><span class="token operator">%</span><span class="token builtin">str</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  request &#x3D; conn.recv(1024)
+  request <span class="token operator">=</span> conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
 
-  print(&quot;content: %s&quot;%str(request))
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"content: %s"</span><span class="token operator">%</span><span class="token builtin">str</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  read_temp&#x3D;read_sensor()
+  read_temp<span class="token operator">=</span>read_sensor<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  print(read_temp)
+  <span class="token keyword">print</span><span class="token punctuation">(</span>read_temp<span class="token punctuation">)</span>
 
-  res&#x3D;web_html()
+  res<span class="token operator">=</span>web_html<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  conn.send(&quot;http&#x2F;1.1 200 OK\n&quot;)
+  conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"http/1.1 200 OK\n"</span><span class="token punctuation">)</span>
 
-  conn.send(&quot;Content-Type: text&#x2F;html\n&quot;)
+  conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"Content-Type: text/html\n"</span><span class="token punctuation">)</span>
 
-  conn.send(&quot;Connection: close\n\n&quot;)
+  conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"Connection: close\n\n"</span><span class="token punctuation">)</span>
 
-  conn.sendall(res)
+  conn<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>res<span class="token punctuation">)</span>
 
-  conn.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p><strong>匯入machine, sockt, network, HC_SR04模組</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pin 
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin 
 
-from HC_SR04 import HCSR04
+<span class="token keyword">from</span> HC_SR04 <span class="token keyword">import</span> HCSR04
 
-import socket, network<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">import</span> socket<span class="token punctuation">,</span> network<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>設定wifi連線</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">def connected_wifi():
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">def</span> connected_wifi<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-  global ssid, password
+  <span class="token keyword">global</span> ssid<span class="token punctuation">,</span> password
 
-  wifi&#x3D;network.WLAN(network.STA_IF)
+  wifi<span class="token operator">=</span>network<span class="token punctuation">.</span>WLAN<span class="token punctuation">(</span>network<span class="token punctuation">.</span>STA_IF<span class="token punctuation">)</span>
 
-  wifi.active(True)
+  wifi<span class="token punctuation">.</span>active<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
-  wifi.connect(ssid, password)
+  wifi<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ssid<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
 
-  while wifi.isconnected()&#x3D;&#x3D;False:
+  <span class="token keyword">while</span> wifi<span class="token punctuation">.</span>isconnected<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token boolean">False</span><span class="token punctuation">:</span>
 
-    pass
+    <span class="token keyword">pass</span>
 
-  print(&quot;connected successful!&quot;)
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connected successful!"</span><span class="token punctuation">)</span>
 
- print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"IP: &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>wifi<span class="token punctuation">.</span>ifconfig<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>讀取DS18B20數據</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">def read_sensor():
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">def</span> read_sensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-  global temp
+  <span class="token keyword">global</span> temp
 
-  ds_sensor&#x3D;ds18x20.DS18X20(onewire.OneWire(Pin(4)))
+  ds_sensor<span class="token operator">=</span>ds18x20<span class="token punctuation">.</span>DS18X20<span class="token punctuation">(</span>onewire<span class="token punctuation">.</span>OneWire<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  while True:
+  <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-    rows&#x3D;ds_sensor.scan()
+    rows<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>scan<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    print(&quot;The devices: &quot;, rows)
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The devices: "</span><span class="token punctuation">,</span> rows<span class="token punctuation">)</span>
 
-    sleep(1)
+    sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-    for row in rows:
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> rows<span class="token punctuation">:</span>
 
-      ds_sensor.convert_temp()
+      ds_sensor<span class="token punctuation">.</span>convert_temp<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-      print(row)
+      <span class="token keyword">print</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
-      temp&#x3D;ds_sensor.read_temp(row)
+      temp<span class="token operator">=</span>ds_sensor<span class="token punctuation">.</span>read_temp<span class="token punctuation">(</span>row<span class="token punctuation">)</span>
 
-      return temp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+      <span class="token keyword">return</span> temp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>socket套接</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">s&#x3D;socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">s<span class="token operator">=</span>socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
 
-s.bind((&#39;&#39;, 80))
+s<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-s.listen(5)
+s<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
 
-while True:
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-  conn, addr &#x3D; s.accept()
+  conn<span class="token punctuation">,</span> addr <span class="token operator">=</span> s<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  print(&#39;Got a connection from %s&#39;%str(addr))
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Got a connection from %s'</span><span class="token operator">%</span><span class="token builtin">str</span><span class="token punctuation">(</span>addr<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  request &#x3D; conn.recv(1024)
+  request <span class="token operator">=</span> conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
 
-  print(&quot;content: %s&quot;%str(request))
+  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"content: %s"</span><span class="token operator">%</span><span class="token builtin">str</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  read_temp&#x3D;read_sensor()
+  read_temp<span class="token operator">=</span>read_sensor<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  print(read_temp)
+  <span class="token keyword">print</span><span class="token punctuation">(</span>read_temp<span class="token punctuation">)</span>
 
-  res&#x3D;web_html()
+  res<span class="token operator">=</span>web_html<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  conn.send(&quot;http&#x2F;1.1 200 OK\\n&quot;)
+  conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"http/1.1 200 OK\\n"</span><span class="token punctuation">)</span>
 
-  conn.send(&quot;Content-Type: text&#x2F;html\n&quot;)
+  conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"Content-Type: text/html\n"</span><span class="token punctuation">)</span>
 
-  conn.send(&quot;Connection: close\n\n&quot;)
+  conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"Connection: close\n\n"</span><span class="token punctuation">)</span>
 
-  conn.sendall(res)
+  conn<span class="token punctuation">.</span>sendall<span class="token punctuation">(</span>res<span class="token punctuation">)</span>
 
-  conn.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5051662257603737866?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-2BVcuDPUyWo/YPpATv8mUUI/AAAAAAAAegs/M-2s_MNuCJ88coTfrj8QqGimPFFIcZ7RQCNcBGAsYHQ/w644-h324/2.jpg"></a></p>

@@ -450,71 +450,71 @@
 <p><strong>基本介紹和實驗參考-</strong><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/2584628173386400659?hl=zh-TW#">https://esp32-blairan.blogspot.com/2021/07/dht11dht12-esp32.html</a></p>
 <hr>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/2584628173386400659?hl=zh-TW#"><img src="http://2.bp.blogspot.com/-3syBdItbhrI/Vb6X8sJx7tI/AAAAAAAAEO8/cMmlSOV142M/s320/dht11.jpg"></a></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">import dht
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> dht
 
-from machine import Pin
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-from time import sleep
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
 
 
-def measureTemp():
+<span class="token keyword">def</span> measureTemp<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    sensor&#x3D;dht.DHT11(Pin(4))
+    sensor<span class="token operator">=</span>dht<span class="token punctuation">.</span>DHT11<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    while True:
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-        try:
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
 
-            sleep(2)
+            sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
 
-            sensor.measure()
+            sensor<span class="token punctuation">.</span>measure<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-            t&#x3D;sensor.temperature()
+            t<span class="token operator">=</span>sensor<span class="token punctuation">.</span>temperature<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-            t_f&#x3D;t*(9&#x2F;5)+32
+            t_f<span class="token operator">=</span>t<span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token operator">/</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">32</span>
 
-            h&#x3D;sensor.humidity()
+            h<span class="token operator">=</span>sensor<span class="token punctuation">.</span>humidity<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-            print(&quot;Temp: &#123;:.1f&#125;.C&quot;.format(t))
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Temp: &#123;:.1f&#125;.C"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-            print(&quot;Temp: &#123;:.1f&#125;.F&quot;.format(t_f))
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Temp: &#123;:.1f&#125;.F"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>t_f<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-            print(&quot;Humidity: &#123;:.1f&#125;&quot;.format(h))
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Humidity: &#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-        except OSError as o:
+        <span class="token keyword">except</span> OSError <span class="token keyword">as</span> o<span class="token punctuation">:</span>
 
-            print(&quot;Failed to read sensor.&quot;)
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Failed to read sensor."</span><span class="token punctuation">)</span>
 
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
 
-    measureTemp()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    measureTemp<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>載入dht庫(內建)</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">import dht
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> dht
 
-from machine import Pin
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-from time import sleep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>指定DHT11腳位給sensor變數</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">sensor&#x3D;dht.DHT11(Pin(4))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">sensor<span class="token operator">=</span>dht<span class="token punctuation">.</span>DHT11<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>給予while()每2秒不斷偵測</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">sleep(2)
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
 
-sensor.measure()
+sensor<span class="token punctuation">.</span>measure<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>攝氏溫度(t)/華氏溫度(t_f)/濕度</strong></p>
 <p><strong>其中攝氏轉換華氏的公式:攝氏x(9/5)+32</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">t&#x3D;sensor.temperature()
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">t<span class="token operator">=</span>sensor<span class="token punctuation">.</span>temperature<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-t_f&#x3D;t*(9&#x2F;5)+32
+t_f<span class="token operator">=</span>t<span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token operator">/</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">32</span>
 
-h&#x3D;sensor.humidity()
+h<span class="token operator">=</span>sensor<span class="token punctuation">.</span>humidity<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-print(&quot;Temp: &#123;:.1f&#125;.C&quot;.format(t))
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Temp: &#123;:.1f&#125;.C"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-print(&quot;Temp: &#123;:.1f&#125;.F&quot;.format(t_f))
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Temp: &#123;:.1f&#125;.F"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>t_f<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-print(&quot;Humidity: &#123;:.1f&#125;&quot;.format(h))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Humidity: &#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><pre class="line-numbers language-none"><code class="language-none">&gt;&gt;&gt; Temp: 26.0.C
 
 Temp: 78.8.F
@@ -543,149 +543,149 @@ Humidity: 27.0<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <hr>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/2584628173386400659?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-FcMZGCGvGjI/YPi-kOFx8II/AAAAAAAAefw/8lNcoOipruwT3wRTrRYwn36ZL8Eldl8QQCNcBGAsYHQ/w758-h329/%25E6%2593%25B7%25E5%258F%2596_2021_07_22_08_13_19_130.jpg"></a></p>
 <hr>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">import network, urequests
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> network<span class="token punctuation">,</span> urequests
 
-from machine import Pin
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-import dht
+<span class="token keyword">import</span> dht
 
-from time import sleep
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
 
   
 
-ssid&#x3D;&quot;基地台名稱&quot;
+ssid<span class="token operator">=</span><span class="token string">"基地台名稱"</span>
 
-password&#x3D;&quot;基地台密碼&quot;
+password<span class="token operator">=</span><span class="token string">"基地台密碼"</span>
 
-api_key&#x3D;&quot;VCJQHQFVSMB-----&quot;
+api_key<span class="token operator">=</span><span class="token string">"VCJQHQFVSMB-----"</span>
 
-dht11&#x3D;dht.DHT11(Pin(27))
+dht11<span class="token operator">=</span>dht<span class="token punctuation">.</span>DHT11<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">27</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-sleep(1)
+sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-def wifiContent():
+<span class="token keyword">def</span> wifiContent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    global ssid, password
+    <span class="token keyword">global</span> ssid<span class="token punctuation">,</span> password
 
-    wifi&#x3D;network.WLAN(network.STA_IF)
+    wifi<span class="token operator">=</span>network<span class="token punctuation">.</span>WLAN<span class="token punctuation">(</span>network<span class="token punctuation">.</span>STA_IF<span class="token punctuation">)</span>
 
-    wifi.active(True)
+    wifi<span class="token punctuation">.</span>active<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
-    wifi.connect(ssid, password)
+    wifi<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ssid<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
 
-    while wifi.isconnected() &#x3D;&#x3D; False:
+    <span class="token keyword">while</span> wifi<span class="token punctuation">.</span>isconnected<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">False</span><span class="token punctuation">:</span>
 
-        pass
+        <span class="token keyword">pass</span>
 
-    print(&quot;connected successful!&quot;)
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connected successful!"</span><span class="token punctuation">)</span>
 
-    print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"IP: &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>wifi<span class="token punctuation">.</span>ifconfig<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-def getDHT():
+<span class="token keyword">def</span> getDHT<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    while (1):
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-        dht11.measure()
+        dht11<span class="token punctuation">.</span>measure<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        d&#x3D;dht11.temperature()
+        d<span class="token operator">=</span>dht11<span class="token punctuation">.</span>temperature<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        rh&#x3D;dht11.humidity()
+        rh<span class="token operator">=</span>dht11<span class="token punctuation">.</span>humidity<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        print(&quot;Temp: &#123;:.1f&#125;*C,  Humi: &#123;:.1f&#125;%RH&quot;.format(d, rh))
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Temp: &#123;:.1f&#125;*C,  Humi: &#123;:.1f&#125;%RH"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> rh<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-        uloadUrl&#x3D;&quot;https:&#x2F;&#x2F;api.thingspeak.com&#x2F;update?api_key&#x3D;&#123;&#125;&amp;field1&#x3D;&#123;&#125;&amp;field2&#x3D;&#123;&#125;&quot;.format(api, d, rh)
+        uloadUrl<span class="token operator">=</span><span class="token string">"https://api.thingspeak.com/update?api_key=&#123;&#125;&amp;field1=&#123;&#125;&amp;field2=&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>api<span class="token punctuation">,</span> d<span class="token punctuation">,</span> rh<span class="token punctuation">)</span>
 
-        try:
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
 
-            res&#x3D;urequests.get(uloadUrl)
+            res<span class="token operator">=</span>urequests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>uloadUrl<span class="token punctuation">)</span>
 
-            print(res.text)
+            <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
 
-        except OSError as e:
+        <span class="token keyword">except</span> OSError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
 
-            print(e)
+            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
 
-        sleep(16)
+        sleep<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span>
 
-if __name__&#x3D;&#x3D;&quot;__main__&quot;:
+<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">"__main__"</span><span class="token punctuation">:</span>
 
-    wifiContent()
+    wifiContent<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    getDHT()
+    getDHT<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p><strong><em>匯入對應的模組,其urequest是小型爬蟲,可用於抓取和上傳</em></strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">import network, urequests
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> network<span class="token punctuation">,</span> urequests
 
-from machine import Pin
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-import dht
+<span class="token keyword">import</span> dht
 
-from time import sleep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong><em>基地台名稱和密碼先給予變數,還有剛在ThingSpeak給的api_key</em></strong></p>
 <p><strong><em>dht腳位設定,停止一秒使其初始化完全</em></strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">ssid&#x3D;&quot;基地台名稱&quot;
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">ssid<span class="token operator">=</span><span class="token string">"基地台名稱"</span>
 
-password&#x3D;&quot;基地台密碼&quot;
+password<span class="token operator">=</span><span class="token string">"基地台密碼"</span>
 
-api&#x3D;&quot;VCJQHQFVSMB-----&quot;
+api<span class="token operator">=</span><span class="token string">"VCJQHQFVSMB-----"</span>
 
-dht11&#x3D;dht.DHT11(Pin(27))
+dht11<span class="token operator">=</span>dht<span class="token punctuation">.</span>DHT11<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">27</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-sleep(1)
+sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><em><strong>這個封包裡是連接wifi的流程</strong></em></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">def wifiContent():
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">def</span> wifiContent<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    global ssid, password
+    <span class="token keyword">global</span> ssid<span class="token punctuation">,</span> password
 
-    wifi&#x3D;network.WLAN(network.STA_IF)
+    wifi<span class="token operator">=</span>network<span class="token punctuation">.</span>WLAN<span class="token punctuation">(</span>network<span class="token punctuation">.</span>STA_IF<span class="token punctuation">)</span>
 
-    wifi.active(True)
+    wifi<span class="token punctuation">.</span>active<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
-    wifi.connect(ssid, password)
+    wifi<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ssid<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
 
-    while wifi.isconnected() &#x3D;&#x3D; False:
+    <span class="token keyword">while</span> wifi<span class="token punctuation">.</span>isconnected<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">False</span><span class="token punctuation">:</span>
 
-        pass
+        <span class="token keyword">pass</span>
 
-    print(&quot;connected successful!&quot;)
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connected successful!"</span><span class="token punctuation">)</span>
 
-    print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"IP: &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>wifi<span class="token punctuation">.</span>ifconfig<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong><em>這個封包裡是讀取dht11/12數據,和上傳到ThingSpeak同步</em></strong></p>
 <p>*<strong>如果有一個以上的數據,除了ThingSpeak網站上要設定一個以上的對應欄位,再來就是程式的網址格式,例如:</strong></p>
 <p><strong>api_key</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">api_key&#x3D;&#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">api_key<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>2個數據上傳到網站的2個欄位,field1代表第一個欄位,field2代表第二個欄位</strong></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">&amp;field1&#x3D;&#123;&#125;&amp;field2&#x3D;&#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">def getDHT():
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token operator">&amp;</span>field1<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token operator">&amp;</span>field2<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">def</span> getDHT<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-    while (1):
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-        dht11.measure()
+        dht11<span class="token punctuation">.</span>measure<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        d&#x3D;dht11.temperature()
+        d<span class="token operator">=</span>dht11<span class="token punctuation">.</span>temperature<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        rh&#x3D;dht11.humidity()
+        rh<span class="token operator">=</span>dht11<span class="token punctuation">.</span>humidity<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        print(&quot;Temp: &#123;:.1f&#125;*C,  Humi: &#123;:.1f&#125;%RH&quot;.format(d, rh))
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Temp: &#123;:.1f&#125;*C,  Humi: &#123;:.1f&#125;%RH"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> rh<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-        uloadUrl&#x3D;&quot;https:&#x2F;&#x2F;api.thingspeak.com&#x2F;update?api_key&#x3D;&#123;&#125;&amp;field1&#x3D;&#123;&#125;&amp;field2&#x3D;&#123;&#125;&quot;.format(api, d, rh)
+        uloadUrl<span class="token operator">=</span><span class="token string">"https://api.thingspeak.com/update?api_key=&#123;&#125;&amp;field1=&#123;&#125;&amp;field2=&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>api<span class="token punctuation">,</span> d<span class="token punctuation">,</span> rh<span class="token punctuation">)</span>
 
-        try:
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
 
-            res&#x3D;urequests.get(uloadUrl)
+            res<span class="token operator">=</span>urequests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>uloadUrl<span class="token punctuation">)</span>
 
-            print(res.text)
+            <span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
 
-        except OSError as e:
+        <span class="token keyword">except</span> OSError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
 
-            print(e)
+            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
 
-        sleep(16)
+        sleep<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>

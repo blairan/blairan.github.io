@@ -443,134 +443,134 @@
                 <h1 id="DS1306實時時鐘模組-micropython"><a href="#DS1306實時時鐘模組-micropython" class="headerlink" title="DS1306實時時鐘模組-micropython"></a>DS1306實時時鐘模組-micropython</h1><h6 id="tags-micropython-ds1302"><a href="#tags-micropython-ds1302" class="headerlink" title="tags: micropython ds1302"></a>tags: <code>micropython</code> <code>ds1302</code></h6><p>這是廣華電子上的介紹<br>◎ 時鐘具有能計算2100 年之前的秒、分、時、日、星期、月、年的能力，還有閏年調整的能力<br>◎ 31 8 位暫存數據存儲RAM<br>◎ 串行 I/O 口方式使得管腳數量最少<br>◎ 寬範圍工作電壓2.0 5.5V<br>◎ 工作電流 2.0V 時,小於300nA<br>◎ 讀 / 寫時鐘或RAM 數據時有兩種傳送方式單字節傳送和多字節傳送字符組方式<br>◎ 8 腳DIP 封裝或可選的8 腳SOIC 封裝根據表面裝配<br>◎ 簡單 3 線接口<br>◎ 與 TTL 相容Vcc=5V<br>◎ 雙電源管用於主電源和備份電源供應<br>◎ 電池：CR2032 電壓3V，電流260mAh<br>◎ 晶振32.768KHz，匹配電容為6pF<br>◎ DS1302為8腳直插大晶片，晶片下面有IC座，方便更換及插拔片<br>6.模塊工作電壓兼容3.3V/5V，可與5V及3.3V單片機連接<br>◎帶4個定位孔，直徑3.1mm<br>◎工作溫度：0°～70°</p>
 <p>◎ 安裝注意!<br>1.VCC與GND千萬不要接反，以免燒壞晶片<br>2.51系列單晶片P0接腳需要連接上拉電阻，如果單晶片沒有連接上拉電阻，可以將數據線接到其他接腳</p>
 <h2 id="步驟1"><a href="#步驟1" class="headerlink" title="步驟1:"></a>步驟1:</h2><p>下載sd1306.py並上傳到微控板上<br><a target="_blank" rel="noopener" href="https://github.com/omarbenhamid/micropython-ds1302-rtc">https://github.com/omarbenhamid/micropython-ds1302-rtc</a></p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pin
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin
 
-DS1302_REG_SECOND &#x3D; (0x80)
-DS1302_REG_MINUTE &#x3D; (0x82)
-DS1302_REG_HOUR   &#x3D; (0x84)
-DS1302_REG_DAY    &#x3D; (0x86)
-DS1302_REG_MONTH  &#x3D; (0x88)
-DS1302_REG_WEEKDAY&#x3D; (0x8A)
-DS1302_REG_YEAR   &#x3D; (0x8C)
-DS1302_REG_WP     &#x3D; (0x8E)
-DS1302_REG_CTRL   &#x3D; (0x90)
-DS1302_REG_RAM    &#x3D; (0xC0)
+DS1302_REG_SECOND <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x80</span><span class="token punctuation">)</span>
+DS1302_REG_MINUTE <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x82</span><span class="token punctuation">)</span>
+DS1302_REG_HOUR   <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x84</span><span class="token punctuation">)</span>
+DS1302_REG_DAY    <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x86</span><span class="token punctuation">)</span>
+DS1302_REG_MONTH  <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x88</span><span class="token punctuation">)</span>
+DS1302_REG_WEEKDAY<span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x8A</span><span class="token punctuation">)</span>
+DS1302_REG_YEAR   <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x8C</span><span class="token punctuation">)</span>
+DS1302_REG_WP     <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x8E</span><span class="token punctuation">)</span>
+DS1302_REG_CTRL   <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x90</span><span class="token punctuation">)</span>
+DS1302_REG_RAM    <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0xC0</span><span class="token punctuation">)</span>
 
-class DS1302:
-    def __init__(self, clk, dio, cs):
-        self.clk &#x3D; clk
-        self.dio &#x3D; dio
-        self.cs &#x3D; cs
-        self.clk.init(Pin.OUT)
-        self.cs.init(Pin.OUT)
+<span class="token keyword">class</span> <span class="token class-name">DS1302</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> clk<span class="token punctuation">,</span> dio<span class="token punctuation">,</span> cs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>clk <span class="token operator">=</span> clk
+        self<span class="token punctuation">.</span>dio <span class="token operator">=</span> dio
+        self<span class="token punctuation">.</span>cs <span class="token operator">=</span> cs
+        self<span class="token punctuation">.</span>clk<span class="token punctuation">.</span>init<span class="token punctuation">(</span>Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>cs<span class="token punctuation">.</span>init<span class="token punctuation">(</span>Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>
 
-    def _dec2hex(self, dat):
-        return (dat&#x2F;&#x2F;10) * 16 + (dat % 10)
+    <span class="token keyword">def</span> <span class="token function">_dec2hex</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dat<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>dat<span class="token operator">//</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">16</span> <span class="token operator">+</span> <span class="token punctuation">(</span>dat <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span>
 
-    def _hex2dec(self, dat):
-        return (dat&#x2F;&#x2F;16) * 10 + (dat % 16)
+    <span class="token keyword">def</span> <span class="token function">_hex2dec</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dat<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>dat<span class="token operator">//</span><span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token punctuation">(</span>dat <span class="token operator">%</span> <span class="token number">16</span><span class="token punctuation">)</span>
 
-    def _write_byte(self, dat):
-        self.dio.init(Pin.OUT)
-        for i in range(8):
-            self.dio.value((dat &gt;&gt; i) &amp; 1)
-            self.clk.value(1)
-            self.clk.value(0)
+    <span class="token keyword">def</span> <span class="token function">_write_byte</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dat<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>dio<span class="token punctuation">.</span>init<span class="token punctuation">(</span>Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>dio<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token punctuation">(</span>dat <span class="token operator">>></span> i<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>clk<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>clk<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
 
-    def _read_byte(self):
-        d &#x3D; 0
-        self.dio.init(Pin.IN)
-        for i in range(8):
-            d &#x3D; d | (self.dio.value() &lt;&lt; i)
-            self.clk.value(1)
-            self.clk.value(0)
-        return d
+    <span class="token keyword">def</span> <span class="token function">_read_byte</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        d <span class="token operator">=</span> <span class="token number">0</span>
+        self<span class="token punctuation">.</span>dio<span class="token punctuation">.</span>init<span class="token punctuation">(</span>Pin<span class="token punctuation">.</span>IN<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            d <span class="token operator">=</span> d <span class="token operator">|</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>dio<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> i<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>clk<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>clk<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> d
 
-    def _get_reg(self, reg):
-        self.cs.value(1)
-        self._write_byte(reg)
-        t &#x3D; self._read_byte()
-        self.cs.value(0)
-        return t
+    <span class="token keyword">def</span> <span class="token function">_get_reg</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> reg<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>cs<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_write_byte<span class="token punctuation">(</span>reg<span class="token punctuation">)</span>
+        t <span class="token operator">=</span> self<span class="token punctuation">.</span>_read_byte<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>cs<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> t
 
-    def _set_reg(self, reg, dat):
-        self.cs.value(1)
-        self._write_byte(reg)
-        self._write_byte(dat)
-        self.cs.value(0)
+    <span class="token keyword">def</span> <span class="token function">_set_reg</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> reg<span class="token punctuation">,</span> dat<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>cs<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_write_byte<span class="token punctuation">(</span>reg<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_write_byte<span class="token punctuation">(</span>dat<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>cs<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
 
-    def _wr(self, reg, dat):
-        self._set_reg(DS1302_REG_WP, 0)
-        self._set_reg(reg, dat)
-        self._set_reg(DS1302_REG_WP, 0x80)
+    <span class="token keyword">def</span> <span class="token function">_wr</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> reg<span class="token punctuation">,</span> dat<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_set_reg<span class="token punctuation">(</span>DS1302_REG_WP<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_set_reg<span class="token punctuation">(</span>reg<span class="token punctuation">,</span> dat<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_set_reg<span class="token punctuation">(</span>DS1302_REG_WP<span class="token punctuation">,</span> <span class="token number">0x80</span><span class="token punctuation">)</span>
 
-    def start(self):
-        t &#x3D; self._get_reg(DS1302_REG_SECOND + 1)
-        self._wr(DS1302_REG_SECOND, t &amp; 0x7f)
+    <span class="token keyword">def</span> <span class="token function">start</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        t <span class="token operator">=</span> self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_SECOND <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_SECOND<span class="token punctuation">,</span> t <span class="token operator">&amp;</span> <span class="token number">0x7f</span><span class="token punctuation">)</span>
 
-    def stop(self):
-        t &#x3D; self._get_reg(DS1302_REG_SECOND + 1)
-        self._wr(DS1302_REG_SECOND, t | 0x80)
+    <span class="token keyword">def</span> <span class="token function">stop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        t <span class="token operator">=</span> self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_SECOND <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_SECOND<span class="token punctuation">,</span> t <span class="token operator">|</span> <span class="token number">0x80</span><span class="token punctuation">)</span>
 
-    def second(self, second&#x3D;None):
-        if second &#x3D;&#x3D; None:
-            return self._hex2dec(self._get_reg(DS1302_REG_SECOND+1)) % 60
-        else:
-            self._wr(DS1302_REG_SECOND, self._dec2hex(second % 60))
+    <span class="token keyword">def</span> <span class="token function">second</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> second<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> second <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_hex2dec<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_SECOND<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">60</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_SECOND<span class="token punctuation">,</span> self<span class="token punctuation">.</span>_dec2hex<span class="token punctuation">(</span>second <span class="token operator">%</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def minute(self, minute&#x3D;None):
-        if minute &#x3D;&#x3D; None:
-            return self._hex2dec(self._get_reg(DS1302_REG_MINUTE+1))
-        else:
-            self._wr(DS1302_REG_MINUTE, self._dec2hex(minute % 60))
+    <span class="token keyword">def</span> <span class="token function">minute</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> minute<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> minute <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_hex2dec<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_MINUTE<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_MINUTE<span class="token punctuation">,</span> self<span class="token punctuation">.</span>_dec2hex<span class="token punctuation">(</span>minute <span class="token operator">%</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def hour(self, hour&#x3D;None):
-        if hour &#x3D;&#x3D; None:
-            return self._hex2dec(self._get_reg(DS1302_REG_HOUR+1))
-        else:
-            self._wr(DS1302_REG_HOUR, self._dec2hex(hour % 24))
+    <span class="token keyword">def</span> <span class="token function">hour</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> hour<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> hour <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_hex2dec<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_HOUR<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_HOUR<span class="token punctuation">,</span> self<span class="token punctuation">.</span>_dec2hex<span class="token punctuation">(</span>hour <span class="token operator">%</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def weekday(self, weekday&#x3D;None):
-        if weekday &#x3D;&#x3D; None:
-            return self._hex2dec(self._get_reg(DS1302_REG_WEEKDAY+1))
-        else:
-            self._wr(DS1302_REG_WEEKDAY, self._dec2hex(weekday % 8))
+    <span class="token keyword">def</span> <span class="token function">weekday</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> weekday<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> weekday <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_hex2dec<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_WEEKDAY<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_WEEKDAY<span class="token punctuation">,</span> self<span class="token punctuation">.</span>_dec2hex<span class="token punctuation">(</span>weekday <span class="token operator">%</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def day(self, day&#x3D;None):
-        if day &#x3D;&#x3D; None:
-            return self._hex2dec(self._get_reg(DS1302_REG_DAY+1))
-        else:
-            self._wr(DS1302_REG_DAY, self._dec2hex(day % 32))
+    <span class="token keyword">def</span> <span class="token function">day</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> day<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> day <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_hex2dec<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_DAY<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_DAY<span class="token punctuation">,</span> self<span class="token punctuation">.</span>_dec2hex<span class="token punctuation">(</span>day <span class="token operator">%</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def month(self, month&#x3D;None):
-        if month &#x3D;&#x3D; None:
-            return self._hex2dec(self._get_reg(DS1302_REG_MONTH+1))
-        else:
-            self._wr(DS1302_REG_MONTH, self._dec2hex(month % 13))
+    <span class="token keyword">def</span> <span class="token function">month</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> month<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> month <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_hex2dec<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_MONTH<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_MONTH<span class="token punctuation">,</span> self<span class="token punctuation">.</span>_dec2hex<span class="token punctuation">(</span>month <span class="token operator">%</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def year(self, year&#x3D;None):
-        if year &#x3D;&#x3D; None:
-            return self._hex2dec(self._get_reg(DS1302_REG_YEAR+1)) + 2000
-        else:
-            self._wr(DS1302_REG_YEAR, self._dec2hex(year % 100))
+    <span class="token keyword">def</span> <span class="token function">year</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> year<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> year <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_hex2dec<span class="token punctuation">(</span>self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_YEAR<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2000</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_YEAR<span class="token punctuation">,</span> self<span class="token punctuation">.</span>_dec2hex<span class="token punctuation">(</span>year <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def date_time(self, dat&#x3D;None):
-        if dat &#x3D;&#x3D; None:
-            return [self.year(), self.month(), self.day(), self.weekday(), self.hour(), self.minute(), self.second()]
-        else:
-            self.year(dat[0])
-            self.month(dat[1])
-            self.day(dat[2])
-            self.weekday(dat[3])
-            self.hour(dat[4])
-            self.minute(dat[5])
-            self.second(dat[6])
+    <span class="token keyword">def</span> <span class="token function">date_time</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dat<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> dat <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>year<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>month<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>day<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>weekday<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>hour<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>minute<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>second<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>year<span class="token punctuation">(</span>dat<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>month<span class="token punctuation">(</span>dat<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>day<span class="token punctuation">(</span>dat<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>weekday<span class="token punctuation">(</span>dat<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>hour<span class="token punctuation">(</span>dat<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>minute<span class="token punctuation">(</span>dat<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>second<span class="token punctuation">(</span>dat<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-    def ram(self, reg, dat&#x3D;None):
-        if dat &#x3D;&#x3D; None:
-            return self._get_reg(DS1302_REG_RAM + 1 + (reg % 31)*2)
-        else:
-            self._wr(DS1302_REG_RAM + (reg % 31)*2, dat)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">def</span> <span class="token function">ram</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> reg<span class="token punctuation">,</span> dat<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> dat <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_get_reg<span class="token punctuation">(</span>DS1302_REG_RAM <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token punctuation">(</span>reg <span class="token operator">%</span> <span class="token number">31</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_wr<span class="token punctuation">(</span>DS1302_REG_RAM <span class="token operator">+</span> <span class="token punctuation">(</span>reg <span class="token operator">%</span> <span class="token number">31</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">,</span> dat<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="步驟2"><a href="#步驟2" class="headerlink" title="步驟2:"></a>步驟2:</h2><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; DS1302 CLK&#x2F;SCLK --&gt;  5
 &#x2F;&#x2F; DS1302 DAT&#x2F;IO --&gt;  4
@@ -579,17 +579,17 @@ class DS1302:
 &#x2F;&#x2F; DS1302 GND --&gt;  GND<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="步驟3"><a href="#步驟3" class="headerlink" title="步驟3:"></a>步驟3:</h2><p>上傳程式碼</p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">import ds1302
-from machine import PIN_WAKE, Pin
-import time
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> ds1302
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> PIN_WAKE<span class="token punctuation">,</span> Pin
+<span class="token keyword">import</span> time
 
-ds &#x3D; ds1302.DS1302(Pin(5), Pin(4), Pin(2))
+ds <span class="token operator">=</span> ds1302<span class="token punctuation">.</span>DS1302<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Pin<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-while True:
-    print(&quot;Today is &#123;&#125;&#x2F;&#123;&#125;&#x2F;&#123;&#125;&quot;.format(ds.year(), ds.month(), ds.day()))
-    print(&quot;Time: &#123;&#125;:&#123;&#125;:&#123;&#125;&quot;.format(ds.hour(), ds.minute(), ds.second()))
-    print(&quot;&#x3D;&quot;*10)
-    time.sleep(1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Today is &#123;&#125;/&#123;&#125;/&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>year<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ds<span class="token punctuation">.</span>month<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ds<span class="token punctuation">.</span>day<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Time: &#123;&#125;:&#123;&#125;:&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>hour<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ds<span class="token punctuation">.</span>minute<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ds<span class="token punctuation">.</span>second<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"="</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-none"><code class="language-none">Today is 2021&#x2F;7&#x2F;28
 Time: 12:19:18
 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
@@ -606,30 +606,30 @@ Time: 12:19:21
 
 <h2 id="步驟4"><a href="#步驟4" class="headerlink" title="步驟4:"></a>步驟4:</h2><p>再將ssd1306.py下載後並上傳到微控板</p>
 <h2 id="步驟5"><a href="#步驟5" class="headerlink" title="步驟5:"></a>步驟5:</h2><p>oled接線</p>
-<h2 id="步驟6"><a href="#步驟6" class="headerlink" title="步驟6:"></a>步驟6:</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">import ds1302, ssd1306
-from machine import PIN_WAKE, Pin
-from machine import SoftI2C
-import time
-width &#x3D; 128
-height &#x3D; 64
-i2c &#x3D; SoftI2C(scl&#x3D;Pin(22), sda&#x3D;Pin(21))
-oled &#x3D; ssd1306.SSD1306_I2C(width, height, i2c)
-ds &#x3D; ds1302.DS1302(Pin(5), Pin(4), Pin(2))
+<h2 id="步驟6"><a href="#步驟6" class="headerlink" title="步驟6:"></a>步驟6:</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">import</span> ds1302<span class="token punctuation">,</span> ssd1306
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> PIN_WAKE<span class="token punctuation">,</span> Pin
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> SoftI2C
+<span class="token keyword">import</span> time
+width <span class="token operator">=</span> <span class="token number">128</span>
+height <span class="token operator">=</span> <span class="token number">64</span>
+i2c <span class="token operator">=</span> SoftI2C<span class="token punctuation">(</span>scl<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sda<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+oled <span class="token operator">=</span> ssd1306<span class="token punctuation">.</span>SSD1306_I2C<span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> i2c<span class="token punctuation">)</span>
+ds <span class="token operator">=</span> ds1302<span class="token punctuation">.</span>DS1302<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Pin<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Pin<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-while True:
-    oled.text(str(ds.year()), 0, 1)
-    oled.text(&quot;&#x2F;&quot;, 30, 1)
-    oled.text(str(ds.month()), 40, 1)
-    oled.text(&quot;&#x2F;&quot;, 50, 1)
-    oled.text(str(ds.day()), 60, 1)
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>year<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>month<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>day<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
     
-    oled.text(str(ds.hour()), 30, 30)
-    oled.text(&quot;:&quot;, 50, 30)
-    oled.text(str(ds.minute()), 60, 30)
-    oled.text(&quot;:&quot;, 80, 30)
-    oled.text(str(ds.second()), 90, 30)
-    oled.show()
-    time.sleep(1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>hour<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>minute<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>ds<span class="token punctuation">.</span>second<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span>
+    oled<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div class="video-container"><iframe src="https://www.youtube.com/embed/HnIFDhD1DxY" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
