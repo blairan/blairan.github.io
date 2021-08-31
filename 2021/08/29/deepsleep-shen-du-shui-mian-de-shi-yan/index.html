@@ -1,0 +1,2114 @@
+<!DOCTYPE HTML>
+<html lang="zh-tw">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="DeepSleep深度睡眠的實驗, 我的微控板實驗室">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>DeepSleep深度睡眠的實驗 | 我的微控板實驗室</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <link rel="stylesheet" href="/js/prism.css">
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/meimg.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">我的微控板實驗室</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>主頁</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>標簽</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分類</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>關於</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/meimg.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">我的微控板實驗室</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			主頁
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			標簽
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分類
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			關於
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">DeepSleep深度睡眠的實驗</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/deep-sleep/">
+                                <span class="chip bg-color">deep sleep</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/esp32/" class="post-category">
+                                esp32
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-08-29
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2021-08-29
+                </div>
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="為什麼要讓ESP32進入深度睡眠模式"><a href="#為什麼要讓ESP32進入深度睡眠模式" class="headerlink" title="為什麼要讓ESP32進入深度睡眠模式?"></a>為什麼要讓ESP32進入深度睡眠模式?</h2><p><strong><em>其實我也是最近剛學到這一塊，所以就順手紀錄下來。</em></strong></p>
+<p><strong><em>記得以前做過一些要電池的成品，發現放一天半左右就</em></strong></p>
+<p><strong><em>沒電了，後來網路上搜尋相關知識才知道Arduino和esp32</em></strong></p>
+<p><strong><em>它們都有使其進入深度睡眠的方法。</em></strong></p>
+<p><strong><em>在深度睡眠中，可以使機板降低功耗，CPU和WIFI都會</em></strong></p>
+<p><strong>_停止運作，只有ULP還會以最低功耗運作，雖然 ESP32 _</strong></p>
+<p><strong><em>處於深度睡眠模式，但 RTC 記憶體也仍然處於打開狀態，</em></strong></p>
+<p><strong><em>因此我們可以為 ULP 共同處理器編寫一個程式，並將其</em></strong></p>
+<p><strong><em>存儲在 RTC 記憶體中以訪問週邊設備、內部定時器和內</em></strong></p>
+<p><strong><em>部感測器。</em></strong></p>
+<h2 id="RTC引腳"><a href="#RTC引腳" class="headerlink" title="RTC引腳"></a>RTC引腳</h2><p><strong><em>下圖黃色區塊的都可以使用RTC</em></strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://1.bp.blogspot.com/-Ap7xbLO-MAE/YM_mR7e9KwI/AAAAAAAAeUw/rcA6j1T1gKgaLSdPPXI5A2zfn467tEIJwCNcBGAsYHQ/w694-h412/ESP32-DOIT-DEVKIT-V1-Board-Pinout-30-GPIOs-Copy.png"></a></p>
+<hr>
+<h2 id="喚醒模式"><a href="#喚醒模式" class="headerlink" title="喚醒模式"></a>喚醒模式</h2><h3 id="主要有種喚醒模式"><a href="#主要有種喚醒模式" class="headerlink" title="主要有種喚醒模式"></a>主要有種喚醒模式</h3><ol>
+<li> <em><strong>定時器喚醒</strong></em></li>
+<li> <em><strong>觸摸喚醒</strong></em></li>
+<li> <em><strong>外部喚醒/多種不同的外部喚醒</strong></em></li>
+<li> <em><strong>ULP喚醒</strong></em></li>
+</ol>
+<hr>
+<h2 id="1-定時器喚醒模式實驗"><a href="#1-定時器喚醒模式實驗" class="headerlink" title="1.定時器喚醒模式實驗"></a>1.定時器喚醒模式實驗</h2><p><strong><em>ESP32可進入深睡模式，並預設時間喚醒</em></strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+#define us_to_s 1000000
+
+#define time__to_sleep 5
+
+  
+
+RTC_DATA_ATTR int count &#x3D; 0;
+
+  
+
+void print_wakeup_reason()
+
+&#123;
+
+  esp_sleep_wakeup_cause_t wakeup_reason;
+
+  wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+
+  switch (wakeup_reason)
+
+  &#123;
+
+  case ESP_SLEEP_WAKEUP_EXT0:
+
+    Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_EXT1:
+
+    Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_TIMER:
+
+    Serial.println(&quot;Wakeup caused by timer&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_TOUCHPAD:
+
+    Serial.println(&quot;Wakeup caused by touchpad&quot;);
+
+    break;
+
+  case ESP_SLEEP_WAKEUP_ULP:
+
+    Serial.println(&quot;Wakeup caused by ULP program&quot;);
+
+    break;
+
+  default:
+
+    Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\n&quot;, wakeup_reason);
+
+    break;
+
+  &#125;
+
+&#125;
+
+  
+
+void setup()
+
+&#123;
+
+  Serial.begin(115200);
+
+  delay(1000);
+
+  ++count;
+
+  Serial.println(&quot;boot num: &quot; + String(count));
+
+  print_wakeup_reason();
+
+  esp_sleep_enable_timer_wakeup(us_to_s * time_to_sleep);
+
+  delay(1000);
+
+  esp_deep_sleep_start();
+
+&#125;
+
+
+void loop()&#123;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>一開始設定微秒轉成秒，也可以以直接寫成</strong>TIME_TO_SLEEP  5000000</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#define us_TO_s 1000000
+#define TIME_TO_SLEEP  5   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>這一段是說要在RTC上保存喚醒的次數，可以在最前面加上RTC_DATA_ATTR</strong></p>
+<p>**_<em>但是在按下EN鍵重啓這個數據會流失掉_</em>*</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">RTC_DATA_ATTR int count &#x3D; 0;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>這個函式主要是設定”被換醒的原因”</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">rst:0x5 (DEEPSLEEP_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 2
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 3
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 4
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<p><strong>進入到void setup(){}</strong></p>
+<p><strong>設定序列埠的波特率</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">Serial.begin(115200);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>每次被喚醒，count就會加1，並被印出來</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">++count; Serial.println(&quot;Boot number: &quot;   +   String(bootCount));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>調用剛最前方那個被喚醒的原因函式</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">print_wakeup_reason()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>啓用幾秒後，調用睡眠模式的函式</strong></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
+
+esp_deep_sleep_start()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="實驗結果"><a href="#實驗結果" class="headerlink" title="實驗結果"></a>實驗結果</h2><p>紅色字體是指進入深睡模式</p>
+<p>土黃色字體是指被喚醒的次數</p>
+<p>深藍色字體是被喚醒的原因</p>
+<pre class="line-numbers language-none"><code class="language-none">rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 2
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 3
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57
+
+  
+
+rst:0x5 (DEEPSLEEP\_RESET),boot:0x17 (SPI\_FAST\_FLASH\_BOOT)
+
+configsip: 0, SPIWP:0xee
+
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+
+mode:DIO, clock div:2
+
+load:0x3fff0018,len:4
+
+load:0x3fff001c,len:1044
+
+load:0x40078000,len:10124
+
+load:0x40080400,len:5828
+
+entry 0x400806a8
+
+boot num: 4
+
+Wakeup caused by timer
+
+ets Jun  8 2016 00:22:57<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="２-觸摸喚醒實驗"><a href="#２-觸摸喚醒實驗" class="headerlink" title="２.觸摸喚醒實驗"></a>２.觸摸喚醒實驗</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/Zero_Touch_Wake_Up_bb.png?w=858&quality=100&strip=all&ssl=1"></a></p>
+<p>後來我發現來在Arduino IDE裡切換到ESP32的模式下，範例裡就有DEEP SLEEP的範例可用</p>
+<p>將範例載入後，上傳。</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://1.bp.blogspot.com/-3tHh0qOHWtA/YNFMzOX5NfI/AAAAAAAAeVY/oDALi3RFu_43L-nOaPyxfx28RiB_6ypmwCNcBGAsYHQ/w603-h647/1.jpg"></a></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+#define Threshold 40 
+
+RTC_DATA_ATTR int bootCount &#x3D; 0;
+
+touch_pad_t touchPin;
+
+
+void print_wakeup_reason()&#123;
+
+  esp_sleep_wakeup_cause_t wakeup_reason;
+
+  wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+  switch(wakeup_reason)
+  &#123;
+
+    case ESP_SLEEP_WAKEUP_EXT0 : Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_EXT1 : Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TIMER : Serial.println(&quot;Wakeup caused by timer&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println(&quot;Wakeup caused by touchpad&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_ULP : Serial.println(&quot;Wakeup caused by ULP program&quot;); break;
+
+    default : Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\\n&quot;,wakeup_reason); break;
+  &#125;
+
+&#125;
+
+  
+void print_wakeup_touchpad()&#123;
+
+  touchPin &#x3D; esp_sleep_get_touchpad_wakeup_status();
+
+  switch(touchPin)
+
+  &#123;
+
+    case 0  : Serial.println(&quot;Touch detected on GPIO 4&quot;); break;
+
+    case 1  : Serial.println(&quot;Touch detected on GPIO 0&quot;); break;
+
+    case 2  : Serial.println(&quot;Touch detected on GPIO 2&quot;); break;
+
+    case 3  : Serial.println(&quot;Touch detected on GPIO 15&quot;); break;
+
+    case 4  : Serial.println(&quot;Touch detected on GPIO 13&quot;); break;
+
+    case 5  : Serial.println(&quot;Touch detected on GPIO 12&quot;); break;
+
+    case 6  : Serial.println(&quot;Touch detected on GPIO 14&quot;); break;
+
+    case 7  : Serial.println(&quot;Touch detected on GPIO 27&quot;); break;
+
+    case 8  : Serial.println(&quot;Touch detected on GPIO 33&quot;); break;
+
+    case 9  : Serial.println(&quot;Touch detected on GPIO 32&quot;); break;
+
+    default : Serial.println(&quot;Wakeup not by touchpad&quot;); break;
+
+  &#125;
+
+&#125;
+
+void callback()&#123;
+
+&#125;
+
+void setup()&#123;
+  Serial.begin(115200)
+  delay(1000); 
+
+  ++bootCount;
+  Serial.println(&quot;Boot number: &quot; + String(bootCount));
+
+  print_wakeup_reason();
+  print_wakeup_touchpad();
+
+  touchAttachInterrupt(T4, callback, Threshold);
+
+  esp_sleep_enable_touchpad_wakeup();
+
+  Serial.println(&quot;Going to sleep now&quot;);
+
+  esp_deep_sleep_start();
+
+  Serial.println(&quot;This will never be printed&quot;);
+
+&#125;
+
+void loop()&#123;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>程式碼裡面這個是給予觸摸觸發的值</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#define Threshold   40<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>當在觸摸引腳上讀取的值低於 Threshold 變量上設置的值時，ESP32 喚醒並執行回調函數。<br>Callback() 函數只有在 ESP32 處於喚醒狀態時才會執行。</p>
+<p>所以如果是在喚醒的狀態下壓著觸摸腳不放開，並不會執行callback()回調。</p>
+<p>如果是在睡眠狀態下碰了一下引腳馬上放開，這樣也不會執行callback()回調。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">touchAttachInterrupt(T3, callback, Threshold); <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>callback() 函數是空的</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">void  callback()&#123;   &#x2F;&#x2F;placeholder callback function   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>接下來，使用 esp_sleep_enable_touchpad_wakeup() 函數將觸摸引腳設置為喚醒源。</p>
+<p>esp_sleep_enable_touchpad_wakeup()</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://lh3.googleusercontent.com/-gTuSGE2uzFA/YNFSKM2L1WI/AAAAAAAAeVg/mSIR56s4R8QZhOw7ylC3CoBbSPiYcyoygCNcBGAsYHQ/s1600/1624330763119130-0.png"></a> </p>
+<hr>
+<h2 id="3-外部喚醒-ext0"><a href="#3-外部喚醒-ext0" class="headerlink" title="3.外部喚醒 (ext0)"></a>3.外部喚醒 (ext0)</h2><p>要使用此喚醒，請使用以下函數：  </p>
+<p>Esp_sleep_enable_ext0_wakeup（GPIO_NUM_X，level）<br>此函數接受您要使用的引腳作為第一個參數，格式為 GPIO_NUM_X，其中 X 表示該引腳的 GPIO 編號。  </p>
+<p>第二個參數 level 可以是 1 或 0。這表示將觸發喚醒的 GPIO 狀態。</p>
+<p>注意：使用此喚醒，只能使用 RTC GPIO 引腳。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/external_wake_up_button_bb.png?w=1134&quality=100&strip=all&ssl=1"></a></p>
+</blockquote>
+<p><strong>可以在範例裡載入如下程式碼</strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://1.bp.blogspot.com/-E9SwEIStzFc/YNKgrFbR7fI/AAAAAAAAeVo/OtrrY-gkN-QraG7XaiuSA6VUX-pik6F2wCNcBGAsYHQ/w655-h549/2.jpg"></a></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">&gt; &#x2F;*
+&gt; 
+&gt; Deep Sleep with External Wake Up
+&gt; 
+&gt; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; 
+&gt; This code displays how to use deep sleep with
+&gt; 
+&gt; an external trigger as a wake up source and how
+&gt; 
+&gt; to store data in RTC memory to use it over reboots
+&gt; 
+&gt;   
+&gt; 
+&gt; This code is under Public Domain License.
+&gt; 
+&gt; 
+&gt; Hardware Connections
+&gt; 
+&gt; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; 
+&gt; Push Button to GPIO 33 pulled down with a 10K Ohm
+&gt; 
+&gt; resistor
+&gt;
+&gt; 
+&gt; NOTE:
+&gt; 
+&gt; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; 
+&gt; Only RTC IO can be used as a source for external wake
+&gt; 
+&gt; source. They are pins: 0,2,4,12-15,25-27,32-39.
+&gt; 
+&gt; 
+&gt; Author:
+&gt; 
+&gt; Pranav Cherukupalli &lt;cherukupallip@gmail.com&gt;
+&gt; 
+&gt; *&#x2F;
+&gt; 
+&gt; 
+&gt; #define BUTTON_PIN_BITMASK 0x200000000 &#x2F;&#x2F; 2^33 in hex
+&gt; 
+&gt;   
+&gt; 
+&gt; RTC_DATA_ATTR int bootCount &#x3D; 0;
+&gt;
+&gt; 
+&gt; &#x2F;*
+&gt; 
+&gt; Method to print the reason by which ESP32
+&gt; 
+&gt; has been awaken from sleep
+&gt; 
+&gt; *&#x2F;
+&gt; 
+&gt; void print_wakeup_reason()&#123;
+&gt; 
+&gt;   esp_sleep_wakeup_cause_t wakeup_reason;
+&gt;
+&gt; 
+&gt;   wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+&gt; 
+&gt; 
+&gt;   switch(wakeup_reason)
+&gt; 
+&gt;   &#123;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_EXT0 : Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_EXT1 : Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_TIMER : Serial.println(&quot;Wakeup caused by timer&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println(&quot;Wakeup caused by touchpad&quot;); break;
+&gt; 
+&gt;     case ESP_SLEEP_WAKEUP_ULP : Serial.println(&quot;Wakeup caused by ULP program&quot;); break;
+&gt; 
+&gt;     default : Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\\n&quot;,wakeup_reason); break;
+&gt; 
+&gt;   &#125;
+&gt; 
+&gt; &#125;
+&gt; 
+&gt;   
+&gt; 
+&gt; void setup()&#123;
+&gt; 
+&gt;   Serial.begin(115200);
+&gt; 
+&gt;   delay(1000); &#x2F;&#x2F;Take some time to open up the Serial Monitor
+&gt; 
+&gt; 
+&gt;   &#x2F;&#x2F;Increment boot number and print it every reboot
+&gt; 
+&gt;   ++bootCount;
+&gt; 
+&gt;   Serial.println(&quot;Boot number: &quot; + String(bootCount));
+&gt; 
+&gt;   
+&gt;   &#x2F;&#x2F;Print the wakeup reason for ESP32
+&gt; 
+&gt;   print_wakeup_reason();
+&gt; 
+&gt;  
+&gt;   &#x2F;*
+&gt; 
+&gt;   First we configure the wake up source
+&gt; 
+&gt;   We set our ESP32 to wake up for an external trigger.
+&gt; 
+&gt;   There are two types for ESP32, ext0 and ext1 .
+&gt; 
+&gt;   ext0 uses RTC_IO to wakeup thus requires RTC peripherals
+&gt; 
+&gt;   to be on while ext1 uses RTC Controller so doesnt need
+&gt; 
+&gt;   peripherals to be powered on.
+&gt; 
+&gt;   Note that using internal pullups&#x2F;pulldowns also requires
+&gt; 
+&gt;   RTC peripherals to be turned on.
+&gt; 
+&gt;   *&#x2F;
+&gt; 
+&gt;   esp_sleep_enable_ext0_wakeup(GPIO_NUM_33,1); &#x2F;&#x2F;1 &#x3D; High, 0 &#x3D; Low
+&gt; 
+&gt;   
+&gt; 
+&gt;   &#x2F;&#x2F;If you were to use ext1, you would use it like
+&gt; 
+&gt;   &#x2F;&#x2F;esp_sleep_enable_ext1_wakeup(BUTTON_PIN_BITMASK,ESP_EXT1_WAKEUP_ANY_HIGH);
+&gt; 
+&gt;   
+&gt; 
+&gt;   &#x2F;&#x2F;Go to sleep now
+&gt; 
+&gt;   Serial.println(&quot;Going to sleep now&quot;);
+&gt; 
+&gt;   esp_deep_sleep_start();
+&gt; 
+&gt;   Serial.println(&quot;This will never be printed&quot;);
+&gt; 
+&gt; &#125;
+&gt; 
+&gt;   
+&gt; 
+&gt; void loop()&#123;
+&gt; 
+&gt;   &#x2F;&#x2F;This is not going to be called
+&gt; 
+&gt; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>在這個例子中，我們使用了在代碼開頭定義的變量 BUTTON_PIN_BITMASK：</p>
+</blockquote>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#define   BUTTON\_PIN\_BITMASK   0x200000000 &#x2F;&#x2F; 2^33 in hex<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>按鈕連接到 GPIO 33。要獲取 GPIO 33 的十六進位碼：  </p>
+<p>計算 2的33次方,應該得到 8589934592,將該數字 (8589934592) 轉換為十六進制。您可以轉到此轉換器來執行此操作。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_enable_ext0_wakeup(GPIO_NUM_33,1);   &#x2F;&#x2F;1 &#x3D; High, 0 &#x3D; Low<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>＃可以使用任何其他 RTC GPIO 引腳來代替 GPIO 33</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/twRIlLu60Y0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<hr>
+<h2 id="4-外部喚醒-ext1"><a href="#4-外部喚醒-ext1" class="headerlink" title="4.外部喚醒 (ext1)"></a>4.外部喚醒 (ext1)</h2><p>在這裡不使用esp_sleep_enable_ext0_wakeup()，而是使用</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_enable_ext1_wakeup()
+&#96;&#96;&#96;c#
+&#x2F;*
+
+Deep Sleep with External Wake Up
+
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+This code displays how to use deep sleep with
+
+an external trigger as a wake up source and how
+
+to store data in RTC memory to use it over reboots
+
+  
+
+This code is under Public Domain License.
+
+  
+
+Hardware Connections
+
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+Push Button to GPIO 33 pulled down with a 10K Ohm
+
+resistor
+
+  
+
+NOTE:
+
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+Only RTC IO can be used as a source for external wake
+
+source. They are pins: 0,2,4,12-15,25-27,32-39.
+
+  
+
+Author:
+
+Pranav Cherukupalli &lt;cherukupallip@gmail.com&gt;
+
+*&#x2F;
+
+#define BUTTON_PIN_BITMASK 0x8004 &#x2F;&#x2F; GPIOs 2 and 15
+
+RTC_DATA_ATTR int bootCount &#x3D; 0;
+
+&#x2F;*
+
+Method to print the reason by which ESP32
+
+has been awaken from sleep
+
+*&#x2F;
+
+void print_wakeup_reason()&#123;
+
+  esp_sleep_wakeup_cause_t wakeup_reason;
+
+  wakeup_reason &#x3D; esp_sleep_get_wakeup_cause();
+
+  switch(wakeup_reason)
+
+  &#123;
+
+    case ESP_SLEEP_WAKEUP_EXT0 : Serial.println(&quot;Wakeup caused by external signal using RTC_IO&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_EXT1 : Serial.println(&quot;Wakeup caused by external signal using RTC_CNTL&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TIMER : Serial.println(&quot;Wakeup caused by timer&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_TOUCHPAD : Serial.println(&quot;Wakeup caused by touchpad&quot;); break;
+
+    case ESP_SLEEP_WAKEUP_ULP : Serial.println(&quot;Wakeup caused by ULP program&quot;); break;
+
+    default : Serial.printf(&quot;Wakeup was not caused by deep sleep: %d\\n&quot;,wakeup_reason); break;
+
+  &#125;
+
+&#125;
+
+&#x2F;*
+
+Method to print the GPIO that triggered the wakeup
+
+*&#x2F;
+
+void print_GPIO_wake_up()&#123;
+
+  uint64_t GPIO_reason &#x3D; esp_sleep_get_ext1_wakeup_status();
+
+  Serial.print(&quot;GPIO that triggered the wake up: GPIO &quot;);
+
+  Serial.println((log(GPIO_reason))&#x2F;log(2), 0);
+
+&#125;
+
+void setup()&#123;
+
+  Serial.begin(115200);
+
+  delay(1000); &#x2F;&#x2F;Take some time to open up the Serial Monitor
+
+  
+
+  &#x2F;&#x2F;Increment boot number and print it every reboot
+
+  ++bootCount;
+
+  Serial.println(&quot;Boot number: &quot; + String(bootCount));
+
+  
+
+  &#x2F;&#x2F;Print the wakeup reason for ESP32
+
+  print_wakeup_reason();
+  
+
+  &#x2F;&#x2F;Print the GPIO used to wake up
+
+  print\_GPIO\_wake_up();
+
+
+  &#x2F;*
+
+  First we configure the wake up source
+
+  We set our ESP32 to wake up for an external trigger.
+
+  There are two types for ESP32, ext0 and ext1 .
+
+  ext0 uses RTC_IO to wakeup thus requires RTC peripherals
+
+  to be on while ext1 uses RTC Controller so doesnt need
+
+  peripherals to be powered on.
+
+  Note that using internal pullups&#x2F;pulldowns also requires
+
+  RTC peripherals to be turned on.
+
+  *&#x2F;
+
+  &#x2F;&#x2F;esp_deep_sleep_enable_ext0_wakeup(GPIO\_NUM_15,1); &#x2F;&#x2F;1 &#x3D; High, 0 &#x3D; Low
+
+  
+
+  &#x2F;&#x2F;If you were to use ext1, you would use it like
+
+  esp_sleep_enable_ext1_wakeup(BUTTON_PIN_BITMASK,ESP_EXT1_WAKEUP_ANY_HIGH);
+
+  &#x2F;&#x2F;Go to sleep now
+
+  Serial.println(&quot;Going to sleep now&quot;);
+
+  delay(1000);
+
+  esp_deep_sleep_start();
+
+  Serial.println(&quot;This will never be printed&quot;);
+
+&#125;
+
+  
+
+void loop()&#123;
+
+  &#x2F;&#x2F;This is not going to be called
+
+&#125;
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>0x8004怎麼來的?</strong></p>
+<p>計算 2^2 + 2^15。你應該得到 32772</p>
+<p>將該數字轉換為十六進制。你應該得到：8004</p>
+<p>在這個例子中，我們使用了在代碼開頭定義的變量 BUTTON_PIN_BITMASK</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">BUTTON_PIN_BITMASK</span>   <span class="token expression"><span class="token number">0x8004</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>當您使用多個引腳來喚醒 ESP32 時，知道是哪個引腳引起了喚醒是很有用的。為此，您可以使用以下功能：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">esp_sleep_get_ext1_wakeup_status()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>該函數返回一個基數2，與GPIO號碼作為指數：2 ^（GPIO_NUMBER）。因此，在小數得到GPIO，你需要做以下計算：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">GPIO &#x3D; log(GPIO_NUMBER)&#x2F;log(2)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>其它程式碼如同前面試驗</strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2019/02/external_wake_up_2buttons_bb.png?w=984&quality=100&strip=all&ssl=1"></a></p>
+<p><strong>將程式碼上傳後可以看到按壓哪個GPIO會顯示在監測窗口</strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/4527766207386106731#"><img src="https://1.bp.blogspot.com/-YanqfR__Opo/YNWKA45FOQI/AAAAAAAAeWE/pkp3y8n5qa8WHrloC2ZCECaWWHN5kTwuACNcBGAsYHQ/w674-h314/1.jpg"></a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">blairan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blairan.github.io/2021/08/29/deepsleep-shen-du-shui-mian-de-shi-yan/">https://blairan.github.io/2021/08/29/deepsleep-shen-du-shui-mian-de-shi-yan/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">blairan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/deep-sleep/">
+                                    <span class="chip bg-color">deep sleep</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'CRmNdguGV8f2sP2RXXrkRyz3-MdYXbMMI',
+        appKey: 'uChSx1EGFYUeYminmGumttEJ',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'en',
+        placeholder: '有什麼想法請留言給我'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2021/08/29/wang-ye-kong-zhi-led-deng-esp32/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="網頁控制LED燈-ESP32">
+                        
+                        <span class="card-title">網頁控制LED燈-ESP32</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/esp32/" class="post-category">
+                                    esp32
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/webserver/">
+                        <span class="chip bg-color">webserver</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/08/29/dht11-dht12-wen-shi-du-chuan-gan-qi-shi-yan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="DHT11/DHT12溫溼度傳感器實驗">
+                        
+                        <span class="card-title">DHT11/DHT12溫溼度傳感器實驗</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/esp32/" class="post-category">
+                                    esp32
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/dht11-dht12/">
+                        <span class="chip bg-color">dht11/dht12</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+            
+
+                <div class="container row center-align"
+                    style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                            <span id="year">
+                                2019-2021
+                            </span>
+                            
+                                    <span id="year">
+                                        2019
+                                    </span>
+                                    <a href="/about" target="_blank">
+                                        blairan
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+                                    |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery"
+                                        target="_blank">Matery</a>
+                                    <br>
+                                    
+                                                
+                                                    
+                                                        
+                                                            
+                                                                
+                                                                    <span id="busuanzi_container_site_pv">
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                                                                            <span id="busuanzi_value_site_pv"
+                                                                                class="white-color"></span>
+                                                                    </span>
+                                                                    
+                                                                        
+                                                                            <span id="busuanzi_container_site_uv">
+                                                                                &nbsp;|&nbsp;<i
+                                                                                    class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                                                                                    <span id="busuanzi_value_site_uv"
+                                                                                        class="white-color"></span>
+                                                                            </span>
+                                                                            
+                                                                                <br>
+
+                                                                                <!-- 运行天数提醒. -->
+                                                                                
+                                                                                        <br>
+                                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
+    <a href="https://github.com/blairan/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:blairan121122885@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1773591664" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1773591664" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+</footer>
+<script src="/js/prism.js" async></script>
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
