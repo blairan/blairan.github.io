@@ -4,6 +4,122 @@
   
     
     <entry>
+      <title>MQTT&amp;node-RED控制二軸云台-mpython</title>
+      <link href="/2021/08/31/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython-1/"/>
+      <url>/2021/08/31/MQTT-node-RED%E6%8E%A7%E5%88%B6%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0-mpython-1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="MQTT-amp-node-RED控制二軸云台-mpython"><a href="#MQTT-amp-node-RED控制二軸云台-mpython" class="headerlink" title="MQTT&amp;node-RED控制二軸云台-mpython"></a>MQTT&amp;node-RED控制二軸云台-mpython</h1><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-sqJOZzdBnks/YSjK1HOEkWI/AAAAAAAAe3o/ShJX8l8V20cmENfwoL0iij0uZm_wHfwaQCNcBGAsYHQ/w208-h349/1630063309993121-0.png"></a></p><p><em><strong>承接<a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#">使用PWM控制伺服馬達-micropython</a>這篇，透過node-red加入mqtt訂閱主題控制二軸云台</strong></em></p><p><em><strong>有一些感想紀錄下來，我發現其實像mqtt或者wifi連網，大都是固定一個寫法，其它不同的模組分為讀取數值或用數值受控制的元件，只要套用上去就可以。</strong></em></p><p><em><strong>首先主要是被控制的伺服馬達，所以先把它測試一下，參考這篇（<a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#">點我</a>）</strong></em></p><p><em><strong>測試好之後，就可以開始加入wifi和mqtt了，但因為我用的是樹莓派建立的ＭQTT，所以這陪分前提是要有樹苺派，如何在樹苺派上建立Ｎode-RED和MQTT，可以參考這篇（<a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#">點我</a>）。</strong></em></p><hr><h2 id="Node-RED設定"><a href="#Node-RED設定" class="headerlink" title="Node-RED設定"></a>Node-RED設定</h2><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-GksKBPZ26_o/YSpWJWFmwhI/AAAAAAAAe4E/6peztH_jPDgTVkrbfKGBriWMdPbxcnCyACNcBGAsYHQ/w654-h368/3.jpg"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/w661-h370/1.jpg"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/w654-h368/2.jpg"></a></p><h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import SLEEP, Pin, PWM, freq    from time import sleep    from umqtttsimple import MQTTClient    import binascii, micropython, network, time, socket, machine    ssid &#x3D; &quot;------------&quot;    password &#x3D; &quot;-------&quot;    mqtt_server &#x3D; &quot;192.168.210.22&quot;    #將客戶端ID轉換為16進位,以便MQTT伺服端讀取    mqtt_id &#x3D; binascii.hexlify(machine.unique_id())    #和Nord-RED上的主題一致    client_servoPan &#x3D; b&#39;esp32&#x2F;servoPan&#39;    client_servoTilt &#x3D; b&#39;esp32&#x2F;servoTilt&#39;    servo_pan &#x3D; PWM(Pin(13), freq&#x3D;50)    servo_tilt &#x3D; PWM(Pin(14), freq&#x3D;50)    #wifi連線    def wifiConn():        wifi &#x3D; network.WLAN(network.STA_IF)        wifi.active(True)        wifi.connect(ssid, password)        while wifi.isconnected() &#x3D;&#x3D; False:           pass        print(&quot;Connected successful!&quot;)        print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))    #樹莓派上的mqtt回應訂閱    # Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值    def callBack(topic, msg):       ang0 &#x3D; int(1023*0.025)       ang90 &#x3D; int(1023*0.0725)       ang180 &#x3D; int(1023*0.12)       print((topic, msg))       if topic &#x3D;&#x3D; client_servoPan:            servo_pan.duty(int(msg))            sleep(0.5)        elif topic &#x3D;&#x3D; client_servoTilt:            servo_tilt.duty(int(msg))            sleep(0.5)    #連線MQTT,連線成功後訂閱主題    def connToMqtt():        try:            client &#x3D; MQTTClient(mqtt_id, mqtt_server)            client.set_callback(callBack)            client.connect()            client.subscribe(client_servoPan)            client.subscribe(client_servoTilt)            print(&quot;connect to %s&quot;%mqtt_server)            return client            #如果無法連線重新連線        except OSError as e:            print(&quot;not to connected for MQTT server!&quot;)            machine.reset()        wifiConn()        client &#x3D; connToMqtt()        while True:            #檢查有無進來的訊息            client.check_msg()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>調過等待時間還是會偶爾抖動，雖然不知道抖動原在哪，先這樣好了，下次再來抓原因。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> micropython </category>
+          
+          <category> esp32 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mqtt </tag>
+            
+            <tag> node-red </tag>
+            
+            <tag> 二軸云台 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用PWM控制伺服馬達-micropython</title>
+      <link href="/2021/08/31/%E4%BD%BF%E7%94%A8PWM%E6%8E%A7%E5%88%B6%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94-micropython/"/>
+      <url>/2021/08/31/%E4%BD%BF%E7%94%A8PWM%E6%8E%A7%E5%88%B6%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94-micropython/</url>
+      
+        <content type="html"><![CDATA[<h1 id="使用PWM控制伺服馬達-micropython"><a href="#使用PWM控制伺服馬達-micropython" class="headerlink" title="使用PWM控制伺服馬達-micropython"></a>使用PWM控制伺服馬達-micropython</h1><h6 id="tags-micropython-servo-pwm"><a href="#tags-micropython-servo-pwm" class="headerlink" title="tags: micropython servo pwm"></a>tags: <code>micropython</code> <code>servo</code> <code>pwm</code></h6><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-nxgapjbWx68/YSXYndzzCVI/AAAAAAAAe2s/qsMvSksBD3YRlIHAnQ1wzBKyuROmzx90wCNcBGAsYHQ/w233-h233/dc05cb93dcb58dbc3887b14f60cced9f.jpg"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-KvFNc38Zvsw/YSc_jvO-Z-I/AAAAAAAAe3E/Xf2ZHTfM3HMVetVEdGSkgsNEtmL5KNx9wCNcBGAsYHQ/w450-h329/image.png"></a></p><p><em>伺服電機可以從 0 度旋轉到 180 度，但最多可以旋轉 210 度，具體取決於製造。可以通過將適當寬度的電脈衝應用到其控制引腳來控制這種旋轉程度。伺服每 20 毫秒檢查一次脈衝。 1 ms（1毫秒）寬度的脈衝可以將伺服旋轉到0度，1.5ms可以旋轉到90度（中位），2 ms脈衝可以將其旋轉到180度。</em></p><h3 id="接線方式"><a href="#接線方式" class="headerlink" title="接線方式"></a>接線方式</h3><pre class="line-numbers language-none"><code class="language-none">-   GND -&gt; ESP32 GND pin;-   Power -&gt; ESP32 VIN pin;-   Signal -&gt; GPIO 13 (or any PWM pin).<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/05/servo-esp32-schematic.png?w=750&quality=100&strip=all&ssl=1"></a></p><hr><p>將頻率設置為 50Hz（每 20ms 一個週期），並將佔空值設置在 18（18/1023 * 20ms = 0.35ms）和 115（115/1023 * 20ms = 2.24ms）之間。佔空比可以介於 0 和 1023 之間（包括 0 和 1023）。</p><h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><pre class="line-numbers language-py" data-language="py"><code class="language-py">from   machine   import Pin, PWM, freq from   time   import sleepservo &#x3D; PWM(Pin(13), freq&#x3D;50) while   True: for i in   range(18, 115+1, 1):    servo.duty(i) print(i)    sleep(0.05) for j in   range(115, 18, -1):    servo.duty(j) print(j)    sleep(0.05)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="video-container"><iframe src="https://www.youtube.com/embed/RYo2gCq5bHs" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> micropython </category>
+          
+          <category> esp32 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 伺服馬達 </tag>
+            
+            <tag> pwm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用AdafriutIO-dashboards控制Neopixel燈條-mpython</title>
+      <link href="/2021/08/31/%E4%BD%BF%E7%94%A8AdafriutIO-dashboards%E6%8E%A7%E5%88%B6Neopixel%E7%87%88%E6%A2%9D-mpython/"/>
+      <url>/2021/08/31/%E4%BD%BF%E7%94%A8AdafriutIO-dashboards%E6%8E%A7%E5%88%B6Neopixel%E7%87%88%E6%A2%9D-mpython/</url>
+      
+        <content type="html"><![CDATA[<h1 id="使用AdafriutIO-dashboards控制Neopixel燈條—mpython"><a href="#使用AdafriutIO-dashboards控制Neopixel燈條—mpython" class="headerlink" title="使用AdafriutIO-dashboards控制Neopixel燈條—mpython "></a>使用AdafriutIO-dashboards控制Neopixel燈條—mpython </h1><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-cVHwv_2MP58/YSIGKZsNVcI/AAAAAAAAe1w/BSS8S2Djsdw_1SEMWfJY1uIktxKS1z32QCNcBGAsYHQ/s1600/1629619750586415-0.png"></a></p><p>原本是打算使用Nord-RED或直接網頁控制，但還沒搞的很懂尤其寫網頁的部份，偶然在網路上搜到原來Adafruit也有出Dashboards但是好像只能試用30天,但是沒關係,多認識一點不同的平台也很好</p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjlieYsbPBn1UuHG6PZ97RRYbs6KEvN2HxI72y-LJD7L6Ic3sO2YhDqITLgXaCdjXXHJon9tcwguGwpMkfvfWw78X159s06LidRU3hnkIKKUCXSl4vykxg_VeVnMx4P53soBogM859XkN0aIM2llnLBIdDgUNSf8KOgvF7829RFXvZTT5jpS3GoNfuV=w756-h340"></a></p><h2 id="註冊方法"><a href="#註冊方法" class="headerlink" title="註冊方法"></a>註冊方法</h2><p>先到這裡註冊-<a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#">https://io.adafruit.com/</a></p><p><strong>接下來，我們在 Adafruit IO 中為 NeoPixels 的顏色創建</strong></p><p><strong>三個“紅色”、“藍色”和“綠色”。</strong></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhetlOMC0TagcGwntqDqn7FKiERvA5huakDm1IdKahfIP3bYvvryKTyug_RtOVMlTOcRGiZYj5t4RTiuSdgpWJXtQOTU42LOcYWpGGvtaMfsQJwvLSdSzX8XKZpxKR6F0ftzjHS7_r3tjGgXCqfbD7vrLIYSuCk_giv67Rc1I5ctxClSfiUeiuLgtEt=w705-h396"></a></p><p><strong>然後點進去剛創建好的群組裡,接著下個步驟</strong></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEj6RG-m_TeWeKqicaJpz9bcBigSrZAfK-WJw5ZbWenwVs1L3juy6DgQQXkuihzYT1-69ahMSWl3Gc28vk_moDEnWlSr6otX3LD7UexOLqfBNkYVg3bBdPs0qD_RhYZtlZj2UmPPFLOaVtNJE9NbilZbm-ooDcZCmiUnIybvd7-immAFtTMgPPgf2CWG=w706-h397"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEijTp10Lu54QE-xSs5jJfuj77jPINW04CsWA5rRaz9TPUTMC9hojaAJ-fy_7zdeVH1qxsFz6CmPiSQDZ9_I2asrxeC68gexCQPw9-sxcq31s71dOfaDJBN2gOPdlFQXycNKXNlW3iwgMP732kfwdDXYla_7Tch0bnhOPGTNjhxFoybgqQD4SBvFERAN=w717-h346"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjzFLj2w4H2uC0NBX5VZhcDqocyQQaipI5FZvp2DE9jz3t4g1fWxNDbYKtEWDGE9UaLyMikn8735cUqoO485LQXvtN8-253MuGS0DlfDTcKQpEGo8hu-jW_FRnJWVxBfmytXIVo_za-xY9zB7wyoDm7UH3Azsxtn8pWJeB6lhastTx1pz3HG7DHKESP=w638-h321"></a></p><p>最後，我們調整塊的設置。每個 RGB 值都是一個從 0 到 255 的整數。我們相應地配置滑塊。完成後，點擊“CREATE  BLOCK”。</p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhPkZQjS1KUFI0BHw_U53DbxNnecF1yVmoN53ywLBHutePItXyFDDkFawQSuJSqg9LXwyRul9xTBSaKBjUPkag3O6N73NYW7xLVdHGdvxARhmd6MX20m_JX1DehXJmjSLsUcrLgLTe0tlyNbvU-5zG5OOKOioVsbel8Wg5U9qzD9PIhhrFF13QHUkur=w578-h577"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEipULTiF0bUIzSpuS9rBT74qs50-5AwD-znuzTZenklfN-IUt8xFDlwlEmi6T0Sv3R_C07FevYUug1WhXx0wIoLSGzoKwwYnygOqOBq0hH3KoGjeh9oTL4JYuPM9NCPmxmLKHy_F9oCDKBomsi4UwXRbRt5py0-R-Rh8F0cdgNw-5bNy__xoh82TOA7=w580-h270"></a></p><h2 id="API的key和username"><a href="#API的key和username" class="headerlink" title="API的key和username"></a>API的key和username</h2><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEj1e_X33v_8Ph1NqUBt6mxZcJmITGm_8lqSrh-juRffRbcAGzULrQxlpdcsziaTXxu-SaypAufAknZWhR2EohZuiyZMHQxCFAZOXVxsxFF4Sh1NnYgO8W5JIKjDU9ZJ-8qXMFVfeM34uTjC3bdGNCNDzR-cDV2Sv6Ua9nMl9DvbQAPCe9c4FfCs0nov=w721-h349"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEj0PmRpwogxOdAAC38TA7jiyH4cIcHQmowD8YSHVMBT4ZKsnTXGvjzcExOR8NpUODB3K_D3mMQdV3of2bDlnH9q1orXb6AxbJgz5hXAhFJITGC9LtrN2SWlvVVAsLjuQGFKNKKX7TXdvzIR8_RkgZrn7aC73Qq5wWCzRMUnBD-lyAEHCdIWCSokv7Tf=w735-h356"></a></p><h2 id="程式的部份"><a href="#程式的部份" class="headerlink" title="程式的部份"></a>程式的部份</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pinfrom neopixel import NeoPixelfrom time import sleepimport networkimport urequests as requestsimport ujson  # Wifi credentialswifi_ssid &#x3D; &quot;C--&quot;wifi_password &#x3D; &quot;c----------&quot;  # Adafruit IO authenticationaio_key &#x3D; &quot;aio_iaRV12GqVjk*************&quot;username &#x3D; &quot;bl-----&quot;headers &#x3D; &#123;&#39;X-AIO-Key&#39;: aio_key, &#39;Content-Type&#39;: &#39;application&#x2F;json&#39;&#125;  # Don&#39;t forget the NeoPixels!np &#x3D; NeoPixel(Pin(4), 8)feed_names &#x3D; [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]rgb_values &#x3D; &#123;&#39;red&#39;: 0, &#39;green&#39;: 0, &#39;blue&#39;: 0&#125;  # Connect to Wifidef wifiConn():  wifi &#x3D; network.WLAN(network.STA_IF)  wifi.active(True)  wifi.connect(wifi_ssid, wifi_password)  while wifi.isconnected() &#x3D;&#x3D; False:      pass  print(&quot;Conn successful!&quot;)def create_URL(feedname):    url &#x3D; &quot;https:&#x2F;&#x2F;io.adafruit.com&#x2F;api&#x2F;v2&#x2F;&quot; + username + &quot;feeds&quot; + feedname + &quot;data&#x2F;last&quot;    return url  wifiConn()while True:  for colors in feed_names:    res &#x3D; requests.get(create_URL(colors), headers&#x3D;headers)    json &#x3D; ujson.loads(res.text)    rgb_values[colors] &#x3D; int(json[&#39;value&#39;])    print(rgb_values[colors])    for i in range(8):      np[i] &#x3D; (rgb_values[&#39;red&#39;], rgb_values[&#39;green&#39;], rgb_values[&#39;blue&#39;])      np.write()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><p>**數組 feed_names 包含我們在 Adafruit IO 中創建的提要的名稱，字典 rgb_values 用於存儲從 Adafruit IO 下載的值。  </p><p>由於我們需要獲取三個提要的值，並且每個提要都有自己的 URL，因此我們創建了一個函數來生成所需的 URL。**</p><pre class="line-numbers language-py" data-language="py"><code class="language-py">def create_URL(feedname):    url &#x3D; &quot;https:&#x2F;&#x2F;io.adafruit.com&#x2F;api&#x2F;v2&#x2F;&quot; + username +  &quot;feeds&quot; + feedname + &quot;data&#x2F;last&quot;    return url<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><strong>在主循環中，對於每個提要“紅色”、“綠色”和“藍色”，我們向 Adafruit IO 發送一個 HTTP GET 請求，其中包含由 create_URL 函數和標頭字典生成的 URL。</strong></p><pre class="line-numbers language-py" data-language="py"><code class="language-py">response &#x3D; requests.get(create_URL(color), headers&#x3D;headers)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>然後，我們使用 ujson 庫中的加載函數將從 Adafruit IO 接收到的 JSON 文本轉換為 Python 字典。這種轉換稱為解析。</strong></p><pre class="line-numbers language-py" data-language="py"><code class="language-py">parsed &#x3D; ujson.loads(response.text)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>從解析的 Python 字典中，我們得到提要的最新值（它是一個字符串）並將其轉換為整數。</strong></p><pre class="line-numbers language-py" data-language="py"><code class="language-py">value &#x3D; int(parsed[&#39;value&#39;])<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>將所有 RGB 值保存到字典 rgb_values 後，我們可以相應地設置 NeoPixels 的顏色。</strong></p><div class="video-container"><iframe src="https://www.youtube.com/embed/C0Zg5kyytOs" frameborder="0" loading="lazy" allowfullscreen></iframe></div><p><strong><em>參考</em></strong></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#">https://gpiocc.github.io/learn/micropython/esp/2020/05/30/martin-ku-control-neopixels-over-the-internet-with-esp32-and-micropython.html</a></p><p>example-<a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/9124050194814696260?hl=zh-TW#">https://github.com/martin-ku-hku/control-neopixels-over-the-internet-with-esp32-and-micropython/blob/master/neopixel_on_off.py</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> micropython </category>
+          
+          <category> esp32 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AdafriutIO </tag>
+            
+            <tag> Neopixel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WS2812B燈條實作-miropython</title>
+      <link href="/2021/08/31/WS2812B%E7%87%88%E6%A2%9D%E5%AF%A6%E4%BD%9C-miropython/"/>
+      <url>/2021/08/31/WS2812B%E7%87%88%E6%A2%9D%E5%AF%A6%E4%BD%9C-miropython/</url>
+      
+        <content type="html"><![CDATA[<h1 id="WS2812B燈條實作-miropython"><a href="#WS2812B燈條實作-miropython" class="headerlink" title="WS2812B燈條實作-miropython"></a>WS2812B燈條實作-miropython</h1><p>在miropython有一個內建的RGB燈條的程式庫，可以很方便的拿來運用<br>但我發現我灌最近新的mpython系統時，沒有支援了，不過沒關係，可以找一下這個庫把它手動上傳到板子上。</p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/322977569325795009?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-Us7c722XoqM/YRXSivbTxcI/AAAAAAAAey8/h3Lamsa2HT0RB2NZUNh0pajwCl2NkzCCACNcBGAsYHQ/s1600/1628820075297015-0.png"></a></p><h2 id="neopixel-py程式庫在此下載-neopixel-py"><a href="#neopixel-py程式庫在此下載-neopixel-py" class="headerlink" title="neopixel.py程式庫在此下載-neopixel.py"></a>neopixel.py程式庫在此下載-<a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/322977569325795009?hl=zh-TW#">neopixel.py</a></h2><p>並上傳到板子後</p><p>將 RGB LED 燈條連接到 ESP32 或 ESP8266 非常簡單。您需要將 5V 施加到 VCC 引腳，GND 到 GND，並將 GPIO 5連接到 IN（數據）引腳。我們將數據引腳連接到 GPIO 5。</p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/322977569325795009?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-fUXQhZg0HFw/YRXRFihwvBI/AAAAAAAAey0/RH-qjp4k5YIGzTRQ_XXrT2rthb8xEnkLgCNcBGAsYHQ/w503-h378/image.png"></a></p><pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pin, sleepimport neopixelimport timen &#x3D; 8 #燈條數p &#x3D; 5 #GPIO  np &#x3D; neopixel.NeoPixel(Pin(p), n)while True:  for i in range(n):    np[i] &#x3D; (100, 45, 230)    time.sleep_ms(30)    np.write()  for j in range(n):    np[j]&#x3D;(10,130,50)    time.sleep_ms(60)    np.write()  for x in range(n):      np[x] &#x3D; (255, 200, 50)      time.sleep_ms(10)      np.write()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> micropython </category>
+          
+          <category> esp32 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WS2812B </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MQTT-Node-RED顯示超音波測距數據+控制LED-micropython</title>
       <link href="/2021/08/31/MQTT-Node-RED%E9%A1%AF%E7%A4%BA%E8%B6%85%E9%9F%B3%E6%B3%A2%E6%B8%AC%E8%B7%9D%E6%95%B8%E6%93%9A-%E6%8E%A7%E5%88%B6LED-micropython/"/>
       <url>/2021/08/31/MQTT-Node-RED%E9%A1%AF%E7%A4%BA%E8%B6%85%E9%9F%B3%E6%B3%A2%E6%B8%AC%E8%B7%9D%E6%95%B8%E6%93%9A-%E6%8E%A7%E5%88%B6LED-micropython/</url>
