@@ -472,66 +472,66 @@
 <h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><strong>＊記得L298N的GND要拉一條到ESP32的GND，否則馬達不會動作</strong></p>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4739341746141337289?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-emtD7l8K7IE/YQdpsc_-zqI/AAAAAAAAem8/bIDZQ1CeGIUjmlgIgJlSfQI3DE1emAINQCNcBGAsYHQ/w534-h701/ESP32_1_DC_Motor_bb.png"></a></p>
 <hr>
-<h2 id="程式"><a href="#程式" class="headerlink" title="程式"></a>程式</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> PWM<span class="token punctuation">,</span> freq
+<h2 id="程式"><a href="#程式" class="headerlink" title="程式"></a>程式</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pin, PWM, freq
 
-<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+from time import sleep
 
   
-<span class="token keyword">class</span> <span class="token class-name">L298N</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+class L298N():
 
-    <span class="token keyword">def</span> __init__<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    def __init__(self):
 
-        self<span class="token punctuation">.</span>in1 <span class="token operator">=</span> Pin<span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">,</span> Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>
+        self.in1 &#x3D; Pin(26, Pin.OUT)
 
-        self<span class="token punctuation">.</span>in2 <span class="token operator">=</span> Pin<span class="token punctuation">(</span><span class="token number">27</span><span class="token punctuation">,</span> Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>
+        self.in2 &#x3D; Pin(27, Pin.OUT)
 
-        self<span class="token punctuation">.</span>enble <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq <span class="token operator">=</span> <span class="token number">5000</span><span class="token punctuation">)</span>
+        self.enble &#x3D; PWM(Pin(14), freq &#x3D; 5000)
 
-    <span class="token keyword">def</span> forward<span class="token punctuation">(</span>self<span class="token punctuation">,</span>speed<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    def forward(self,speed):
 
-        self<span class="token punctuation">.</span>speed<span class="token punctuation">(</span>speed<span class="token punctuation">)</span>
+        self.speed(speed)
 
-        self<span class="token punctuation">.</span>in1<span class="token punctuation">.</span>on<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self.in1.on()
 
-        self<span class="token punctuation">.</span>in2<span class="token punctuation">.</span>off<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self.in2.off()
 
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"forward"</span><span class="token punctuation">)</span>
+        print(&quot;forward&quot;)
 
-    <span class="token keyword">def</span> back<span class="token punctuation">(</span>self<span class="token punctuation">,</span> speed<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    def back(self, speed):
 
-        self<span class="token punctuation">.</span>speed<span class="token punctuation">(</span>speed<span class="token punctuation">)</span>
+        self.speed(speed)
 
-        self<span class="token punctuation">.</span>in1<span class="token punctuation">.</span>off<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self.in1.off()
 
-        self<span class="token punctuation">.</span>in2<span class="token punctuation">.</span>on<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self.in2.on()
 
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"back"</span><span class="token punctuation">)</span>
+        print(&quot;back&quot;)
 
-    <span class="token keyword">def</span> stop<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    def stop(self):
 
-        self<span class="token punctuation">.</span>in1<span class="token punctuation">.</span>off<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self.in1.off()
 
-        self<span class="token punctuation">.</span>in2<span class="token punctuation">.</span>off<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self.in2.off()
 
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"stop"</span><span class="token punctuation">)</span>
+        print(&quot;stop&quot;)
 
-    <span class="token keyword">def</span> speed<span class="token punctuation">(</span>self<span class="token punctuation">,</span>speed<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    def speed(self,speed):
 
-        self<span class="token punctuation">.</span>enble<span class="token punctuation">.</span>duty<span class="token punctuation">(</span>speed<span class="token punctuation">)</span>
+        self.enble.duty(speed)
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
 
-    l298n <span class="token operator">=</span> L298N<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    l298n &#x3D; L298N()
 
-    l298n<span class="token punctuation">.</span>forward<span class="token punctuation">(</span><span class="token number">800</span><span class="token punctuation">)</span>
+    l298n.forward(800)
 
-    sleep<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    sleep(3)
 
-    l298n<span class="token punctuation">.</span>back<span class="token punctuation">(</span><span class="token number">600</span><span class="token punctuation">)</span>
+    l298n.back(600)
 
-    sleep<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    sleep(3)
 
-    l298n<span class="token punctuation">.</span>stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    l298n.stop()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 
                 

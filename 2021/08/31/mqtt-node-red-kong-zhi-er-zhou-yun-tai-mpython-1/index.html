@@ -468,121 +468,121 @@
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/w661-h370/1.jpg"></a></p>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/w654-h368/2.jpg"></a></p>
 <h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">
-from machine import SLEEP, Pin, PWM, freq
+<span class="token keyword">from</span> machine <span class="token keyword">import</span> SLEEP<span class="token punctuation">,</span> Pin<span class="token punctuation">,</span> PWM<span class="token punctuation">,</span> freq
     
-from time import sleep
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
     
-from umqtttsimple import MQTTClient
+<span class="token keyword">from</span> umqtttsimple <span class="token keyword">import</span> MQTTClient
     
-import binascii, micropython, network, time, socket, machine
-    
-
-ssid &#x3D; &quot;------------&quot;
-    
-password &#x3D; &quot;-------&quot;
-    
-mqtt_server &#x3D; &quot;192.168.210.22&quot;
-    
-#將客戶端ID轉換為16進位,以便MQTT伺服端讀取
-    
-mqtt_id &#x3D; binascii.hexlify(machine.unique_id())
+<span class="token keyword">import</span> binascii<span class="token punctuation">,</span> micropython<span class="token punctuation">,</span> network<span class="token punctuation">,</span> time<span class="token punctuation">,</span> socket<span class="token punctuation">,</span> machine
     
 
-#和Nord-RED上的主題一致
+ssid <span class="token operator">=</span> <span class="token string">"------------"</span>
     
-client_servoPan &#x3D; b&#39;esp32&#x2F;servoPan&#39;
+password <span class="token operator">=</span> <span class="token string">"-------"</span>
     
-client_servoTilt &#x3D; b&#39;esp32&#x2F;servoTilt&#39;
+mqtt_server <span class="token operator">=</span> <span class="token string">"192.168.210.22"</span>
     
-
-servo_pan &#x3D; PWM(Pin(13), freq&#x3D;50)
+<span class="token comment">#將客戶端ID轉換為16進位,以便MQTT伺服端讀取</span>
     
-servo_tilt &#x3D; PWM(Pin(14), freq&#x3D;50)
-    
-
-#wifi連線
-    
-def wifiConn():
-    
-    wifi &#x3D; network.WLAN(network.STA_IF)
-    
-    wifi.active(True)
-    
-    wifi.connect(ssid, password)
-    
-    while wifi.isconnected() &#x3D;&#x3D; False:
-    
-       pass
-    
-    print(&quot;Connected successful!&quot;)
-    
-    print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))
+mqtt_id <span class="token operator">=</span> binascii<span class="token punctuation">.</span>hexlify<span class="token punctuation">(</span>machine<span class="token punctuation">.</span>unique_id<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     
 
-#樹莓派上的mqtt回應訂閱
+<span class="token comment">#和Nord-RED上的主題一致</span>
     
-# Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值
+client_servoPan <span class="token operator">=</span> <span class="token string">b'esp32/servoPan'</span>
     
-def callBack(topic, msg):
-    
-   ang0 &#x3D; int(1023*0.025)
-    
-   ang90 &#x3D; int(1023*0.0725)
-    
-   ang180 &#x3D; int(1023*0.12)
-    
-   print((topic, msg))
-    
-   if topic &#x3D;&#x3D; client_servoPan:
-    
-        servo_pan.duty(int(msg))
-    
-        sleep(0.5)
-    
-    elif topic &#x3D;&#x3D; client_servoTilt:
-    
-        servo_tilt.duty(int(msg))
-    
-        sleep(0.5)
+client_servoTilt <span class="token operator">=</span> <span class="token string">b'esp32/servoTilt'</span>
     
 
-#連線MQTT,連線成功後訂閱主題
+servo_pan <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span>
     
-def connToMqtt():
+servo_tilt <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span>
     
-    try:
+
+<span class="token comment">#wifi連線</span>
     
-        client &#x3D; MQTTClient(mqtt_id, mqtt_server)
+<span class="token keyword">def</span> <span class="token function">wifiConn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     
-        client.set_callback(callBack)
+    wifi <span class="token operator">=</span> network<span class="token punctuation">.</span>WLAN<span class="token punctuation">(</span>network<span class="token punctuation">.</span>STA_IF<span class="token punctuation">)</span>
     
-        client.connect()
+    wifi<span class="token punctuation">.</span>active<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
     
-        client.subscribe(client_servoPan)
+    wifi<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ssid<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
     
-        client.subscribe(client_servoTilt)
+    <span class="token keyword">while</span> wifi<span class="token punctuation">.</span>isconnected<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">False</span><span class="token punctuation">:</span>
     
-        print(&quot;connect to %s&quot;%mqtt_server)
+       <span class="token keyword">pass</span>
     
-        return client
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Connected successful!"</span><span class="token punctuation">)</span>
     
-        #如果無法連線重新連線
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"IP: &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>wifi<span class="token punctuation">.</span>ifconfig<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     
-    except OSError as e:
+
+<span class="token comment">#樹莓派上的mqtt回應訂閱</span>
     
-        print(&quot;not to connected for MQTT server!&quot;)
+<span class="token comment"># Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值</span>
     
-        machine.reset()
+<span class="token keyword">def</span> <span class="token function">callBack</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">:</span>
     
-    wifiConn()
+   ang0 <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token operator">*</span><span class="token number">0.025</span><span class="token punctuation">)</span>
     
-    client &#x3D; connToMqtt()
+   ang90 <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token operator">*</span><span class="token number">0.0725</span><span class="token punctuation">)</span>
     
-    while True:
+   ang180 <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token operator">*</span><span class="token number">0.12</span><span class="token punctuation">)</span>
     
-        #檢查有無進來的訊息
+   <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
     
-        client.check_msg()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   <span class="token keyword">if</span> topic <span class="token operator">==</span> client_servoPan<span class="token punctuation">:</span>
+    
+        servo_pan<span class="token punctuation">.</span>duty<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+        sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">elif</span> topic <span class="token operator">==</span> client_servoTilt<span class="token punctuation">:</span>
+    
+        servo_tilt<span class="token punctuation">.</span>duty<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+        sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
+    
+
+<span class="token comment">#連線MQTT,連線成功後訂閱主題</span>
+    
+<span class="token keyword">def</span> <span class="token function">connToMqtt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+    
+        client <span class="token operator">=</span> MQTTClient<span class="token punctuation">(</span>mqtt_id<span class="token punctuation">,</span> mqtt_server<span class="token punctuation">)</span>
+    
+        client<span class="token punctuation">.</span>set_callback<span class="token punctuation">(</span>callBack<span class="token punctuation">)</span>
+    
+        client<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+        client<span class="token punctuation">.</span>subscribe<span class="token punctuation">(</span>client_servoPan<span class="token punctuation">)</span>
+    
+        client<span class="token punctuation">.</span>subscribe<span class="token punctuation">(</span>client_servoTilt<span class="token punctuation">)</span>
+    
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connect to %s"</span><span class="token operator">%</span>mqtt_server<span class="token punctuation">)</span>
+    
+        <span class="token keyword">return</span> client
+    
+        <span class="token comment">#如果無法連線重新連線</span>
+    
+    <span class="token keyword">except</span> OSError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"not to connected for MQTT server!"</span><span class="token punctuation">)</span>
+    
+        machine<span class="token punctuation">.</span>reset<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    wifiConn<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    client <span class="token operator">=</span> connToMqtt<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    
+        <span class="token comment">#檢查有無進來的訊息</span>
+    
+        client<span class="token punctuation">.</span>check_msg<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>調過等待時間還是會偶爾抖動，雖然不知道抖動原在哪，先這樣好了，下次再來抓原因。</p>
 
