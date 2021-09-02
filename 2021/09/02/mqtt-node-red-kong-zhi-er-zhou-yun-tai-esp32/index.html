@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MQTT&amp;node-RED控制二軸云台-mpython, 我的微控板實驗室">
+    <meta name="keywords" content="MQTT-Node-RED控制二軸云台-ESP32, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MQTT&amp;node-RED控制二軸云台-mpython | 我的微控板實驗室</title>
+    <title>MQTT-Node-RED控制二軸云台-ESP32 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MQTT&amp;node-RED控制二軸云台-mpython</h1>
+                    <h1 class="description center-align post-title">MQTT-Node-RED控制二軸云台-ESP32</h1>
                 </div>
             </div>
         </div>
@@ -399,6 +399,10 @@
                                 <span class="chip bg-color">二軸云台</span>
                             </a>
                         
+                            <a href="/tags/servo/">
+                                <span class="chip bg-color">servo</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -424,14 +428,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2021-08-31
+                    2021-09-02
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-31
+                    2021-09-02
                 </div>
                 
 
@@ -458,134 +462,252 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MQTT-amp-node-RED控制二軸云台-mpython"><a href="#MQTT-amp-node-RED控制二軸云台-mpython" class="headerlink" title="MQTT&amp;node-RED控制二軸云台-mpython"></a>MQTT&amp;node-RED控制二軸云台-mpython</h1><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-sqJOZzdBnks/YSjK1HOEkWI/AAAAAAAAe3o/ShJX8l8V20cmENfwoL0iij0uZm_wHfwaQCNcBGAsYHQ/w208-h349/1630063309993121-0.png"></a></p>
-<p><em><strong>承接<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#">使用PWM控制伺服馬達-micropython</a>這篇，透過node-red加入mqtt訂閱主題控制二軸云台</strong></em></p>
-<p><em><strong>有一些感想紀錄下來，我發現其實像mqtt或者wifi連網，大都是固定一個寫法，其它不同的模組分為讀取數值或用數值受控制的元件，只要套用上去就可以。</strong></em></p>
-<p><em><strong>首先主要是被控制的伺服馬達，所以先把它測試一下，參考這篇（<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#">點我</a>）</strong></em></p>
-<p><em><strong>測試好之後，就可以開始加入wifi和mqtt了，但因為我用的是樹莓派建立的ＭQTT，所以這陪分前提是要有樹苺派，如何在樹苺派上建立Ｎode-RED和MQTT，可以參考這篇（<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#">點我</a>）。</strong></em></p>
+                <h1 id="MQTT-Node-RED控制二軸云台-ESP32"><a href="#MQTT-Node-RED控制二軸云台-ESP32" class="headerlink" title="MQTT-Node-RED控制二軸云台-ESP32"></a>MQTT-Node-RED控制二軸云台-ESP32</h1><h6 id="tags-esp32-servo-node-red-mqtt"><a href="#tags-esp32-servo-node-red-mqtt" class="headerlink" title="tags: esp32 servo node-red mqtt"></a>tags: <code>esp32</code> <code>servo</code> <code>node-red</code> <code>mqtt</code></h6><p><em>伺服馬達對於微控板玩家一定是再熟悉不過，也是入門必學的元件之一，只是特別要注意如果要控制２個以上的伺服馬達，一定要使用外接電源或者PCA9685。</em></p>
+<p><em>伺服馬達有很多款，小型常用的就屬SG-90，它是塑膠齒輪，還有一種是金屬齒輪</em></p>
+<h2 id="伺服馬達的規格"><a href="#伺服馬達的規格" class="headerlink" title="伺服馬達的規格"></a>伺服馬達的規格</h2><h3 id="SG-90規格"><a href="#SG-90規格" class="headerlink" title="SG-90規格"></a>SG-90規格</h3><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-nxgapjbWx68/YSXYndzzCVI/AAAAAAAAe2s/qsMvSksBD3YRlIHAnQ1wzBKyuROmzx90wCNcBGAsYHQ/w233-h233/dc05cb93dcb58dbc3887b14f60cced9f.jpg"></a></p>
+<ul>
+<li>  工作電壓：4.8V.</li>
+<li>  轉矩：1.8kg-cm</li>
+<li>  運轉速度：0.1秒∕ 60度</li>
+<li>  轉動角度：最大90°</li>
+<li>脈衝寬度範圍：500~2400µs.</li>
+</ul>
+<h3 id="MG90S規格"><a href="#MG90S規格" class="headerlink" title="MG90S規格"></a>MG90S規格</h3><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-ClUAItIjGJ4/YSXY8XrU1pI/AAAAAAAAe20/pIH_GpNA5Cgnlsx45QZJ1nlS6Uu6_xsdACNcBGAsYHQ/w273-h273/180303000000b-800x800.jpg"></a></p>
+<ul>
+<li>  金屬銅齒、空心杯電機、雙滾珠軸承</li>
+<li>  產品型號：<strong>MG90s</strong>.</li>
+<li>  扭力：2.0kg(4.8v)</li>
+<li>  運轉速度：0.11s(4.8v)</li>
+<li>  轉動角度：最大90°/180°</li>
+<li>舵機類型：數字舵機</li>
+</ul>
+<ol>
+<li> <em>此次實驗以MG-90為主</em></li>
+<li> <em>要控制伺服馬達有兩種方式，一種是利用PWM，另一種是使用現有的庫包來控制，本次實驗以庫包為主</em></li>
+</ol>
+<h2 id="首先安裝"><a href="#首先安裝" class="headerlink" title="首先安裝"></a>首先安裝</h2><p> <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">ESP32 Arduino Servo Library</a></p>
+<h2 id="接線方式"><a href="#接線方式" class="headerlink" title="接線方式"></a>接線方式</h2><ul>
+<li>  GND -&gt; ESP32 GND pin;</li>
+<li>  Power -&gt; ESP32 VIN pin;</li>
+<li>Signal -&gt; GPIO 13 (or any PWM pin).  <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/05/servo-esp32-schematic.png?w=750&quality=100&strip=all&ssl=1"></a></li>
+</ul>
+<h2 id="進行實驗"><a href="#進行實驗" class="headerlink" title="進行實驗"></a>進行實驗</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;ESP32Servo.h&gt;
+
+Servo myservo;
+
+int pos &#x3D; 20;
+
+const int pin &#x3D; 12;
+
+void setup()&#123;
+
+  Serial.begin(115200);
+
+  myservo.attach(pin, 500, 2400);
+
+&#125;
+
+void loop()&#123;
+
+  for (pos&#x3D;20; pos&lt;&#x3D;160; pos+&#x3D;3)&#123;
+
+    myservo.write(pos);
+
+    delay(100);
+
+  &#125;
+
+  for (pos&#x3D;160; pos&gt;&#x3D;20; pos-&#x3D;3)&#123;
+
+    myservo.write(pos);
+
+    delay(100);
+
+  &#125;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
-<h2 id="Node-RED設定"><a href="#Node-RED設定" class="headerlink" title="Node-RED設定"></a>Node-RED設定</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-GksKBPZ26_o/YSpWJWFmwhI/AAAAAAAAe4E/6peztH_jPDgTVkrbfKGBriWMdPbxcnCyACNcBGAsYHQ/w654-h368/3.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/w661-h370/1.jpg"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/4999901201185761586?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/w654-h368/2.jpg"></a></p>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">
-<span class="token keyword">from</span> machine <span class="token keyword">import</span> SLEEP<span class="token punctuation">,</span> Pin<span class="token punctuation">,</span> PWM<span class="token punctuation">,</span> freq
-    
-<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
-    
-<span class="token keyword">from</span> umqtttsimple <span class="token keyword">import</span> MQTTClient
-    
-<span class="token keyword">import</span> binascii<span class="token punctuation">,</span> micropython<span class="token punctuation">,</span> network<span class="token punctuation">,</span> time<span class="token punctuation">,</span> socket<span class="token punctuation">,</span> machine
-    
+<h2 id="先備妥樹莓派上所須的軟硬體"><a href="#先備妥樹莓派上所須的軟硬體" class="headerlink" title="先備妥樹莓派上所須的軟硬體"></a><strong>先備妥樹莓派上所須的軟硬體</strong></h2><ol>
+<li> <strong><em>安裝<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">Mosquitto broker</a>(如果沒玩過樹莓派,請連結<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">這裡</a>安裝樹莓派系統和<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">如</a></em></strong></li>
+<li> <strong><em><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">何使用SSH和VNC鏡像</a>)</em></strong></li>
+<li> <strong><em>安裝 <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">Node-RED installed</a>  和 <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">Node-RED Dashboard</a>在樹莓派上。</em></strong></li>
+<li> <strong>_備註:安裝Node-RED時若出現錯誤訊息改用下面所附下載 _****<em>bash &lt;(curl -sL <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered">https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered</a>)</em></strong></li>
+</ol>
+<hr>
+<h2 id="布署Node-RED"><a href="#布署Node-RED" class="headerlink" title="布署Node-RED"></a>布署Node-RED</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-GksKBPZ26_o/YSpWJWFmwhI/AAAAAAAAe4E/6peztH_jPDgTVkrbfKGBriWMdPbxcnCyACNcBGAsYHQ/w731-h411/3.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/s661/1.jpg"><img src="https://1.bp.blogspot.com/-bIpsZvvgG6Y/YSpVzj9SmhI/AAAAAAAAe34/-V-RirefCUETcVru84SLRomgYX3EzNOnQCNcBGAsYHQ/w793-h444/1.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/s654/2.jpg"><img src="https://1.bp.blogspot.com/-AS8DJhdGX5Q/YSpV8K4e0hI/AAAAAAAAe38/1h6rhTpCw1wwJ_hmA4QAZDDkU-6MBBANwCNcBGAsYHQ/w761-h428/2.jpg"></a></p>
+<hr>
+<p><em><strong>須匯入<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">ESP32Servo.h</a>和<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/8073202486984569203?hl=zh-TW#">PubSubClient.h</a></strong></em></p>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;ESP32Servo.h&gt;
 
-ssid <span class="token operator">=</span> <span class="token string">"------------"</span>
-    
-password <span class="token operator">=</span> <span class="token string">"-------"</span>
-    
-mqtt_server <span class="token operator">=</span> <span class="token string">"192.168.210.22"</span>
-    
-<span class="token comment">#將客戶端ID轉換為16進位,以便MQTT伺服端讀取</span>
-    
-mqtt_id <span class="token operator">=</span> binascii<span class="token punctuation">.</span>hexlify<span class="token punctuation">(</span>machine<span class="token punctuation">.</span>unique_id<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    
+#include &lt;WiFi.h&gt;
 
-<span class="token comment">#和Nord-RED上的主題一致</span>
-    
-client_servoPan <span class="token operator">=</span> <span class="token string">b'esp32/servoPan'</span>
-    
-client_servoTilt <span class="token operator">=</span> <span class="token string">b'esp32/servoTilt'</span>
-    
+#include &lt;PubSubClient.h&gt;
 
-servo_pan <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span>
-    
-servo_tilt <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span>
-    
+  
 
-<span class="token comment">#wifi連線</span>
-    
-<span class="token keyword">def</span> <span class="token function">wifiConn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    
-    wifi <span class="token operator">=</span> network<span class="token punctuation">.</span>WLAN<span class="token punctuation">(</span>network<span class="token punctuation">.</span>STA_IF<span class="token punctuation">)</span>
-    
-    wifi<span class="token punctuation">.</span>active<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-    
-    wifi<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ssid<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
-    
-    <span class="token keyword">while</span> wifi<span class="token punctuation">.</span>isconnected<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">False</span><span class="token punctuation">:</span>
-    
-       <span class="token keyword">pass</span>
-    
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Connected successful!"</span><span class="token punctuation">)</span>
-    
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"IP: &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>wifi<span class="token punctuation">.</span>ifconfig<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    
+&#x2F;&#x2F;伺服馬達初始化
 
-<span class="token comment">#樹莓派上的mqtt回應訂閱</span>
-    
-<span class="token comment"># Duty 就為 2.5％、7.25％、12％，並 x1024 後可以轉換成 PWM Duty填入的數值</span>
-    
-<span class="token keyword">def</span> <span class="token function">callBack</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    
-   ang0 <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token operator">*</span><span class="token number">0.025</span><span class="token punctuation">)</span>
-    
-   ang90 <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token operator">*</span><span class="token number">0.0725</span><span class="token punctuation">)</span>
-    
-   ang180 <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token operator">*</span><span class="token number">0.12</span><span class="token punctuation">)</span>
-    
-   <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    
-   <span class="token keyword">if</span> topic <span class="token operator">==</span> client_servoPan<span class="token punctuation">:</span>
-    
-        servo_pan<span class="token punctuation">.</span>duty<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    
-        sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
-    
-    <span class="token keyword">elif</span> topic <span class="token operator">==</span> client_servoTilt<span class="token punctuation">:</span>
-    
-        servo_tilt<span class="token punctuation">.</span>duty<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    
-        sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
-    
+Servo myservoPan, myservoTilt;
 
-<span class="token comment">#連線MQTT,連線成功後訂閱主題</span>
-    
-<span class="token keyword">def</span> <span class="token function">connToMqtt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-    
-        client <span class="token operator">=</span> MQTTClient<span class="token punctuation">(</span>mqtt_id<span class="token punctuation">,</span> mqtt_server<span class="token punctuation">)</span>
-    
-        client<span class="token punctuation">.</span>set_callback<span class="token punctuation">(</span>callBack<span class="token punctuation">)</span>
-    
-        client<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    
-        client<span class="token punctuation">.</span>subscribe<span class="token punctuation">(</span>client_servoPan<span class="token punctuation">)</span>
-    
-        client<span class="token punctuation">.</span>subscribe<span class="token punctuation">(</span>client_servoTilt<span class="token punctuation">)</span>
-    
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connect to %s"</span><span class="token operator">%</span>mqtt_server<span class="token punctuation">)</span>
-    
-        <span class="token keyword">return</span> client
-    
-        <span class="token comment">#如果無法連線重新連線</span>
-    
-    <span class="token keyword">except</span> OSError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-    
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"not to connected for MQTT server!"</span><span class="token punctuation">)</span>
-    
-        machine<span class="token punctuation">.</span>reset<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    
-    wifiConn<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    
-    client <span class="token operator">=</span> connToMqtt<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    
-    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-    
-        <span class="token comment">#檢查有無進來的訊息</span>
-    
-        client<span class="token punctuation">.</span>check_msg<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+const int pan &#x3D; 12;
 
-<p>調過等待時間還是會偶爾抖動，雖然不知道抖動原在哪，先這樣好了，下次再來抓原因。</p>
+const int tilt &#x3D; 13;
 
+  
+
+const char *ssid &#x3D; &quot;---&quot;;
+
+const char *password &#x3D; &quot;----&quot;;
+
+const char *mqttServer &#x3D; &quot;192.168.--.--&quot;;
+
+&#x2F;&#x2F;wifi客戶端及MQTT客戶端代數
+
+WiFiClient espClient;
+
+PubSubClient client(espClient);
+
+  
+
+&#x2F;&#x2F;wifi連線
+
+void wifiConn()&#123;
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() !&#x3D; WL_CONNECTED)&#123;
+
+    Serial.print(&quot;.&quot;);
+
+    delay(500);
+
+  &#125;
+
+  Serial.println(&quot;Connected successful!&quot;);
+
+  &#x2F;&#x2F; Serial.print(&quot;IP: &quot;);
+
+  &#x2F;&#x2F; Serial.println(WiFi.localIP());
+
+&#125;
+
+  
+  
+
+void callBack(char *topic, byte *message, unsigned int length)&#123;
+
+  &#x2F;&#x2F;列出mqtt接收到的主題和字元
+
+  String msgPan, msgTilt;
+
+  Serial.print(&quot;topic: &quot;);
+
+  Serial.println(topic);
+
+  Serial.print(&quot;message: &quot;);
+
+  for (int i &#x3D; 0; i &lt; length; i++)&#123;
+
+    Serial.print(char(message[i]));
+
+    msgPan +&#x3D; char(message[i]);
+
+    msgTilt +&#x3D; char(message[i]);
+
+  &#125;
+
+  Serial.println();
+
+  &#x2F;&#x2F;接收到的字元如果符合就執行相應的動作
+
+  if (String(topic) &#x3D;&#x3D; &quot;esp32&#x2F;servoPan&quot;)&#123;
+
+    myservoPan.write(msgPan.toInt());
+
+    delay(100);
+
+  &#125;else if (String(topic) &#x3D;&#x3D; &quot;esp32&#x2F;servoTilt&quot;)&#123;
+
+    myservoTilt.write(msgTilt.toInt());
+
+    delay(100);
+
+  &#125;
+
+&#125;
+
+  
+
+&#x2F;&#x2F;萬一連不上mqtt就重新連線
+
+void reconnMqtt()&#123;
+
+  while (! client.connected())&#123;
+
+    Serial.println(&quot;嚐試連線MQTT...&quot;);
+
+    if (client.connect(&quot;esp32Client&quot;))&#123;
+
+      Serial.print(&quot;已連線&quot;);
+
+      client.subscribe(&quot;esp32&#x2F;servoPan&quot;);
+
+      client.subscribe(&quot;esp32&#x2F;servoTilt&quot;);
+
+    &#125;else &#123;
+
+      Serial.print(&quot;無法連線的原因是: &quot;);
+
+      Serial.print(client.state());
+
+      delay(2000);
+
+    &#125;
+
+  &#125;
+
+&#125;
+
+  
+
+void setup()&#123;
+
+  Serial.begin(115200);
+
+  &#x2F;&#x2F;伺服馬達腳位和範圍
+
+  myservoPan.attach(pan, 500, 2400);
+
+  myservoTilt.attach(tilt, 500, 2400);
+
+  wifiConn();
+
+  &#x2F;&#x2F;mqtt初始化
+
+  client.setServer(mqttServer, 1883);
+
+  &#x2F;&#x2F;監聽訂閱傳來的訊息
+
+  client.setCallback(callBack);
+
+&#125;
+
+
+void loop()&#123;
+
+  if (! client.connected())&#123;
+
+    reconnMqtt();
+
+  &#125;
+
+  client.loop();
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/eP2EA1m7cPw" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -611,7 +733,7 @@ servo_tilt <span class="token operator">=</span> PWM<span class="token punctuati
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/08/31/mqtt-node-red-kong-zhi-er-zhou-yun-tai-mpython-1/">https://blairan.github.io/2021/08/31/mqtt-node-red-kong-zhi-er-zhou-yun-tai-mpython-1/</a>
+                    <a href="https://blairan.github.io/2021/09/02/mqtt-node-red-kong-zhi-er-zhou-yun-tai-esp32/">https://blairan.github.io/2021/09/02/mqtt-node-red-kong-zhi-er-zhou-yun-tai-esp32/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -659,6 +781,10 @@ servo_tilt <span class="token operator">=</span> PWM<span class="token punctuati
                             
                                 <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
                                     <span class="chip bg-color">二軸云台</span>
+                                </a>
+                            
+                                <a href="/tags/servo/">
+                                    <span class="chip bg-color">servo</span>
                                 </a>
                             
                         </div>
@@ -970,9 +1096,10 @@ servo_tilt <span class="token operator">=</span> PWM<span class="token punctuati
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/02/mqtt-node-red-kong-zhi-er-zhou-yun-tai-esp32/">
                     <div class="card-image">
@@ -990,9 +1117,9 @@ servo_tilt <span class="token operator">=</span> PWM<span class="token punctuati
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1009,6 +1136,7 @@ servo_tilt <span class="token operator">=</span> PWM<span class="token punctuati
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1039,13 +1167,13 @@ servo_tilt <span class="token operator">=</span> PWM<span class="token punctuati
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/31/shi-yong-pwm-kong-zhi-si-fu-ma-da-micropython/">
+                <a href="/2021/08/31/mqtt-node-red-kong-zhi-er-zhou-yun-tai-mpython-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="使用PWM控制伺服馬達-micropython">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="MQTT&amp;node-RED控制二軸云台-mpython">
                         
-                        <span class="card-title">使用PWM控制伺服馬達-micropython</span>
+                        <span class="card-title">MQTT&amp;node-RED控制二軸云台-mpython</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1077,12 +1205,16 @@ servo_tilt <span class="token operator">=</span> PWM<span class="token punctuati
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E4%BC%BA%E6%9C%8D%E9%A6%AC%E9%81%94/">
-                        <span class="chip bg-color">伺服馬達</span>
+                    <a href="/tags/mqtt/">
+                        <span class="chip bg-color">mqtt</span>
                     </a>
                     
-                    <a href="/tags/pwm/">
-                        <span class="chip bg-color">pwm</span>
+                    <a href="/tags/node-red/">
+                        <span class="chip bg-color">node-red</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
+                        <span class="chip bg-color">二軸云台</span>
                     </a>
                     
                 </div>
