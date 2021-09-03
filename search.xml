@@ -151,7 +151,7 @@
       <link href="/2021/08/31/shi-yong-pwm-kong-zhi-si-fu-ma-da-micropython/"/>
       <url>/2021/08/31/shi-yong-pwm-kong-zhi-si-fu-ma-da-micropython/</url>
       
-        <content type="html"><![CDATA[<h1 id="使用PWM控制伺服馬達-micropython"><a href="#使用PWM控制伺服馬達-micropython" class="headerlink" title="使用PWM控制伺服馬達-micropython"></a>使用PWM控制伺服馬達-micropython</h1><h6 id="tags-micropython-servo-pwm"><a href="#tags-micropython-servo-pwm" class="headerlink" title="tags: micropython servo pwm"></a>tags: <code>micropython</code> <code>servo</code> <code>pwm</code></h6><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-nxgapjbWx68/YSXYndzzCVI/AAAAAAAAe2s/qsMvSksBD3YRlIHAnQ1wzBKyuROmzx90wCNcBGAsYHQ/w233-h233/dc05cb93dcb58dbc3887b14f60cced9f.jpg"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-KvFNc38Zvsw/YSc_jvO-Z-I/AAAAAAAAe3E/Xf2ZHTfM3HMVetVEdGSkgsNEtmL5KNx9wCNcBGAsYHQ/w450-h329/image.png"></a></p><p><em>伺服電機可以從 0 度旋轉到 180 度，但最多可以旋轉 210 度，具體取決於製造。可以通過將適當寬度的電脈衝應用到其控制引腳來控制這種旋轉程度。伺服每 20 毫秒檢查一次脈衝。 1 ms（1毫秒）寬度的脈衝可以將伺服旋轉到0度，1.5ms可以旋轉到90度（中位），2 ms脈衝可以將其旋轉到180度。</em></p><h3 id="接線方式"><a href="#接線方式" class="headerlink" title="接線方式"></a>接線方式</h3><pre class="line-numbers language-none"><code class="language-none">-   GND -&gt; ESP32 GND pin;-   Power -&gt; ESP32 VIN pin;-   Signal -&gt; GPIO 13 (or any PWM pin).<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/05/servo-esp32-schematic.png?w=750&quality=100&strip=all&ssl=1"></a></p><hr><p>將頻率設置為 50Hz（每 20ms 一個週期），並將佔空值設置在 18（18/1023 * 20ms = 0.35ms）和 115（115/1023 * 20ms = 2.24ms）之間。佔空比可以介於 0 和 1023 之間（包括 0 和 1023）。</p><h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><pre class="line-numbers language-py" data-language="py"><code class="language-py">from   machine   import Pin, PWM, freq from   time   import sleepservo &#x3D; PWM(Pin(13), freq&#x3D;50) while   True: for i in   range(18, 115+1, 1):    servo.duty(i) print(i)    sleep(0.05) for j in   range(115, 18, -1):    servo.duty(j) print(j)    sleep(0.05)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="video-container"><iframe src="https://www.youtube.com/embed/RYo2gCq5bHs" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
+        <content type="html"><![CDATA[<h1 id="使用PWM控制伺服馬達-micropython"><a href="#使用PWM控制伺服馬達-micropython" class="headerlink" title="使用PWM控制伺服馬達-micropython"></a>使用PWM控制伺服馬達-micropython</h1><h6 id="tags-micropython-servo-pwm"><a href="#tags-micropython-servo-pwm" class="headerlink" title="tags: micropython servo pwm"></a>tags: <code>micropython</code> <code>servo</code> <code>pwm</code></h6><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://1.bp.blogspot.com/-nxgapjbWx68/YSXYndzzCVI/AAAAAAAAe2s/qsMvSksBD3YRlIHAnQ1wzBKyuROmzx90wCNcBGAsYHQ/w233-h233/dc05cb93dcb58dbc3887b14f60cced9f.jpg"></a></p><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-KvFNc38Zvsw/YSc_jvO-Z-I/AAAAAAAAe3E/Xf2ZHTfM3HMVetVEdGSkgsNEtmL5KNx9wCNcBGAsYHQ/w450-h329/image.png"></a></p><p><em>伺服電機可以從 0 度旋轉到 180 度，但最多可以旋轉 210 度，具體取決於製造。可以通過將適當寬度的電脈衝應用到其控制引腳來控制這種旋轉程度。伺服每 20 毫秒檢查一次脈衝。 1 ms（1毫秒）寬度的脈衝可以將伺服旋轉到0度，1.5ms可以旋轉到90度（中位），2 ms脈衝可以將其旋轉到180度。</em></p><h3 id="接線方式"><a href="#接線方式" class="headerlink" title="接線方式"></a>接線方式</h3><pre class="line-numbers language-none"><code class="language-none">-   GND -&gt; ESP32 GND pin;-   Power -&gt; ESP32 VIN pin;-   Signal -&gt; GPIO 13 (or any PWM pin).<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><a href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/05/servo-esp32-schematic.png?w=750&quality=100&strip=all&ssl=1"></a></p><hr><p>將頻率設置為 50Hz（每 20ms 一個週期），並將佔空值設置在 18（18/1023 * 20ms = 0.35ms）和 115（115/1023 * 20ms = 2.24ms）之間。佔空比可以介於 0 和 1023 之間（包括 0 和 1023）。</p><h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">from</span>   machine   <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> PWM<span class="token punctuation">,</span> freq <span class="token keyword">from</span>   time   <span class="token keyword">import</span> sleepservo <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token keyword">while</span>   <span class="token boolean">True</span><span class="token punctuation">:</span> <span class="token keyword">for</span> i <span class="token keyword">in</span>   <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    servo<span class="token punctuation">.</span>duty<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>    sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span> <span class="token keyword">for</span> j <span class="token keyword">in</span>   <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">115</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    servo<span class="token punctuation">.</span>duty<span class="token punctuation">(</span>j<span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span>    sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="video-container"><iframe src="https://www.youtube.com/embed/RYo2gCq5bHs" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
       
       
       <categories>
@@ -250,9 +250,9 @@
       
         <tags>
             
-            <tag> hc-sr04 </tag>
-            
             <tag> led </tag>
+            
+            <tag> hc-sr04 </tag>
             
             <tag> mqtt </tag>
             
@@ -345,9 +345,9 @@
             
             <tag> webserver </tag>
             
-            <tag> 伺服馬達 </tag>
-            
             <tag> servo </tag>
+            
+            <tag> 伺服馬達 </tag>
             
         </tags>
       
@@ -1407,9 +1407,9 @@
       
         <tags>
             
-            <tag> DHT11/DHT12 </tag>
-            
             <tag> webserver </tag>
+            
+            <tag> DHT11/DHT12 </tag>
             
         </tags>
       
@@ -1469,9 +1469,9 @@
             
             <tag> 二軸云台 </tag>
             
-            <tag> 伺服馬達 </tag>
-            
             <tag> servo </tag>
+            
+            <tag> 伺服馬達 </tag>
             
         </tags>
       
