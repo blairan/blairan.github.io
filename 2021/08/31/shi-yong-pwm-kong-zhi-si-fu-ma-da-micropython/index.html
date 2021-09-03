@@ -108,7 +108,7 @@
   
   <li>
     <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+      <i id="searchIcon" class="fas fa-search" title="search" style="zoom: 0.85;"></i>
     </a>
   </li>
 </ul>
@@ -266,7 +266,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/servo.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,15 +419,15 @@
             <div class="post-info">
                 
                 <div class="post-date info-break-policy">
-                    <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
+                    <i class="far fa-calendar-minus fa-fw"></i>publishDate:&nbsp;&nbsp;
                     2021-08-31
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
-                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-31
+                    <i class="far fa-calendar-check fa-fw"></i>updateDate:&nbsp;&nbsp;
+                    2021-09-03
                 </div>
                 
 
@@ -437,7 +437,7 @@
 
                 
                     <div id="busuanzi_container_page_pv" class="info-break-policy">
-                        <i class="far fa-eye fa-fw"></i>閱讀次數:&nbsp;&nbsp;
+                        <i class="far fa-eye fa-fw"></i>readCount:&nbsp;&nbsp;
                         <span id="busuanzi_value_page_pv"></span>
                     </div>
 				
@@ -463,14 +463,14 @@
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5335469614801919559?hl=zh-TW#"><img src="https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/05/servo-esp32-schematic.png?w=750&quality=100&strip=all&ssl=1"></a></p>
 <hr>
 <p>將頻率設置為 50Hz（每 20ms 一個週期），並將佔空值設置在 18（18/1023 * 20ms = 0.35ms）和 115（115/1023 * 20ms = 2.24ms）之間。佔空比可以介於 0 和 1023 之間（包括 0 和 1023）。</p>
-<h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">from</span>   machine   <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> PWM<span class="token punctuation">,</span> freq 
-<span class="token keyword">from</span>   time   <span class="token keyword">import</span> sleep
+<h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><pre class="line-numbers language-py" data-language="py"><code class="language-py">from   machine   import Pin, PWM, freq 
+from   time   import sleep
 
-servo <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token keyword">while</span>   <span class="token boolean">True</span><span class="token punctuation">:</span> <span class="token keyword">for</span> i <span class="token keyword">in</span>   <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    servo<span class="token punctuation">.</span>duty<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-    sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span> <span class="token keyword">for</span> j <span class="token keyword">in</span>   <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">115</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    servo<span class="token punctuation">.</span>duty<span class="token punctuation">(</span>j<span class="token punctuation">)</span> <span class="token keyword">print</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span>
-    sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+servo &#x3D; PWM(Pin(13), freq&#x3D;50) while   True: for i in   range(18, 115+1, 1):
+    servo.duty(i) print(i)
+    sleep(0.05) for j in   range(115, 18, -1):
+    servo.duty(j) print(j)
+    sleep(0.05)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div class="video-container"><iframe src="https://www.youtube.com/embed/RYo2gCq5bHs" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
@@ -483,7 +483,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
             <div class="reprint__author">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-user">
-                        文章作者:
+                        author:
                     </i>
                 </span>
                 <span class="reprint-info">
@@ -493,7 +493,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
             <div class="reprint__type">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-link">
-                        文章鏈接:
+                        link:
                     </i>
                 </span>
                 <span class="reprint-info">
@@ -503,13 +503,13 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
             <div class="reprint__notice">
                 <span class="reprint-meta" style="font-weight: bold;">
                     <i class="fas fa-copyright">
-                        版權聲明:
+                        reprint:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    本博客所有文章除特別聲明外，均採用
-                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
-                    許可協議。轉載請註明來源
+                    use
+                    <a href="cc_by_url" rel="external nofollow noreferrer" target="_blank">cc_by_name</a>
+                    licensed
                     <a href="/about" target="_blank">blairan</a>
                     !
                 </span>
@@ -519,7 +519,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
 
     <script async defer>
       document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>複製成功，請遵循本文的轉載規則</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        let toastHTML = '<span>pleaseFollowReprintPolicy</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">checkPolicy</a>';
         M.toast({html: toastHTML})
       });
 
@@ -854,7 +854,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fas fa-chevron-left"></i>&nbsp;prev</div>
             <div class="card">
                 <a href="/2021/08/31/mqtt-node-red-kong-zhi-er-zhou-yun-tai-mpython-1/">
                     <div class="card-image">
@@ -914,7 +914,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2021/08/31/shi-yong-adafriutio-dashboards-kong-zhi-neopixel-deng-tiao-mpython/">
@@ -996,7 +996,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目錄</div>
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;toc</div>
             <div id="toc-content"></div>
         </div>
     </div>
@@ -1177,7 +1177,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
                                                             
                                                                 
                                                                     <span id="busuanzi_container_site_pv">
-                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;總訪問量:&nbsp;
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;siteTotalVisits:&nbsp;
                                                                             <span id="busuanzi_value_site_pv"
                                                                                 class="white-color"></span>
                                                                     </span>
@@ -1185,7 +1185,7 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
                                                                         
                                                                             <span id="busuanzi_container_site_uv">
                                                                                 &nbsp;|&nbsp;<i
-                                                                                    class="fas fa-users"></i>&nbsp;總訪問人數:&nbsp;
+                                                                                    class="fas fa-users"></i>&nbsp;siteTotalVisitors:&nbsp;
                                                                                     <span id="busuanzi_value_site_uv"
                                                                                         class="white-color"></span>
                                                                             </span>
@@ -1236,8 +1236,8 @@ servo <span class="token operator">=</span> PWM<span class="token punctuation">(
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;search</span>
+            <input type="search" id="searchInput" name="s" placeholder="searchTip"
                    class="search-input">
         </div>
         <div id="searchResult"></div>
