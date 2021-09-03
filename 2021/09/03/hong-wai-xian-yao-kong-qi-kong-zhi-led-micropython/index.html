@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino, 我的微控板實驗室">
+    <meta name="keywords" content="紅外線遙控器控制LED-micropython, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino | 我的微控板實驗室</title>
+    <title>紅外線遙控器控制LED-micropython | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/vs1838.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino</h1>
+                    <h1 class="description center-align post-title">紅外線遙控器控制LED-micropython</h1>
                 </div>
             </div>
         </div>
@@ -387,12 +387,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hand-robot/">
-                                <span class="chip bg-color">hand robot</span>
+                            <a href="/tags/vs1838/">
+                                <span class="chip bg-color">vs1838</span>
                             </a>
                         
-                            <a href="/tags/%E5%BD%8E%E6%9B%B2%E5%82%B3%E6%84%9F%E5%99%A8/">
-                                <span class="chip bg-color">彎曲傳感器</span>
+                            <a href="/tags/%E7%B4%85%E5%A4%96%E7%B7%9A%E9%81%99%E6%8E%A7/">
+                                <span class="chip bg-color">紅外線遙控</span>
                             </a>
                         
                     </div>
@@ -403,8 +403,12 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/arduino/" class="post-category">
-                                arduino
+                            <a href="/categories/esp32/" class="post-category">
+                                esp32
+                            </a>
+                        
+                            <a href="/categories/esp32/micropython/" class="post-category">
+                                micropython
                             </a>
                         
                     </div>
@@ -450,367 +454,453 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="土炮制機械手掌-Hand-Robot-彎曲傳感器-Arduino"><a href="#土炮制機械手掌-Hand-Robot-彎曲傳感器-Arduino" class="headerlink" title="土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino"></a>土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino</h1><h6 id="tags-arduino-機械手掌-hand-robot"><a href="#tags-arduino-機械手掌-hand-robot" class="headerlink" title="tags: arduino 機械手掌 hand robot"></a>tags: <code>arduino</code> <code>機械手掌</code> <code>hand robot</code></h6><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-8Jh_s3fPymc/YKtQv5ooyMI/AAAAAAAAeLk/mforclTeA1g9PMXHLWylim0iDYi7WlubwCNcBGAsYHQ/s1600/1621840029201670-0.png"></a></p>
-<p><strong><em>最近在很多平台上看到機械手掌被廣範使用在義肢上,</em></strong><br><strong><em>使得有須求的人得到一個很好的輔助功能,我自己本身</em></strong><br><strong><em>也是有殘缺的人,雖然不是四肢上,是聽覺有問題,所以能</em></strong><br><strong><em>感同身受,我相信未來能發展到任何殘缺都有能輔助的</em></strong><br><strong>_AI設備可使用。然後這個動機使我也想利用Arduino來_</strong><br><strong><em>做個機械手掌,了解一下箇中原理。</em></strong><br><strong><em>本想用３Ｄ列印手掌出來,但有點擔心要結合關節有難度</em></strong><br><strong><em>於是先用紙板裁剪,這裡要比較留意的是關節處要有足夠</em></strong><br><strong><em>的空間,才能彎曲,用紙板是最簡易的材料,因為紙板折彎後</em></strong><br><strong><em>放開,會自動攤平,其實也可以用實心的海綿,效果應該不錯。</em></strong></p>
-<h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ul>
-<li><strong>吸管若干支</strong></li>
-<li><strong>紙箱紙板</strong></li>
-<li><strong>小細線或尼龍線</strong></li>
-<li><strong>伺服馬達 x5</strong></li>
-<li><strong>PCA9685 x1</strong></li>
-<li><strong>Arduino UNO x1</strong></li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-XkV4ELfGyGQ/YKxYCPeN9KI/AAAAAAAAeMQ/s9qcYSHRNfsfx71ZvR3FmBT0xrgCgllYACNcBGAsYHQ/s1600/1621907440062420-0.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-MGnyCZI74_Q/YKxX7tqt25I/AAAAAAAAeMI/LMTCpE02e-Im1LbuqXHsGW9FixFzXbMcQCNcBGAsYHQ/s1600/1621907418074666-1.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-dldn-MG47AU/YKxX2UlpWZI/AAAAAAAAeMA/T7jhXD5fFtQNeUIXJwP9P7bZTjc341x0wCNcBGAsYHQ/s1600/1621907401475330-2.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-1MQth4xwVrY/YKxXyLIoT2I/AAAAAAAAeL8/Zg2w7MBFpNAgvlaCxGcZ9e2NCAXV9MhegCNcBGAsYHQ/s1600/1621907376671852-3.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-qKchUlzBnLk/YKxXritjNxI/AAAAAAAAeL0/9v786lhQG5oyCSWgBM7Z8VJgCc7TDpX9gCNcBGAsYHQ/s1600/1621907321750549-4.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-YxadX-Hyu5I/YKxXeJ2fjuI/AAAAAAAAeLw/0ao8ucVi9z8aw14GWI8VYjvDaR86Kz7_wCNcBGAsYHQ/s1600/1621907297416560-5.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-ASihZR1kTOk/YKxYeitOWkI/AAAAAAAAeMg/89XITznmL1AL18tWlT6gsWoml12c2hI6QCNcBGAsYHQ/s1600/1621907569418731-0.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-YfUNpFuCBsQ/YKxYcH4NrFI/AAAAAAAAeMc/-KEdQQOFtR4RtSb8pezGLpcb4Ai_YvzzgCNcBGAsYHQ/s1600/1621907555196644-1.png"></a></p>
-<p><strong>舵機固定在適當的位置後再來就剩下程式碼</strong></p>
-<hr>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;Wire.h&gt;
+                <h1 id="紅外線遙控接收-micropython"><a href="#紅外線遙控接收-micropython" class="headerlink" title="紅外線遙控接收-micropython"></a>紅外線遙控接收-micropython</h1><h6 id="tags-esp32-vs1838-micropython-紅外線遙控"><a href="#tags-esp32-vs1838-micropython-紅外線遙控" class="headerlink" title="tags: esp32 vs1838 micropython 紅外線遙控"></a>tags: <code>esp32</code> <code>vs1838</code> <code>micropython</code> <code>紅外線遙控</code></h6><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/6224385154468238883#"><img src="https://lh3.googleusercontent.com/-A5q8iXLl2Qo/YTG-S-4KoBI/AAAAAAAAe4w/x_cUvOR-EAwYVEbDwSSF2XNk3Lxa-DEbQCNcBGAsYHQ/s1600/1630649917872814-0.png"></a></p>
+<p>**紅外接收器模塊使用 VS1838 光電二極管紅外接收器。它成本低且易於使用。  </p>
+<p>引腳：<br>它有 3 個引腳，即：<br>G - 接地引腳。<br>V - 電源電壓。<br>S - 為紅外接收信號引腳。**</p>
+<p><strong>上傳</strong><strong><em>micropython_ir Library of Peter Hinch函式庫:</em></strong></p>
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"># MIT License
 
-#include &lt;Adafruit_PWMServoDriver.h&gt;
+# 
 
-#define SERVO_FREQ 60 &#x2F;&#x2F; Analog servos run at ~50 Hz updates
+# Copyright (c) 2020 Peter Hinch
 
-&#x2F;&#x2F;angleMax&#x3D;600
+# 
 
-&#x2F;&#x2F;angleMin&#x3D;150
+# Permission is hereby granted, free of charge, to any person obtaining a copy
 
-Adafruit_PWMServoDriver pwm &#x3D; Adafruit_PWMServoDriver();
+# of this software and associated documentation files (the &quot;Software&quot;), to deal
+
+# in the Software without restriction, including without limitation the rights
+
+# to use, copy, modify, merge, publish, distribute, sublicense, and&#x2F;or sell
+
+# copies of the Software, and to permit persons to whom the Software is
+
+# furnished to do so, subject to the following conditions:
+
+# 
+
+# The above copyright notice and this permission notice shall be included in all
+
+# copies or substantial portions of the Software.
+
+# 
+
+# THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+
+# SOFTWARE.
 
   
 
-int val;
+# Author: Peter Hinch
 
-void setup()
+# Copyright Peter Hinch 2020-2021 Released under the MIT license
 
-&#123;
+# http:&#x2F;&#x2F;github.com&#x2F;peterhinch&#x2F;micropython_ir
 
-  Serial.begin(9600);
+  
 
-  pwm.begin();
+from machine import Pin
 
-  pwm.setOscillatorFrequency(27000000);
+from machine import Timer
 
-  pwm.setPWMFreq(SERVO_FREQ);  &#x2F;&#x2F; Analog servos run at ~50 Hz updates
+from array import array
 
-  delay(10);
+from utime import ticks_us
+
+from utime import ticks_diff
+
+  
+
+# Save RAM
+
+# from micropython import alloc\_emergency\_exception_buf
+
+# alloc\_emergency\_exception_buf(100)
+
+  
+  
+
+# On 1st edge start a block timer. While the timer is running, record the time
+
+# of each edge. When the timer times out decode the data. Duration must exceed
+
+# the worst case block transmission time, but be less than the interval between
+
+# a block start and a repeat code start (~108ms depending on protocol)
+
+  
+
+class IR_RX():
+
+    # Result&#x2F;error codes
+
+    # Repeat button code
+
+    REPEAT &#x3D; -1
+
+    # Error codes
+
+    BADSTART &#x3D; -2
+
+    BADBLOCK &#x3D; -3
+
+    BADREP &#x3D; -4
+
+    OVERRUN &#x3D; -5
+
+    BADDATA &#x3D; -6
+
+    BADADDR &#x3D; -7
+
+  
+
+    def __init__(self, pin, nedges, tblock, callback, *args):  # Optional args for callback
+
+        self._pin &#x3D; pin
+
+        self._nedges &#x3D; nedges
+
+        self._tblock &#x3D; tblock
+
+        self.callback &#x3D; callback
+
+        self.args &#x3D; args
+
+        self._errf &#x3D; lambda _ : None
+
+        self.verbose &#x3D; False
+
+  
+
+        self._times &#x3D; array(&#39;i&#39;,  (0 for _ in range(nedges + 1)))  # +1 for overrun
+
+        pin.irq(handler &#x3D; self._cb_pin, trigger &#x3D; (Pin.IRQ_FALLING | Pin.IRQ_RISING))
+
+        self.edge &#x3D; 0
+
+        self.tim &#x3D; Timer(-1)  # Sofware timer
+
+        self.cb &#x3D; self.decode
+
+  
+
+    # Pin interrupt. Save time of each edge for later decode.
+
+    def _cb_pin(self, line):
+
+        t &#x3D; ticks_us()
+
+        # On overrun ignore pulses until software timer times out
+
+        if self.edge &lt;&#x3D; self._nedges:  # Allow 1 extra pulse to record overrun
+
+            if not self.edge:  # First edge received
+
+                self.tim.init(period&#x3D;self._tblock , mode&#x3D;Timer.ONE_SHOT, callback&#x3D;self.cb)
+
+            self._times[self.edge] &#x3D; t
+
+            self.edge +&#x3D; 1
+
+  
+
+    def do_callback(self, cmd, addr, ext, thresh&#x3D;0):
+
+        self.edge &#x3D; 0
+
+        if cmd &gt;&#x3D; thresh:
+
+            self.callback(cmd, addr, ext, *self.args)
+
+        else:
+
+            self._errf(cmd)
+
+  
+
+    def error_function(self, func):
+
+        self._errf &#x3D; func
+
+  
+
+    def close(self):
+
+        self._pin.irq(handler &#x3D; None)
+
+        self.tim.deinit()
+
+  
+  
+
+class NEC_ABC(IR_RX):
+
+    def __init__(self, pin, extended, callback, *args):
+
+        # Block lasts &lt;&#x3D; 80ms (extended mode) and has 68 edges
+
+        super().__init__(pin, 68, 80, callback, *args)
+
+        self._extended &#x3D; extended
+
+        self._addr &#x3D; 0
+
+  
+
+    def decode(self, _):
+
+        try:
+
+            if self.edge &gt; 68:
+
+                raise RuntimeError(self.OVERRUN)
+
+            width &#x3D; ticks_diff(self._times[1], self._times[0])
+
+            if width &lt; 4000:  # 9ms leading mark for all valid data
+
+                raise RuntimeError(self.BADSTART)
+
+            width &#x3D; ticks_diff(self._times[2], self._times[1])
+
+            if width &gt; 3000:  # 4.5ms space for normal data
+
+                if self.edge &lt; 68:  # Haven&#39;t received the correct number of edges
+
+                    raise RuntimeError(self.BADBLOCK)
+
+                # Time spaces only (marks are always 562.5µs)
+
+                # Space is 1.6875ms (1) or 562.5µs (0)
+
+                # Skip last bit which is always 1
+
+                val &#x3D; 0
+
+                for edge in range(3, 68 - 2, 2):
+
+                    val &gt;&gt;&#x3D; 1
+
+                    if ticks_diff(self._times[edge + 1], self._times[edge]) &gt; 1120:
+
+                        val &#x3D; 0x80000000
+
+            elif width &gt; 1700: # 2.5ms space for a repeat code. Should have exactly 4 edges.
+
+                raise RuntimeError(self.REPEAT if self.edge &#x3D;&#x3D; 4 else self.BADREP)  # Treat REPEAT as error.
+
+            else:
+
+                raise RuntimeError(self.BADSTART)
+
+            addr &#x3D; val &amp; 0xff  # 8 bit addr
+
+            cmd &#x3D; (val &gt;&gt; 16) &amp; 0xff
+
+            if cmd !&#x3D; (val &gt;&gt; 24) ^ 0xff:
+
+                raise RuntimeError(self.BADDATA)
+
+            if addr !&#x3D; ((val &gt;&gt; 8) ^ 0xff) &amp; 0xff:  # 8 bit addr doesn&#39;t match check
+
+                if not self._extended:
+
+                    raise RuntimeError(self.BADADDR)
+
+                addr |&#x3D; val &amp; 0xff00  # pass assumed 16 bit address to callback
+
+            self._addr &#x3D; addr
+
+        except RuntimeError as e:
+
+            cmd &#x3D; e.args[0]
+
+            addr &#x3D; self._addr if cmd &#x3D;&#x3D; self.REPEAT else 0  # REPEAT uses last address
+
+        # Set up for new data burst and run user callback
+
+        self.do_callback(cmd, addr, 0, self.REPEAT)
+
+  
+
+class NEC_8(NEC_ABC):
+
+    def __init__(self, pin, callback, *args):
+
+        super().__init__(pin, False, callback, *args)
+
+  
+
+class NEC_16(NEC_ABC):
+
+    def __init__(self, pin, callback, *args):
+
+        super().__init__(pin, True, callback, *args)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="範例1"><a href="#範例1" class="headerlink" title="範例1"></a><strong>範例1</strong></h2><h3 id="套用以下範例並記下遙控器按鍵的data"><a href="#套用以下範例並記下遙控器按鍵的data" class="headerlink" title="套用以下範例並記下遙控器按鍵的data"></a><strong><em>套用以下範例並記下遙控器按鍵的data</em></strong></h3><pre class="line-numbers language-none"><code class="language-none">from ir_rx import NEC_16
+
+from machine import Timer
+
+from machine import Pin
+
+  
+
+def callBack(data, addr, ctrl):
+
+    if data &gt; 0:
+
+        print(&quot;data: &#123;:02x&#125; addr: &#123;:04x&#125;&quot;.format(data, addr))
+
+ir &#x3D; NEC_16(Pin(26, Pin.IN), callBack)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<div class="video-container"><iframe src="https://www.youtube.com/embed/Q6j2Im2r9hw" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<h2 id="範例2"><a href="#範例2" class="headerlink" title="範例2:"></a>範例2:</h2><p><strong><em>有了對應鍵的16進制,並存放在dist裡,就可以把它套用在callBack()去作比對</em></strong></p>
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">from ir_rx import NEC_16
+
+from machine import Timer
+
+from machine import Pin
+
+  
+
+def callBack(data, addr, ctrl):
+
+    if data &gt; 0:
+
+        # print(&quot;data: &#123;:02x&#125; addr: &#123;:04x&#125;&quot;.format(data, addr))
+
+        print(ir_key[data])
+
+ir &#x3D; NEC_16(Pin(26, Pin.IN), callBack)
+
+  
+
+ir_key &#x3D; &#123;
+
+    0x16 : &#39;0&#39;,
+
+    0x0c : &#39;1&#39;,
+
+    0x18 : &#39;2&#39;,
+
+    0x5e : &#39;3&#39;,
+
+    0x08 : &#39;4&#39;,
+
+    0x1c : &#39;5&#39;,
+
+    0x5a : &#39;6&#39;,
+
+    0x42 : &#39;7&#39;,
+
+    0x52 : &#39;8&#39;,
+
+    0x4a : &#39;9&#39;,
+
+    0x15 : &#39;ok&#39;,
+
+    0x40 : &#39;up&#39;,
+
+    0x19 : &#39;down&#39;,
+
+    0x07 : &#39;left&#39;,
+
+    0x09 : &#39;right&#39;,
+
+    0x44 : &#39;power&#39;,
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/Q6j2Im2r9hw" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<hr>
+<h2 id="範例3"><a href="#範例3" class="headerlink" title="範例3:"></a>範例3:</h2><p><strong><em>現在有了精確的數字,可以運用在控制某些例如燈具…等等的物品這裡使用一個簡單的例子,當按下”1”的鍵時,打開esp32的內鍵燈,當按下”2”時,關閉內鍵燈。</em></strong></p>
+<pre class="line-numbers language-py" data-language="py"><code class="language-py">from ir_rx import NEC_16
+
+from machine import Timer
+
+from machine import Pin
+
+  
+
+led &#x3D; Pin(2, Pin.OUT)
+
+def callBack(data, addr, ctrl):
+
+    global _data, _addr
+
+    _data &#x3D; ir_key[data]
+
+    _addr &#x3D; addr
+
+    if data &gt; 0:
+
+        # print(&quot;data: &#123;:02x&#125; addr: &#123;:04x&#125;&quot;.format(data, addr))
+
+        print(_data)
+
+ir &#x3D; NEC_16(Pin(26, Pin.IN), callBack)
+
+  
+
+ir_key &#x3D; &#123;
+
+    0x16 : &#39;0&#39;,
+
+    0x0c : &#39;1&#39;,
+
+    0x18 : &#39;2&#39;,
+
+    0x5e : &#39;3&#39;,
+
+    0x08 : &#39;4&#39;,
+
+    0x1c : &#39;5&#39;,
+
+    0x5a : &#39;6&#39;,
+
+    0x42 : &#39;7&#39;,
+
+    0x52 : &#39;8&#39;,
+
+    0x4a : &#39;9&#39;,
+
+    0x15 : &#39;ok&#39;,
+
+    0x40 : &#39;up&#39;,
+
+    0x19 : &#39;down&#39;,
+
+    0x07 : &#39;left&#39;,
+
+    0x09 : &#39;right&#39;,
+
+    0x44 : &#39;power&#39;,
 
 &#125;
 
-  
+_data &#x3D; 0
 
-void loop()
+if _data &#x3D;&#x3D; &quot;1&quot;:
 
-&#123;
+    led.on()
 
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
+elif _data &#x3D;&#x3D; &quot;2&quot;:
 
-  &#123;
-
-    pwm.setPWM(1, 0 , i);
-
-    delay(50);
-
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-
-  &#123;
-    pwm.setPWM(1, 0, i);
-    delay(50);
-  &#125;
-
-
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-
-  &#123;
-    pwm.setPWM(2, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-
-  &#123;
-    pwm.setPWM(2, 0, i);
-    delay(50);
-  &#125;
-
-  
-
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-  &#123;
-    pwm.setPWM(8, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-  &#123;
-    pwm.setPWM(8, 0, i);
-    delay(50);
-  &#125;
-
-  
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-  &#123;
-    pwm.setPWM(9, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-  &#123;
-    pwm.setPWM(9, 0, i);
-    delay(50);
-  &#125;
-
-  
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-  &#123;
-    pwm.setPWM(10, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-  &#123;
-    pwm.setPWM(10, 0, i);
-    delay(50);
-  &#125;
-
-
-  for (int j &#x3D; 500; j &gt; 200; j-&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(2, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-  for (int j &#x3D; 200; j &lt; 500; j+&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(2, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-
-  for (int j &#x3D; 500; j &gt; 200; j-&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-  delay(1000);
-
-  for (int j &#x3D; 200; j &lt; 500; j+&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/wTggtKVo-J0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<p><strong>使用彎曲傳感器控制控制機械手掌</strong></p>
-<p><strong>首先要先製作彎曲傳感器，然後弄成手套，可參考下篇</strong></p>
-<p><strong>自制彎曲傳感器</strong>-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234?hl=zh-TW#">https://blairandreamwork.blogspot.com/2021/06/blog-post.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-D3lE7P9mMmw/YMBU9n19qnI/AAAAAAAAePg/HPT9v777qowytoJeRRA6KTseyVA99vZ3gCNcBGAsYHQ/s1600/1623217351043061-0.png"></a></p>
-<hr>
-<p><strong>像上圖弄好以後，先測量每一個感測器的數值區間，我發現自制的感測器沒有很穩定，數值會有點亂跳，所以我把感測的時間調高一點，不要讓它偵測太頻繁。</strong></p>
-<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;Wire.h&gt;
-
-#include &lt;Adafruit_PWMServoDriver.h&gt;
-
-#define SERVO_FREQ 60 &#x2F;&#x2F; Analog servos run at ~50 Hz updates
-
-&#x2F;&#x2F;angleMax&#x3D;600
-
-&#x2F;&#x2F;angleMin&#x3D;150
-
-Adafruit_PWMServoDriver pwm &#x3D; Adafruit_PWMServoDriver();
-
-  
-
-int valOne;
-
-int valTwo;
-
-int valthree;
-
-int valfour;
-
-int valfive;
-
-int sensor_One&#x3D;A0;
-
-int sensor_Two&#x3D;A1;
-
-int sensor_three&#x3D;A2;
-
-int sensor_four&#x3D;A3;
-
-int sensor_five&#x3D;A6;
-
-  
-
-void setup()
-
-&#123;
-
-  Serial.begin(9600);
-
-  pinMode(sensor_One, INPUT);
-
-  pinMode(sensor_Two, INPUT);
-
-  pinMode(sensor_three, INPUT);
-
-  pinMode(sensor_four, INPUT);
-
-  pinMode(sensor_five, INPUT);
-
-  pwm.begin();
-
-  pwm.setOscillatorFrequency(27000000);
-
-  pwm.setPWMFreq(SERVO_FREQ);  &#x2F;&#x2F; Analog servos run at ~50 Hz updates
-
-  delay(10);
-
-&#125;
-
-void loop()
-
-&#123;
-
-  valOne&#x3D;analogRead(sensor_One);
-
-  valOne&#x3D;map(valOne, 90, 140, 200, 600);
-
-  valTwo&#x3D;analogRead(sensor_Two);
-
-  valTwo&#x3D;map(valTwo, 90, 140, 200, 600);
-
-  valthree&#x3D;analogRead(sensor_three);
-
-  valthree&#x3D;map(valthree, 90, 150, 200, 600);
-
-  valfour&#x3D;analogRead(sensor_four);
-
-  valfour&#x3D;map(valfour, 90, 150, 200, 600);
-
-  valfive&#x3D;analogRead(sensor_five);
-
-  valfive&#x3D;map(valfive, 90, 150, 200, 600);
-
-  if (valOne&lt;200)&#123;
-
-    valOne&#x3D;200;
-
-  &#125;
-
-  if(valOne&gt;600)&#123;
-
-    valOne&#x3D;600;
-
-  &#125;
-
-  Serial.println(valOne);
-
-  pwm.setPWM(1, 0, valOne);
-
-  
-
-  if (valTwo&lt;200)&#123;
-
-    valTwo&#x3D;200;
-
-  &#125;
-
-  if(valTwo&gt;600)&#123;
-
-    valTwo&#x3D;600;
-
-  &#125;
-
-  Serial.println(valTwo);
-
-  pwm.setPWM(2, 0 ,valTwo);
-
-  
-  if (valthree&lt;200)&#123;
-
-    valthree&#x3D;200;
-
-  &#125;
-
-  if(valthree&gt;600)&#123;
-
-    valthree&#x3D;600;
-
-  &#125;
-
-  Serial.println(valthree);
-
-  pwm.setPWM(8, 0 ,valthree);
-
-  
-  if (valfour&lt;200)&#123;
-
-    valfour&#x3D;200;
-
-  &#125;
-
-  if(valfour&gt;600)&#123;
-
-    valfour&#x3D;600;
-
-  &#125;
-
-  Serial.println(valfour);
-
-  pwm.setPWM(9, 0 ,valfour);
-
-  
-
-  if (valfive&lt;200)&#123;
-
-    valfive&#x3D;200;
-
-  &#125;
-
-  if(valfive&gt;600)&#123;
-
-    valfive&#x3D;600;
-
-  &#125;
-
-  Serial.println(valfive);
-
-  pwm.setPWM(10, 0 ,valfive);
-
-  delay(400);
-
-  Serial.println(&quot;------&quot;);
-
-&#125;
-
-  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<hr>
-<p><strong>雖然沒有完美，但我想開始著手做３Ｄ列印的機械手掌，並使用市面上的彎曲傳感器試試。</strong></p>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/8QkrvWnMkRA" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+    led.off()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/6t1xMAnKzS8" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -836,7 +926,7 @@ void loop()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/09/03/tu-pao-zhi-ji-jie-shou-zhang-hand-robot-wan-qu-chuan-gan-qi-arduino/">https://blairan.github.io/2021/09/03/tu-pao-zhi-ji-jie-shou-zhang-hand-robot-wan-qu-chuan-gan-qi-arduino/</a>
+                    <a href="https://blairan.github.io/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-micropython/">https://blairan.github.io/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-micropython/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -874,12 +964,12 @@ void loop()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/hand-robot/">
-                                    <span class="chip bg-color">hand robot</span>
+                                <a href="/tags/vs1838/">
+                                    <span class="chip bg-color">vs1838</span>
                                 </a>
                             
-                                <a href="/tags/%E5%BD%8E%E6%9B%B2%E5%82%B3%E6%84%9F%E5%99%A8/">
-                                    <span class="chip bg-color">彎曲傳感器</span>
+                                <a href="/tags/%E7%B4%85%E5%A4%96%E7%B7%9A%E9%81%99%E6%8E%A7/">
+                                    <span class="chip bg-color">紅外線遙控</span>
                                 </a>
                             
                         </div>
@@ -1191,16 +1281,17 @@ void loop()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-esp3/">
+                <a href="/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-micropython/">
                     <div class="card-image">
                         
-                        <img src="/images/vs1838.jpg" class="responsive-img" alt="紅外線遙控器控制LED-ESP3">
+                        <img src="/images/vs1838.jpg" class="responsive-img" alt="紅外線遙控器控制LED-micropython">
                         
-                        <span class="card-title">紅外線遙控器控制LED-ESP3</span>
+                        <span class="card-title">紅外線遙控器控制LED-micropython</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1210,9 +1301,9 @@ void loop()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1221,10 +1312,15 @@ void loop()
                                     esp32
                                 </a>
                             
+                            <a href="/categories/esp32/micropython/" class="post-category">
+                                    micropython
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1247,13 +1343,12 @@ void loop()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/03/zi-zhi-wan-qu-chuan-gan-qi-arduino/">
+                <a href="/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-esp3/">
                     <div class="card-image">
                         
+                        <img src="/images/vs1838.jpg" class="responsive-img" alt="紅外線遙控器控制LED-ESP3">
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="自制彎曲傳感器">
-                        
-                        <span class="card-title">自制彎曲傳感器</span>
+                        <span class="card-title">紅外線遙控器控制LED-ESP3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1270,8 +1365,8 @@ void loop()
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/arduino/" class="post-category">
-                                    arduino
+                            <a href="/categories/esp32/" class="post-category">
+                                    esp32
                                 </a>
                             
                             
@@ -1281,8 +1376,12 @@ void loop()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BD%8E%E6%9B%B2%E5%82%B3%E6%84%9F%E5%99%A8/">
-                        <span class="chip bg-color">彎曲傳感器</span>
+                    <a href="/tags/vs1838/">
+                        <span class="chip bg-color">vs1838</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%B4%85%E5%A4%96%E7%B7%9A%E9%81%99%E6%8E%A7/">
+                        <span class="chip bg-color">紅外線遙控</span>
                     </a>
                     
                 </div>

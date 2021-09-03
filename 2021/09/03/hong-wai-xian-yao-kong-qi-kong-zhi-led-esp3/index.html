@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino, 我的微控板實驗室">
+    <meta name="keywords" content="紅外線遙控器控制LED-ESP3, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino | 我的微控板實驗室</title>
+    <title>紅外線遙控器控制LED-ESP3 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/vs1838.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino</h1>
+                    <h1 class="description center-align post-title">紅外線遙控器控制LED-ESP3</h1>
                 </div>
             </div>
         </div>
@@ -387,12 +387,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hand-robot/">
-                                <span class="chip bg-color">hand robot</span>
+                            <a href="/tags/vs1838/">
+                                <span class="chip bg-color">vs1838</span>
                             </a>
                         
-                            <a href="/tags/%E5%BD%8E%E6%9B%B2%E5%82%B3%E6%84%9F%E5%99%A8/">
-                                <span class="chip bg-color">彎曲傳感器</span>
+                            <a href="/tags/%E7%B4%85%E5%A4%96%E7%B7%9A%E9%81%99%E6%8E%A7/">
+                                <span class="chip bg-color">紅外線遙控</span>
                             </a>
                         
                     </div>
@@ -403,8 +403,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/arduino/" class="post-category">
-                                arduino
+                            <a href="/categories/esp32/" class="post-category">
+                                esp32
                             </a>
                         
                     </div>
@@ -450,367 +450,98 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="土炮制機械手掌-Hand-Robot-彎曲傳感器-Arduino"><a href="#土炮制機械手掌-Hand-Robot-彎曲傳感器-Arduino" class="headerlink" title="土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino"></a>土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino</h1><h6 id="tags-arduino-機械手掌-hand-robot"><a href="#tags-arduino-機械手掌-hand-robot" class="headerlink" title="tags: arduino 機械手掌 hand robot"></a>tags: <code>arduino</code> <code>機械手掌</code> <code>hand robot</code></h6><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-8Jh_s3fPymc/YKtQv5ooyMI/AAAAAAAAeLk/mforclTeA1g9PMXHLWylim0iDYi7WlubwCNcBGAsYHQ/s1600/1621840029201670-0.png"></a></p>
-<p><strong><em>最近在很多平台上看到機械手掌被廣範使用在義肢上,</em></strong><br><strong><em>使得有須求的人得到一個很好的輔助功能,我自己本身</em></strong><br><strong><em>也是有殘缺的人,雖然不是四肢上,是聽覺有問題,所以能</em></strong><br><strong><em>感同身受,我相信未來能發展到任何殘缺都有能輔助的</em></strong><br><strong>_AI設備可使用。然後這個動機使我也想利用Arduino來_</strong><br><strong><em>做個機械手掌,了解一下箇中原理。</em></strong><br><strong><em>本想用３Ｄ列印手掌出來,但有點擔心要結合關節有難度</em></strong><br><strong><em>於是先用紙板裁剪,這裡要比較留意的是關節處要有足夠</em></strong><br><strong><em>的空間,才能彎曲,用紙板是最簡易的材料,因為紙板折彎後</em></strong><br><strong><em>放開,會自動攤平,其實也可以用實心的海綿,效果應該不錯。</em></strong></p>
-<h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ul>
-<li><strong>吸管若干支</strong></li>
-<li><strong>紙箱紙板</strong></li>
-<li><strong>小細線或尼龍線</strong></li>
-<li><strong>伺服馬達 x5</strong></li>
-<li><strong>PCA9685 x1</strong></li>
-<li><strong>Arduino UNO x1</strong></li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-XkV4ELfGyGQ/YKxYCPeN9KI/AAAAAAAAeMQ/s9qcYSHRNfsfx71ZvR3FmBT0xrgCgllYACNcBGAsYHQ/s1600/1621907440062420-0.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-MGnyCZI74_Q/YKxX7tqt25I/AAAAAAAAeMI/LMTCpE02e-Im1LbuqXHsGW9FixFzXbMcQCNcBGAsYHQ/s1600/1621907418074666-1.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-dldn-MG47AU/YKxX2UlpWZI/AAAAAAAAeMA/T7jhXD5fFtQNeUIXJwP9P7bZTjc341x0wCNcBGAsYHQ/s1600/1621907401475330-2.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-1MQth4xwVrY/YKxXyLIoT2I/AAAAAAAAeL8/Zg2w7MBFpNAgvlaCxGcZ9e2NCAXV9MhegCNcBGAsYHQ/s1600/1621907376671852-3.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-qKchUlzBnLk/YKxXritjNxI/AAAAAAAAeL0/9v786lhQG5oyCSWgBM7Z8VJgCc7TDpX9gCNcBGAsYHQ/s1600/1621907321750549-4.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-YxadX-Hyu5I/YKxXeJ2fjuI/AAAAAAAAeLw/0ao8ucVi9z8aw14GWI8VYjvDaR86Kz7_wCNcBGAsYHQ/s1600/1621907297416560-5.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-ASihZR1kTOk/YKxYeitOWkI/AAAAAAAAeMg/89XITznmL1AL18tWlT6gsWoml12c2hI6QCNcBGAsYHQ/s1600/1621907569418731-0.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234#"><img src="https://lh3.googleusercontent.com/-YfUNpFuCBsQ/YKxYcH4NrFI/AAAAAAAAeMc/-KEdQQOFtR4RtSb8pezGLpcb4Ai_YvzzgCNcBGAsYHQ/s1600/1621907555196644-1.png"></a></p>
-<p><strong>舵機固定在適當的位置後再來就剩下程式碼</strong></p>
+                <h1 id="紅外線遙控器控制LED-ESP3"><a href="#紅外線遙控器控制LED-ESP3" class="headerlink" title="紅外線遙控器控制LED-ESP3"></a>紅外線遙控器控制LED-ESP3</h1><h6 id="tags-esp32-vs1838-紅外線遙控"><a href="#tags-esp32-vs1838-紅外線遙控" class="headerlink" title="tags: esp32 vs1838 紅外線遙控"></a>tags: <code>esp32</code> <code>vs1838</code> <code>紅外線遙控</code></h6><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/2182248290207799810#"><img src="https://lh3.googleusercontent.com/-AMwtHuHrueA/YTG-qYvDXVI/AAAAAAAAe44/V-Ue5wYV6JwFjK6VxTeu5cMWRw5h5CJVQCNcBGAsYHQ/s1600/1630649998922334-0.png"></a></p>
+<p>**紅外接收器模塊使用 VS1838 光電二極管紅外接收器。它成本低且易於使用。  </p>
+<p>引腳：<br>它有 3 個引腳，即：<br>G - 接地引腳。<br>V - 電源電壓。<br>S——為紅外接收信號引腳。**</p>
+<h2 id="實驗1"><a href="#實驗1" class="headerlink" title="實驗1:"></a><strong>實驗1:</strong></h2><p><strong>接收按鍵值</strong></p>
+<p><strong>先匯入</strong><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/2182248290207799810#">IRremote.h</a></p>
+<p><strong>上傳此範例</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;IRremote.h&gt;
+
+int RECV_PIN &#x3D; 15;
+
+IRrecv irrecv(RECV_PIN);
+
+decode_results results;
+
+
+void setup()&#123;
+
+    Serial.begin(115200);
+
+    irrecv.enableIRIn(); &#x2F;&#x2F; 啟動接收器
+
+&#125;
+
+
+void loop() &#123;
+
+    if (irrecv.decode(&amp;results)) &#123;
+
+        Serial.println(results.value);
+
+        irrecv.resume(); &#x2F;&#x2F; 接數下一個按鍵值
+
+    &#125;
+
+ delay(100);
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<div class="video-container"><iframe src="https://www.youtube.com/embed/GrntTjzaFfk" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
 <hr>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;Wire.h&gt;
+<h2 id="實驗2"><a href="#實驗2" class="headerlink" title="實驗2"></a><strong>實驗2</strong></h2><p><strong>以上程式會轉成十進制</strong></p>
+<p><strong>我須要1和2的按鍵來控制燈的明滅</strong></p>
+<p><strong>所以利用剛剛1和2的十進制號碼進行設制</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;IRremote.h&gt;
 
-#include &lt;Adafruit_PWMServoDriver.h&gt;
 
-#define SERVO_FREQ 60 &#x2F;&#x2F; Analog servos run at ~50 Hz updates
+int RECV_PIN &#x3D; 15;
 
-&#x2F;&#x2F;angleMax&#x3D;600
+const int led &#x3D; LED_BUILTIN;
 
-&#x2F;&#x2F;angleMin&#x3D;150
+IRrecv irrecv(RECV_PIN);
 
-Adafruit_PWMServoDriver pwm &#x3D; Adafruit_PWMServoDriver();
 
-  
+decode_results results;
 
-int val;
 
-void setup()
+void setup()&#123;
 
-&#123;
+    Serial.begin(115200);
 
-  Serial.begin(9600);
+    irrecv.enableIRIn(); &#x2F;&#x2F; 啟動接收器
 
-  pwm.begin();
-
-  pwm.setOscillatorFrequency(27000000);
-
-  pwm.setPWMFreq(SERVO_FREQ);  &#x2F;&#x2F; Analog servos run at ~50 Hz updates
-
-  delay(10);
+    pinMode(led, OUTPUT);
 
 &#125;
 
   
+void loop() &#123;
 
-void loop()
+    if (irrecv.decode(&amp;results)) &#123;
 
-&#123;
+        Serial.println(results.value);
 
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
+        irrecv.resume(); &#x2F;&#x2F; 接數下一個按鍵值
 
-  &#123;
+    &#125;
 
-    pwm.setPWM(1, 0 , i);
+    delay(100);
 
-    delay(50);
+    if (results.value &#x3D;&#x3D; 16724175)&#123;
 
-  &#125;
+        digitalWrite(led, HIGH);
 
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
+    &#125;else if (results.value &#x3D;&#x3D; 16718055)&#123;
 
-  &#123;
-    pwm.setPWM(1, 0, i);
-    delay(50);
-  &#125;
+        digitalWrite(led, LOW);
 
+    &#125;
 
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-
-  &#123;
-    pwm.setPWM(2, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-
-  &#123;
-    pwm.setPWM(2, 0, i);
-    delay(50);
-  &#125;
-
-  
-
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-  &#123;
-    pwm.setPWM(8, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-  &#123;
-    pwm.setPWM(8, 0, i);
-    delay(50);
-  &#125;
-
-  
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-  &#123;
-    pwm.setPWM(9, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-  &#123;
-    pwm.setPWM(9, 0, i);
-    delay(50);
-  &#125;
-
-  
-  for (int i &#x3D; 500; i &gt; 200; i-&#x3D;20)
-  &#123;
-    pwm.setPWM(10, 0 , i);
-    delay(50);
-  &#125;
-
-  for (int i &#x3D; 200; i &lt; 500; i+&#x3D;20)
-  &#123;
-    pwm.setPWM(10, 0, i);
-    delay(50);
-  &#125;
-
-
-  for (int j &#x3D; 500; j &gt; 200; j-&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(2, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-  for (int j &#x3D; 200; j &lt; 500; j+&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(2, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-
-  for (int j &#x3D; 500; j &gt; 200; j-&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-  delay(1000);
-
-  for (int j &#x3D; 200; j &lt; 500; j+&#x3D;20)&#123;
-    pwm.setPWM(1, 0, j);
-    pwm.setPWM(8, 0, j);
-    pwm.setPWM(9, 0, j);
-    pwm.setPWM(10, 0, j);
-    delay(50);
-  &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/wTggtKVo-J0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<p><strong>使用彎曲傳感器控制控制機械手掌</strong></p>
-<p><strong>首先要先製作彎曲傳感器，然後弄成手套，可參考下篇</strong></p>
-<p><strong>自制彎曲傳感器</strong>-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234?hl=zh-TW#">https://blairandreamwork.blogspot.com/2021/06/blog-post.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/7905812487640359234?hl=zh-TW#"><img src="https://lh3.googleusercontent.com/-D3lE7P9mMmw/YMBU9n19qnI/AAAAAAAAePg/HPT9v777qowytoJeRRA6KTseyVA99vZ3gCNcBGAsYHQ/s1600/1623217351043061-0.png"></a></p>
-<hr>
-<p><strong>像上圖弄好以後，先測量每一個感測器的數值區間，我發現自制的感測器沒有很穩定，數值會有點亂跳，所以我把感測的時間調高一點，不要讓它偵測太頻繁。</strong></p>
-<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;Wire.h&gt;
-
-#include &lt;Adafruit_PWMServoDriver.h&gt;
-
-#define SERVO_FREQ 60 &#x2F;&#x2F; Analog servos run at ~50 Hz updates
-
-&#x2F;&#x2F;angleMax&#x3D;600
-
-&#x2F;&#x2F;angleMin&#x3D;150
-
-Adafruit_PWMServoDriver pwm &#x3D; Adafruit_PWMServoDriver();
-
-  
-
-int valOne;
-
-int valTwo;
-
-int valthree;
-
-int valfour;
-
-int valfive;
-
-int sensor_One&#x3D;A0;
-
-int sensor_Two&#x3D;A1;
-
-int sensor_three&#x3D;A2;
-
-int sensor_four&#x3D;A3;
-
-int sensor_five&#x3D;A6;
-
-  
-
-void setup()
-
-&#123;
-
-  Serial.begin(9600);
-
-  pinMode(sensor_One, INPUT);
-
-  pinMode(sensor_Two, INPUT);
-
-  pinMode(sensor_three, INPUT);
-
-  pinMode(sensor_four, INPUT);
-
-  pinMode(sensor_five, INPUT);
-
-  pwm.begin();
-
-  pwm.setOscillatorFrequency(27000000);
-
-  pwm.setPWMFreq(SERVO_FREQ);  &#x2F;&#x2F; Analog servos run at ~50 Hz updates
-
-  delay(10);
-
-&#125;
-
-void loop()
-
-&#123;
-
-  valOne&#x3D;analogRead(sensor_One);
-
-  valOne&#x3D;map(valOne, 90, 140, 200, 600);
-
-  valTwo&#x3D;analogRead(sensor_Two);
-
-  valTwo&#x3D;map(valTwo, 90, 140, 200, 600);
-
-  valthree&#x3D;analogRead(sensor_three);
-
-  valthree&#x3D;map(valthree, 90, 150, 200, 600);
-
-  valfour&#x3D;analogRead(sensor_four);
-
-  valfour&#x3D;map(valfour, 90, 150, 200, 600);
-
-  valfive&#x3D;analogRead(sensor_five);
-
-  valfive&#x3D;map(valfive, 90, 150, 200, 600);
-
-  if (valOne&lt;200)&#123;
-
-    valOne&#x3D;200;
-
-  &#125;
-
-  if(valOne&gt;600)&#123;
-
-    valOne&#x3D;600;
-
-  &#125;
-
-  Serial.println(valOne);
-
-  pwm.setPWM(1, 0, valOne);
-
-  
-
-  if (valTwo&lt;200)&#123;
-
-    valTwo&#x3D;200;
-
-  &#125;
-
-  if(valTwo&gt;600)&#123;
-
-    valTwo&#x3D;600;
-
-  &#125;
-
-  Serial.println(valTwo);
-
-  pwm.setPWM(2, 0 ,valTwo);
-
-  
-  if (valthree&lt;200)&#123;
-
-    valthree&#x3D;200;
-
-  &#125;
-
-  if(valthree&gt;600)&#123;
-
-    valthree&#x3D;600;
-
-  &#125;
-
-  Serial.println(valthree);
-
-  pwm.setPWM(8, 0 ,valthree);
-
-  
-  if (valfour&lt;200)&#123;
-
-    valfour&#x3D;200;
-
-  &#125;
-
-  if(valfour&gt;600)&#123;
-
-    valfour&#x3D;600;
-
-  &#125;
-
-  Serial.println(valfour);
-
-  pwm.setPWM(9, 0 ,valfour);
-
-  
-
-  if (valfive&lt;200)&#123;
-
-    valfive&#x3D;200;
-
-  &#125;
-
-  if(valfive&gt;600)&#123;
-
-    valfive&#x3D;600;
-
-  &#125;
-
-  Serial.println(valfive);
-
-  pwm.setPWM(10, 0 ,valfive);
-
-  delay(400);
-
-  Serial.println(&quot;------&quot;);
-
-&#125;
-
-  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<hr>
-<p><strong>雖然沒有完美，但我想開始著手做３Ｄ列印的機械手掌，並使用市面上的彎曲傳感器試試。</strong></p>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/8QkrvWnMkRA" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/6t1xMAnKzS8" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -836,7 +567,7 @@ void loop()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/09/03/tu-pao-zhi-ji-jie-shou-zhang-hand-robot-wan-qu-chuan-gan-qi-arduino/">https://blairan.github.io/2021/09/03/tu-pao-zhi-ji-jie-shou-zhang-hand-robot-wan-qu-chuan-gan-qi-arduino/</a>
+                    <a href="https://blairan.github.io/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-esp3/">https://blairan.github.io/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-esp3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -874,12 +605,12 @@ void loop()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/hand-robot/">
-                                    <span class="chip bg-color">hand robot</span>
+                                <a href="/tags/vs1838/">
+                                    <span class="chip bg-color">vs1838</span>
                                 </a>
                             
-                                <a href="/tags/%E5%BD%8E%E6%9B%B2%E5%82%B3%E6%84%9F%E5%99%A8/">
-                                    <span class="chip bg-color">彎曲傳感器</span>
+                                <a href="/tags/%E7%B4%85%E5%A4%96%E7%B7%9A%E9%81%99%E6%8E%A7/">
+                                    <span class="chip bg-color">紅外線遙控</span>
                                 </a>
                             
                         </div>
@@ -1195,12 +926,12 @@ void loop()
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-esp3/">
+                <a href="/2021/09/03/hong-wai-xian-yao-kong-qi-kong-zhi-led-micropython/">
                     <div class="card-image">
                         
-                        <img src="/images/vs1838.jpg" class="responsive-img" alt="紅外線遙控器控制LED-ESP3">
+                        <img src="/images/vs1838.jpg" class="responsive-img" alt="紅外線遙控器控制LED-micropython">
                         
-                        <span class="card-title">紅外線遙控器控制LED-ESP3</span>
+                        <span class="card-title">紅外線遙控器控制LED-micropython</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1219,6 +950,10 @@ void loop()
                             
                             <a href="/categories/esp32/" class="post-category">
                                     esp32
+                                </a>
+                            
+                            <a href="/categories/esp32/micropython/" class="post-category">
+                                    micropython
                                 </a>
                             
                             
@@ -1247,13 +982,13 @@ void loop()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/03/zi-zhi-wan-qu-chuan-gan-qi-arduino/">
+                <a href="/2021/09/03/tu-pao-zhi-ji-jie-shou-zhang-hand-robot-wan-qu-chuan-gan-qi-arduino/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="自制彎曲傳感器">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino">
                         
-                        <span class="card-title">自制彎曲傳感器</span>
+                        <span class="card-title">土炮制機械手掌(Hand Robot)+彎曲傳感器-Arduino</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1280,6 +1015,10 @@ void loop()
                 </div>
                 
                 <div class="card-action article-tags">
+                    
+                    <a href="/tags/hand-robot/">
+                        <span class="chip bg-color">hand robot</span>
+                    </a>
                     
                     <a href="/tags/%E5%BD%8E%E6%9B%B2%E5%82%B3%E6%84%9F%E5%99%A8/">
                         <span class="chip bg-color">彎曲傳感器</span>
