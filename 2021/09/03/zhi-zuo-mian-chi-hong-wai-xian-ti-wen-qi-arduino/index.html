@@ -1,0 +1,1476 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="製作免持紅外線體溫器, 我的微控板實驗室">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>製作免持紅外線體溫器 | 我的微控板實驗室</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <link rel="stylesheet" href="/js/prism.css">
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/meimg.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">我的微控板實驗室</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>主頁</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>標簽</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分類</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>關於</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/meimg.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">我的微控板實驗室</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			主頁
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			標簽
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分類
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			關於
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">製作免持紅外線體溫器</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/GY-906/">
+                                <span class="chip bg-color">GY-906</span>
+                            </a>
+                        
+                            <a href="/tags/IR%E7%B4%85%E5%A4%96%E5%82%B3%E6%84%9F%E5%99%A8/">
+                                <span class="chip bg-color">IR紅外傳感器</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/arduino/" class="post-category">
+                                arduino
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
+                    2021-09-03
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-09-03
+                </div>
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>閱讀次數:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="製作免持紅外線體溫器"><a href="#製作免持紅外線體溫器" class="headerlink" title="製作免持紅外線體溫器"></a>製作免持紅外線體溫器</h1><h6 id="tags-arduino"><a href="#tags-arduino" class="headerlink" title="tags: arduino"></a>tags: <code>arduino</code></h6><p>有感於新冠肺病毒的擴散，原本身在台灣感覺還算安全，但隨著時間和政策<br>病毒悄然在台灣擴散，大家出門的基本功就是口罩，酒精，體溫器。身為一<br>個小小班自研創客，當然要把自己在研究的東西用於現實生活上，堅持”不只是玩玩＂的心態。<br>最近二個月公司一早的朝會都固定要量體溫，用手持紅外線測溫，所以我想<br>用３Ｄ列印個外殼，做個掛壁免持的紅外線體溫器給公司同仁使用。</p>
+<p>因為近期網路上已經很多創客大大做出相關成品，我也看中一個”國外”不錯的專案<br>所以我就直接轉成中文把重點轉移過來，當個實作紀錄。</p>
+<p>參考網址：<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#">https://www.instructables.com/DIY-Non-Contact-IR-Thermometer/</a></p>
+<p>（申明：以下紀錄和圖片是基於轉貼大部份和翻為中文，方便自己學習使用</p>
+<p>The following records are based on records and are convenient for self-learning, so use reposting most of the content and some pictures）</p>
+<p>普通的紅外溫度計可以測量新冠患者的體溫，也可能傳播病毒。手持式溫度計的主要缺點是其性能取決於操作者和到額頭的距離。為了解決這些問題，製造了一種可以安裝在牆上的設備，無需操作員即可在公共區域進行發燒篩查。當傳感器與額頭之間的距離足夠時，硬件可以自動測量人體溫度。</p>
+<p><strong><em>所需組件</em></strong>  </p>
+<p>1. Arduino Nano  </p>
+<p>2. GY-906 溫度傳感器  </p>
+<p>3. OLED 顯示器  </p>
+<p>4. IR紅外傳感器  </p>
+<p>5. TP4056 充電器模塊  </p>
+<p>6. 18650 電池  </p>
+<p>7. 18650 電池座  </p>
+<p>8. 5 V DC-DC 升壓轉換器（亞馬遜）  </p>
+<p>9. 切換開關 -15 × 21 毫米  </p>
+<p>10. 5 毫米綠色 LED  </p>
+<p>11. 5 毫米紅色 LED  </p>
+<p>12. 2 x 330 歐姆電阻器  </p>
+<p>13.壓電蜂鳴器  </p>
+<p>14. Header Pins  </p>
+<p>15. 杜邦線  </p>
+<p>16. 跳線  </p>
+<h2 id="第-1-步：它是如何工作的？"><a href="#第-1-步：它是如何工作的？" class="headerlink" title="第 1 步：它是如何工作的？"></a>第 1 步：它是如何工作的？</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FKN/640Y/KP9RKLKY/FKN640YKP9RKLKY.jpg?auto=webp&frame=1&width=933&fit=bounds&md=246ad4f70f666e246570b8147de4cdac"></a></p>
+<p>工作原理很簡單，紅外測溫傳感器MLX90614在額頭與傳感器之間的距離（由紅外傳感器測量）匹配設定值時讀取人體溫度。傳感器讀數發送到 Arduino 進行處理，處理後的值顯示在 0.96’ OLED 顯示屏上。  </p>
+<p>除了 OLED 顯示屏外，還使用了兩個 LED 和一個蜂鳴器來指示輸出。  </p>
+<p>1、當體溫正常時，綠色LED（LED1）亮，蜂鳴器鳴叫。  </p>
+<p>2. 當體溫高於 37.7攝氏度時，紅色 LED ( LED2 ) 會亮起，蜂鳴器會發出較長時間的嗶嗶聲。  </p>
+<h2 id="第-2-步：電源"><a href="#第-2-步：電源" class="headerlink" title="第 2 步：電源"></a>第 2 步：電源</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FL6/3XIC/KP9RKQ5O/FL63XICKP9RKQ5O.png?auto=webp&frame=1&width=989&fit=bounds&md=f4cb0be5029dc114271993894e131fd1"></a></p>
+<p>整個電路所需的電源由兩節18650電池提供。兩塊電池並聯連接以製作更高容量的電池組以獲得更長的備份時間。電池組由 TP4056 充電器模塊充電。  </p>
+<p>使用升壓轉換器模塊（MT3608）將電池組電壓升至7V。然後升壓轉換器的輸出連接到 Arduino 的 Vin 引腳。  </p>
+<p>一個切換開關放置在充電器模塊 TP4056 輸出和升壓轉換器之間。</p>
+<h2 id="第-3-步：準備-Arduino-和溫度傳感器板"><a href="#第-3-步：準備-Arduino-和溫度傳感器板" class="headerlink" title="第 3 步：準備 Arduino 和溫度傳感器板"></a>第 3 步：準備 Arduino 和溫度傳感器板</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/F0O/VDDJ/KP9RKQAW/F0OVDDJKP9RKQAW.jpg?auto=webp&frame=1&width=799&height=1024&fit=bounds&md=d8cf21f11e1db08b6ca97c2d682405a8"></a></p>
+<h2 id="第-4-步：MLX90614-紅外溫度傳感器"><a href="#第-4-步：MLX90614-紅外溫度傳感器" class="headerlink" title="第 4 步：MLX90614 紅外溫度傳感器"></a>第 4 步：MLX90614 紅外溫度傳感器</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FP0/3KWQ/KP9RKQD4/FP03KWQKP9RKQD4.jpg?auto=webp&frame=1&width=591&fit=bounds&md=d887a37f17bfbfc3f1ca1a27ecac2001"></a></p>
+<p>MLX90614 是一款用於非接觸式溫度測量的紅外測溫儀，能夠測量 -70 至 380°C 之間的溫度。該傳感器採用紅外敏感熱電堆探測器芯片和信號調節ASIC集成在一個芯片中。它基於 Stefan-Boltzmann 定律工作，該定律指出所有物體都會發射 IR 能量，並且該能量的強度將與該物體的溫度成正比。傳感器中的傳感單元測量目標物體發射了多少紅外能量，計算單元使用 17 位內置 ADC 將其轉換為溫度值，並通過 I2C 通信協議輸出數據。  </p>
+<p>傳感器測量物體溫度和環境溫度以校準物體溫度值。 MLX 90614 傳感器可以讀取 -40 到 125 ˚C（-40 到 257 °F）範圍內的環境溫度和 -70 到 380 ˚C（-94 到 716 °F）範圍內的物體溫度。  </p>
+<p>紅外測溫儀與 Arduino 的連接非常簡單，因為它像許多其他組件一樣使用 I2C 通信接口。<br>MLX90614 溫度計有 4 個引腳：VIN、GND、SCL 和 SDA。  </p>
+<p><strong><em>連接應如下所示：</em></strong>  </p>
+<p>Arduino——MLX 90614  </p>
+<p>5V — VIN  </p>
+<p>GDN——GDN  </p>
+<p>A5 —- SCL  </p>
+<p>A4 —- SDA</p>
+<h2 id="步驟-5：準備電池組"><a href="#步驟-5：準備電池組" class="headerlink" title="步驟 5：準備電池組"></a>步驟 5：準備電池組</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FQQ/CP6E/KP9RKRBE/FQQCP6EKP9RKRBE.jpg?auto=webp&frame=1&width=410&height=1024&fit=bounds&md=6cdfd2f31060c20fac2ddff3133abb7f"></a></p>
+<p>我們必須將兩個 18650 電池並聯。我用過的電池槽是一個兩槽座，帶有獨立的接線端子用於連接。要進行並聯，請使用一根電線將每側的兩個端子連接在一起。  </p>
+<p>首先在端子上塗抹少量助焊劑，然後使用電線將它們短路。  </p>
+<p>接下來將紅色延長線焊接到正極端子，將黑色電線焊接到電池座的負極端子。</p>
+<h2 id="第-6-步：紅外接近傳感器"><a href="#第-6-步：紅外接近傳感器" class="headerlink" title="第 6 步：紅外接近傳感器"></a>第 6 步：紅外接近傳感器</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FV6/ODYQ/KP9RKRHV/FV6ODYQKP9RKRHV.jpg?auto=webp&frame=1&width=594&height=1024&fit=bounds&md=9ac11bdb80f34156dfdadf41cf76f219"></a></p>
+<p>目前，手持體溫計在發燒篩查方面非常流行。但是，手持式溫度計的性能取決於操作者和到額頭的距離。為了克服這些問題，使用紅外線接近傳感器來測量傳感器與額頭之間的距離，當距離足夠時，將感應並顯示溫度讀數。這樣，提高了測量的準確度。  </p>
+<p>您可以通過調節傳感器模塊上的電位器來設置接近傳感器到物體的檢測距離。順時針旋轉電位器將增加檢測距離，逆時針旋轉將減少檢測距離。我已將此距離設置為大約 50 毫米。  </p>
+<p>連接應如下所示：  </p>
+<p>Arduino——紅外傳感器</p>
+<p>3.3V — VCC</p>
+<p>GND——GND  </p>
+<p>D9 —- OUT</p>
+<h2 id="第7步-OLED-Display"><a href="#第7步-OLED-Display" class="headerlink" title="第7步: OLED Display"></a>第7步: OLED Display</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FJ4/OEI5/KP9RKQI6/FJ4OEI5KP9RKQI6.jpg?auto=webp&frame=1&width=611&fit=bounds&md=ed51004eeb0b79efc5b1e676c42c0378"></a></p>
+<p>體溫顯示採用0.96’ OLED顯示屏，分辨率為128x64，採用I2C總線與Arduino通信。Arduino Nanno中的兩個引腳SCL（A5），SDA（A4）用於通信。  </p>
+<p>我正在使用 Adafruit_SSD1306 庫來顯示參數。  </p>
+<p>首先，您必須下載 Adafruit_SSD1306。然後安裝它。  </p>
+<p><strong><em>連接應如下所示：</em></strong>  </p>
+<p>Arduino——OLED  </p>
+<p>5V — VCC  </p>
+<p>GND——GND  </p>
+<p>A4—-SDA  </p>
+<p>A5—-SCL</p>
+<h2 id="第8步-LED指示燈"><a href="#第8步-LED指示燈" class="headerlink" title="第8步: LED指示燈"></a>第8步: LED指示燈</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FMD/2M2F/KP9RKQLI/FMD2M2FKP9RKQLI.jpg?auto=webp&frame=1&width=785&height=1024&fit=bounds&md=dd1f9e844e5326f077b06fef485a751b"></a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/F49/O0R3/KP9RKQLE/F49O0R3KP9RKQLE.jpg?auto=webp&frame=1&width=397&height=1024&fit=bounds&md=9e516072d26a901b53d46dbaa83856b5"></a></p>
+<p>兩個LED用於指示體溫是正常還是異常。綠色 LED 指示體溫正常，紅色 LED 指示異常情況（當溫度高於 104 華氏度時）</p>
+<p>綠色 LED ( LED1 ) 連接到 Arduino 數字引腳 D3，紅色 LED ( LED2 ) 連接到 D5。為了限制 LED 的電流，使用了兩個 330 Ω 電阻器。將電阻焊接到 LED 的正極端子。 LED 較長的腳指示正極端子。  </p>
+<p>如上圖所示，將 4 根跳線連接到 LED。這裡我必須使用母-</p>
+<p>母跳線，以便於連接。</p>
+<h2 id="第-9-步：警報蜂鳴器"><a href="#第-9-步：警報蜂鳴器" class="headerlink" title="第 9 步：警報蜂鳴器"></a>第 9 步：警報蜂鳴器</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/F4T/1EXH/KP9RL19X/F4T1EXHKP9RL19X.jpg?auto=webp&frame=1&width=779&fit=bounds&md=0c7ba48304149e42bcab06324eedf719"></a></p>
+<p>為了在人體篩查期間提供警報，使用了壓電蜂鳴器。蜂鳴器有兩個端子，較長的一端為正極，較短的腳為負極。新蜂鳴器上的貼紙也有“+”標記，表示正極端子。  </p>
+<p>您可以將電線焊接到蜂鳴器引腳上，或者您可以使用我在這裡使用的母跳線。  </p>
+<p>連接應如下所示：  </p>
+<p>Arduino——蜂鳴器  </p>
+<p>D7 – 正極端子  </p>
+<p>GND——負極</p>
+<h2 id="第-10-步：準備擴展板"><a href="#第-10-步：準備擴展板" class="headerlink" title="第 10 步：準備擴展板"></a>第 10 步：準備擴展板</h2><p>如下圖:將5V, GND, SCL, SDA用焊接擴充</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FZ2/TUB2/KP9RL3QL/FZ2TUB2KP9RL3QL.jpg?auto=webp&frame=1&width=812&fit=bounds&md=f2ac4545b47d3d7410da953e4786eb4a"></a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FNK/RFBV/KP9RL259/FNKRFBVKP9RL259.jpg?auto=webp&frame=1&width=384&fit=bounds&md=401b9a5b05849f2801dc8a0956309568"></a></p>
+<h2 id="第-11-步：製作電路"><a href="#第-11-步：製作電路" class="headerlink" title="第 11 步：製作電路"></a>第 11 步：製作電路</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FAS/I203/KP9RL1QL/FASI203KP9RL1QL.jpg?auto=webp&frame=1&crop=3:2&width=838&height=1024&fit=bounds&md=524128c12bfb3a5b0bb49ec4692f1d75"></a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://content.instructables.com/ORIG/FSG/V2EB/KP9RKQSZ/FSGV2EBKP9RKQSZ.png?auto=webp&frame=1&width=362&fit=bounds&md=e7e9a0092875544993b9be8d7072a3ce"></a></p>
+<p> 首先，下載 Arduino 草圖並安裝所有庫。  </p>
+<p>下載並安裝以下庫：  </p>
+<p>1. Adafruit-MLX90614-Library：<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#">https://github.com/adafruit/Adafruit-MLX90614-Lib…</a>  </p>
+<p>2. Adafruit_SSD1306 庫：<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#">https://github.com/adafruit/Adafruit_SSD1306</a>  </p>
+<p>3.millisDelay：<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#">https://github.com/ansonhe97/millisDelay</a>  </p>
+<p>使用您的筆記本電腦或台式電腦將 USB 電纜插入 Arduino Nano。  </p>
+<p>設置正確的板子和 COM 端口號並將代碼上傳到 Arduino。</p>
+<hr>
+<p>這裡我先將主要的傳感器做測試，等待列印外殼再做組裝</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/LAPAus2xMJ8" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<hr>
+<p><strong>6/27</strong></p>
+<p><strong>列印外殼時長28小時,當然我是前後蓋分開印,後蓋印的還不錯,在列前蓋時剩下最後1%時噴頭給我阻塞,心都涼了!!!媽呀~~~~</strong></p>
+<p><strong>7/1</strong></p>
+<p><strong>當我把模組全部裝上機盒時,發現開機後的動作怪怪的,而直接使用電源接在nano上又正常,後來查到是升壓模組進電壓3.7v沒有升壓到7v,後來查一下網路,說升壓模組的調整閥一拿到最好都先逆時針轉20圈以上,再順時針調整,電壓就能往上(調整時調整閥朝自己)。</strong></p>
+<p><strong>7/3</strong></p>
+<p><strong>發現有個缺點,IR模組在光線強的地方會一直自己動作,調了靈敏度也是一樣,不知是傳感器有問題還是….,先買幾個換上再試。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://cf.shopee.tw/file/11e9c94f34a936a6d9aacd4893b9be91"></a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://lh3.googleusercontent.com/--GcWcr76wPw/YOAE5zttu_I/AAAAAAAAeZI/jc8EqqH4ap0udaNtBGp2dvoEWKSeFWqLACNcBGAsYHQ/s1600/1625294021588501-0.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2369433296544109208#"><img src="https://lh3.googleusercontent.com/-nLsZ-SyOg40/YN7NHJBac_I/AAAAAAAAeYw/vCmjbHF7rsgIvZvQnUM3qXZKn_RYC-ACgCNcBGAsYHQ/s1600/1625214227181480-1.png"></a></p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/b029HT_Jpnw" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">blairan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章鏈接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blairan.github.io/2021/09/03/zhi-zuo-mian-chi-hong-wai-xian-ti-wen-qi-arduino/">https://blairan.github.io/2021/09/03/zhi-zuo-mian-chi-hong-wai-xian-ti-wen-qi-arduino/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版權聲明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別聲明外，均採用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    許可協議。轉載請註明來源
+                    <a href="/about" target="_blank">blairan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>複製成功，請遵循本文的轉載規則</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/GY-906/">
+                                    <span class="chip bg-color">GY-906</span>
+                                </a>
+                            
+                                <a href="/tags/IR%E7%B4%85%E5%A4%96%E5%82%B3%E6%84%9F%E5%99%A8/">
+                                    <span class="chip bg-color">IR紅外傳感器</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'CRmNdguGV8f2sP2RXXrkRyz3-MdYXbMMI',
+        appKey: 'uChSx1EGFYUeYminmGumttEJ',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'en',
+        placeholder: '有什麼想法請留言給我'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/09/03/zi-zhi-wan-qu-chuan-gan-qi-arduino/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="自制彎曲傳感器">
+                        
+                        <span class="card-title">自制彎曲傳感器</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/arduino/" class="post-category">
+                                    arduino
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%BD%8E%E6%9B%B2%E5%82%B3%E6%84%9F%E5%99%A8/">
+                        <span class="chip bg-color">彎曲傳感器</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/02/mqtt-node-red-kong-zhi-er-zhou-yun-tai-esp32/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="MQTT-Node-RED控制二軸云台-ESP32">
+                        
+                        <span class="card-title">MQTT-Node-RED控制二軸云台-ESP32</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/micropython/" class="post-category">
+                                    micropython
+                                </a>
+                            
+                            <a href="/categories/micropython/esp32/" class="post-category">
+                                    esp32
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mqtt/">
+                        <span class="chip bg-color">mqtt</span>
+                    </a>
+                    
+                    <a href="/tags/node-red/">
+                        <span class="chip bg-color">node-red</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%8C%E8%BB%B8%E4%BA%91%E5%8F%B0/">
+                        <span class="chip bg-color">二軸云台</span>
+                    </a>
+                    
+                    <a href="/tags/servo/">
+                        <span class="chip bg-color">servo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目錄</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+            
+
+                <div class="container row center-align"
+                    style="margin-bottom: 0px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                            <span id="year">
+                                2019-2021
+                            </span>
+                            
+                                    <span id="year">
+                                        2019
+                                    </span>
+                                    <a href="/about" target="_blank">
+                                        blairan
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+                                    |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery"
+                                        target="_blank">Matery</a>
+                                    <br>
+                                    
+                                                
+                                                    
+                                                        
+                                                            
+                                                                
+                                                                    <span id="busuanzi_container_site_pv">
+                                                                        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;總訪問量:&nbsp;
+                                                                            <span id="busuanzi_value_site_pv"
+                                                                                class="white-color"></span>
+                                                                    </span>
+                                                                    
+                                                                        
+                                                                            <span id="busuanzi_container_site_uv">
+                                                                                &nbsp;|&nbsp;<i
+                                                                                    class="fas fa-users"></i>&nbsp;總訪問人數:&nbsp;
+                                                                                    <span id="busuanzi_value_site_uv"
+                                                                                        class="white-color"></span>
+                                                                            </span>
+                                                                            
+                                                                                <br>
+
+                                                                                <!-- 运行天数提醒. -->
+                                                                                
+                                                                                        <br>
+                                                                                        
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
+    <a href="https://github.com/blairan/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:blairan121122885@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1773591664" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1773591664" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+</footer>
+<script src="/js/prism.js" async></script>
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
