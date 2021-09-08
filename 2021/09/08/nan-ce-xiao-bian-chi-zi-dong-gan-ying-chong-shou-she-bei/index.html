@@ -468,42 +468,42 @@
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2013353077496703013#"><img src="https://lh3.googleusercontent.com/-OlsGgcbPzvo/YGQmbimGBiI/AAAAAAAAd-Q/Sql6TpYatTEuwQgN9_o17tuWnuJVm5X7gCNcBGAsYHQ/s1600/1617176145655067-0.png"></a></p>
 <p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6959160158145357673/2013353077496703013#"><img src="https://lh3.googleusercontent.com/-AM3GkPjLb4I/YGQmUbuW_LI/AAAAAAAAd-M/wtm4Us8lnWsnJlOVikMK-3cs7ccslLluQCNcBGAsYHQ/s1600/1617176089549530-1.png"></a></p>
 <hr>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre><code class="c#">#include &lt;SharpIR.h&gt;
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;SharpIR.h&gt;
 
 #include &lt;Wire.h&gt;
 
 #include &lt;Adafruit_PWMServoDriver.h&gt;
 
   
-Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+Adafruit_PWMServoDriver pwm &#x3D; Adafruit_PWMServoDriver();
 
-const int servomin=150;
+const int servomin&#x3D;150;
 
-const int servomax=600;
+const int servomax&#x3D;600;
 
 int sensor;
 
-unsigned long time_old=0;
+unsigned long time_old&#x3D;0;
 
-#define IR A2 // define signal pin
+#define IR A2 &#x2F;&#x2F; define signal pin
 
-#define model 20150 // used 1080 because model GP2Y0A21YK0F is used
+#define model 20150 &#x2F;&#x2F; used 1080 because model GP2Y0A21YK0F is used
 
-// Sharp IR code for Robojax.com
+&#x2F;&#x2F; Sharp IR code for Robojax.com
 
-// ir: the pin where your sensor is attached
+&#x2F;&#x2F; ir: the pin where your sensor is attached
 
-// model: an int that determines your sensor:  1080 for GP2Y0A21Y
+&#x2F;&#x2F; model: an int that determines your sensor:  1080 for GP2Y0A21Y
 
-//                                            20150 for GP2Y0A02Y
+&#x2F;&#x2F;                                            20150 for GP2Y0A02Y
 
-//                                            430 for GP2Y0A41SK   
+&#x2F;&#x2F;                                            430 for GP2Y0A41SK   
 
-/*
+&#x2F;*
 
 2 to 15 cm GP2Y0A51SK0F  use 1080
 
-4 to 30 cm GP2Y0A41SK0F / GP2Y0AF30 series  use 430
+4 to 30 cm GP2Y0A41SK0F &#x2F; GP2Y0AF30 series  use 430
 
 10 to 80 cm GP2Y0A21YK0F  use 1080
 
@@ -513,11 +513,7 @@ unsigned long time_old=0;
 
 100 to 550 cm GP2Y0A710K0F  use 100550
 
-  
-
- */
-
-  
+ *&#x2F;
 
 SharpIR SharpIR(IR, model);
 
@@ -539,15 +535,13 @@ void setup() &#123;
 
 &#125;
 
-  
-
 void loop() &#123;
 
   delay(500);   
 
-  int dis=SharpIR.distance();  // this returns the distance to the object you&#39;re measuring
+  int dis&#x3D;SharpIR.distance();  &#x2F;&#x2F; this returns the distance to the object you&#39;re measuring
 
-  Serial.print(&quot;Mean distance: &quot;);  // returns it to the serial monitor
+  Serial.print(&quot;Mean distance: &quot;);  &#x2F;&#x2F; returns it to the serial monitor
 
   Serial.println(dis);
 
@@ -555,9 +549,9 @@ void loop() &#123;
 
     Serial.println(&quot;close sw&quot;);
 
-  &#125;else if(dis&gt;=20 &amp;&amp; dis&lt;=70)&#123;
+  &#125;else if(dis&gt;&#x3D;20 &amp;&amp; dis&lt;&#x3D;70)&#123;
 
-    unsigned long time_now=millis();
+    unsigned long time_now&#x3D;millis();
 
     if (time_now-time_old&gt;600)&#123;
 
@@ -569,15 +563,11 @@ void loop() &#123;
 
       pwm.setPWM(14, 0, 590);
 
-      time_now=time_old;
+      time_now&#x3D;time_old;
 
     &#125;
-
   &#125;  
-
-&#125;
-</code></pre>
-
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
