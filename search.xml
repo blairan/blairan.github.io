@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>WEMOS_D1_R2_WIFI測試WIFI功能</title>
+      <link href="/2021/09/09/wemos-d1-r2-wifi-ce-shi-wifi-gong-neng/"/>
+      <url>/2021/09/09/wemos-d1-r2-wifi-ce-shi-wifi-gong-neng/</url>
+      
+        <content type="html"><![CDATA[<h1 id="WEMOS-D1-R2-WIFI測試WIFI功能"><a href="#WEMOS-D1-R2-WIFI測試WIFI功能" class="headerlink" title="WEMOS_D1_R2_WIFI測試WIFI功能"></a>WEMOS_D1_R2_WIFI測試WIFI功能</h1><p><strong>WeMos D1 WiFi Arduino UNO 開發板ESP8266 直接用Arduino IDE</strong></p><p><strong><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#"><img src="https://lh3.googleusercontent.com/-RdB-26UI6H8/YJkQTnqUh6I/AAAAAAAAeIA/2rAjRsJoWKoPyLTOn09Ql2xhZIJJYQsCgCNcBGAsYHQ/s1600/1620643913270658-0.png"></a></strong></p><ol><li> <strong>WeMos D1 基於ESP-8266EX</strong></li><li> <strong>Arduino兼容，使用Arduino IDE來編程</strong></li><li> <strong>11 x I/O 引腳</strong></li><li> <strong>1 x ADC 引腳（輸入範圍0-3.3V）</strong></li><li> <strong>支持OTA無線上傳</strong></li><li>**板載5V 1A開關電源（最高輸入電壓24V)<br> **</li></ol><p>上面那些是這款板子的主要介紹，前陣子在淘%買了兩塊，就放著沒動，</p><p>今早心血來潮翻了翻百寶袋，決定拿來把玩，其實有點搞不懂，它到底是</p><p>esp8266還是Arduino，看起來就是像把esp01鑲在arduino uno的</p><p>板子上啊……!!!!!不管了，反正拿到就用吧！</p><p><strong>一些介紹和賣場上都有下面這個提示</strong></p><h2 id="WeMos-D1-安裝教學"><a href="#WeMos-D1-安裝教學" class="headerlink" title="WeMos D1 安裝教學"></a>WeMos D1 安裝教學</h2><p>原廠技術文件說明 <a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#">https://www.wemos.cc/product/d1.html</a></p><p>Arduino 安裝說明 <a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#">https://www.wemos.cc/tutorial/get-started-arduino.html</a></p><p>NodeMCU 安裝說明  <a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#">https://www.wemos.cc/tutorial/get-started-nodemcu.html</a></p><p>教學 <a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#">http://www.instructables.com/id/Programming-the-WeMos-Using-Arduino-SoftwareIDE/</a></p><p>相關入門程式開發與說明<a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#"> https://github.com/wemos</a></p><p><strong>安裝硬件包後，直接用Arduino IDE 開發，跟Arduino UNO 一樣操作****最便宜的WiFi Arduino 板.</strong></p><hr><h2 id="如何安裝程式庫"><a href="#如何安裝程式庫" class="headerlink" title="如何安裝程式庫"></a>如何安裝程式庫</h2><h3 id="步驟1"><a href="#步驟1" class="headerlink" title="步驟1:"></a>步驟1:</h3><p><strong>偏好設定,在下方額外的開發板管理員網址:輸入如下網址</strong></p><p><strong><a href="http://arduino.esp8266.com/stable/package/_esp8266com/_index.json">http://arduino.esp8266.com/stable/package\_esp8266com\_index.json</a></strong></p><p>**</p><p><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#"><img src="https://1.bp.blogspot.com/-E96XTfrC1-w/YJopm1o80LI/AAAAAAAAeIM/kJ76QffnQ9YXwOOIPDKjsrbVEuPspJdnQCNcBGAsYHQ/w701-h394/1.jpg"></a></p><h3 id="步驟2"><a href="#步驟2" class="headerlink" title="步驟2:"></a>步驟2:</h3><p>到IDE的_工具&gt;&gt;開發板&gt;&gt;開發板管理員 搜尋輸入”esp8266”並選擇安裝</p><p><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#"><img src="https://1.bp.blogspot.com/-0AEyGgEnygE/YJoqh-kLB7I/AAAAAAAAeIU/hoaSoUkNMDYCmkmaMJBe8pLhY-7qNxXYgCNcBGAsYHQ/w650-h366/2.jpg"></a></p><p>_</p><h3 id="步驟4"><a href="#步驟4" class="headerlink" title="步驟4:"></a>步驟4:</h3><p>按照下圖選擇開發板類型 工具&gt;&gt;開發板&gt;&gt;選 WeMos D1 R2</p><p>**</p><p><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#"><img src="https://1.bp.blogspot.com/-6GQ9ywhfmEc/YJorxTeMzsI/AAAAAAAAeIc/rVj4r-ryng4YoF-fas9sis4BtZtvb3yVwCNcBGAsYHQ/w723-h407/3.jpg"></a></p><p>_</p><hr><p>_</p><h3 id="步驟5"><a href="#步驟5" class="headerlink" title="步驟5:"></a>步驟5:</h3><p><strong>選擇”<em>WIFIScan</em>“範例，可搜尋附近可用的WIFI，並顯示於”<em>序列埠監控視窗</em>“</strong></p><p><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/2012246015755250549#"><img src="https://1.bp.blogspot.com/-xLmmThmFzxM/YJotsue9qnI/AAAAAAAAeIk/dXGmBeLU7Aw3gCNaQ6cDnFC4576QwSikACNcBGAsYHQ/w668-h376/4.jpg"></a></p><hr><p><strong>以下是搜尋附近可用WIFI的範例</strong></p><div class="video-container"><iframe src="https://www.youtube.com/embed/T76myCMsjR0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> esp8266 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> wifi </tag>
+            
+            <tag> WEMOS_D1_R2 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Sharp紅外線測距模組-GP2Y0A02YK0F</title>
       <link href="/2021/09/08/sharp-hong-wai-xian-ce-ju-mo-zu-gp2y0a02yk0f/"/>
       <url>/2021/09/08/sharp-hong-wai-xian-ce-ju-mo-zu-gp2y0a02yk0f/</url>
