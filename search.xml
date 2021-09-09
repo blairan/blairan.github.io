@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>ESP-01S燒錄固件</title>
+      <link href="/2021/09/09/esp-01s-shao-lu-gu-jian/"/>
+      <url>/2021/09/09/esp-01s-shao-lu-gu-jian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ESP-01S燒錄固件"><a href="#ESP-01S燒錄固件" class="headerlink" title="ESP-01S燒錄固件"></a>ESP-01S燒錄固件</h1><h6 id="tags-esp8266-esp-01s"><a href="#tags-esp8266-esp-01s" class="headerlink" title="tags: esp8266 esp-01s"></a>tags: <code>esp8266</code> <code>esp-01s</code></h6><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><a href="https://lh3.googleusercontent.com/-F1HF0hnInPA/YHF7-0mNiDI/AAAAAAAAeEM/LdWcFx7K_u42Lxo56UDt4jPQj9hYi7nzQCNcBGAsYHQ/s1600/1618050040927051-0.png"><img src="https://lh3.googleusercontent.com/-F1HF0hnInPA/YHF7-0mNiDI/AAAAAAAAeEM/LdWcFx7K_u42Lxo56UDt4jPQj9hYi7nzQCNcBGAsYHQ/w180-h320/1618050040927051-0.png"></a></p><p><a href="https://lh3.googleusercontent.com/-_wOpaSEbZmQ/YHF79VmmpOI/AAAAAAAAeEE/b7hkFdVGLnARPBM5DmbKhieQ8FWbyXK8gCNcBGAsYHQ/s1600/1618050034996435-2.png"><img src="https://lh3.googleusercontent.com/-_wOpaSEbZmQ/YHF79VmmpOI/AAAAAAAAeEE/b7hkFdVGLnARPBM5DmbKhieQ8FWbyXK8gCNcBGAsYHQ/w173-h307/1618050034996435-2.png"></a><a href="https://lh3.googleusercontent.com/-0CbaIZH0aLo/YHF7-MaCTFI/AAAAAAAAeEI/78bL1qrM1NYdE0gf9jrW19zEYFwtCaw5wCNcBGAsYHQ/s1600/1618050038056312-1.png"><img src="https://lh3.googleusercontent.com/-0CbaIZH0aLo/YHF7-MaCTFI/AAAAAAAAeEI/78bL1qrM1NYdE0gf9jrW19zEYFwtCaw5wCNcBGAsYHQ/w177-h315/1618050038056312-1.png"></a>  </p><p>\</p><h2 id="1-下載所須軟件"><a href="#1-下載所須軟件" class="headerlink" title="1.下載所須軟件"></a>1.下載所須軟件</h2><p><a href="https://pan.baidu.com/s/14076XZTtSIxsHQ7HFq2NNA">https://pan.baidu.com/s/14076XZTtSIxsHQ7HFq2NNA </a></p><p>提取码：szw4</p><h2 id="2-燒錄步驟-視頻"><a href="#2-燒錄步驟-視頻" class="headerlink" title="2.燒錄步驟-視頻"></a>2.燒錄步驟-視頻</h2><hr><h2 id="實驗視頻"><a href="#實驗視頻" class="headerlink" title="[實驗視頻] "></a>[實驗視頻] </h2><div class="video-container"><iframe src="https://www.youtube.com/embed/NDTrCgOkQDo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>  <h2 id="3-遇到ESP8266-DOWNOAD-TOOL打不開怎麼辦"><a href="#3-遇到ESP8266-DOWNOAD-TOOL打不開怎麼辦" class="headerlink" title="3.遇到ESP8266 DOWNOAD TOOL打不開怎麼辦"></a>3.遇到ESP8266 DOWNOAD TOOL打不開怎麼辦</h2><h4 id="請到-lt-開始-gt-–-lt-設定-gt-–-lt-時間與語言-gt-–-lt-地區-gt-–-lt-相關設定-gt-–-lt-地區-gt-–-lt-系統管理-gt"><a href="#請到-lt-開始-gt-–-lt-設定-gt-–-lt-時間與語言-gt-–-lt-地區-gt-–-lt-相關設定-gt-–-lt-地區-gt-–-lt-系統管理-gt" class="headerlink" title="請到&lt;開始&gt;–&lt;設定&gt;–&lt;時間與語言&gt;–&lt;地區&gt;–&lt;相關設定&gt;–&lt;地區&gt;–&lt;系統管理&gt;"></a>請到&lt;開始&gt;–&lt;設定&gt;–&lt;時間與語言&gt;–&lt;地區&gt;–&lt;相關設定&gt;–&lt;地區&gt;–&lt;系統管理&gt;</h4><h4 id="–-lt-變更系統地區設定-gt-–-lt-格式-gt-改成-lt-中文-簡體-中國-gt-因為這軟件是大陸製"><a href="#–-lt-變更系統地區設定-gt-–-lt-格式-gt-改成-lt-中文-簡體-中國-gt-因為這軟件是大陸製" class="headerlink" title="–&lt;變更系統地區設定&gt;–&lt;格式&gt;,改成&lt;中文(簡體,中國)&gt;因為這軟件是大陸製"></a><strong>–&lt;變更系統地區設定&gt;–&lt;格式&gt;,改成&lt;中文(簡體,中國)&gt;因為這軟件是大陸製</strong></h4><p><strong>作的，所以必須把地區改為中國才能開啓。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> esp8266 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ESP-01S </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>WEMOS_D1_R2_WIFI測試WIFI功能</title>
       <link href="/2021/09/09/wemos-d1-r2-wifi-ce-shi-wifi-gong-neng/"/>
       <url>/2021/09/09/wemos-d1-r2-wifi-ce-shi-wifi-gong-neng/</url>
