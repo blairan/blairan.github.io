@@ -423,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-29
+                    2021-09-11
                 </div>
                 
 
@@ -490,7 +490,7 @@ Ultrasonic ultrasonic1(32, 33); &#x2F;&#x2F;ultrasonic(trig, echo)
 
   
 
-const char indexHtml\[\] PROGMEM &#x3D; R&quot;&#x3D;&#x3D;&#x3D;(
+const char indexHtml[] PROGMEM &#x3D; R&quot;&#x3D;&#x3D;&#x3D;(
 
     &lt;html&gt;
 
@@ -580,13 +580,13 @@ void setup()&#123;
 
     Serial.print(&quot;IP: &quot;); Serial.println(WiFi.localIP());
 
-    server.on(&quot;&#x2F;&quot;, HTTP_GET, \[\](AsyncWebServerRequest *request)&#123;
+    server.on(&quot;&#x2F;&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
         request-&gt;send_P(200, &quot;text&#x2F;html&quot;, indexHtml, hcsr04Processors);
 
     &#125;);
 
-    server.on(&quot;&#x2F;distance&quot;, HTTP_GET, \[\](AsyncWebServerRequest *request)&#123;
+    server.on(&quot;&#x2F;distance&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
         request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readDist().c_str());
 
