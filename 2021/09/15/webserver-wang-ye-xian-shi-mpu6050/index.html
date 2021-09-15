@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MPU-6050加速度-陀螺儀-溫度傳感器-micropython, 我的微控板實驗室">
+    <meta name="keywords" content="webserver網頁顯示mpu6050, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MPU-6050加速度-陀螺儀-溫度傳感器-micropython | 我的微控板實驗室</title>
+    <title>webserver網頁顯示mpu6050 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/mpu2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/mpu6050web.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MPU-6050加速度-陀螺儀-溫度傳感器-micropython</h1>
+                    <h1 class="description center-align post-title">webserver網頁顯示mpu6050</h1>
                 </div>
             </div>
         </div>
@@ -387,6 +387,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/web-server/">
+                                <span class="chip bg-color">web server</span>
+                            </a>
+                        
                             <a href="/tags/mpu6050/">
                                 <span class="chip bg-color">mpu6050</span>
                             </a>
@@ -399,11 +403,7 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/micropython/" class="post-category">
-                                micropython
-                            </a>
-                        
-                            <a href="/categories/micropython/esp32/" class="post-category">
+                            <a href="/categories/esp32/" class="post-category">
                                 esp32
                             </a>
                         
@@ -416,14 +416,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2021-09-10
+                    2021-09-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-10
+                    2021-09-15
                 </div>
                 
 
@@ -450,185 +450,277 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="MPU-6050加速度-陀螺儀-溫度傳感器-micropython"><a href="#MPU-6050加速度-陀螺儀-溫度傳感器-micropython" class="headerlink" title="MPU-6050加速度-陀螺儀-溫度傳感器-micropython"></a>MPU-6050加速度-陀螺儀-溫度傳感器-micropython</h2><h6 id="tags-micropython-mpu-6050"><a href="#tags-micropython-mpu-6050" class="headerlink" title="tags: micropython mpu-6050"></a>tags: <code>micropython</code> <code>mpu-6050</code></h6><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/7574901053087696690#"><img src="https://1.bp.blogspot.com/-vLDJAqcfOeU/YTrKHZdaKqI/AAAAAAAAe5g/kIY1BLNq_9Y7NrutJsQzYbPDZ02howdIgCNcBGAsYHQ/w406-h227/mpu6050.jpg"></a></p>
-<h2 id="實驗目標"><a href="#實驗目標" class="headerlink" title="實驗目標:"></a>實驗目標:</h2><p>MPU-6050 IMU（慣性測量單元）是一個 3 軸加速度計和 3 軸陀螺儀傳感器。加速度計測量重力加速度，陀螺儀測量旋轉速度。此外，該模塊還測量溫度。該傳感器非常適合確定移動物體的方向。</p>
-<h2 id="MPU-6050簡介"><a href="#MPU-6050簡介" class="headerlink" title="MPU-6050簡介"></a>MPU-6050簡介</h2><p>MPU-6050 是一個帶有 3 軸加速度計和 3 軸陀螺儀的模組。</p>
-<p><strong>陀螺儀</strong>-用於測量旋轉速度 (rad/s)，這是角度位置沿 X、Y 和 Z 軸（滾動、俯仰和偏航）隨時間的變化。這使我們能夠確定物體的方向。</p>
-<p><strong>加速度計</strong>-測量加速度它可以感應重力 (9.8m/s2) 等靜態力或振動或運動等動態力。 </p>
-<p>MPU-6050 測量 X、Y 和 Z 軸上的加速度。理想情況下，在靜態物體中，Z 軸上的加速度等於重力，並且在 X 和 Y 軸上應為零。<br><strong>加速度計</strong>-可以使用三角法計算橫滾角和俯仰角。但無法計算偏航。</p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/7574901053087696690#"><img src="https://1.bp.blogspot.com/-u8-QyUWHTwI/YTrKgEmaSII/AAAAAAAAe5o/3EOJc0UTKPUQY1FE1LjaMLpJXF-WUeGJwCNcBGAsYHQ/w403-h368/MPU6050-Module-Gyroscope-Axis.jpg"></a></p>
-<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/7574901053087696690#"><img src="https://1.bp.blogspot.com/-Jzy9JzxJVRI/YTrMxxtTrRI/AAAAAAAAe54/GM3Hk8tPHz0oT7ezO6IWl0iy3GS2xOh5gCNcBGAsYHQ/w1403-h530/MPU6050.jpg"></a></p>
-<h2 id="須匯入的程式庫"><a href="#須匯入的程式庫" class="headerlink" title="須匯入的程式庫"></a>須匯入的程式庫</h2><p><strong><em>新開一個mpu6050.py和main.py放一起,並上傳到ESP32板上</em></strong></p>
-<h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> machine
+                <h1 id="MPU-6050-amp-webServer網頁顯示-ESP32"><a href="#MPU-6050-amp-webServer網頁顯示-ESP32" class="headerlink" title="MPU-6050&amp;webServer網頁顯示-ESP32"></a>MPU-6050&amp;webServer網頁顯示-ESP32</h1><h6 id="tags-esp32-mpu-6050"><a href="#tags-esp32-mpu-6050" class="headerlink" title="tags: esp32 mpu-6050"></a>tags: <code>esp32</code> <code>mpu-6050</code></h6><h2 id="實驗目標"><a href="#實驗目標" class="headerlink" title="實驗目標:"></a>實驗目標:</h2><p><strong>此次實驗要把實時量測的xyz值顯示於網頁上。</strong></p>
+<h2 id="MPU-6050簡介"><a href="#MPU-6050簡介" class="headerlink" title="MPU-6050簡介"></a>MPU-6050簡介</h2><p><strong>MPU-6050 IMU</strong>（慣性測量單元）是一個 3 軸加速度計和 3 軸陀螺儀傳感器。加速度計測量重力加速度，陀螺儀測量旋轉速度。此外，該模塊還測量溫度。該傳感器非常適合確定移動物體的方向。</p>
+<p>MPU-6050 是一個帶有 3 軸加速度計和 3 軸陀螺儀的模組。</p>
+<p>**陀螺儀-**用於測量旋轉速度 (rad/s)，這是角度位置沿 X、Y 和 Z 軸（滾動、俯仰和偏航）隨時間的變化。這使我們能夠確定物體的方向。</p>
+<p>**加速度計-**測量加速度它可以感應重力 (9.8m/s2) 等靜態力或振動或運動等動態力。 </p>
+<p>MPU-6050 測量 X、Y 和 Z 軸上的加速度。理想情況下，在靜態物體中，Z 軸上的加速度等於重力，並且在 X 和 Y 軸上應為零。<br>**加速度計-**可以使用三角法計算橫滾角和俯仰角。但無法計算偏航。</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#"><img src="https://1.bp.blogspot.com/-u8-QyUWHTwI/YTrKgEmaSII/AAAAAAAAe5o/3EOJc0UTKPUQY1FE1LjaMLpJXF-WUeGJwCNcBGAsYHQ/w403-h368/MPU6050-Module-Gyroscope-Axis.jpg"></a></p>
+<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#"><img src="https://1.bp.blogspot.com/-Jzy9JzxJVRI/YTrMxxtTrRI/AAAAAAAAe54/GM3Hk8tPHz0oT7ezO6IWl0iy3GS2xOh5gCNcBGAsYHQ/w1272-h481/MPU6050.jpg"></a></p>
+<h2 id="須匯入的程式庫"><a href="#須匯入的程式庫" class="headerlink" title="須匯入的程式庫"></a>須匯入的程式庫</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#">Adafruit_MPU6050</a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#">Adafruit_Sensor</a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#">ESPAsyncWebServer</a></p>
+<hr>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;Arduino.h&gt;
 
-<span class="token keyword">class</span> <span class="token class-name">accel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+&#x2F;&#x2F;包含 MPU-6050 傳感器所需的庫：Adafruit_MPU6050 和 Adafruit_Sensor。
 
-    <span class="token keyword">def</span> __init__<span class="token punctuation">(</span>self<span class="token punctuation">,</span> i2c<span class="token punctuation">,</span> addr<span class="token operator">=</span><span class="token number">0x68</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+#include &lt;Adafruit_MPU6050.h&gt;
 
-        self<span class="token punctuation">.</span>iic <span class="token operator">=</span> i2c
+#include &lt;Adafruit_Sensor.h&gt;
 
-        self<span class="token punctuation">.</span>addr <span class="token operator">=</span> addr
+#include &lt;WiFi.h&gt;
 
-        self<span class="token punctuation">.</span>iic<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-        self<span class="token punctuation">.</span>iic<span class="token punctuation">.</span>writeto<span class="token punctuation">(</span>self<span class="token punctuation">.</span>addr<span class="token punctuation">,</span> <span class="token builtin">bytearray</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">107</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-        self<span class="token punctuation">.</span>iic<span class="token punctuation">.</span>stop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-  
-
-    <span class="token keyword">def</span> get_raw_values<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-
-        self<span class="token punctuation">.</span>iic<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-        a <span class="token operator">=</span> self<span class="token punctuation">.</span>iic<span class="token punctuation">.</span>readfrom_mem<span class="token punctuation">(</span>self<span class="token punctuation">.</span>addr<span class="token punctuation">,</span> <span class="token number">0x3B</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span>
-
-        self<span class="token punctuation">.</span>iic<span class="token punctuation">.</span>stop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-        <span class="token keyword">return</span> a
+#include &lt;ESPAsyncWebServer.h&gt;
 
   
+&#x2F;&#x2F;wifi帳密
 
-    <span class="token keyword">def</span> get_ints<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+const char *ssid &#x3D; &quot;---&quot;;
 
-        b <span class="token operator">=</span> self<span class="token punctuation">.</span>get_raw_values<span class="token punctuation">(</span><span class="token punctuation">)</span>
+const char *password &#x3D; &quot;-----&quot;;
 
-        c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> b<span class="token punctuation">:</span>
+Adafruit_MPU6050 mpu;
 
-            c<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+AsyncWebServer server(80);
 
-        <span class="token keyword">return</span> c
+
+&#x2F;&#x2F;html
+
+const char indexHtml[] PROGMEM &#x3D; R&quot;&#x3D;&#x3D;&#x3D;(
+
+  &lt;html&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
+
+    &lt;meta http-equiv&#x3D;&quot;refresh&quot; content&#x3D;&quot;0.5&quot; &#x2F;&gt;
+
+    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;
+
+    &lt;style&gt;
+
+        h1 &#123;text-align: center; background-color: rgb(226, 155, 23); color: rgb(47, 49, 42); margin-right: 5px;&#125;
+
+        h2 &#123;text-align: center;  color: rgb(47, 49, 42); background-color: rgb(197, 194, 11);margin-right: 5px;&#125;
+
+        dl &#123;width: 320px; margin: auto;&#125;
+
+        dt &#123;font-size: 20pt; color: rgb(36, 45, 168); background-color: rgb(197, 194, 11);
+
+            margin: 6pt 0; padding: 6pt 12pt;&#125;
+
+        p &#123;text-align: center; padding-right: 6pt; 6pt; line-height:20px&#125;
+
+        .val p&#123; margin:0 auto&#125; 
+
+        .val &#123; font-size: 20pt; color: rgb(255, 120, 30); &#125;
+
+    &lt;&#x2F;style&gt;
+
+&lt;&#x2F;head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;MPU-6050加速度&amp;陀螺儀測試&lt;&#x2F;h1&gt;
+
+    &lt;h2&gt;加速度計 (m&#x2F;s^2)&lt;&#x2F;h2&gt;
+
+    &lt;p class&#x3D;val&gt;AX %ax%&lt;&#x2F;p&gt;
+
+    &lt;p class&#x3D;val&gt;AY %ay%&lt;&#x2F;p&gt;
+
+    &lt;p class&#x3D;val&gt;AZ %az%&lt;&#x2F;p&gt;
+
+    &lt;h2&gt;陀螺儀(rad&#x2F;s)&lt;&#x2F;h2&gt;
+
+    &lt;p class&#x3D;val&gt;GX %gx%&lt;&#x2F;p&gt;
+
+    &lt;p class&#x3D;val&gt;GY %gy%&lt;&#x2F;p&gt;
+
+    &lt;p class&#x3D;val&gt;GZ %gz%&lt;&#x2F;p&gt;
+
+&lt;&#x2F;body&gt;
+
+&lt;&#x2F;html&gt;
+
+)&#x3D;&#x3D;&#x3D;&quot;;
+
+&#x2F;&#x2F;以下是讀取加速度計和陀螺儀的xyz值
+
+String readX()&#123;
+
+  mpu.begin();
+
+  sensors_event_t a, g, temp;
+
+  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
+
+  return String(a.acceleration.x);
+
+&#125;
+
+String readY()&#123;
+
+  sensors_event_t a, g, temp;
+
+  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
+
+  return String(a.acceleration.y);
+
+&#125;
+
+String readZ()&#123;
+
+  sensors_event_t a, g, temp;
+
+  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
+
+  return String(a.acceleration.z);
+
+&#125;
+
+
+String readGX()&#123;
+
+   sensors_event_t a, g, temp;
+
+  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
+
+  return String(g.gyro.x);
+
+&#125;
+
+String readGY()&#123;
+
+   sensors_event_t a, g, temp;
+
+  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
+
+  return String(g.gyro.y);
+
+&#125;
+
+String readGZ()&#123;
+
+   sensors_event_t a, g, temp;
+
+  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
+
+  return String(g.gyro.z);
+
+&#125;
+
+
+String mpuProcessor(const String &amp; val)&#123;
+
+  if (val &#x3D;&#x3D; &quot;ax&quot;)&#123;
+
+    return readX();
+
+  &#125;else if (val &#x3D;&#x3D; &quot;ay&quot;)&#123;
+
+    return readY();
+
+  &#125;else if (val &#x3D;&#x3D; &quot;az&quot;)&#123;
+
+    return readZ();
+
+  &#125;else if (val &#x3D;&#x3D; &quot;gx&quot;)&#123;
+
+    return readGX();
+
+  &#125;else if (val &#x3D;&#x3D; &quot;gy&quot;)&#123;
+
+    return readGY();
+
+  &#125;else if (val &#x3D;&#x3D; &quot;gz&quot;)&#123;
+
+    return readGZ();
+
+  &#125;
+
+  return String();
+
+&#125;
 
   
-    <span class="token keyword">def</span> bytes_toint<span class="token punctuation">(</span>self<span class="token punctuation">,</span> firstbyte<span class="token punctuation">,</span> secondbyte<span class="token punctuation">)</span><span class="token punctuation">:</span>
+void setup() &#123;
 
-        <span class="token keyword">if</span> <span class="token keyword">not</span> firstbyte <span class="token operator">&amp;</span> <span class="token number">0x80</span><span class="token punctuation">:</span>
+  Serial.begin(115200);
 
-            <span class="token keyword">return</span> firstbyte <span class="token operator">&lt;&lt;</span> <span class="token number">8</span> <span class="token operator">|</span> secondbyte
+  WiFi.begin(ssid, password);
 
-        <span class="token keyword">return</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>firstbyte <span class="token operator">^</span> <span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>secondbyte <span class="token operator">^</span> <span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+  mpu.begin();
 
-  
+  while (WiFi.status() !&#x3D; WL_CONNECTED)&#123;
 
-    <span class="token keyword">def</span> get_values<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      Serial.print(&quot;.&quot;);
 
-        raw_ints <span class="token operator">=</span> self<span class="token punctuation">.</span>get_raw_values<span class="token punctuation">(</span><span class="token punctuation">)</span>
+      delay(500);
 
-        vals <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+  &#125;
 
-        vals<span class="token punctuation">[</span><span class="token string">"AcX"</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>bytes_toint<span class="token punctuation">(</span>raw_ints<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> raw_ints<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  Serial.println(&quot;Connected successful!&quot;);
 
-        vals<span class="token punctuation">[</span><span class="token string">"AcY"</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>bytes_toint<span class="token punctuation">(</span>raw_ints<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> raw_ints<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  Serial.print(&quot;IP: &quot;); Serial.println(WiFi.localIP());
 
-        vals<span class="token punctuation">[</span><span class="token string">"AcZ"</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>bytes_toint<span class="token punctuation">(</span>raw_ints<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> raw_ints<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  &#x2F;&#x2F;傳送給網頁伺服器並顯示於頁面的值
 
-        vals<span class="token punctuation">[</span><span class="token string">"Tmp"</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>bytes_toint<span class="token punctuation">(</span>
+  server.on(&quot;&#x2F;&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
-            raw_ints<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> raw_ints<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">340.00</span> <span class="token operator">+</span> <span class="token number">36.53</span>
+        request-&gt;send_P(200, &quot;text&#x2F;html&quot;, indexHtml, mpuProcessor);
 
-        vals<span class="token punctuation">[</span><span class="token string">"GyX"</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>bytes_toint<span class="token punctuation">(</span>raw_ints<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> raw_ints<span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    &#125;);
 
-        vals<span class="token punctuation">[</span><span class="token string">"GyY"</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>bytes_toint<span class="token punctuation">(</span>raw_ints<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> raw_ints<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  server.on(&quot;AX&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
-        vals<span class="token punctuation">[</span><span class="token string">"GyZ"</span><span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>bytes_toint<span class="token punctuation">(</span>raw_ints<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">,</span> raw_ints<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readX().c_str());
 
-        <span class="token keyword">return</span> vals  <span class="token comment"># returned in range of Int16</span>
+    &#125;);
 
-        <span class="token comment"># -32768 to 32767</span>
+  server.on(&quot;AY&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
-  
+        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readY().c_str());
 
-    <span class="token keyword">def</span> val_test<span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># ONLY FOR TESTING! Also, fast reading sometimes crashes IIC</span>
+    &#125;);
 
-        <span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+  server.on(&quot;AZ&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
-        <span class="token keyword">while</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readZ().c_str());
 
-            <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>get_values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    &#125;);
 
-            sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="主程式1"><a href="#主程式1" class="headerlink" title="主程式1"></a>主程式1</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> I2C
+  server.on(&quot;GX&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
-<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readGX().c_str());
 
-<span class="token keyword">import</span> mpu6050
+    &#125;);
 
-  
-i2c <span class="token operator">=</span> I2C<span class="token punctuation">(</span>scl<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sda<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  server.on(&quot;GY&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
-mpu <span class="token operator">=</span> mpu6050<span class="token punctuation">.</span>accel<span class="token punctuation">(</span>i2c<span class="token punctuation">)</span>
+        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readGY().c_str());
 
-<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+    &#125;);
 
-    mpuVal <span class="token operator">=</span> mpu<span class="token punctuation">.</span>get_values<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  server.on(&quot;GZ&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
 
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"GX:&#123;:.1f&#125;/ GY:&#123;:.1f&#125;/ GZ:&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyX'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyY'</span><span class="token punctuation">]</span>\
-	<span class="token punctuation">,</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyX'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> mpuVal<span class="token punctuation">[</span><span class="token string">'GyZ'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readGZ().c_str());
 
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"AX:&#123;:.1f&#125;/ AY:&#123;:.1f&#125;/ AZ:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'AcX'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>\
-	mpuVal<span class="token punctuation">[</span><span class="token string">'AcY'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> mpuVal<span class="token punctuation">[</span><span class="token string">'AcZ'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    &#125;);
 
-    sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/7574901053087696690#"><img src="https://1.bp.blogspot.com/-N_i09FWlltk/YTsA07RtbOI/AAAAAAAAe6Y/BwbDWlzg2ToB2KsyI1TLYKLVfACebZ0rwCNcBGAsYHQ/w418-h297/AXIS.jpg"></a></p>
-<h2 id="量測數值顯示於OLED"><a href="#量測數值顯示於OLED" class="headerlink" title="量測數值顯示於OLED"></a>量測數值顯示於OLED</h2><p>建立<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/7574901053087696690#">ssd1306.py</a>函式庫並上傳到ESP32</p>
-<h2 id="主程式2"><a href="#主程式2" class="headerlink" title="主程式2"></a>主程式2</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> I2C
-
-<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
-
-<span class="token keyword">import</span> mpu6050
-
-<span class="token keyword">import</span> ssd1306
+  server.begin();
 
 
-i2c <span class="token operator">=</span> I2C<span class="token punctuation">(</span>scl<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sda<span class="token operator">=</span>Pin<span class="token punctuation">(</span><span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+&#125;
 
-width<span class="token operator">=</span><span class="token number">128</span> <span class="token comment">#oled高</span>
+void loop() &#123;
 
-height<span class="token operator">=</span><span class="token number">64</span> <span class="token comment">#oled寛</span>
-
-oled<span class="token operator">=</span>ssd1306<span class="token punctuation">.</span>SSD1306_I2C<span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> i2c<span class="token punctuation">)</span> <span class="token comment">#賦予變數給設制好的ssd1306模組,並給予所須參數</span>
-
-oled<span class="token punctuation">.</span>fill<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-
-mpu <span class="token operator">=</span> mpu6050<span class="token punctuation">.</span>accel<span class="token punctuation">(</span>i2c<span class="token punctuation">)</span>
-
-<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-
-    mpuVal <span class="token operator">=</span> mpu<span class="token punctuation">.</span>get_values<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"GX:&#123;:.1f&#125;/ GY:&#123;:.1f&#125;/ GZ:&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyX'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyY'</span><span class="token punctuation">]</span>\
-	<span class="token punctuation">,</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyX'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> mpuVal<span class="token punctuation">[</span><span class="token string">'GyZ'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"AX:&#123;:.1f&#125;/ AY:&#123;:.1f&#125;/ AZ:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'AcX'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>\
-	mpuVal<span class="token punctuation">[</span><span class="token string">'AcY'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> mpuVal<span class="token punctuation">[</span><span class="token string">'AcZ'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"GX:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyX'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"GY:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyY'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"GZ:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'GyZ'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"AX:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'AcX'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"AY:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'AcY'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>text<span class="token punctuation">(</span><span class="token string">"AZ:&#123;:.1f&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>mpuVal<span class="token punctuation">[</span><span class="token string">'AcZ'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-    sleep<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span>
-
-    oled<span class="token punctuation">.</span>fill<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="結果2"><a href="#結果2" class="headerlink" title="結果2"></a>結果2</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/7574901053087696690#"><img src="https://lh3.googleusercontent.com/-zOzUkgZHFA4/YTsNNLyBdQI/AAAAAAAAe6g/McELLZrF49kg6k-8iBojWybmlwAUcrteACNcBGAsYHQ/s1600/1631259935101215-0.png"></a></p>
-
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/YR07MMNbcWc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -654,7 +746,7 @@ mpu <span class="token operator">=</span> mpu6050<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/09/10/mpu-6050-jia-su-du-tuo-luo-yi-wen-du-chuan-gan-qi-micropython/">https://blairan.github.io/2021/09/10/mpu-6050-jia-su-du-tuo-luo-yi-wen-du-chuan-gan-qi-micropython/</a>
+                    <a href="https://blairan.github.io/2021/09/15/webserver-wang-ye-xian-shi-mpu6050/">https://blairan.github.io/2021/09/15/webserver-wang-ye-xian-shi-mpu6050/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -691,6 +783,10 @@ mpu <span class="token operator">=</span> mpu6050<span class="token punctuation"
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
+                            
+                                <a href="/tags/web-server/">
+                                    <span class="chip bg-color">web server</span>
+                                </a>
                             
                                 <a href="/tags/mpu6050/">
                                     <span class="chip bg-color">mpu6050</span>
@@ -1005,9 +1101,10 @@ mpu <span class="token operator">=</span> mpu6050<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/15/webserver-wang-ye-xian-shi-mpu6050/">
                     <div class="card-image">
@@ -1024,9 +1121,9 @@ mpu <span class="token operator">=</span> mpu6050<span class="token punctuation"
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1039,6 +1136,7 @@ mpu <span class="token operator">=</span> mpu6050<span class="token punctuation"
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1061,12 +1159,12 @@ mpu <span class="token operator">=</span> mpu6050<span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/10/mpu-6050-jia-su-du-tuo-luo-yi-wen-du-chuan-gan-qi-esp32/">
+                <a href="/2021/09/10/mpu-6050-jia-su-du-tuo-luo-yi-wen-du-chuan-gan-qi-micropython/">
                     <div class="card-image">
                         
-                        <img src="/images/MPU6050.jpg" class="responsive-img" alt="MPU-6050加速度-陀螺儀-溫度傳感器-ESP32">
+                        <img src="/images/mpu2.jpg" class="responsive-img" alt="MPU-6050加速度-陀螺儀-溫度傳感器-micropython">
                         
-                        <span class="card-title">MPU-6050加速度-陀螺儀-溫度傳感器-ESP32</span>
+                        <span class="card-title">MPU-6050加速度-陀螺儀-溫度傳感器-micropython</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1083,7 +1181,11 @@ mpu <span class="token operator">=</span> mpu6050<span class="token punctuation"
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/esp32/" class="post-category">
+                            <a href="/categories/micropython/" class="post-category">
+                                    micropython
+                                </a>
+                            
+                            <a href="/categories/micropython/esp32/" class="post-category">
                                     esp32
                                 </a>
                             
