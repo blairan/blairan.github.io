@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="webserver網頁顯示mpu6050, 我的微控板實驗室">
+    <meta name="keywords" content="MPU-6050&amp;webServer網頁顯示-micropython, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>webserver網頁顯示mpu6050 | 我的微控板實驗室</title>
+    <title>MPU-6050&amp;webServer網頁顯示-micropython | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -271,7 +271,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">webserver網頁顯示mpu6050</h1>
+                    <h1 class="description center-align post-title">MPU-6050&amp;webServer網頁顯示-micropython</h1>
                 </div>
             </div>
         </div>
@@ -391,8 +391,8 @@
                                 <span class="chip bg-color">web server</span>
                             </a>
                         
-                            <a href="/tags/mpu6050/">
-                                <span class="chip bg-color">mpu6050</span>
+                            <a href="/tags/mpu-6050/">
+                                <span class="chip bg-color">mpu-6050</span>
                             </a>
                         
                     </div>
@@ -403,7 +403,11 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/esp32/" class="post-category">
+                            <a href="/categories/micropython/" class="post-category">
+                                micropython
+                            </a>
+                        
+                            <a href="/categories/micropython/esp32/" class="post-category">
                                 esp32
                             </a>
                         
@@ -416,14 +420,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2021-09-15
+                    2021-09-18
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-15
+                    2021-09-18
                 </div>
                 
 
@@ -450,277 +454,261 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MPU-6050-amp-webServer網頁顯示-ESP32"><a href="#MPU-6050-amp-webServer網頁顯示-ESP32" class="headerlink" title="MPU-6050&amp;webServer網頁顯示-ESP32"></a>MPU-6050&amp;webServer網頁顯示-ESP32</h1><h6 id="tags-esp32-mpu-6050"><a href="#tags-esp32-mpu-6050" class="headerlink" title="tags: esp32 mpu-6050"></a>tags: <code>esp32</code> <code>mpu-6050</code></h6><h2 id="實驗目標"><a href="#實驗目標" class="headerlink" title="實驗目標:"></a>實驗目標:</h2><p><strong>此次實驗要把實時量測的xyz值顯示於網頁上。</strong></p>
+                <h1 id="MPU-6050-amp-webServer網頁顯示-micropython"><a href="#MPU-6050-amp-webServer網頁顯示-micropython" class="headerlink" title="MPU-6050&amp;webServer網頁顯示-micropython"></a>MPU-6050&amp;webServer網頁顯示-micropython</h1><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5609914849128090650#"><img src="https://lh3.googleusercontent.com/-AuOUWjHmS6E/YUFZSsQF-3I/AAAAAAAAe7A/Ld6q4qhLaIgcPs2T3TiXfqmoNovtQ1LtwCNcBGAsYHQ/s1600/1631672633719436-0.png"></a></p>
+<h2 id="實驗目標"><a href="#實驗目標" class="headerlink" title="實驗目標:"></a>實驗目標:</h2><p><strong>此次實驗要把實時量測的加速度計和陀螺儀xyz值顯示於網頁上。</strong></p>
 <h2 id="MPU-6050簡介"><a href="#MPU-6050簡介" class="headerlink" title="MPU-6050簡介"></a>MPU-6050簡介</h2><p><strong>MPU-6050 IMU</strong>（慣性測量單元）是一個 3 軸加速度計和 3 軸陀螺儀傳感器。加速度計測量重力加速度，陀螺儀測量旋轉速度。此外，該模塊還測量溫度。該傳感器非常適合確定移動物體的方向。</p>
 <p>MPU-6050 是一個帶有 3 軸加速度計和 3 軸陀螺儀的模組。</p>
 <p>**陀螺儀-**用於測量旋轉速度 (rad/s)，這是角度位置沿 X、Y 和 Z 軸（滾動、俯仰和偏航）隨時間的變化。這使我們能夠確定物體的方向。</p>
 <p>**加速度計-**測量加速度它可以感應重力 (9.8m/s2) 等靜態力或振動或運動等動態力。 </p>
 <p>MPU-6050 測量 X、Y 和 Z 軸上的加速度。理想情況下，在靜態物體中，Z 軸上的加速度等於重力，並且在 X 和 Y 軸上應為零。<br>**加速度計-**可以使用三角法計算橫滾角和俯仰角。但無法計算偏航。</p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#"><img src="https://1.bp.blogspot.com/-u8-QyUWHTwI/YTrKgEmaSII/AAAAAAAAe5o/3EOJc0UTKPUQY1FE1LjaMLpJXF-WUeGJwCNcBGAsYHQ/w403-h368/MPU6050-Module-Gyroscope-Axis.jpg"></a></p>
-<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#"><img src="https://1.bp.blogspot.com/-Jzy9JzxJVRI/YTrMxxtTrRI/AAAAAAAAe54/GM3Hk8tPHz0oT7ezO6IWl0iy3GS2xOh5gCNcBGAsYHQ/w1272-h481/MPU6050.jpg"></a></p>
-<h2 id="須匯入的程式庫"><a href="#須匯入的程式庫" class="headerlink" title="須匯入的程式庫"></a>須匯入的程式庫</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#">Adafruit_MPU6050</a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#">Adafruit_Sensor</a></p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6706108357817778210#">ESPAsyncWebServer</a></p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5609914849128090650#"><img src="https://1.bp.blogspot.com/-u8-QyUWHTwI/YTrKgEmaSII/AAAAAAAAe5o/3EOJc0UTKPUQY1FE1LjaMLpJXF-WUeGJwCNcBGAsYHQ/w403-h368/MPU6050-Module-Gyroscope-Axis.jpg"></a></p>
+<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5609914849128090650#"><img src="https://1.bp.blogspot.com/-Jzy9JzxJVRI/YTrMxxtTrRI/AAAAAAAAe54/GM3Hk8tPHz0oT7ezO6IWl0iy3GS2xOh5gCNcBGAsYHQ/w1272-h481/MPU6050.jpg"></a></p>
+<h2 id="須匯入的程式庫"><a href="#須匯入的程式庫" class="headerlink" title="須匯入的程式庫"></a>須匯入的程式庫</h2><p>將以下的py檔上傳到esp32板上</p>
+<p>mpu6050.py</p>
+<pre class="line-numbers language-none"><code class="language-none">import machine
+
+class accel():
+
+    def __init__(self, i2c, addr&#x3D;0x68):
+
+        self.iic &#x3D; i2c
+
+        self.addr &#x3D; addr
+
+        self.iic.start()
+
+        self.iic.writeto(self.addr, bytearray([107, 0]))
+
+        self.iic.stop()
+
+  
+
+    def get_raw_values(self):
+
+        self.iic.start()
+
+        a &#x3D; self.iic.readfrom_mem(self.addr, 0x3B, 14)
+
+        self.iic.stop()
+
+        return a
+
+  
+
+    def get_ints(self):
+
+        b &#x3D; self.get_raw_values()
+
+        c &#x3D; []
+
+        for i in b:
+
+            c.append(i)
+
+        return c
+
+  
+
+    def bytes_toint(self, firstbyte, secondbyte):
+
+        if not firstbyte &amp; 0x80:
+
+            return firstbyte &lt;&lt; 8 | secondbyte
+
+        return - (((firstbyte ^ 255) &lt;&lt; 8) | (secondbyte ^ 255) + 1)
+
+  
+
+    def get_values(self):
+
+        raw_ints &#x3D; self.get_raw_values()
+
+        vals &#x3D; &#123;&#125;
+
+        vals[&quot;AcX&quot;] &#x3D; self.bytes_toint(raw_ints[0], raw_ints[1])
+
+        vals[&quot;AcY&quot;] &#x3D; self.bytes_toint(raw_ints[2], raw_ints[3])
+
+        vals[&quot;AcZ&quot;] &#x3D; self.bytes_toint(raw_ints[4], raw_ints[5])
+
+        vals[&quot;Tmp&quot;] &#x3D; self.bytes_toint(
+
+            raw_ints[6], raw_ints[7]) &#x2F; 340.00 + 36.53
+
+        vals[&quot;GyX&quot;] &#x3D; self.bytes_toint(raw_ints[8], raw_ints[9])
+
+        vals[&quot;GyY&quot;] &#x3D; self.bytes_toint(raw_ints[10], raw_ints[11])
+
+        vals[&quot;GyZ&quot;] &#x3D; self.bytes_toint(raw_ints[12], raw_ints[13])
+
+        return vals  # returned in range of Int16
+
+        # -32768 to 32767
+
+  
+
+    def val_test(self):  # ONLY FOR TESTING! Also, fast reading sometimes crashes IIC
+
+        from time import sleep
+
+        while 1:
+
+            print(self.get_values())
+
+            sleep(0.05)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <hr>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;Arduino.h&gt;
+<h2 id="主程式"><a href="#主程式" class="headerlink" title="主程式"></a>主程式</h2><pre class="line-numbers language-none"><code class="language-none">from machine import Pin, I2C
 
-&#x2F;&#x2F;包含 MPU-6050 傳感器所需的庫：Adafruit_MPU6050 和 Adafruit_Sensor。
+import mpu6050
 
-#include &lt;Adafruit_MPU6050.h&gt;
+import socket
 
-#include &lt;Adafruit_Sensor.h&gt;
-
-#include &lt;WiFi.h&gt;
-
-#include &lt;ESPAsyncWebServer.h&gt;
+import network
 
   
-&#x2F;&#x2F;wifi帳密
 
-const char *ssid &#x3D; &quot;---&quot;;
+#設定連線wifi
 
-const char *password &#x3D; &quot;-----&quot;;
+ssid &#x3D; &quot;---&quot;
 
+password &#x3D; &quot;------&quot;
 
-Adafruit_MPU6050 mpu;
+wifi &#x3D; network.WLAN(network.STA_IF)
 
-AsyncWebServer server(80);
+wifi.active(True)
 
+wifi.connect(ssid, password)
 
-&#x2F;&#x2F;html
+while wifi.isconnected() &#x3D;&#x3D; False:
 
-const char indexHtml[] PROGMEM &#x3D; R&quot;&#x3D;&#x3D;&#x3D;(
+    pass
 
-  &lt;html&gt;
+print(&quot;connect successful!&quot;)
 
-&lt;head&gt;
-
-    &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
-
-    &lt;meta http-equiv&#x3D;&quot;refresh&quot; content&#x3D;&quot;0.5&quot; &#x2F;&gt;
-
-    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;
-
-    &lt;style&gt;
-
-        h1 &#123;text-align: center; background-color: rgb(226, 155, 23); color: rgb(47, 49, 42); margin-right: 5px;&#125;
-
-        h2 &#123;text-align: center;  color: rgb(47, 49, 42); background-color: rgb(197, 194, 11);margin-right: 5px;&#125;
-
-        dl &#123;width: 320px; margin: auto;&#125;
-
-        dt &#123;font-size: 20pt; color: rgb(36, 45, 168); background-color: rgb(197, 194, 11);
-
-            margin: 6pt 0; padding: 6pt 12pt;&#125;
-
-        p &#123;text-align: center; padding-right: 6pt; 6pt; line-height:20px&#125;
-
-        .val p&#123; margin:0 auto&#125; 
-
-        .val &#123; font-size: 20pt; color: rgb(255, 120, 30); &#125;
-
-    &lt;&#x2F;style&gt;
-
-&lt;&#x2F;head&gt;
-
-&lt;body&gt;
-
-    &lt;h1&gt;MPU-6050加速度&amp;陀螺儀測試&lt;&#x2F;h1&gt;
-
-    &lt;h2&gt;加速度計 (m&#x2F;s^2)&lt;&#x2F;h2&gt;
-
-    &lt;p class&#x3D;val&gt;AX %ax%&lt;&#x2F;p&gt;
-
-    &lt;p class&#x3D;val&gt;AY %ay%&lt;&#x2F;p&gt;
-
-    &lt;p class&#x3D;val&gt;AZ %az%&lt;&#x2F;p&gt;
-
-    &lt;h2&gt;陀螺儀(rad&#x2F;s)&lt;&#x2F;h2&gt;
-
-    &lt;p class&#x3D;val&gt;GX %gx%&lt;&#x2F;p&gt;
-
-    &lt;p class&#x3D;val&gt;GY %gy%&lt;&#x2F;p&gt;
-
-    &lt;p class&#x3D;val&gt;GZ %gz%&lt;&#x2F;p&gt;
-
-&lt;&#x2F;body&gt;
-
-&lt;&#x2F;html&gt;
-
-)&#x3D;&#x3D;&#x3D;&quot;;
-
-&#x2F;&#x2F;以下是讀取加速度計和陀螺儀的xyz值
-
-String readX()&#123;
-
-  mpu.begin();
-
-  sensors_event_t a, g, temp;
-
-  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
-
-  return String(a.acceleration.x);
-
-&#125;
-
-String readY()&#123;
-
-  sensors_event_t a, g, temp;
-
-  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
-
-  return String(a.acceleration.y);
-
-&#125;
-
-String readZ()&#123;
-
-  sensors_event_t a, g, temp;
-
-  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
-
-  return String(a.acceleration.z);
-
-&#125;
-
-
-String readGX()&#123;
-
-   sensors_event_t a, g, temp;
-
-  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
-
-  return String(g.gyro.x);
-
-&#125;
-
-String readGY()&#123;
-
-   sensors_event_t a, g, temp;
-
-  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
-
-  return String(g.gyro.y);
-
-&#125;
-
-String readGZ()&#123;
-
-   sensors_event_t a, g, temp;
-
-  mpu.getEvent(&amp;a, &amp;g, &amp;temp);
-
-  return String(g.gyro.z);
-
-&#125;
-
-
-String mpuProcessor(const String &amp; val)&#123;
-
-  if (val &#x3D;&#x3D; &quot;ax&quot;)&#123;
-
-    return readX();
-
-  &#125;else if (val &#x3D;&#x3D; &quot;ay&quot;)&#123;
-
-    return readY();
-
-  &#125;else if (val &#x3D;&#x3D; &quot;az&quot;)&#123;
-
-    return readZ();
-
-  &#125;else if (val &#x3D;&#x3D; &quot;gx&quot;)&#123;
-
-    return readGX();
-
-  &#125;else if (val &#x3D;&#x3D; &quot;gy&quot;)&#123;
-
-    return readGY();
-
-  &#125;else if (val &#x3D;&#x3D; &quot;gz&quot;)&#123;
-
-    return readGZ();
-
-  &#125;
-
-  return String();
-
-&#125;
+print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))
 
   
-void setup() &#123;
 
-  Serial.begin(115200);
+#讀取mpu6050各數值
 
-  WiFi.begin(ssid, password);
+def getMPUval(i2c, mpu):
 
-  mpu.begin();
+    global gx, gy, gz, ax, ay, az
 
-  while (WiFi.status() !&#x3D; WL_CONNECTED)&#123;
+    mpuVal &#x3D; mpu.get_values()
 
-      Serial.print(&quot;.&quot;);
+    gx, gy, gz &#x3D; mpuVal[&#39;GyX&#39;], mpuVal[&#39;GyY&#39;], mpuVal[&#39;GyZ&#39;]
 
-      delay(500);
+    ax, ay, az &#x3D; mpuVal[&#39;AcX&#39;], mpuVal[&#39;AcY&#39;], mpuVal[&#39;AcZ&#39;]
 
-  &#125;
+    return gx, gy, gz, ax, ay, az
 
-  Serial.println(&quot;Connected successful!&quot;);
+#網頁
 
-  Serial.print(&quot;IP: &quot;); Serial.println(WiFi.localIP());
+def htmlPage():
 
-  &#x2F;&#x2F;傳送給網頁伺服器並顯示於頁面的值
+    html &#x3D; &quot;&quot;&quot;
 
-  server.on(&quot;&#x2F;&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+        &lt;html&gt;
 
-        request-&gt;send_P(200, &quot;text&#x2F;html&quot;, indexHtml, mpuProcessor);
+    &lt;head&gt;
 
-    &#125;);
+        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
 
-  server.on(&quot;AX&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+        &lt;meta http-equiv&#x3D;&quot;refresh&quot; content&#x3D;&quot;0.2&quot; &#x2F;&gt;
 
-        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readX().c_str());
+        &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;
 
-    &#125;);
+        &lt;style&gt;
 
-  server.on(&quot;AY&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+            h1 &#123;text-align: center; background-color: rgb(226, 155, 23); color: rgb(47, 49, 42); margin-right: 5px;&#125;
 
-        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readY().c_str());
+            h2 &#123;text-align: center;  color: rgb(47, 49, 42); background-color: rgb(197, 194, 11);margin-right: 5px;&#125;
 
-    &#125;);
+            dl &#123;width: 320px; margin: auto;&#125;
 
-  server.on(&quot;AZ&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+            dt &#123;font-size: 20pt; color: rgb(36, 45, 168); background-color: rgb(197, 194, 11);
 
-        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readZ().c_str());
+                margin: 6pt 0; padding: 6pt 12pt;&#125;
 
-    &#125;);
+            p &#123;text-align: center; padding-right: 6pt; 6pt; line-height:20px&#125;
 
-  server.on(&quot;GX&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+            .val p&#123; margin:0 auto&#125; 
 
-        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readGX().c_str());
+            .val &#123; font-size: 20pt; color: rgb(255, 120, 30); &#125;
 
-    &#125;);
+        &lt;&#x2F;style&gt;
 
-  server.on(&quot;GY&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+    &lt;&#x2F;head&gt;
 
-        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readGY().c_str());
+    &lt;body&gt;
 
-    &#125;);
+        &lt;h1&gt;MPU-6050 Test&lt;&#x2F;h1&gt;
 
-  server.on(&quot;GZ&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+        &lt;h2&gt;Acceleration (m&#x2F;s^2)&lt;&#x2F;h2&gt;
 
-        request-&gt;send_P(200, &quot;text&#x2F;plain&quot;, readGZ().c_str());
+        &lt;p class&#x3D;val&gt;AX &quot;&quot;&quot;+str(ax)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
 
-    &#125;);
+        &lt;p class&#x3D;val&gt;AY &quot;&quot;&quot;+str(ay)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
 
-  server.begin();
+        &lt;p class&#x3D;val&gt;AZ &quot;&quot;&quot;+str(az)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
 
+        &lt;h2&gt;Gyro(rad&#x2F;s)&lt;&#x2F;h2&gt;
 
-&#125;
+        &lt;p class&#x3D;val&gt;GX &quot;&quot;&quot;+str(gx)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
 
-void loop() &#123;
+        &lt;p class&#x3D;val&gt;GY &quot;&quot;&quot;+str(gy)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/YR07MMNbcWc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+        &lt;p class&#x3D;val&gt;GZ &quot;&quot;&quot;+str(gz)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
+
+    &lt;&#x2F;body&gt;
+
+    &lt;&#x2F;html&gt;
+
+    &quot;&quot;&quot;
+
+    return html
+
+  
+
+#socket套接
+
+s&#x3D;socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.bind((&#39;&#39;, 80))
+
+s.listen(5)
+
+i2c &#x3D; I2C(scl&#x3D;Pin(22), sda&#x3D;Pin(21))
+
+mpu &#x3D; mpu6050.accel(i2c)
+
+while True:
+
+    conn, addr &#x3D; s.accept()
+
+    print(&#39;Got a connection from %s&#39; % str(addr))
+
+    req &#x3D; conn.recv(1024)
+
+    print(&#39;Content &#x3D; %s&#39; % str(req))
+
+    readMPUval &#x3D; getMPUval(i2c, mpu)
+
+    response &#x3D; htmlPage()
+
+    conn.send(&quot;http&#x2F;1.1 200 OK\n&quot;)
+
+    conn.send(&quot;Content-Type: text&#x2F;html\n&quot;)
+
+    conn.send(&quot;Connection: close\n\n&quot;)
+
+    conn.sendall(response)
+
+    conn.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/oT70vaBiiLo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -746,7 +734,7 @@ void loop() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/09/15/webserver-wang-ye-xian-shi-mpu6050/">https://blairan.github.io/2021/09/15/webserver-wang-ye-xian-shi-mpu6050/</a>
+                    <a href="https://blairan.github.io/2021/09/18/mpu-6050-webserver-wang-ye-xian-shi-micropython/">https://blairan.github.io/2021/09/18/mpu-6050-webserver-wang-ye-xian-shi-micropython/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -788,8 +776,8 @@ void loop() &#123;
                                     <span class="chip bg-color">web server</span>
                                 </a>
                             
-                                <a href="/tags/mpu6050/">
-                                    <span class="chip bg-color">mpu6050</span>
+                                <a href="/tags/mpu-6050/">
+                                    <span class="chip bg-color">mpu-6050</span>
                                 </a>
                             
                         </div>
@@ -1101,9 +1089,10 @@ void loop() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/18/mpu-6050-webserver-wang-ye-xian-shi-micropython/">
                     <div class="card-image">
@@ -1120,9 +1109,9 @@ void loop() &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1139,6 +1128,7 @@ void loop() &#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1161,12 +1151,12 @@ void loop() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/10/mpu-6050-jia-su-du-tuo-luo-yi-wen-du-chuan-gan-qi-micropython/">
+                <a href="/2021/09/15/webserver-wang-ye-xian-shi-mpu6050/">
                     <div class="card-image">
                         
-                        <img src="/images/mpu2.jpg" class="responsive-img" alt="MPU-6050加速度-陀螺儀-溫度傳感器-micropython">
+                        <img src="/images/mpu6050web.jpg" class="responsive-img" alt="webserver網頁顯示mpu6050">
                         
-                        <span class="card-title">MPU-6050加速度-陀螺儀-溫度傳感器-micropython</span>
+                        <span class="card-title">webserver網頁顯示mpu6050</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1177,17 +1167,13 @@ void loop() &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/micropython/" class="post-category">
-                                    micropython
-                                </a>
-                            
-                            <a href="/categories/micropython/esp32/" class="post-category">
+                            <a href="/categories/esp32/" class="post-category">
                                     esp32
                                 </a>
                             
@@ -1197,6 +1183,10 @@ void loop() &#123;
                 </div>
                 
                 <div class="card-action article-tags">
+                    
+                    <a href="/tags/web-server/">
+                        <span class="chip bg-color">web server</span>
+                    </a>
                     
                     <a href="/tags/mpu6050/">
                         <span class="chip bg-color">mpu6050</span>
