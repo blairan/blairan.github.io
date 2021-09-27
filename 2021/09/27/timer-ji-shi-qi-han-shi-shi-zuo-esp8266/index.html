@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MPU-6050&amp;webServer網頁顯示-micropython, 我的微控板實驗室">
+    <meta name="keywords" content="Timer計時器函式實作-ESP8266, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MPU-6050&amp;webServer網頁顯示-micropython | 我的微控板實驗室</title>
+    <title>Timer計時器函式實作-ESP8266 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/mpu6050web.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MPU-6050&amp;webServer網頁顯示-micropython</h1>
+                    <h1 class="description center-align post-title">Timer計時器函式實作-ESP8266</h1>
                 </div>
             </div>
         </div>
@@ -387,12 +387,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/web-server/">
-                                <span class="chip bg-color">web server</span>
+                            <a href="/tags/timer/">
+                                <span class="chip bg-color">timer</span>
                             </a>
                         
-                            <a href="/tags/mpu-6050/">
-                                <span class="chip bg-color">mpu-6050</span>
+                            <a href="/tags/%E8%A8%88%E6%99%82%E5%99%A8/">
+                                <span class="chip bg-color">計時器</span>
                             </a>
                         
                     </div>
@@ -403,12 +403,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/micropython/" class="post-category">
-                                micropython
-                            </a>
-                        
-                            <a href="/categories/micropython/esp32/" class="post-category">
-                                esp32
+                            <a href="/categories/esp8266/" class="post-category">
+                                esp8266
                             </a>
                         
                     </div>
@@ -420,7 +416,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2021-09-18
+                    2021-09-27
                 </div>
                 
 
@@ -454,254 +450,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MPU-6050-amp-webServer網頁顯示-micropython"><a href="#MPU-6050-amp-webServer網頁顯示-micropython" class="headerlink" title="MPU-6050&amp;webServer網頁顯示-micropython"></a>MPU-6050&amp;webServer網頁顯示-micropython</h1><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5609914849128090650#"><img src="https://lh3.googleusercontent.com/-AuOUWjHmS6E/YUFZSsQF-3I/AAAAAAAAe7A/Ld6q4qhLaIgcPs2T3TiXfqmoNovtQ1LtwCNcBGAsYHQ/s1600/1631672633719436-0.png"></a></p>
-<h2 id="實驗目標"><a href="#實驗目標" class="headerlink" title="實驗目標:"></a>實驗目標:</h2><p><strong>此次實驗要把實時量測的加速度計和陀螺儀xyz值顯示於網頁上。</strong></p>
-<h2 id="MPU-6050簡介"><a href="#MPU-6050簡介" class="headerlink" title="MPU-6050簡介"></a>MPU-6050簡介</h2><p><strong>MPU-6050 IMU</strong>（慣性測量單元）是一個 3 軸加速度計和 3 軸陀螺儀傳感器。加速度計測量重力加速度，陀螺儀測量旋轉速度。此外，該模塊還測量溫度。該傳感器非常適合確定移動物體的方向。</p>
-<p>MPU-6050 是一個帶有 3 軸加速度計和 3 軸陀螺儀的模組。</p>
-<p>**陀螺儀-**用於測量旋轉速度 (rad/s)，這是角度位置沿 X、Y 和 Z 軸（滾動、俯仰和偏航）隨時間的變化。這使我們能夠確定物體的方向。</p>
-<p>**加速度計-**測量加速度它可以感應重力 (9.8m/s2) 等靜態力或振動或運動等動態力。 </p>
-<p>MPU-6050 測量 X、Y 和 Z 軸上的加速度。理想情況下，在靜態物體中，Z 軸上的加速度等於重力，並且在 X 和 Y 軸上應為零。<br>**加速度計-**可以使用三角法計算橫滾角和俯仰角。但無法計算偏航。</p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5609914849128090650#"><img src="https://1.bp.blogspot.com/-u8-QyUWHTwI/YTrKgEmaSII/AAAAAAAAe5o/3EOJc0UTKPUQY1FE1LjaMLpJXF-WUeGJwCNcBGAsYHQ/w403-h368/MPU6050-Module-Gyroscope-Axis.jpg"></a></p>
-<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/5609914849128090650#"><img src="https://1.bp.blogspot.com/-Jzy9JzxJVRI/YTrMxxtTrRI/AAAAAAAAe54/GM3Hk8tPHz0oT7ezO6IWl0iy3GS2xOh5gCNcBGAsYHQ/w1272-h481/MPU6050.jpg"></a></p>
-<h2 id="須匯入的程式庫"><a href="#須匯入的程式庫" class="headerlink" title="須匯入的程式庫"></a>須匯入的程式庫</h2><p>將以下的py檔上傳到esp32板上</p>
-<p>mpu6050.py</p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">import machine
+                <h1 id="Timer計時器函式實作-ESP8266"><a href="#Timer計時器函式實作-ESP8266" class="headerlink" title="Timer計時器函式實作-ESP8266"></a>Timer計時器函式實作-ESP8266</h1><h6 id="tags-‘esp8266’-‘timer’"><a href="#tags-‘esp8266’-‘timer’" class="headerlink" title="tags: ‘esp8266’ ‘timer’"></a>tags: ‘esp8266’ ‘timer’</h6><p>micropython本身提供Timer的程式庫設定處理器內部的計時器</p>
+<h2 id="函式用法"><a href="#函式用法" class="headerlink" title="函式用法"></a>函式用法</h2><p><strong>Timer(編號)</strong>—esp32編號可以是0~3,(esp8266編號是-1)</p>
+<p><strong>init(週期, 模式, 回呼)</strong>—計時器啓動執行</p>
+<ul>
+<li>  preiod(週期)–間隔時間以ms(毫秒)</li>
+<li>  mode(模式)–Timer.PERIODIC(週期定時執行)/Timer.ONE_SHOT(只執行一次)</li>
+<li>  callback()–事件發生被執行的函式</li>
+</ul>
+<p><strong>deinit()</strong>—解除計時器</p>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> Timer
+ 
+led <span class="token operator">=</span> Pin<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">,</span> Pin<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>
+ 
+tim <span class="token operator">=</span> Timer<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
 
-class accel():
+tim<span class="token punctuation">.</span>init<span class="token punctuation">(</span>period<span class="token operator">=</span><span class="token number">500</span><span class="token punctuation">,</span> mode<span class="token operator">=</span>Timer<span class="token punctuation">.</span>PERIODIC<span class="token punctuation">,</span> callback<span class="token operator">=</span><span class="token keyword">lambda</span> t<span class="token punctuation">:</span>led<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token keyword">not</span> led<span class="token punctuation">.</span>
+value<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def __init__(self, i2c, addr&#x3D;0x68):
+<span class="token keyword">try</span><span class="token punctuation">:</span>
 
-        self.iic &#x3D; i2c
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-        self.addr &#x3D; addr
+        <span class="token keyword">pass</span>
 
-        self.iic.start()
+<span class="token keyword">except</span> KeyboardInterrupt<span class="token punctuation">:</span>
 
-        self.iic.writeto(self.addr, bytearray([107, 0]))
+    tim<span class="token punctuation">.</span>deinit<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        self.iic.stop()
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'stopped'</span><span class="token punctuation">)</span>
 
-  
-    def get_raw_values(self):
+<span class="token keyword">lambda</span> t<span class="token punctuation">:</span>led<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token keyword">not</span> led<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-        self.iic.start()
+<p>這段其實是用匿名函式寫成,原本的具名函式如下:</p>
+<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token keyword">def</span> timer<span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-        a &#x3D; self.iic.readfrom_mem(self.addr, 0x3B, 14)
-
-        self.iic.stop()
-
-        return a
-
-    def get_ints(self):
-
-        b &#x3D; self.get_raw_values()
-
-        c &#x3D; []
-
-        for i in b:
-
-            c.append(i)
-
-        return c
-
-    def bytes_toint(self, firstbyte, secondbyte):
-
-        if not firstbyte &amp; 0x80:
-
-            return firstbyte &lt;&lt; 8 | secondbyte
-
-        return - (((firstbyte ^ 255) &lt;&lt; 8) | (secondbyte ^ 255) + 1)
-
-  
-    def get_values(self):
-
-        raw_ints &#x3D; self.get_raw_values()
-
-        vals &#x3D; &#123;&#125;
-
-        vals[&quot;AcX&quot;] &#x3D; self.bytes_toint(raw_ints[0], raw_ints[1])
-
-        vals[&quot;AcY&quot;] &#x3D; self.bytes_toint(raw_ints[2], raw_ints[3])
-
-        vals[&quot;AcZ&quot;] &#x3D; self.bytes_toint(raw_ints[4], raw_ints[5])
-
-        vals[&quot;Tmp&quot;] &#x3D; self.bytes_toint(
-
-            raw_ints[6], raw_ints[7]) &#x2F; 340.00 + 36.53
-
-        vals[&quot;GyX&quot;] &#x3D; self.bytes_toint(raw_ints[8], raw_ints[9])
-
-        vals[&quot;GyY&quot;] &#x3D; self.bytes_toint(raw_ints[10], raw_ints[11])
-
-        vals[&quot;GyZ&quot;] &#x3D; self.bytes_toint(raw_ints[12], raw_ints[13])
-
-        return vals  # returned in range of Int16
-
-        # -32768 to 32767
-
-  
-    def val_test(self):  # ONLY FOR TESTING! Also, fast reading sometimes crashes IIC
-
-        from time import sleep
-
-        while 1:
-
-            print(self.get_values())
-
-            sleep(0.05)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<h2 id="主程式"><a href="#主程式" class="headerlink" title="主程式"></a>主程式</h2><pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pin, I2C
-
-import mpu6050
-
-import socket
-
-import network
-
-  
-
-#設定連線wifi
-
-ssid &#x3D; &quot;---&quot;
-
-password &#x3D; &quot;------&quot;
-
-wifi &#x3D; network.WLAN(network.STA_IF)
-
-wifi.active(True)
-
-wifi.connect(ssid, password)
-
-while wifi.isconnected() &#x3D;&#x3D; False:
-
-    pass
-
-print(&quot;connect successful!&quot;)
-
-print(&quot;IP: &#123;&#125;&quot;.format(wifi.ifconfig()))
-
-  
-
-#讀取mpu6050各數值
-
-def getMPUval(i2c, mpu):
-
-    global gx, gy, gz, ax, ay, az
-
-    mpuVal &#x3D; mpu.get_values()
-
-    gx, gy, gz &#x3D; mpuVal[&#39;GyX&#39;], mpuVal[&#39;GyY&#39;], mpuVal[&#39;GyZ&#39;]
-
-    ax, ay, az &#x3D; mpuVal[&#39;AcX&#39;], mpuVal[&#39;AcY&#39;], mpuVal[&#39;AcZ&#39;]
-
-    return gx, gy, gz, ax, ay, az
-
-#網頁
-
-def htmlPage():
-
-    html &#x3D; &quot;&quot;&quot;
-
-        &lt;html&gt;
-
-    &lt;head&gt;
-
-        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
-
-        &lt;meta http-equiv&#x3D;&quot;refresh&quot; content&#x3D;&quot;0.2&quot; &#x2F;&gt;
-
-        &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot; &#x2F;&gt;
-
-        &lt;style&gt;
-
-            h1 &#123;text-align: center; background-color: rgb(226, 155, 23); color: rgb(47, 49, 42); margin-right: 5px;&#125;
-
-            h2 &#123;text-align: center;  color: rgb(47, 49, 42); background-color: rgb(197, 194, 11);margin-right: 5px;&#125;
-
-            dl &#123;width: 320px; margin: auto;&#125;
-
-            dt &#123;font-size: 20pt; color: rgb(36, 45, 168); background-color: rgb(197, 194, 11);
-
-                margin: 6pt 0; padding: 6pt 12pt;&#125;
-
-            p &#123;text-align: center; padding-right: 6pt; 6pt; line-height:20px&#125;
-
-            .val p&#123; margin:0 auto&#125; 
-
-            .val &#123; font-size: 20pt; color: rgb(255, 120, 30); &#125;
-
-        &lt;&#x2F;style&gt;
-
-    &lt;&#x2F;head&gt;
-
-    &lt;body&gt;
-
-        &lt;h1&gt;MPU-6050 Test&lt;&#x2F;h1&gt;
-
-        &lt;h2&gt;Acceleration (m&#x2F;s^2)&lt;&#x2F;h2&gt;
-
-        &lt;p class&#x3D;val&gt;AX &quot;&quot;&quot;+str(ax)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
-
-        &lt;p class&#x3D;val&gt;AY &quot;&quot;&quot;+str(ay)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
-
-        &lt;p class&#x3D;val&gt;AZ &quot;&quot;&quot;+str(az)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
-
-        &lt;h2&gt;Gyro(rad&#x2F;s)&lt;&#x2F;h2&gt;
-
-        &lt;p class&#x3D;val&gt;GX &quot;&quot;&quot;+str(gx)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
-
-        &lt;p class&#x3D;val&gt;GY &quot;&quot;&quot;+str(gy)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
-
-        &lt;p class&#x3D;val&gt;GZ &quot;&quot;&quot;+str(gz)+&quot;&quot;&quot;&lt;&#x2F;p&gt;
-
-    &lt;&#x2F;body&gt;
-
-    &lt;&#x2F;html&gt;
-
-    &quot;&quot;&quot;
-
-    return html
-
-  
-
-#socket套接
-
-s&#x3D;socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-s.bind((&#39;&#39;, 80))
-
-s.listen(5)
-
-i2c &#x3D; I2C(scl&#x3D;Pin(22), sda&#x3D;Pin(21))
-
-mpu &#x3D; mpu6050.accel(i2c)
-
-while True:
-
-    conn, addr &#x3D; s.accept()
-
-    print(&#39;Got a connection from %s&#39; % str(addr))
-
-    req &#x3D; conn.recv(1024)
-
-    print(&#39;Content &#x3D; %s&#39; % str(req))
-
-    readMPUval &#x3D; getMPUval(i2c, mpu)
-
-    response &#x3D; htmlPage()
-
-    conn.send(&quot;http&#x2F;1.1 200 OK\n&quot;)
-
-    conn.send(&quot;Content-Type: text&#x2F;html\n&quot;)
-
-    conn.send(&quot;Connection: close\n\n&quot;)
-
-    conn.sendall(response)
-
-    conn.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/oT70vaBiiLo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+    led<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token keyword">not</span> led<span class="token punctuation">.</span>value<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/NwFATgqya4o" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -727,7 +512,7 @@ while True:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/09/18/mpu-6050-webserver-wang-ye-xian-shi-micropython/">https://blairan.github.io/2021/09/18/mpu-6050-webserver-wang-ye-xian-shi-micropython/</a>
+                    <a href="https://blairan.github.io/2021/09/27/timer-ji-shi-qi-han-shi-shi-zuo-esp8266/">https://blairan.github.io/2021/09/27/timer-ji-shi-qi-han-shi-shi-zuo-esp8266/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -765,12 +550,12 @@ while True:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/web-server/">
-                                    <span class="chip bg-color">web server</span>
+                                <a href="/tags/timer/">
+                                    <span class="chip bg-color">timer</span>
                                 </a>
                             
-                                <a href="/tags/mpu-6050/">
-                                    <span class="chip bg-color">mpu-6050</span>
+                                <a href="/tags/%E8%A8%88%E6%99%82%E5%99%A8/">
+                                    <span class="chip bg-color">計時器</span>
                                 </a>
                             
                         </div>
@@ -1082,9 +867,10 @@ while True:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/27/timer-ji-shi-qi-han-shi-shi-zuo-esp8266/">
                     <div class="card-image">
@@ -1102,9 +888,9 @@ while True:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1117,6 +903,7 @@ while True:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1139,12 +926,12 @@ while True:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/15/webserver-wang-ye-xian-shi-mpu6050/">
+                <a href="/2021/09/18/mpu-6050-webserver-wang-ye-xian-shi-micropython/">
                     <div class="card-image">
                         
-                        <img src="/images/mpu6050web.jpg" class="responsive-img" alt="webserver網頁顯示mpu6050">
+                        <img src="/images/mpu6050web.jpg" class="responsive-img" alt="MPU-6050&amp;webServer網頁顯示-micropython">
                         
-                        <span class="card-title">webserver網頁顯示mpu6050</span>
+                        <span class="card-title">MPU-6050&amp;webServer網頁顯示-micropython</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1155,13 +942,17 @@ while True:
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/esp32/" class="post-category">
+                            <a href="/categories/micropython/" class="post-category">
+                                    micropython
+                                </a>
+                            
+                            <a href="/categories/micropython/esp32/" class="post-category">
                                     esp32
                                 </a>
                             
@@ -1176,8 +967,8 @@ while True:
                         <span class="chip bg-color">web server</span>
                     </a>
                     
-                    <a href="/tags/mpu6050/">
-                        <span class="chip bg-color">mpu6050</span>
+                    <a href="/tags/mpu-6050/">
+                        <span class="chip bg-color">mpu-6050</span>
                     </a>
                     
                 </div>
