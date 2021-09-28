@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="標籤: OLED, 我的微控板實驗室">
+    <meta name="keywords" content="標籤: oled, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>標籤: OLED | 我的微控板實驗室</title>
+    <title>標籤: oled | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -332,7 +332,7 @@
                 
                 <a href="/tags/OLED/" title="OLED: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
+                             chip-default "
                             data-tagname="OLED" style="background-color: #F5EEF8;">OLED
                         <span class="tag-length">1</span>
                     </span>
@@ -341,7 +341,7 @@
                 
                 <a href="/tags/oled/" title="oled: 2">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
+                             chip-active "
                             data-tagname="oled" style="background-color: #D5F5E3;">oled
                         <span class="tag-length">2</span>
                     </span>
@@ -986,6 +986,24 @@
                     </span>
                 </a>
                 
+                
+                <a href="/tags/rcwl-0506/" title="rcwl-0506: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="rcwl-0506" style="background-color: #F8C471;">rcwl-0506
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/adafruit-neopixel/" title="adafruit_neopixel: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="adafruit_neopixel" style="background-color: #FEF9E7;">adafruit_neopixel
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
             </div>
         </div>
     </div>
@@ -997,21 +1015,57 @@
         <div class="row tags-posts">
             
             
-            <div class="article tag-post col s12 m6 l4" data-tags="esp32, OLED" data-aos="fade-up">
+            <div class="article tag-post col s12 m6 l4" data-tags="oled" data-aos="fade-up">
                 <div class="card">
-                    <a href="/2021/08/28/0-91-cun-oled-shi-yan/">
+                    <a href="/2021/08/29/0-96oled-shi-zuo-micropython/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="0.91吋_OLED實驗">
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="0.96OLED實作-micropython">
                             
-                            <span class="card-title">0.91吋_OLED實驗</span>
+                            <span class="card-title">0.96OLED實作-micropython</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/micropython/" class="post-category">
+                                micropython
+                                </a>
+                                
+                                <a href="/categories/micropython/esp32/" class="post-category">
+                                esp32
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="oled" data-aos="fade-up">
+                <div class="card">
+                    <a href="/2021/08/29/0-96-cun-oled-ji-ben-xian-shi-esp32/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="0.96吋OLED基本顯示-ESP32">
+                            
+                            <span class="card-title">0.96吋OLED基本顯示-ESP32</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                             <span class="publish-author">
                                 
@@ -1263,80 +1317,6 @@ $(function () {
 
                                 str += "<p class=\"search-result\">" + match_content + "...</p>"
                             }
-                            str += "</li>";
-                        }
-                    });
-                    str += "</ul>";
-                    $resultContent.innerHTML = str;
-                });
-            }
-        });
-    };
-
-    searchFunc('/search.xml', 'searchInput', 'searchResult');
-});
-</script>
-
-    <!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-</div>
-
-
-    <script src="/libs/materialize/materialize.min.js"></script>
-    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="/libs/aos/aos.js"></script>
-    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js"></script>
-
-    <!-- Baidu Analytics -->
-
-    <!-- Baidu Push -->
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
-
-    
-    <script src="/libs/others/clicklove.js" async="async"></script>
-    
-    
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
-    
-
-    
-
-    
-
-    <!--腾讯兔小巢-->
-    
-    
-
-    
-
-    
-
-    
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
-    
-
-</body>
-
-</html>
-                          }
                             str += "</li>";
                         }
                     });

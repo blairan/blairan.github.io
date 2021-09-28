@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>微波雷達RCWL-0506+Adafruit_Neopixels燈條-esp8266</title>
+      <link href="/2021/09/28/wei-bo-lei-da-rcwl-0506-adafruit-neopixels-deng-tiao-esp8266/"/>
+      <url>/2021/09/28/wei-bo-lei-da-rcwl-0506-adafruit-neopixels-deng-tiao-esp8266/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ESP8266-微波雷達RCWL-0506-Adafruit-Neopixels燈條"><a href="#ESP8266-微波雷達RCWL-0506-Adafruit-Neopixels燈條" class="headerlink" title="ESP8266-微波雷達RCWL-0506+Adafruit_Neopixels燈條"></a>ESP8266-微波雷達RCWL-0506+Adafruit_Neopixels燈條</h2><h6 id="tags-esp8266-rcwl-0506-adafruit-neopixels"><a href="#tags-esp8266-rcwl-0506-adafruit-neopixels" class="headerlink" title="tags: esp8266 rcwl-0506 adafruit_neopixels"></a>tags: <code>esp8266</code> <code>rcwl-0506</code> <code>adafruit_neopixels</code></h6><h2 id="RCWL-0506微波雷達特點"><a href="#RCWL-0506微波雷達特點" class="headerlink" title="RCWL-0506微波雷達特點"></a>RCWL-0506微波雷達特點</h2><p><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/7108154971082560493#"><img src="https://1.bp.blogspot.com/-t4A_xNnjt1U/YVKmz39JdsI/AAAAAAAAe7o/VmJs-reePecRxCpxFAOP6Uoyvt4vwLcrACNcBGAsYHQ/w372-h185/RCWL0506.jpg"></a></p><p><strong>特點：</strong></p><ul><li>  靈敏度高、感應距離遠、可靠性高、感應角度大、供電電壓範圍大等特點</li><li>  4.0 V 至 28.0 V 的工作電壓</li><li>RCWL-0516 是一種利用雷達多普勒、微波感應專用模塊檢測移動物體的技術。</li></ul><hr><h2 id="Adafruit-Neopixels燈條"><a href="#Adafruit-Neopixels燈條" class="headerlink" title="Adafruit_Neopixels燈條"></a>Adafruit_Neopixels燈條</h2><p><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/7108154971082560493#"><img src="https://1.bp.blogspot.com/-XvmLPHjykj4/YVKpBVj5lsI/AAAAAAAAe7w/C3I7d6MDEJ85BWBAdP9_26xuW_rApCXJACNcBGAsYHQ/s320/1426-00.jpg"></a></p><p>主要特色:</p><p>使用這款 NeoPixel LED 燈,自行佈置小 LED 燈條。 我們將 8 個小型 5050 (5 公釐 x 5 公釐) 智慧型 RGB LED 燈擠在一個具有安裝孔和可鏈設計的印刷電路板上。 僅使用一個微控制器針腳來控制盡可能多地連接在一起! ​ 每個LED燈都可以定位,因為驅動芯片在LED內。 每個都有約 18 mA 的恆定電流驅動,因此即使電壓變化,顏色也會非常一致,並且不需要外部阻斷電阻,使設計更加纖薄。 使用 5VDC 供電(4-7V 工作),您準備好搖滾。 通過將一個棒子的輸出連接到另一個棒子的輸入中,LED 可以「鏈」 - 請參閱上面的照片。 只有一條數據行,具有非常特定計時的協議。 由於該協議對定時非常敏感,它需要一個即時微控制器,如 AVR、Arduino、PIC、mbed 等。 無法與基於 Linux 的微電腦或被解釋的微控制器配合使用,如 netduino 或 Basic Stamp。 Adafruit;為 Arduino 編寫的精美的 Neopixel 庫支持這些像素! 由於需要手動調整組裝</p><hr><h2 id="實作須求"><a href="#實作須求" class="headerlink" title="實作須求:"></a>實作須求:</h2><p>將微波雷達和燈條併用,形成感應燈應用,如果有人經過,燈亮,如果沒人,3秒後自動滅掉</p><p>但如果有人繼續在感應區,燈則持續亮,直到感應區沒人。</p><hr><h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/7108154971082560493#"><img src="https://1.bp.blogspot.com/-a936gFUrvEw/YVKuz7DmYSI/AAAAAAAAe74/0BH0AMd33B8XfZVzMTyOV2buK9RvwxcnACNcBGAsYHQ/w761-h364/RCWLneopixel.jpg"></a></p><hr><h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><p>如果是使用micropython，neopixel.py函式庫先上傳到板子上</p><p>neopixel.py-<a href="https://draft.blogger.com/blog/post/edit/2883052724878840475/7108154971082560493#">https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel/blob/main/neopixel.py</a></p><pre class="line-numbers language-py" data-language="py"><code class="language-py">from machine import Pinfrom time import sleepimport neopixeln &#x3D; 8 #led燈數p &#x3D; 4 #腳位sensor&#x3D;Pin(14, Pin.IN)#neopixel方法設定np &#x3D; neopixel.NeoPixel(Pin(p), n)state &#x3D; 1while True:    s &#x3D; sensor.value()    if s &#x3D;&#x3D; 1:        print(&quot;on&quot;)        for i in range(n):            np[i] &#x3D; (100, 200, 200)            np.write()        sleep(3)        #如果狀態還是在高腳位,繼續保持亮        if state &#x3D;&#x3D; 1:            print(&quot;pass&quot;)            pass    else:        print(&quot;off&quot;)        for i in range(n):            np[i] &#x3D; (0, 0, 0)            np.write()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="video-container"><iframe src="https://www.youtube.com/embed/41Z7yvr-LXk" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> esp8266 </category>
+          
+          <category> micropython </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> rcwl-0506 </tag>
+            
+            <tag> adafruit_neopixel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Timer計時器函式實作-ESP8266</title>
       <link href="/2021/09/27/timer-ji-shi-qi-han-shi-shi-zuo-esp8266/"/>
       <url>/2021/09/27/timer-ji-shi-qi-han-shi-shi-zuo-esp8266/</url>
