@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條, 我的微控板實驗室">
+    <meta name="keywords" content="WebServer_PWM滑軌(slider)控制LED-ESP32, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條 | 我的微控板實驗室</title>
+    <title>WebServer_PWM滑軌(slider)控制LED-ESP32 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/RCWL0506_neopixels.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/pwmWebServer.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條</h1>
+                    <h1 class="description center-align post-title">WebServer_PWM滑軌(slider)控制LED-ESP32</h1>
                 </div>
             </div>
         </div>
@@ -387,16 +387,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/RCWL-0506/">
-                                <span class="chip bg-color">RCWL-0506</span>
+                            <a href="/tags/webserver/">
+                                <span class="chip bg-color">webserver</span>
                             </a>
                         
-                            <a href="/tags/%E5%BE%AE%E6%B3%A2%E9%9B%B7%E9%81%94/">
-                                <span class="chip bg-color">微波雷達</span>
+                            <a href="/tags/led/">
+                                <span class="chip bg-color">led</span>
                             </a>
                         
-                            <a href="/tags/NeoPixels%E7%87%88%E6%A2%9D/">
-                                <span class="chip bg-color">NeoPixels燈條</span>
+                            <a href="/tags/pwm/">
+                                <span class="chip bg-color">pwm</span>
                             </a>
                         
                     </div>
@@ -420,14 +420,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2021-10-04
+                    2021-10-12
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-04
+                    2021-10-12
                 </div>
                 
 
@@ -454,135 +454,222 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="ESP32-微波雷達RCWL-0506-Adafruit-Neopixels燈條"><a href="#ESP32-微波雷達RCWL-0506-Adafruit-Neopixels燈條" class="headerlink" title="ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條"></a>ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條</h3><h2 id="RCWL-0506微波雷達特點"><a href="#RCWL-0506微波雷達特點" class="headerlink" title="RCWL-0506微波雷達特點"></a>RCWL-0506微波雷達特點</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6901600445849823#"><img src="https://1.bp.blogspot.com/-t4A_xNnjt1U/YVKmz39JdsI/AAAAAAAAe7o/VmJs-reePecRxCpxFAOP6Uoyvt4vwLcrACNcBGAsYHQ/w372-h185/RCWL0506.jpg"></a></p>
-<p><strong>特點：</strong></p>
+                <h1 id="WebServer-PWM滑軌-slider-控制LED-ESP32"><a href="#WebServer-PWM滑軌-slider-控制LED-ESP32" class="headerlink" title="WebServer_PWM滑軌(slider)控制LED-ESP32"></a>WebServer_PWM滑軌(slider)控制LED-ESP32</h1><h6 id="tags-esp32-pwm-webserver-amp-led"><a href="#tags-esp32-pwm-webserver-amp-led" class="headerlink" title="tags: esp32 pwm `webserver&amp;led"></a>tags: <code>esp32</code> <code>pwm</code> `webserver&amp;led</h6><p><strong><em>參考</em></strong>-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#">https://microcontrollerslab.com/esp32-pwm-slider-web-server-control-led-brightness/</a></p>
+<h2 id="所須元件"><a href="#所須元件" class="headerlink" title="所須元件"></a>所須元件</h2><ol>
+<li> ESP32板</li>
+<li> LED</li>
+<li> 220 歐姆電阻</li>
+<li> 連接線</li>
+<li> 麵包板</li>
+</ol>
+<h2 id="接線方式"><a href="#接線方式" class="headerlink" title="接線方式"></a>接線方式</h2><p>可以選擇任何有PWM的腳位</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#"><img src="https://microcontrollerslab.com/wp-content/uploads/2021/04/ESP32-PWM-Micropython-LED-Fading-circuit.jpg"></a></p>
+<hr>
+<h2 id="所須安裝的函式庫"><a href="#所須安裝的函式庫" class="headerlink" title="所須安裝的函式庫"></a>所須安裝的函式庫</h2><p>自行前往下載並放入AduinoIDE的library</p>
+<p>我個人慣用platfromIO,直接在它內建的搜尋找到庫安裝即可</p>
 <ul>
-<li>  靈敏度高、感應距離遠、可靠性高、感應角度大、供電電壓範圍大等特點</li>
-<li>  4.0 V 至 28.0 V 的工作電壓</li>
-<li>RCWL-0516 是一種利用雷達多普勒、微波感應專用模塊檢測移動物體的技術。</li>
+<li>  <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#">ESPAsyncWebServer</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#">AsyncTCP</a></li>
 </ul>
 <hr>
-<h2 id="Adafruit-Neopixels燈條"><a href="#Adafruit-Neopixels燈條" class="headerlink" title="Adafruit_Neopixels燈條"></a>Adafruit_Neopixels燈條</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6901600445849823#"><img src="https://1.bp.blogspot.com/-XvmLPHjykj4/YVKpBVj5lsI/AAAAAAAAe7w/C3I7d6MDEJ85BWBAdP9_26xuW_rApCXJACNcBGAsYHQ/s320/1426-00.jpg"></a></p>
-<p><strong>主要特色:</strong></p>
-<p>使用這款 NeoPixel LED 燈,自行佈置小 LED 燈條。 我們將 8 個小型 5050 (5 公釐 x 5 公釐) 智慧型 RGB LED 燈擠在一個具有安裝孔和可鏈設計的印刷電路板上。 僅使用一個微控制器針腳來控制盡可能多地連接在一起! ​ 每個LED燈都可以定位,因為驅動芯片在LED內。 每個都有約 18 mA 的恆定電流驅動,因此即使電壓變化,顏色也會非常一致,並且不需要外部阻斷電阻,使設計更加纖薄。 使用 5VDC 供電(4-7V 工作),您準備好搖滾。 通過將一個棒子的輸出連接到另一個棒子的輸入中,LED 可以「鏈」 - 請參閱上面的照片。 只有一條數據行,具有非常特定計時的協議。 由於該協議對定時非常敏感,它需要一個即時微控制器,如 AVR、Arduino、PIC、mbed 等。 無法與基於 Linux 的微電腦或被解釋的微控制器配合使用,如 netduino 或 Basic Stamp。 Adafruit;為 Arduino 編寫的精美的 Neopixel 庫支持這些像素! 由於需要手動調整組裝</p>
-<hr>
-<h2 id="實作須求"><a href="#實作須求" class="headerlink" title="實作須求:"></a>實作須求:</h2><p>將微波雷達和燈條併用,形成感應燈應用,如果有人經過,燈亮,如果沒人,3秒後自動滅掉</p>
-<p>但如果有人繼續在感應區,燈則持續亮,直到感應區沒人。</p>
-<hr>
-<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6901600445849823#"><img src="https://1.bp.blogspot.com/-Do9-DzeILZA/YVqnW6eU_DI/AAAAAAAAe8E/Hf6P_BC9vc0UTOUoQsHddLQre4reykwBACNcBGAsYHQ/w750-h407/%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D.jpg"></a></p>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><p>須匯入Adafruit_NeoPixel(點<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/6901600445849823#">此處</a>下載程式庫,並匯入ArduinoIDE)</p>
-<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include &lt;Arduino.h&gt;
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include   &lt;WiFi.h&gt;
+#include   &lt;AsyncTCP.h&gt;
+#include   &lt;ESPAsyncWebServer.h&gt;
 
-#include &lt;Adafruit_NeoPixel.h&gt;
+&#x2F;&#x2F;wifi連線帳密
+const char *ssid &#x3D;&quot;---&quot;;
+const char *password &#x3D; &quot;-------&quot;;
 
-  
+&#x2F;&#x2F;服務器監聽請求端口
 
-const int pinSensor &#x3D; 19;
+AsyncWebServer server(80);
 
-&#x2F;&#x2F;const int pinLed &#x3D; LED_BUILTIN;
+&#x2F;&#x2F;LEDPin
 
-int ismotion;
+const int led &#x3D; 2;
 
-int state &#x3D; 0;
+&#x2F;&#x2F;滑軌介面預設值
+
+String slider_val &#x3D; &quot;0&quot;;
 
   
 
-&#x2F;&#x2F;燈條腳位
+&#x2F;&#x2F;前端網頁
 
-#define PIN 5
+const char indexHtml[] PROGMEM &#x3D; R&quot;rawliteral(
 
-&#x2F;&#x2F;共有顆led
+  &lt;!DOCTYPE HTML&gt;&lt;html&gt;
 
-#define NUM 8
+&lt;head&gt;
 
-  
+  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1&quot;&gt;
 
-&#x2F;&#x2F;設定燈條的相關系數
+  &lt;title&gt;ESP32 Brightness Control Web Server&lt;&#x2F;title&gt;
 
-Adafruit_NeoPixel pixels &#x3D; Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
+  &lt;style&gt;
 
-  
+    html &#123;font-family: Times New Roman; display: inline-block; text-align: center;&#125;
 
-void static1()&#123;
+    h2 &#123;font-size: 2.3rem;&#125;
 
-  for(int i&#x3D;0;i&lt;&#x3D;NUM;i++)&#123;
+    p &#123;font-size: 1.9rem;&#125;
 
-  pixels.setPixelColor(i, pixels.Color(0,0,0));
+    body &#123;max-width: 400px; margin:0px auto; padding-bottom: 25px;&#125;
 
-  pixels.show();
+    .slider &#123; -webkit-appearance: none; margin: 14px; width: 360px; height: 25px; background: #38c0ff  ;
 
-  &#125;
+      outline: none; -webkit-transition: .2s; transition: opacity .2s;&#125;
+
+    .slider::-webkit-slider-thumb &#123;-webkit-appearance: none; appearance: none; width: 35px; height: 35px; background:#01070a; cursor: pointer;&#125;
+
+    .slider::-moz-range-thumb &#123; width: 35px; height: 35px; background: #01070a; cursor: pointer; &#125;
+
+  &lt;&#x2F;style&gt;
+
+&lt;&#x2F;head&gt;
+
+&lt;body&gt;
+
+  &lt;h2&gt;ESP32 Brightness Control Web Server&lt;&#x2F;h2&gt;
+
+  &lt;p&gt;&lt;span id&#x3D;&quot;textslider_value&quot;&gt;%SLIDERVALUE%&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
+
+  &lt;p&gt;&lt;input type&#x3D;&quot;range&quot; onchange&#x3D;&quot;updateSliderPWM(this)&quot; id&#x3D;&quot;pwmSlider&quot; min&#x3D;&quot;0&quot; max&#x3D;&quot;255&quot; value&#x3D;&quot;%SLIDERVALUE%&quot; step&#x3D;&quot;1&quot; class&#x3D;&quot;slider&quot;&gt;&lt;&#x2F;p&gt;
+
+&lt;script&gt;
+
+function updateSliderPWM(element) &#123;
+
+  var slider_val &#x3D; document.getElementById(&quot;pwmSlider&quot;).value;
+
+  document.getElementById(&quot;textslider_value&quot;).innerHTML &#x3D; slider_val;
+
+  console.log(slider_val);
+
+  var xhr &#x3D; new XMLHttpRequest();
+
+  xhr.open(&quot;GET&quot;, &quot;&#x2F;slider?value&#x3D;&quot;+slider_val, true);
+
+  xhr.send();
 
 &#125;
 
-void static2()&#123;
+&lt;&#x2F;script&gt;
 
-  for(int i&#x3D;0;i&lt;&#x3D;NUM;i++)&#123;
+&lt;&#x2F;body&gt;
 
-  pixels.setPixelColor(i, pixels.Color(150,70,100));
+&lt;&#x2F;html&gt;
 
-  pixels.show();
+)rawliteral&quot;;
 
-  &#125;
+  
+
+&#x2F;&#x2F;在processor() 函數中，佔位符%SLIDERVALUE%
+
+&#x2F;&#x2F;將被替換為其特定變量(slider_value) 中保存的值。
+
+&#x2F;&#x2F;然後返回保存在‘slider_value’變量中的這個值。
+
+String PWM_LED_Processor(const String&amp;var)&#123;
+
+  if (var &#x3D;&#x3D; &quot;SLIDERVALUE&quot;)&#123;
+
+    return slider_val;
+
+  &#125;
+
+  return String();
 
 &#125;
 
-void setup() &#123;
+  
 
-  pixels.begin();
+void setup() &#123;
 
-  pixels.setBrightness(50);
+  Serial.begin(115200);
 
-  pixels.show(); &#x2F;&#x2F; Initialize all pixels to &#39;off&#39;
+  &#x2F;&#x2F;pwm設置
 
-  Serial.begin(115200); 
+  ledcSetup(0, 5000, 8);
 
-  pinMode (pinSensor, INPUT); &#x2F;&#x2F;定義 Sensor
+  ledcAttachPin(led, 0);
 
-  &#x2F;&#x2F;pinMode (pinLed, OUTPUT);   &#x2F;&#x2F;定義 LED
+  ledcWrite(0, slider_val.toInt());
+
+  &#x2F;&#x2F;wifi連線設置
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() !&#x3D; WL_CONNECTED)&#123;
+
+    delay(500);
+
+    Serial.print(&quot;.&quot;);
+
+  &#125;
+
+  Serial.println(&quot;CONNECTED SUCCESS!!&quot;);
+
+  Serial.print(&quot;IP: &quot;);
+
+  Serial.println(WiFi.localIP());
+
+  &#x2F;&#x2F;我們將處理 ESP32 板將收到的 &#x2F;root URL 請求。
+
+&#x2F;&#x2F;我們將使用 send_P() 方法。處理函數將通過對請求對象使用 send_P() 方法來響應客戶端。
+
+&#x2F;&#x2F;此方法將接受四個參數。第一個是 200，它是“ok”的 HTTP 狀態代碼。第二個是“text&#x2F;html”，
+
+&#x2F;&#x2F;它對應於響應的內容類型。第三個輸入是保存在 index_html 變量中的文本，它將被發送。
+
+&#x2F;&#x2F;最後，最後一個參數是處理器函數，其中佔位符將被其當前值替換。
+
+  server.on(&quot;&#x2F;&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+
+    request-&gt;send_P(200, &quot;text&#x2F;html&quot;, indexHtml,PWM_LED_Processor);
+
+  &#125;);
+
+  &#x2F;&#x2F;滑塊值將保存在變量“消息”中。此外，還將調用 ledcWrite() 函數，
+
+  &#x2F;&#x2F;該函數將生成與從 slider_value.toInt() 訪問的佔空比值相對應的 PWM 信號。
+
+  &#x2F;&#x2F;該值也將打印在我們的串行監視器上。
+
+  server.on(&quot;&#x2F;slider&quot;, HTTP_GET, [] (AsyncWebServerRequest *request) &#123;
+
+    String message;
+
+    if (request-&gt;hasParam(&quot;value&quot;)) &#123;
+
+      message &#x3D; request-&gt;getParam(&quot;value&quot;)-&gt;value();
+
+      slider_val &#x3D; message;
+
+      ledcWrite(0, slider_val.toInt());
+
+    &#125;
+
+    else &#123;
+
+      message &#x3D; &quot;No message sent&quot;;
+
+    &#125;
+
+    Serial.println(message);
+
+    request-&gt;send(200, &quot;text&#x2F;plain&quot;, &quot;OK&quot;);
+
+  &#125;);
+
+  server.begin();
 
 &#125;
 
-void loop() &#123;
+void loop() &#123;
 
-  ismotion &#x3D; digitalRead(pinSensor);  &#x2F;&#x2F; 從sensor讀資料
-
-  if(ismotion &#x3D;&#x3D; HIGH)&#123;                   &#x2F;&#x2F; 感應啟動
-
-    &#x2F;&#x2F;digitalWrite(pinLed,HIGH);         &#x2F;&#x2F; Led 燈亮
-
-    static2();
-
-    Serial.println(&quot;Detectived&quot;);
-
-    state &#x3D; 1;
-
-    Serial.println(state);
-
-    if (state &#x3D;&#x3D; 1)&#123;
-
-      Serial.println(&quot;Detectived&quot;);
-
-      Serial.println(state);
-
-    &#125;
-
-  &#125;else&#123;
-
-      &#x2F;&#x2F;digitalWrite(pinLed, LOW);
-
-      static1();
-
-      Serial.println(&quot;Not Detectived&quot;);
-
-      state &#x3D; 0;
-
-      Serial.println(state);
-
-  &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/mZWInUebGAg" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/p-EtpIFTbW8" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -608,7 +695,7 @@ void loop() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/10/04/esp32-wei-bo-lei-da-rcwl-0506-adafruit-neopixels-deng-tiao/">https://blairan.github.io/2021/10/04/esp32-wei-bo-lei-da-rcwl-0506-adafruit-neopixels-deng-tiao/</a>
+                    <a href="https://blairan.github.io/2021/10/12/webserver-pwm-hua-gui-slider-kong-zhi-led-esp32/">https://blairan.github.io/2021/10/12/webserver-pwm-hua-gui-slider-kong-zhi-led-esp32/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -646,16 +733,16 @@ void loop() &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/RCWL-0506/">
-                                    <span class="chip bg-color">RCWL-0506</span>
+                                <a href="/tags/webserver/">
+                                    <span class="chip bg-color">webserver</span>
                                 </a>
                             
-                                <a href="/tags/%E5%BE%AE%E6%B3%A2%E9%9B%B7%E9%81%94/">
-                                    <span class="chip bg-color">微波雷達</span>
+                                <a href="/tags/led/">
+                                    <span class="chip bg-color">led</span>
                                 </a>
                             
-                                <a href="/tags/NeoPixels%E7%87%88%E6%A2%9D/">
-                                    <span class="chip bg-color">NeoPixels燈條</span>
+                                <a href="/tags/pwm/">
+                                    <span class="chip bg-color">pwm</span>
                                 </a>
                             
                         </div>
@@ -967,9 +1054,10 @@ void loop() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/12/webserver-pwm-hua-gui-slider-kong-zhi-led-esp32/">
                     <div class="card-image">
@@ -986,9 +1074,9 @@ void loop() &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1001,6 +1089,7 @@ void loop() &#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1027,12 +1116,12 @@ void loop() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/28/wei-bo-lei-da-rcwl-0506-adafruit-neopixels-deng-tiao-esp8266/">
+                <a href="/2021/10/04/esp32-wei-bo-lei-da-rcwl-0506-adafruit-neopixels-deng-tiao/">
                     <div class="card-image">
                         
-                        <img src="/images/RCWL0506.jpg" class="responsive-img" alt="微波雷達RCWL-0506+Adafruit_Neopixels燈條-esp8266">
+                        <img src="/images/RCWL0506_neopixels.jpg" class="responsive-img" alt="ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條">
                         
-                        <span class="card-title">微波雷達RCWL-0506+Adafruit_Neopixels燈條-esp8266</span>
+                        <span class="card-title">ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1043,18 +1132,14 @@ void loop() &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/esp8266/" class="post-category">
-                                    esp8266
-                                </a>
-                            
-                            <a href="/categories/esp8266/micropython/" class="post-category">
-                                    micropython
+                            <a href="/categories/esp32/" class="post-category">
+                                    esp32
                                 </a>
                             
                             
@@ -1064,12 +1149,16 @@ void loop() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rcwl-0506/">
-                        <span class="chip bg-color">rcwl-0506</span>
+                    <a href="/tags/RCWL-0506/">
+                        <span class="chip bg-color">RCWL-0506</span>
                     </a>
                     
-                    <a href="/tags/adafruit-neopixel/">
-                        <span class="chip bg-color">adafruit_neopixel</span>
+                    <a href="/tags/%E5%BE%AE%E6%B3%A2%E9%9B%B7%E9%81%94/">
+                        <span class="chip bg-color">微波雷達</span>
+                    </a>
+                    
+                    <a href="/tags/NeoPixels%E7%87%88%E6%A2%9D/">
+                        <span class="chip bg-color">NeoPixels燈條</span>
                     </a>
                     
                 </div>
