@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="WebServer_PWM滑軌(slider)控制LED-ESP32, 我的微控板實驗室">
+    <meta name="keywords" content="可調燈-PWM_LED-MQTT-micropython, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>WebServer_PWM滑軌(slider)控制LED-ESP32 | 我的微控板實驗室</title>
+    <title>可調燈-PWM_LED-MQTT-micropython | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/pwmWebServer.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/images/pwmSilder.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">WebServer_PWM滑軌(slider)控制LED-ESP32</h1>
+                    <h1 class="description center-align post-title">可調燈-PWM_LED-MQTT-micropython</h1>
                 </div>
             </div>
         </div>
@@ -387,12 +387,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/webserver/">
-                                <span class="chip bg-color">webserver</span>
-                            </a>
-                        
                             <a href="/tags/led/">
                                 <span class="chip bg-color">led</span>
+                            </a>
+                        
+                            <a href="/tags/mqtt/">
+                                <span class="chip bg-color">mqtt</span>
                             </a>
                         
                             <a href="/tags/pwm/">
@@ -407,7 +407,11 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/esp32/" class="post-category">
+                            <a href="/categories/micropython/" class="post-category">
+                                micropython
+                            </a>
+                        
+                            <a href="/categories/micropython/esp32/" class="post-category">
                                 esp32
                             </a>
                         
@@ -420,14 +424,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2021-10-12
+                    2021-10-18
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-12
+                    2021-10-18
                 </div>
                 
 
@@ -454,222 +458,125 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="WebServer-PWM滑軌-slider-控制LED-ESP32"><a href="#WebServer-PWM滑軌-slider-控制LED-ESP32" class="headerlink" title="WebServer_PWM滑軌(slider)控制LED-ESP32"></a>WebServer_PWM滑軌(slider)控制LED-ESP32</h1><h6 id="tags-esp32-pwm-webserver-amp-led"><a href="#tags-esp32-pwm-webserver-amp-led" class="headerlink" title="tags: esp32 pwm `webserver&amp;led"></a>tags: <code>esp32</code> <code>pwm</code> `webserver&amp;led</h6><p><strong><em>參考</em></strong>-<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#">https://microcontrollerslab.com/esp32-pwm-slider-web-server-control-led-brightness/</a></p>
-<h2 id="所須元件"><a href="#所須元件" class="headerlink" title="所須元件"></a>所須元件</h2><ol>
-<li> ESP32板</li>
-<li> LED</li>
-<li> 220 歐姆電阻</li>
-<li> 連接線</li>
-<li> 麵包板</li>
-</ol>
-<h2 id="接線方式"><a href="#接線方式" class="headerlink" title="接線方式"></a>接線方式</h2><p>可以選擇任何有PWM的腳位</p>
-<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#"><img src="https://microcontrollerslab.com/wp-content/uploads/2021/04/ESP32-PWM-Micropython-LED-Fading-circuit.jpg"></a></p>
-<hr>
-<h2 id="所須安裝的函式庫"><a href="#所須安裝的函式庫" class="headerlink" title="所須安裝的函式庫"></a>所須安裝的函式庫</h2><p>自行前往下載並放入AduinoIDE的library</p>
-<p>我個人慣用platfromIO,直接在它內建的搜尋找到庫安裝即可</p>
-<ul>
-<li>  <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#">ESPAsyncWebServer</a></li>
-<li>  <a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3809681606094011522/5133599767551513904#">AsyncTCP</a></li>
+                <h1 id="可調燈-PWM-LED-MQTT–micropython"><a href="#可調燈-PWM-LED-MQTT–micropython" class="headerlink" title="可調燈-PWM_LED-MQTT–micropython"></a>可調燈-PWM_LED-MQTT–micropython</h1><h6 id="tags-micropython-pwm-led"><a href="#tags-micropython-pwm-led" class="headerlink" title="tags: micropython pwm led"></a>tags: <code>micropython</code> <code>pwm</code> <code>led</code></h6><p><strong>這個其實是比較簡單的利用MQTT作法，所以就直接進入正題</strong></p>
+<h2 id="材料"><a href="#材料" class="headerlink" title="材料"></a>材料</h2><ul>
+<li>  樹莓派  x1</li>
+<li>  ESP32 x 1</li>
+<li>  杜邦線 x少許</li>
+<li>  LED x 1</li>
+<li>  10k歐姆雷阻 x 1</li>
 </ul>
 <hr>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include   &lt;WiFi.h&gt;
-#include   &lt;AsyncTCP.h&gt;
-#include   &lt;ESPAsyncWebServer.h&gt;
+<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8163949108134810939#"><img src="https://lh3.googleusercontent.com/-7VCXf9sLnfM/YWzMCtI5jqI/AAAAAAAAe88/R0fXLsZyAVsrTEhNQKcTfPEFdSpLEoPDwCNcBGAsYHQ/w458-h288/image.png"></a></p>
+<hr>
+<h2 id="MQTT-broker布局"><a href="#MQTT-broker布局" class="headerlink" title="MQTT_broker布局"></a>MQTT_broker布局</h2><p>樹莓派上裝MQTT和Nord-RED回顧<a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8163949108134810939#">-點我回顧</a></p>
+<p>**1.**首先安裝好MQTT和NODE-RED後,在瀏覽器網址列開啓<a target="_blank" rel="noopener" href="http://localhost:1880/">http://localhost:1880/</a></p>
+<p>如果是樹莓派,localhost替換填上樹莓派的IP加上:1880</p>
+<p>**2.**加入slider滑軌和mqtt_out發送</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8163949108134810939#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhBasdBsMbhhgs9zBzp9nwF_D1gkhjey_pDp_DS9GyWo174iJZEsFxU-PzFczTcU1YzL1FXfpeH2dkOIhd6EXXCw7FAoptmOl1SRLrgOXVHMtNg-gqIEJ3_jdYeTWOAbeRwAjOuU-B5gbVvOc6yBOerP4s3pGk0rZKKaYMY51Uac0Up-zRWA86i87lO=w662-h298"></a></p>
+<p>**3.**lable的地方填上PWM，range填入脈波範圍</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8163949108134810939#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEigtCoDFX8zFtjWGGZL7hcDrD-WdejmF1epNOty06jZD12xMzrHusz1bPbdiHL6agkk_xXqisZMEojyxJOlAzM9AIV3jYbvkrXcEzUpT0Vy0hKq8hcMpL2Sgx0xPps50mlN-N57RS76nTYL2uDQW77Yf1aDr_7tvpUxq79u2WTDBXPDjSaAOvYyTDep=w618-h276"></a></p>
+<p>**4.**接下來布置mqtt_out</p>
+<p>服務器選擇本地端</p>
+<p>主題填入esp32/pwm,這個是客戶端訂閱主題</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8163949108134810939#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhMvVMQAhu0XO7IIF4W5RDP2uZbD3o8stmPQJWk5g5VFLv6Fi5M60k-6nZH8pkjN8cQTUW_b9EgoLaFYFfkLH1TMlG60iwrOzKdIXUufKnE_Nxy53EtzhvqOXgpCsmyq-dvuV3WUF4SmgcmQ9Y5xpa-GkieZ6GkX_BluwIOBZKW7MCS8jh3Ur3beIk1=w616-h276"></a></p>
+<p>**5.**最後按下右上角”<strong>部署</strong>“</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/6280040346040914276/8163949108134810939#"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjlbuaf5ZIUcFrqNQ-kTL9X_1XJjoW385Ewdio1efiY0SmGe9iud3wygNy6fQsrCaj08U5mySM25QODlnqGe-W6K6B9n-Wp_npCj1cBt-5fTFpuQUiEOsfh-6XFVs-WxZnqtlz6wyG-ieuRuApMpZcCsuVDNUoUzKdFl0LKzLQJQ9DNEBVhh-cEPrWE=w626-h280"></a></p>
+<hr>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> machine <span class="token keyword">import</span> Pin<span class="token punctuation">,</span> PWM<span class="token punctuation">,</span> freq<span class="token punctuation">,</span> reset<span class="token punctuation">,</span> sleep
 
-&#x2F;&#x2F;wifi連線帳密
-const char *ssid &#x3D;&quot;---&quot;;
-const char *password &#x3D; &quot;-------&quot;;
+<span class="token keyword">import</span> network<span class="token punctuation">,</span> binascii<span class="token punctuation">,</span> socket<span class="token punctuation">,</span> machine
 
-&#x2F;&#x2F;服務器監聽請求端口
+<span class="token keyword">from</span> umqtt<span class="token punctuation">.</span>simple <span class="token keyword">import</span> MQTTClient
 
-AsyncWebServer server(80);
+  
+ssid <span class="token operator">=</span> <span class="token string">"---"</span>
 
-&#x2F;&#x2F;LEDPin
+password <span class="token operator">=</span> <span class="token string">"--------"</span>
 
-const int led &#x3D; 2;
+<span class="token comment">#我樹苺派上的ip</span>
 
-&#x2F;&#x2F;滑軌介面預設值
+serverIP <span class="token operator">=</span> <span class="token string">"192.168.97.22"</span>
 
-String slider_val &#x3D; &quot;0&quot;;
+<span class="token comment">#將客戶端ID轉換為16進位,以便MQTT伺服端讀取</span>
+
+mqtt_id <span class="token operator">=</span> binascii<span class="token punctuation">.</span>hexlify<span class="token punctuation">(</span>machine<span class="token punctuation">.</span>unique_id<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
   
 
-&#x2F;&#x2F;前端網頁
+<span class="token comment">#和Nord-RED上的主題一致</span>
 
-const char indexHtml[] PROGMEM &#x3D; R&quot;rawliteral(
+client_topic <span class="token operator">=</span> <span class="token string">b'esp32/pwm'</span>
 
-  &lt;!DOCTYPE HTML&gt;&lt;html&gt;
+<span class="token comment">#led_pwm設定腳位和頻率</span>
 
-&lt;head&gt;
-
-  &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1&quot;&gt;
-
-  &lt;title&gt;ESP32 Brightness Control Web Server&lt;&#x2F;title&gt;
-
-  &lt;style&gt;
-
-    html &#123;font-family: Times New Roman; display: inline-block; text-align: center;&#125;
-
-    h2 &#123;font-size: 2.3rem;&#125;
-
-    p &#123;font-size: 1.9rem;&#125;
-
-    body &#123;max-width: 400px; margin:0px auto; padding-bottom: 25px;&#125;
-
-    .slider &#123; -webkit-appearance: none; margin: 14px; width: 360px; height: 25px; background: #38c0ff  ;
-
-      outline: none; -webkit-transition: .2s; transition: opacity .2s;&#125;
-
-    .slider::-webkit-slider-thumb &#123;-webkit-appearance: none; appearance: none; width: 35px; height: 35px; background:#01070a; cursor: pointer;&#125;
-
-    .slider::-moz-range-thumb &#123; width: 35px; height: 35px; background: #01070a; cursor: pointer; &#125;
-
-  &lt;&#x2F;style&gt;
-
-&lt;&#x2F;head&gt;
-
-&lt;body&gt;
-
-  &lt;h2&gt;ESP32 Brightness Control Web Server&lt;&#x2F;h2&gt;
-
-  &lt;p&gt;&lt;span id&#x3D;&quot;textslider_value&quot;&gt;%SLIDERVALUE%&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
-
-  &lt;p&gt;&lt;input type&#x3D;&quot;range&quot; onchange&#x3D;&quot;updateSliderPWM(this)&quot; id&#x3D;&quot;pwmSlider&quot; min&#x3D;&quot;0&quot; max&#x3D;&quot;255&quot; value&#x3D;&quot;%SLIDERVALUE%&quot; step&#x3D;&quot;1&quot; class&#x3D;&quot;slider&quot;&gt;&lt;&#x2F;p&gt;
-
-&lt;script&gt;
-
-function updateSliderPWM(element) &#123;
-
-  var slider_val &#x3D; document.getElementById(&quot;pwmSlider&quot;).value;
-
-  document.getElementById(&quot;textslider_value&quot;).innerHTML &#x3D; slider_val;
-
-  console.log(slider_val);
-
-  var xhr &#x3D; new XMLHttpRequest();
-
-  xhr.open(&quot;GET&quot;, &quot;&#x2F;slider?value&#x3D;&quot;+slider_val, true);
-
-  xhr.send();
-
-&#125;
-
-&lt;&#x2F;script&gt;
-
-&lt;&#x2F;body&gt;
-
-&lt;&#x2F;html&gt;
-
-)rawliteral&quot;;
+led_pwm <span class="token operator">=</span> PWM<span class="token punctuation">(</span>Pin<span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">,</span> freq<span class="token operator">=</span><span class="token number">500</span><span class="token punctuation">)</span>
 
   
 
-&#x2F;&#x2F;在processor() 函數中，佔位符%SLIDERVALUE%
+<span class="token comment">#wifi連線</span>
 
-&#x2F;&#x2F;將被替換為其特定變量(slider_value) 中保存的值。
+<span class="token keyword">def</span> <span class="token function">wifi_connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-&#x2F;&#x2F;然後返回保存在‘slider_value’變量中的這個值。
+    wifi <span class="token operator">=</span> network<span class="token punctuation">.</span>WLAN<span class="token punctuation">(</span>network<span class="token punctuation">.</span>STA_IF<span class="token punctuation">)</span>
 
-String PWM_LED_Processor(const String&amp;var)&#123;
+    wifi<span class="token punctuation">.</span>active<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
-  if (var &#x3D;&#x3D; &quot;SLIDERVALUE&quot;)&#123;
+    wifi<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>ssid<span class="token punctuation">,</span> password<span class="token punctuation">)</span>
 
-    return slider_val;
+    <span class="token keyword">while</span> wifi<span class="token punctuation">.</span>isconnected<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">False</span><span class="token punctuation">:</span>
 
-  &#125;
+        <span class="token keyword">pass</span>
 
-  return String();
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connected successed"</span><span class="token punctuation">)</span>
 
-&#125;
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"IP: &#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>wifi<span class="token punctuation">.</span>ifconfig<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  
+<span class="token comment">#連線MQTT,連線成功後訂閱主題</span>
 
-void setup() &#123;
+<span class="token keyword">def</span> <span class="token function">mqtt_connected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-  Serial.begin(115200);
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
 
-  &#x2F;&#x2F;pwm設置
+        client <span class="token operator">=</span> MQTTClient<span class="token punctuation">(</span>mqtt_id<span class="token punctuation">,</span> serverIP<span class="token punctuation">)</span>
 
-  ledcSetup(0, 5000, 8);
+        client<span class="token punctuation">.</span>set_callback<span class="token punctuation">(</span>callBack<span class="token punctuation">)</span>
 
-  ledcAttachPin(led, 0);
+        client<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  ledcWrite(0, slider_val.toInt());
+        client<span class="token punctuation">.</span>subscribe<span class="token punctuation">(</span>client_topic<span class="token punctuation">)</span>
 
-  &#x2F;&#x2F;wifi連線設置
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"connected to %s"</span><span class="token operator">%</span>serverIP<span class="token punctuation">)</span>
 
-  WiFi.begin(ssid, password);
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"subscribe Topic: %s"</span><span class="token operator">%</span>client_topic<span class="token punctuation">)</span>
 
-  while (WiFi.status() !&#x3D; WL_CONNECTED)&#123;
+        <span class="token keyword">return</span> client
 
-    delay(500);
+    <span class="token keyword">except</span> OSError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
 
-    Serial.print(&quot;.&quot;);
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"it's not to connect, wait a moment to connect"</span><span class="token punctuation">)</span>
 
-  &#125;
+        machine<span class="token punctuation">.</span>reset<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  Serial.println(&quot;CONNECTED SUCCESS!!&quot;);
+<span class="token comment">#樹莓派上的mqtt回應訂閱</span>
 
-  Serial.print(&quot;IP: &quot;);
+<span class="token keyword">def</span> <span class="token function">callBack</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-  Serial.println(WiFi.localIP());
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  &#x2F;&#x2F;我們將處理 ESP32 板將收到的 &#x2F;root URL 請求。
+    <span class="token keyword">if</span> topic <span class="token operator">==</span> client_topic<span class="token punctuation">:</span>
 
-&#x2F;&#x2F;我們將使用 send_P() 方法。處理函數將通過對請求對象使用 send_P() 方法來響應客戶端。
+        led_pwm<span class="token punctuation">.</span>duty<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-&#x2F;&#x2F;此方法將接受四個參數。第一個是 200，它是“ok”的 HTTP 狀態代碼。第二個是“text&#x2F;html”，
+wifi_connect<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-&#x2F;&#x2F;它對應於響應的內容類型。第三個輸入是保存在 index_html 變量中的文本，它將被發送。
+client <span class="token operator">=</span> mqtt_connected<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-&#x2F;&#x2F;最後，最後一個參數是處理器函數，其中佔位符將被其當前值替換。
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
 
-  server.on(&quot;&#x2F;&quot;, HTTP_GET, [](AsyncWebServerRequest *request)&#123;
+    client<span class="token punctuation">.</span>wait_msg<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/w_a0Fq4Pi5Q" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
 
-    request-&gt;send_P(200, &quot;text&#x2F;html&quot;, indexHtml,PWM_LED_Processor);
-
-  &#125;);
-
-  &#x2F;&#x2F;滑塊值將保存在變量“消息”中。此外，還將調用 ledcWrite() 函數，
-
-  &#x2F;&#x2F;該函數將生成與從 slider_value.toInt() 訪問的佔空比值相對應的 PWM 信號。
-
-  &#x2F;&#x2F;該值也將打印在我們的串行監視器上。
-
-  server.on(&quot;&#x2F;slider&quot;, HTTP_GET, [] (AsyncWebServerRequest *request) &#123;
-
-    String message;
-
-    if (request-&gt;hasParam(&quot;value&quot;)) &#123;
-
-      message &#x3D; request-&gt;getParam(&quot;value&quot;)-&gt;value();
-
-      slider_val &#x3D; message;
-
-      ledcWrite(0, slider_val.toInt());
-
-    &#125;
-
-    else &#123;
-
-      message &#x3D; &quot;No message sent&quot;;
-
-    &#125;
-
-    Serial.println(message);
-
-    request-&gt;send(200, &quot;text&#x2F;plain&quot;, &quot;OK&quot;);
-
-  &#125;);
-
-  server.begin();
-
-&#125;
-
-void loop() &#123;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/p-EtpIFTbW8" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -695,7 +602,7 @@ void loop() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/10/12/webserver-pwm-hua-gui-slider-kong-zhi-led-esp32/">https://blairan.github.io/2021/10/12/webserver-pwm-hua-gui-slider-kong-zhi-led-esp32/</a>
+                    <a href="https://blairan.github.io/2021/10/18/ke-diao-deng-pwm-led-mqtt-micropython/">https://blairan.github.io/2021/10/18/ke-diao-deng-pwm-led-mqtt-micropython/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -733,12 +640,12 @@ void loop() &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/webserver/">
-                                    <span class="chip bg-color">webserver</span>
-                                </a>
-                            
                                 <a href="/tags/led/">
                                     <span class="chip bg-color">led</span>
+                                </a>
+                            
+                                <a href="/tags/mqtt/">
+                                    <span class="chip bg-color">mqtt</span>
                                 </a>
                             
                                 <a href="/tags/pwm/">
@@ -1054,9 +961,10 @@ void loop() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/18/ke-diao-deng-pwm-led-mqtt-micropython/">
                     <div class="card-image">
@@ -1073,9 +981,9 @@ void loop() &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1092,6 +1000,7 @@ void loop() &#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1118,12 +1027,12 @@ void loop() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/04/esp32-wei-bo-lei-da-rcwl-0506-adafruit-neopixels-deng-tiao/">
+                <a href="/2021/10/12/webserver-pwm-hua-gui-slider-kong-zhi-led-esp32/">
                     <div class="card-image">
                         
-                        <img src="/images/RCWL0506_neopixels.jpg" class="responsive-img" alt="ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條">
+                        <img src="/images/pwmWebServer.jpg" class="responsive-img" alt="WebServer_PWM滑軌(slider)控制LED-ESP32">
                         
-                        <span class="card-title">ESP32-微波雷達RCWL-0506+Adafruit_Neopixels燈條</span>
+                        <span class="card-title">WebServer_PWM滑軌(slider)控制LED-ESP32</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1134,7 +1043,7 @@ void loop() &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-12
                             </span>
                         <span class="publish-author">
                             
@@ -1151,16 +1060,16 @@ void loop() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/RCWL-0506/">
-                        <span class="chip bg-color">RCWL-0506</span>
+                    <a href="/tags/webserver/">
+                        <span class="chip bg-color">webserver</span>
                     </a>
                     
-                    <a href="/tags/%E5%BE%AE%E6%B3%A2%E9%9B%B7%E9%81%94/">
-                        <span class="chip bg-color">微波雷達</span>
+                    <a href="/tags/led/">
+                        <span class="chip bg-color">led</span>
                     </a>
                     
-                    <a href="/tags/NeoPixels%E7%87%88%E6%A2%9D/">
-                        <span class="chip bg-color">NeoPixels燈條</span>
+                    <a href="/tags/pwm/">
+                        <span class="chip bg-color">pwm</span>
                     </a>
                     
                 </div>
