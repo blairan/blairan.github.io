@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>1.按鈕控制LED-樹莓派</title>
+      <link href="/2021/10/29/1-an-niu-kong-zhi-led-shu-mei-pai/"/>
+      <url>/2021/10/29/1-an-niu-kong-zhi-led-shu-mei-pai/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-按鈕控制LED-樹莓派"><a href="#1-按鈕控制LED-樹莓派" class="headerlink" title="1.按鈕控制LED-樹莓派"></a>1.按鈕控制LED-樹莓派</h1><h2 id="準備材料"><a href="#準備材料" class="headerlink" title="準備材料"></a>準備材料</h2><p>樹莓派 x1</p><p>按鈕開開(我手邊只有常閉的,所以動作會和一般的相反) x1</p><p>杜邦線 若干</p><p>面包板 x1</p><p>20k ohm x1</p><p>200 ohm x1</p><h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a href="https://draft.blogger.com/blog/post/edit/3150406505283704665/4448320227057174628#"><img src="https://1.bp.blogspot.com/-r6UOuE6eUKE/YXubaqZ90HI/AAAAAAAAe_s/C5rnnFakPowL9Hg5MP_i2GewqYJH0-nTwCNcBGAsYHQ/w685-h244/LED_BUTTON.png"></a></p><h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> RPi<span class="token punctuation">.</span>GPIO <span class="token keyword">as</span> GPIO  <span class="token keyword">from</span> time <span class="token keyword">import</span> sleep    led_pin <span class="token operator">=</span> <span class="token number">20</span>  button_pin <span class="token operator">=</span> <span class="token number">21</span>  GPIO<span class="token punctuation">.</span>setmode<span class="token punctuation">(</span>GPIO<span class="token punctuation">.</span>BCM<span class="token punctuation">)</span>  GPIO<span class="token punctuation">.</span>setup<span class="token punctuation">(</span>button_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>IN<span class="token punctuation">)</span>  GPIO<span class="token punctuation">.</span>setup<span class="token punctuation">(</span>led_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>      <span class="token keyword">if</span> GPIO<span class="token punctuation">.</span><span class="token builtin">input</span><span class="token punctuation">(</span>button_pin<span class="token punctuation">)</span><span class="token punctuation">:</span>          <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"led is off"</span><span class="token punctuation">)</span>          GPIO<span class="token punctuation">.</span>output<span class="token punctuation">(</span>led_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>LOW<span class="token punctuation">)</span>          sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>      <span class="token keyword">else</span><span class="token punctuation">:</span>          <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"led is on"</span><span class="token punctuation">)</span>          GPIO<span class="token punctuation">.</span>output<span class="token punctuation">(</span>led_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>HIGH<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="video-container"><iframe src="https://www.youtube.com/embed/TGQFLai7lzM" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 樹莓派 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> led </tag>
+            
+            <tag> button </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>平衡小車(balance-Robot)-基本平衡-Arduino</title>
       <link href="/2021/10/18/ping-heng-xiao-che-balance-robot-ji-ben-ping-heng-arduino/"/>
       <url>/2021/10/18/ping-heng-xiao-che-balance-robot-ji-ben-ping-heng-arduino/</url>
