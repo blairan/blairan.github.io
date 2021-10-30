@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="1.按鈕控制LED-樹莓派, 我的微控板實驗室">
+    <meta name="keywords" content="2.呼吸燈-樹莓派, 我的微控板實驗室">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>1.按鈕控制LED-樹莓派 | 我的微控板實驗室</title>
+    <title>2.呼吸燈-樹莓派 | 我的微控板實驗室</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -266,12 +266,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/LED_BUTTON.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">1.按鈕控制LED-樹莓派</h1>
+                    <h1 class="description center-align post-title">2.呼吸燈-樹莓派</h1>
                 </div>
             </div>
         </div>
@@ -387,12 +387,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/led/">
-                                <span class="chip bg-color">led</span>
-                            </a>
-                        
-                            <a href="/tags/button/">
-                                <span class="chip bg-color">button</span>
+                            <a href="/tags/%E5%91%BC%E5%90%B8%E7%87%88/">
+                                <span class="chip bg-color">呼吸燈</span>
                             </a>
                         
                     </div>
@@ -416,14 +412,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2021-10-29
+                    2021-10-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-29
+                    2021-10-30
                 </div>
                 
 
@@ -450,31 +446,57 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-按鈕控制LED-樹莓派"><a href="#1-按鈕控制LED-樹莓派" class="headerlink" title="1.按鈕控制LED-樹莓派"></a>1.按鈕控制LED-樹莓派</h1><h2 id="準備材料"><a href="#準備材料" class="headerlink" title="準備材料"></a>準備材料</h2><p>樹莓派 x1</p>
-<p>按鈕開開(我手邊只有常閉的,所以動作會和一般的相反) x1</p>
-<p>杜邦線 若干</p>
-<p>面包板 x1</p>
-<p>20k ohm x1</p>
-<p>200 ohm x1</p>
-<h2 id="接線"><a href="#接線" class="headerlink" title="接線"></a>接線</h2><p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3150406505283704665/4448320227057174628#"><img src="https://1.bp.blogspot.com/-r6UOuE6eUKE/YXubaqZ90HI/AAAAAAAAe_s/C5rnnFakPowL9Hg5MP_i2GewqYJH0-nTwCNcBGAsYHQ/w685-h244/LED_BUTTON.png"></a></p>
-<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> RPi<span class="token punctuation">.</span>GPIO <span class="token keyword">as</span> GPIO  
+                <h1 id="2-呼吸燈-樹莓派"><a href="#2-呼吸燈-樹莓派" class="headerlink" title="2.呼吸燈-樹莓派"></a>2.呼吸燈-樹莓派</h1><h2 id="什麼是PWM"><a href="#什麼是PWM" class="headerlink" title="什麼是PWM"></a>什麼是PWM</h2><p>簡單來說，PWM就是通過控制一定時間內的平均電壓來調節這段時間LED燈的明暗程度。那PWM是怎麼控制一定時間內的平均電壓呢？答案就是通過改變佔空比(Duty Cycle)，佔空比指電路被接通的時間佔整個電路工作週期的百分比。</p>
+<p>結合視頻中的例子來講：以100毫秒為一個週期，其中50毫秒通電，50毫秒斷電。那麼燈泡在100毫秒內其實只有一半時間是通電的，佔空比就是50%了。 100毫秒內燈泡得到的電壓只有一半，那麼亮度自然也就變為了一半。</p>
+<p><a target="_blank" rel="noopener" href="https://draft.blogger.com/blog/post/edit/3150406505283704665/8333327948209781762#"><img src="https://pic2.zhimg.com/80/v2-43929176c2841581b7093ec86406aae9_1440w.jpg"></a></p>
+<p>我們可以通過RPi.GPIO中的PWM類來控制輸出的平均電壓。</p>
+<p>第一個參數為引腳編號，第二個參數為頻率</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pwm <span class="token operator">=</span> GPIO<span class="token punctuation">.</span>PWM<span class="token punctuation">(</span>num<span class="token punctuation">,</span> frequency<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>第二個參數要填寫頻率，這裡要用到頻率(f)和周期(T)的轉換公式： [公式]</p>
+<p>我們假設週期為20毫秒，那得到頻率為1/0.02s，即50Hz。</p>
+<p>注：如果開關動作的周期如果太長，即頻率太小，那麼人的肉眼就可以辨識出燈的開關狀態，也就是說LED燈看起來就是閃爍的。</p>
+<p>之後調用p.start(dc)來開啟PWM：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 開啟PWM，參數dc為佔空比，取值範圍為0-100</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pwm<span class="token punctuation">.</span>start<span class="token punctuation">(</span>dc<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果要更改頻率，可以調用ChangeFrequency()方法：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pwm<span class="token punctuation">.</span>ChangeFrequency<span class="token punctuation">(</span>frequency<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果要修改佔空比，可以調用ChangeDutyCycle()方法：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pwm<span class="token punctuation">.</span>ChangeDutyCycle<span class="token punctuation">(</span>dc<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>當不需要PWM時，可以調用stop()來停止：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pwm<span class="token punctuation">.</span>stop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<hr>
+<h2 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">
+<span class="token keyword">import</span> RPi<span class="token punctuation">.</span>GPIO <span class="token keyword">as</span> GPIO  
 <span class="token keyword">from</span> time <span class="token keyword">import</span> sleep  
   
-led_pin <span class="token operator">=</span> <span class="token number">20</span>  
-button_pin <span class="token operator">=</span> <span class="token number">21</span>  
+led <span class="token operator">=</span> <span class="token number">20</span>  
+freg <span class="token operator">=</span> <span class="token number">60</span>  
+dc <span class="token operator">=</span> <span class="token number">0</span>  
+  
 GPIO<span class="token punctuation">.</span>setmode<span class="token punctuation">(</span>GPIO<span class="token punctuation">.</span>BCM<span class="token punctuation">)</span>  
-GPIO<span class="token punctuation">.</span>setup<span class="token punctuation">(</span>button_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>IN<span class="token punctuation">)</span>  
-GPIO<span class="token punctuation">.</span>setup<span class="token punctuation">(</span>led_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>  
+GPIO<span class="token punctuation">.</span>setup<span class="token punctuation">(</span>led<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>OUT<span class="token punctuation">)</span>  
+  
+p <span class="token operator">=</span> GPIO<span class="token punctuation">.</span>PWM<span class="token punctuation">(</span>led<span class="token punctuation">,</span> freg<span class="token punctuation">)</span>  
+p<span class="token punctuation">.</span>start<span class="token punctuation">(</span>dc<span class="token punctuation">)</span>  
   
 <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>  
-    <span class="token keyword">if</span> GPIO<span class="token punctuation">.</span><span class="token builtin">input</span><span class="token punctuation">(</span>button_pin<span class="token punctuation">)</span><span class="token punctuation">:</span>  
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"led is off"</span><span class="token punctuation">)</span>  
-        GPIO<span class="token punctuation">.</span>output<span class="token punctuation">(</span>led_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>LOW<span class="token punctuation">)</span>  
-        sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>  
-    <span class="token keyword">else</span><span class="token punctuation">:</span>  
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"led is on"</span><span class="token punctuation">)</span>  
-        GPIO<span class="token punctuation">.</span>output<span class="token punctuation">(</span>led_pin<span class="token punctuation">,</span> GPIO<span class="token punctuation">.</span>HIGH<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/TGQFLai7lzM" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+        p<span class="token punctuation">.</span>ChangeDutyCycle<span class="token punctuation">(</span>i<span class="token punctuation">)</span>  
+        sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span>  
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+        p<span class="token punctuation">.</span>ChangeDutyCycle<span class="token punctuation">(</span>i<span class="token punctuation">)</span>  
+        sleep<span class="token punctuation">(</span><span class="token number">0.05</span><span class="token punctuation">)</span>  
+p<span class="token punctuation">.</span>stop<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+GPIO<span class="token punctuation">.</span>cleanup<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/my9RtMC3J0o" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
                 
             </div>
             <hr/>
@@ -500,7 +522,7 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blairan.github.io/2021/10/29/1-an-niu-kong-zhi-led-shu-mei-pai/">https://blairan.github.io/2021/10/29/1-an-niu-kong-zhi-led-shu-mei-pai/</a>
+                    <a href="https://blairan.github.io/2021/10/30/2-hu-xi-deng-shu-mei-pai/">https://blairan.github.io/2021/10/30/2-hu-xi-deng-shu-mei-pai/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -538,12 +560,8 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/led/">
-                                    <span class="chip bg-color">led</span>
-                                </a>
-                            
-                                <a href="/tags/button/">
-                                    <span class="chip bg-color">button</span>
+                                <a href="/tags/%E5%91%BC%E5%90%B8%E7%87%88/">
+                                    <span class="chip bg-color">呼吸燈</span>
                                 </a>
                             
                         </div>
@@ -855,9 +873,10 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/30/2-hu-xi-deng-shu-mei-pai/">
                     <div class="card-image">
@@ -875,9 +894,9 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -890,6 +909,7 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -908,12 +928,12 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/18/ping-heng-xiao-che-balance-robot-ji-ben-ping-heng-arduino/">
+                <a href="/2021/10/29/1-an-niu-kong-zhi-led-shu-mei-pai/">
                     <div class="card-image">
                         
-                        <img src="/images/%E5%B9%B3%E8%A1%A1%E8%BB%8A2.jpg" class="responsive-img" alt="平衡小車(balance-Robot)-基本平衡-Arduino">
+                        <img src="/images/LED_BUTTON.png" class="responsive-img" alt="1.按鈕控制LED-樹莓派">
                         
-                        <span class="card-title">平衡小車(balance-Robot)-基本平衡-Arduino</span>
+                        <span class="card-title">1.按鈕控制LED-樹莓派</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -924,14 +944,14 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/arduino/" class="post-category">
-                                    arduino
+                            <a href="/categories/%E6%A8%B9%E8%8E%93%E6%B4%BE/" class="post-category">
+                                    樹莓派
                                 </a>
                             
                             
@@ -941,12 +961,12 @@ GPIO<span class="token punctuation">.</span>setup<span class="token punctuation"
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B9%B3%E8%A1%A1%E5%B0%8F%E8%BB%8A/">
-                        <span class="chip bg-color">平衡小車</span>
+                    <a href="/tags/led/">
+                        <span class="chip bg-color">led</span>
                     </a>
                     
-                    <a href="/tags/balace-robot/">
-                        <span class="chip bg-color">balace robot</span>
+                    <a href="/tags/button/">
+                        <span class="chip bg-color">button</span>
                     </a>
                     
                 </div>
